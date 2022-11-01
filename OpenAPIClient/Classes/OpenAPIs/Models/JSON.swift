@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - JSON Definition
 
-public enum JSON: Equatable {
+public enum JSON: Equatable, Hashable {
     case null
     case bool(Bool)
     case number(Decimal)
@@ -270,7 +270,7 @@ extension JSON {
 }
 
 // MARK: - Mutation
-
+/*
 extension JSON {
     /// Maps keys supplied, in the format of ["Old": "New"].  Gives an optional value transformer that can be used to transform values based on the final key name.
     /// - Parameters:
@@ -502,7 +502,7 @@ extension JSON where Key == String, Value == Any {
         
         return mapped
     }
-}
+}*/
 
 
 fileprivate extension NSNumber {

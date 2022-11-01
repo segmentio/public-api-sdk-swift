@@ -69,7 +69,7 @@ extension Set: JSONEncodable {
     }
 }
 
-extension JSON: JSONEncodable {
+/*extension JSON: JSONEncodable {
     func encodeToJSON() -> Any {
         var dictionary = [AnyHashable: Any]()
         for (key, value) in self {
@@ -77,7 +77,7 @@ extension JSON: JSONEncodable {
         }
         return dictionary
     }
-}
+}*/
 
 extension Data: JSONEncodable {
     func encodeToJSON() -> Any {
