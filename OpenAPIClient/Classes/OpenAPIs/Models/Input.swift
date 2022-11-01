@@ -20,9 +20,9 @@ public struct Input: Codable, JSONEncodable, Hashable {
     /** Is the subscription enabled. */
     public var enabled: Bool?
     /** The fields used for configuring this action. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: Dictionary? = nil) {
+    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: JSON? = nil) {
         self.name = name
         self.trigger = trigger
         self.enabled = enabled

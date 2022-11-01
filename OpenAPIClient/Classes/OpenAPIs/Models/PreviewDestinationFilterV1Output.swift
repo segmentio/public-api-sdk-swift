@@ -16,9 +16,9 @@ public struct PreviewDestinationFilterV1Output: Codable, JSONEncodable, Hashable
     /** The pre-filter JSON input. */
     public var inputPayload: [String: AnyCodable]
     /** The filtered JSON output. */
-    public var result: Dictionary?
+    public var result: JSON?
 
-    public init(inputPayload: [String: AnyCodable], result: Dictionary?) {
+    public init(inputPayload: [String: AnyCodable], result: JSON?) {
         self.inputPayload = inputPayload
         self.result = result
     }

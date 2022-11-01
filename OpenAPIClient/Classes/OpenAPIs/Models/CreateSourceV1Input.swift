@@ -20,9 +20,9 @@ public struct CreateSourceV1Input: Codable, JSONEncodable, Hashable {
     /** The id of the Source metadata from which this instance of the Source derives.  All Source metadata is available under `/catalog/sources`. */
     public var metadataId: String
     /** A key-value object that contains instance-specific settings for the Source. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(slug: String, enabled: Bool, metadataId: String, settings: Dictionary? = nil) {
+    public init(slug: String, enabled: Bool, metadataId: String, settings: JSON? = nil) {
         self.slug = slug
         self.enabled = enabled
         self.metadataId = metadataId

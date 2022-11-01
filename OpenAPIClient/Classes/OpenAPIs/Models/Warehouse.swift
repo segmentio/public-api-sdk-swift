@@ -21,9 +21,9 @@ public struct Warehouse: Codable, JSONEncodable, Hashable {
     /** When set to true, this Warehouse receives data. */
     public var enabled: Bool
     /** The settings associated with this Warehouse.  Common settings are connection-related configuration used to connect to it, for example host, username, and port. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(id: String, metadata: Metadata2, workspaceId: String, enabled: Bool, settings: Dictionary?) {
+    public init(id: String, metadata: Metadata2, workspaceId: String, enabled: Bool, settings: JSON?) {
         self.id = id
         self.metadata = metadata
         self.workspaceId = workspaceId

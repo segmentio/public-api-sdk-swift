@@ -22,9 +22,9 @@ public struct CreateDestinationSubscriptionAlphaInput: Codable, JSONEncodable, H
     /** Is the subscription enabled. */
     public var enabled: Bool
     /** The fields used for configuring this action. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(name: String, actionId: String, trigger: String, enabled: Bool, settings: Dictionary? = nil) {
+    public init(name: String, actionId: String, trigger: String, enabled: Bool, settings: JSON? = nil) {
         self.name = name
         self.actionId = actionId
         self.trigger = trigger

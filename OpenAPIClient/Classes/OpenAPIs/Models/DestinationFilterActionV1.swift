@@ -22,13 +22,13 @@ public struct DestinationFilterActionV1: Codable, JSONEncodable, Hashable {
     /** The kind of Transformation to apply to any matched properties. */
     public var type: ModelType
     /** A dictionary of paths to object keys that this filter applies to.   The literal string '' represents the top level of the object. */
-    public var fields: [String: AnyCodable]?
+    public var fields: [String: Array<String>]?
     /** A decimal between 0 and 1 used for 'sample' type events and influences the likelihood of sampling to occur. */
     public var percent: Double?
     /** The JSON path to a property within a payload object from which Segment generates a deterministic sampling rate. */
     public var path: String?
 
-    public init(type: ModelType, fields: [String: AnyCodable]? = nil, percent: Double? = nil, path: String? = nil) {
+    public init(type: ModelType, fields: [String: Array<String>]? = nil, percent: Double? = nil, path: String? = nil) {
         self.type = type
         self.fields = fields
         self.percent = percent

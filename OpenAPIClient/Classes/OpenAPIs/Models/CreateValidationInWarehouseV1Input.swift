@@ -16,9 +16,9 @@ public struct CreateValidationInWarehouseV1Input: Codable, JSONEncodable, Hashab
     /** The id of the Warehouse metadata type. */
     public var metadataId: String
     /** The settings to check. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(metadataId: String, settings: Dictionary?) {
+    public init(metadataId: String, settings: JSON?) {
         self.metadataId = metadataId
         self.settings = settings
     }

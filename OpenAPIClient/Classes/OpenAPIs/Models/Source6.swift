@@ -27,11 +27,11 @@ public struct Source6: Codable, JSONEncodable, Hashable {
     /** The write keys used to send data from the Source. This field is left empty when the current token does not have the 'source admin' permission. */
     public var writeKeys: [String]
     /** The settings associated with the Source. */
-    public var settings: Dictionary?
+    public var settings: JSON?
     /** A list of labels applied to the Source. */
     public var labels: [LabelV1]
 
-    public init(id: String, slug: String, name: String? = nil, metadata: Metadata1, workspaceId: String, enabled: Bool, writeKeys: [String], settings: Dictionary? = nil, labels: [LabelV1]) {
+    public init(id: String, slug: String, name: String? = nil, metadata: Metadata1, workspaceId: String, enabled: Bool, writeKeys: [String], settings: JSON? = nil, labels: [LabelV1]) {
         self.id = id
         self.slug = slug
         self.name = name

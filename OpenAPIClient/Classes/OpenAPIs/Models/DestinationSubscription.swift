@@ -26,11 +26,11 @@ public struct DestinationSubscription: Codable, JSONEncodable, Hashable {
     /** Is the subscription enabled. */
     public var enabled: Bool
     /** The customer settings for action fields. */
-    public var settings: Dictionary?
+    public var settings: JSON?
     /** FQL string that describes what events should trigger a Destination action. */
     public var trigger: String
 
-    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: Dictionary?, trigger: String) {
+    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: JSON?, trigger: String) {
         self.id = id
         self.name = name
         self.actionId = actionId

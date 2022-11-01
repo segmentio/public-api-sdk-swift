@@ -20,9 +20,9 @@ public struct CreateWarehouseV1Input: Codable, JSONEncodable, Hashable {
     /** Enable to allow this Warehouse to receive data. Defaults to true. */
     public var enabled: Bool?
     /** A key-value object that contains instance-specific settings for a Warehouse.  Different kinds of Warehouses require different settings. The required and optional settings for a Warehouse are described in the `options` object of the associated Warehouse metadata.  You can find the full list of Warehouse metadata and related settings information in the `/catalog/warehouses` endpoint. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(metadataId: String, name: String? = nil, enabled: Bool? = nil, settings: Dictionary?) {
+    public init(metadataId: String, name: String? = nil, enabled: Bool? = nil, settings: JSON?) {
         self.metadataId = metadataId
         self.name = name
         self.enabled = enabled

@@ -20,9 +20,9 @@ public struct UpdateSourceAlphaInput: Codable, JSONEncodable, Hashable {
     /** The slug that identifies the Source.  Config API note: equal to `name`. */
     public var slug: String?
     /** A key-value object that contains instance-specific settings for the Source.  Different kinds of Sources require different kinds of input. The settings input for a Source comes from the `options` object associated with this instance of a Source.  You can find the full list of required settings by accessing the Sources catalog endpoint under `/catalog/sources`. */
-    public var settings: Dictionary?
+    public var settings: JSON?
 
-    public init(name: String? = nil, enabled: Bool? = nil, slug: String? = nil, settings: Dictionary? = nil) {
+    public init(name: String? = nil, enabled: Bool? = nil, slug: String? = nil, settings: JSON? = nil) {
         self.name = name
         self.enabled = enabled
         self.slug = slug

@@ -34,10 +34,10 @@ private let sessionDelegate = SessionDelegate()
 private let defaultURLSession = URLSession(configuration: .default, delegate: sessionDelegate, delegateQueue: nil)
 
 // Store current taskDidReceiveChallenge for every URLSessionTask
-private var challengeHandlerStore = SynchronizedDictionary<Int, OpenAPIClientAPIChallengeHandler>()
+private var challengeHandlerStore = SynchronizedJSON<Int, OpenAPIClientAPIChallengeHandler>()
 
 // Store current URLCredential for every URLSessionTask
-private var credentialStore = SynchronizedDictionary<Int, URLCredential>()
+private var credentialStore = SynchronizedJSON<Int, URLCredential>()
 
 open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
 
