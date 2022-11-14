@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 Cartfile
 LICENSE
 Package.swift
@@ -30,6 +29,7 @@ PublicApi/Classes/OpenAPIs/APIs/WarehousesAPI.swift
 PublicApi/Classes/OpenAPIs/APIs/WorkspacesAPI.swift
 PublicApi/Classes/OpenAPIs/CodableHelper.swift
 PublicApi/Classes/OpenAPIs/Configuration.swift
+PublicApi/Classes/OpenAPIs/Extensions.swift
 PublicApi/Classes/OpenAPIs/JSONDataEncoding.swift
 PublicApi/Classes/OpenAPIs/JSONEncodingHelper.swift
 PublicApi/Classes/OpenAPIs/Models.swift
@@ -500,7 +500,6 @@ PublicApi/Classes/OpenAPIs/Models/WorkspaceV1.swift
 PublicApi/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 PublicApi/Classes/OpenAPIs/SynchronizedDictionary.swift
 PublicApi/Classes/OpenAPIs/URLSessionImplementations.swift
-PublicApiSdkSwift/Classes/OpenAPIs/Extensions.swift
 README.md
 docs/APICallSnapshotV1.md
 docs/APICallsAPI.md
