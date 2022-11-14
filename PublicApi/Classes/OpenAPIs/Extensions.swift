@@ -81,7 +81,7 @@ extension Dictionary: JSONEncodable {
 
 extension Data: JSONEncodable {
     func encodeToJSON() -> Any {
-        return self.base64EncodedString(options: Data.Base64EncodingOptions())
+        return String(data: self, encoding: String.Encoding.utf16) ?? self.base64EncodedString(options: Data.Base64EncodingOptions())
     }
 }
 
@@ -96,7 +96,7 @@ extension JSONEncodable where Self: Encodable {
         guard let data = try? CodableHelper.jsonEncoder.encode(self) else {
             fatalError("Could not encode to json: \(self)")
         }
-        return data
+        return data.encodeToJSON()
     }
 }
 
