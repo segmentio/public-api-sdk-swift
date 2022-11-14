@@ -81,7 +81,7 @@ extension Dictionary: JSONEncodable {
 
 extension Data: JSONEncodable {
     func encodeToJSON() -> Any {
-      return "hello"
+        return String(data: self, encoding: String.Encoding.utf8) ?? self.base64EncodedString(options: Data.Base64EncodingOptions())
     }
 }
 
