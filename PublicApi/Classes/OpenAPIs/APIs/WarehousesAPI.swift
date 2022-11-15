@@ -315,7 +315,7 @@ open class WarehousesAPI {
      List Connected Sources from Warehouse
      
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -339,7 +339,7 @@ open class WarehousesAPI {
        - type: http
        - name: token
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListConnectedSourcesFromWarehouse200Response> 
      */
     open class func listConnectedSourcesFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListConnectedSourcesFromWarehouse200Response> {
@@ -369,7 +369,7 @@ open class WarehousesAPI {
     /**
      List Warehouses
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -392,7 +392,7 @@ open class WarehousesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListWarehouses200Response> 
      */
     open class func listWarehousesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListWarehouses200Response> {

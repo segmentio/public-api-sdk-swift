@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct ReplaceLabelsInSource200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: ReplaceLabelsInSourceAlphaOutput?
+    public var data: ReplaceLabelsInSourceV1Output?
 
-    public init(data: ReplaceLabelsInSourceAlphaOutput? = nil) {
+    public init(data: ReplaceLabelsInSourceV1Output? = nil) {
         self.data = data
     }
 

@@ -15,7 +15,7 @@ open class IAMRolesAPI {
     /**
      List Roles
      
-     - parameter pagination: (query) Pagination for roles.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for roles.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -38,7 +38,7 @@ open class IAMRolesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination for roles.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for roles.  This parameter exists in v1. 
      - returns: RequestBuilder<ListRoles200Response> 
      */
     open class func listRolesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListRoles200Response> {
