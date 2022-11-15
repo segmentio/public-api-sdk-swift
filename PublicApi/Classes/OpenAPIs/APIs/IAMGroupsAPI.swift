@@ -267,7 +267,7 @@ open class IAMGroupsAPI {
      List Invites from User Group
      
      - parameter userGroupId: (path)  
-     - parameter pagination: (query) Pagination for invites to the group.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for invites to the group.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -291,7 +291,7 @@ open class IAMGroupsAPI {
        - type: http
        - name: token
      - parameter userGroupId: (path)  
-     - parameter pagination: (query) Pagination for invites to the group.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for invites to the group.  This parameter exists in v1. 
      - returns: RequestBuilder<ListInvitesFromUserGroup200Response> 
      */
     open class func listInvitesFromUserGroupWithRequestBuilder(userGroupId: String, pagination: PaginationInput) -> RequestBuilder<ListInvitesFromUserGroup200Response> {
@@ -321,7 +321,7 @@ open class IAMGroupsAPI {
     /**
      List User Groups
      
-     - parameter pagination: (query) Pagination for user groups.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for user groups.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -344,7 +344,7 @@ open class IAMGroupsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination for user groups.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for user groups.  This parameter exists in v1. 
      - returns: RequestBuilder<ListUserGroups200Response> 
      */
     open class func listUserGroupsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListUserGroups200Response> {
@@ -372,7 +372,7 @@ open class IAMGroupsAPI {
      List Users from User Group
      
      - parameter userGroupId: (path)  
-     - parameter pagination: (query) Pagination for members of a group.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for members of a group.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -396,7 +396,7 @@ open class IAMGroupsAPI {
        - type: http
        - name: token
      - parameter userGroupId: (path)  
-     - parameter pagination: (query) Pagination for members of a group.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for members of a group.  This parameter exists in v1. 
      - returns: RequestBuilder<ListUsersFromUserGroup200Response> 
      */
     open class func listUsersFromUserGroupWithRequestBuilder(userGroupId: String, pagination: PaginationInput) -> RequestBuilder<ListUsersFromUserGroup200Response> {
@@ -427,7 +427,7 @@ open class IAMGroupsAPI {
      Remove Users from User Group
      
      - parameter userGroupId: (path)  
-     - parameter emails: (query) The list of emails to remove from the user group.  This parameter exists in alpha. 
+     - parameter emails: (query) The list of emails to remove from the user group.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -451,7 +451,7 @@ open class IAMGroupsAPI {
        - type: http
        - name: token
      - parameter userGroupId: (path)  
-     - parameter emails: (query) The list of emails to remove from the user group.  This parameter exists in alpha. 
+     - parameter emails: (query) The list of emails to remove from the user group.  This parameter exists in v1. 
      - returns: RequestBuilder<RemoveUsersFromUserGroup200Response> 
      */
     open class func removeUsersFromUserGroupWithRequestBuilder(userGroupId: String, emails: [String]) -> RequestBuilder<RemoveUsersFromUserGroup200Response> {

@@ -292,9 +292,9 @@ open class DeletionAndSuppressionAPI {
      List Regulations from Source
      
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in alpha. (optional)
-     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -318,9 +318,9 @@ open class DeletionAndSuppressionAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in alpha. (optional)
-     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListRegulationsFromSource200Response> 
      */
     open class func listRegulationsFromSourceWithRequestBuilder(sourceId: String, pagination: PaginationInput, status: Status_listRegulationsFromSource? = nil, regulationTypes: [RegulationTypes_listRegulationsFromSource]? = nil) -> RequestBuilder<ListRegulationsFromSource200Response> {
@@ -352,7 +352,7 @@ open class DeletionAndSuppressionAPI {
     /**
      List Suppressions
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -375,7 +375,7 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListSuppressions200Response> 
      */
     open class func listSuppressionsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListSuppressions200Response> {
@@ -427,9 +427,9 @@ open class DeletionAndSuppressionAPI {
     /**
      List Workspace Regulations
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in alpha. (optional)
-     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in v1. (optional)
+     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -452,9 +452,9 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in alpha. (optional)
-     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in v1. (optional)
+     - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListWorkspaceRegulations200Response> 
      */
     open class func listWorkspaceRegulationsWithRequestBuilder(pagination: PaginationInput, status: Status_listWorkspaceRegulations? = nil, regulationTypes: [RegulationTypes_listWorkspaceRegulations]? = nil) -> RequestBuilder<ListWorkspaceRegulations200Response> {
