@@ -67,7 +67,7 @@ open class SelectiveSyncAPI {
      
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -92,7 +92,7 @@ open class SelectiveSyncAPI {
        - name: token
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListSelectiveSyncsFromWarehouseAndSource200Response> 
      */
     open class func listSelectiveSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSource200Response> {
@@ -126,7 +126,7 @@ open class SelectiveSyncAPI {
      List Syncs from Warehouse
      
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -150,7 +150,7 @@ open class SelectiveSyncAPI {
        - type: http
        - name: token
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListSyncsFromWarehouse200Response> 
      */
     open class func listSyncsFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListSyncsFromWarehouse200Response> {
@@ -182,7 +182,7 @@ open class SelectiveSyncAPI {
      
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -207,7 +207,7 @@ open class SelectiveSyncAPI {
        - name: token
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListSyncsFromWarehouseAndSource200Response> 
      */
     open class func listSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListSyncsFromWarehouseAndSource200Response> {

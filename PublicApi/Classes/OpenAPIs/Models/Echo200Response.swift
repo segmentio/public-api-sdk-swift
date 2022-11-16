@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct Echo200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: EchoAlphaOutput?
+    public var data: EchoV1Output?
 
-    public init(data: EchoAlphaOutput? = nil) {
+    public init(data: EchoV1Output? = nil) {
         self.data = data
     }
 
