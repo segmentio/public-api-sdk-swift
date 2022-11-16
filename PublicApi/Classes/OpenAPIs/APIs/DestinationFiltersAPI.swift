@@ -123,7 +123,7 @@ open class DestinationFiltersAPI {
      List Filters from Destination
      
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -147,7 +147,7 @@ open class DestinationFiltersAPI {
        - type: http
        - name: token
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - returns: RequestBuilder<ListFiltersFromDestination200Response> 
      */
     open class func listFiltersFromDestinationWithRequestBuilder(destinationId: String, pagination: PaginationInput) -> RequestBuilder<ListFiltersFromDestination200Response> {

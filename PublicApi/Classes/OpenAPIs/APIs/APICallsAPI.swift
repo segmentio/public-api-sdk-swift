@@ -15,8 +15,8 @@ open class APICallsAPI {
     /**
      Get Daily Per Source API Calls Usage
      
-     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -39,8 +39,8 @@ open class APICallsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. 
      - returns: RequestBuilder<GetDailyPerSourceAPICallsUsage200Response> 
      */
     open class func getDailyPerSourceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyPerSourceAPICallsUsage200Response> {
@@ -68,8 +68,8 @@ open class APICallsAPI {
     /**
      Get Daily Workspace API Calls Usage
      
-     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -92,8 +92,8 @@ open class APICallsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. 
      - returns: RequestBuilder<GetDailyWorkspaceAPICallsUsage200Response> 
      */
     open class func getDailyWorkspaceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyWorkspaceAPICallsUsage200Response> {

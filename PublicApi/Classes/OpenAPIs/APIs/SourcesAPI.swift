@@ -16,13 +16,13 @@ open class SourcesAPI {
      Add Labels to Source
      
      - parameter sourceId: (path)  
-     - parameter addLabelsToSourceAlphaInput: (body)  
+     - parameter addLabelsToSourceV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addLabelsToSource(sourceId: String, addLabelsToSourceAlphaInput: AddLabelsToSourceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddLabelsToSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return addLabelsToSourceWithRequestBuilder(sourceId: sourceId, addLabelsToSourceAlphaInput: addLabelsToSourceAlphaInput).execute(apiResponseQueue) { result in
+    open class func addLabelsToSource(sourceId: String, addLabelsToSourceV1Input: AddLabelsToSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddLabelsToSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return addLabelsToSourceWithRequestBuilder(sourceId: sourceId, addLabelsToSourceV1Input: addLabelsToSourceV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -40,16 +40,16 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter addLabelsToSourceAlphaInput: (body)  
+     - parameter addLabelsToSourceV1Input: (body)  
      - returns: RequestBuilder<AddLabelsToSource200Response> 
      */
-    open class func addLabelsToSourceWithRequestBuilder(sourceId: String, addLabelsToSourceAlphaInput: AddLabelsToSourceAlphaInput) -> RequestBuilder<AddLabelsToSource200Response> {
+    open class func addLabelsToSourceWithRequestBuilder(sourceId: String, addLabelsToSourceV1Input: AddLabelsToSourceV1Input) -> RequestBuilder<AddLabelsToSource200Response> {
         var localVariablePath = "/sources/{sourceId}/labels"
         let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
         let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addLabelsToSourceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addLabelsToSourceV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -67,13 +67,13 @@ open class SourcesAPI {
     /**
      Create Source
      
-     - parameter createSourceAlphaInput: (body)  
+     - parameter createSourceV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createSource(createSourceAlphaInput: CreateSourceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createSourceWithRequestBuilder(createSourceAlphaInput: createSourceAlphaInput).execute(apiResponseQueue) { result in
+    open class func createSource(createSourceV1Input: CreateSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createSourceWithRequestBuilder(createSourceV1Input: createSourceV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -90,13 +90,13 @@ open class SourcesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter createSourceAlphaInput: (body)  
+     - parameter createSourceV1Input: (body)  
      - returns: RequestBuilder<CreateSource200Response> 
      */
-    open class func createSourceWithRequestBuilder(createSourceAlphaInput: CreateSourceAlphaInput) -> RequestBuilder<CreateSource200Response> {
+    open class func createSourceWithRequestBuilder(createSourceV1Input: CreateSourceV1Input) -> RequestBuilder<CreateSource200Response> {
         let localVariablePath = "/sources"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createSourceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createSourceV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -215,7 +215,7 @@ open class SourcesAPI {
      List Connected Destinations from Source
      
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in beta. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -239,7 +239,7 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in beta. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
      - returns: RequestBuilder<ListConnectedDestinationsFromSource200Response> 
      */
     open class func listConnectedDestinationsFromSourceWithRequestBuilder(sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListConnectedDestinationsFromSource200Response> {
@@ -270,7 +270,7 @@ open class SourcesAPI {
      List Connected Warehouses from Source
      
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in beta. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -294,7 +294,7 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in beta. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
      - returns: RequestBuilder<ListConnectedWarehousesFromSource200Response> 
      */
     open class func listConnectedWarehousesFromSourceWithRequestBuilder(sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListConnectedWarehousesFromSource200Response> {
@@ -374,7 +374,7 @@ open class SourcesAPI {
     /**
      List Sources
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in beta. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -397,7 +397,7 @@ open class SourcesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in beta. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
      - returns: RequestBuilder<ListSources200Response> 
      */
     open class func listSourcesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListSources200Response> {
@@ -425,13 +425,13 @@ open class SourcesAPI {
      Replace Labels in Source
      
      - parameter sourceId: (path)  
-     - parameter replaceLabelsInSourceAlphaInput: (body)  
+     - parameter replaceLabelsInSourceV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func replaceLabelsInSource(sourceId: String, replaceLabelsInSourceAlphaInput: ReplaceLabelsInSourceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ReplaceLabelsInSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return replaceLabelsInSourceWithRequestBuilder(sourceId: sourceId, replaceLabelsInSourceAlphaInput: replaceLabelsInSourceAlphaInput).execute(apiResponseQueue) { result in
+    open class func replaceLabelsInSource(sourceId: String, replaceLabelsInSourceV1Input: ReplaceLabelsInSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ReplaceLabelsInSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return replaceLabelsInSourceWithRequestBuilder(sourceId: sourceId, replaceLabelsInSourceV1Input: replaceLabelsInSourceV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -449,16 +449,16 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter replaceLabelsInSourceAlphaInput: (body)  
+     - parameter replaceLabelsInSourceV1Input: (body)  
      - returns: RequestBuilder<ReplaceLabelsInSource200Response> 
      */
-    open class func replaceLabelsInSourceWithRequestBuilder(sourceId: String, replaceLabelsInSourceAlphaInput: ReplaceLabelsInSourceAlphaInput) -> RequestBuilder<ReplaceLabelsInSource200Response> {
+    open class func replaceLabelsInSourceWithRequestBuilder(sourceId: String, replaceLabelsInSourceV1Input: ReplaceLabelsInSourceV1Input) -> RequestBuilder<ReplaceLabelsInSource200Response> {
         var localVariablePath = "/sources/{sourceId}/labels"
         let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
         let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: replaceLabelsInSourceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: replaceLabelsInSourceV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -529,13 +529,13 @@ open class SourcesAPI {
      Update Source
      
      - parameter sourceId: (path)  
-     - parameter updateSourceAlphaInput: (body)  
+     - parameter updateSourceV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateSource(sourceId: String, updateSourceAlphaInput: UpdateSourceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateSourceWithRequestBuilder(sourceId: sourceId, updateSourceAlphaInput: updateSourceAlphaInput).execute(apiResponseQueue) { result in
+    open class func updateSource(sourceId: String, updateSourceV1Input: UpdateSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateSourceWithRequestBuilder(sourceId: sourceId, updateSourceV1Input: updateSourceV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -553,16 +553,16 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter updateSourceAlphaInput: (body)  
+     - parameter updateSourceV1Input: (body)  
      - returns: RequestBuilder<UpdateSource200Response> 
      */
-    open class func updateSourceWithRequestBuilder(sourceId: String, updateSourceAlphaInput: UpdateSourceAlphaInput) -> RequestBuilder<UpdateSource200Response> {
+    open class func updateSourceWithRequestBuilder(sourceId: String, updateSourceV1Input: UpdateSourceV1Input) -> RequestBuilder<UpdateSource200Response> {
         var localVariablePath = "/sources/{sourceId}"
         let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
         let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateSourceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateSourceV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

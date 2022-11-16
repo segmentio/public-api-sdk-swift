@@ -15,8 +15,8 @@ open class MonthlyTrackedUsersAPI {
     /**
      Get Daily Per Source MTU Usage
      
-     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -39,8 +39,8 @@ open class MonthlyTrackedUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. 
      - returns: RequestBuilder<GetDailyPerSourceMTUUsage200Response> 
      */
     open class func getDailyPerSourceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyPerSourceMTUUsage200Response> {
@@ -68,8 +68,8 @@ open class MonthlyTrackedUsersAPI {
     /**
      Get Daily Workspace MTU Usage
      
-     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -92,8 +92,8 @@ open class MonthlyTrackedUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in alpha. 
+     - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. 
      - returns: RequestBuilder<GetDailyWorkspaceMTUUsage200Response> 
      */
     open class func getDailyWorkspaceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyWorkspaceMTUUsage200Response> {
