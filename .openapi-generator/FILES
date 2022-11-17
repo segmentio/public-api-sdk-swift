@@ -110,8 +110,6 @@ PublicApi/Classes/OpenAPIs/Models/CreateTrackingPlanV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/CreateTransformation200Response.swift
 PublicApi/Classes/OpenAPIs/Models/CreateTransformationBetaInput.swift
 PublicApi/Classes/OpenAPIs/Models/CreateTransformationBetaOutput.swift
-PublicApi/Classes/OpenAPIs/Models/CreateTransformationV1Input.swift
-PublicApi/Classes/OpenAPIs/Models/CreateTransformationV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/CreateUserGroup200Response.swift
 PublicApi/Classes/OpenAPIs/Models/CreateUserGroupV1Input.swift
 PublicApi/Classes/OpenAPIs/Models/CreateUserGroupV1Output.swift
@@ -143,9 +141,7 @@ PublicApi/Classes/OpenAPIs/Models/DeleteSourceV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteTrackingPlan200Response.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteTrackingPlanV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteTransformation200Response.swift
-PublicApi/Classes/OpenAPIs/Models/DeleteTransformationBetaInput.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteTransformationBetaOutput.swift
-PublicApi/Classes/OpenAPIs/Models/DeleteTransformationV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteUserGroup200Response.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteUserGroupV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/DeleteUsers200Response.swift
@@ -240,9 +236,7 @@ PublicApi/Classes/OpenAPIs/Models/GetSubscriptionRequest.swift
 PublicApi/Classes/OpenAPIs/Models/GetTrackingPlan200Response.swift
 PublicApi/Classes/OpenAPIs/Models/GetTrackingPlanV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/GetTransformation200Response.swift
-PublicApi/Classes/OpenAPIs/Models/GetTransformationBetaInput.swift
 PublicApi/Classes/OpenAPIs/Models/GetTransformationBetaOutput.swift
-PublicApi/Classes/OpenAPIs/Models/GetTransformationV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/GetUser200Response.swift
 PublicApi/Classes/OpenAPIs/Models/GetUserGroup200Response.swift
 PublicApi/Classes/OpenAPIs/Models/GetUserGroupV1Output.swift
@@ -325,9 +319,7 @@ PublicApi/Classes/OpenAPIs/Models/ListSyncsFromWarehouseV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/ListTrackingPlans200Response.swift
 PublicApi/Classes/OpenAPIs/Models/ListTrackingPlansV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/ListTransformations200Response.swift
-PublicApi/Classes/OpenAPIs/Models/ListTransformationsBetaInput.swift
 PublicApi/Classes/OpenAPIs/Models/ListTransformationsBetaOutput.swift
-PublicApi/Classes/OpenAPIs/Models/ListTransformationsV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/ListUserGroups200Response.swift
 PublicApi/Classes/OpenAPIs/Models/ListUserGroupsFromUser200Response.swift
 PublicApi/Classes/OpenAPIs/Models/ListUserGroupsFromUserV1Output.swift
@@ -355,7 +347,6 @@ PublicApi/Classes/OpenAPIs/Models/MinimalUserGroupV1.swift
 PublicApi/Classes/OpenAPIs/Models/MinimalUserV1.swift
 PublicApi/Classes/OpenAPIs/Models/MtuSnapshotV1.swift
 PublicApi/Classes/OpenAPIs/Models/Pagination.swift
-PublicApi/Classes/OpenAPIs/Models/Pagination1.swift
 PublicApi/Classes/OpenAPIs/Models/PaginationInput.swift
 PublicApi/Classes/OpenAPIs/Models/PaginationOutput.swift
 PublicApi/Classes/OpenAPIs/Models/PermissionInputV1.swift
@@ -366,9 +357,7 @@ PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1.swift
 PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1Input.swift
 PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/PropertyRenameBeta.swift
-PublicApi/Classes/OpenAPIs/Models/PropertyRenameV1.swift
 PublicApi/Classes/OpenAPIs/Models/PropertyValueTransformationBeta.swift
-PublicApi/Classes/OpenAPIs/Models/PropertyValueTransformationV1.swift
 PublicApi/Classes/OpenAPIs/Models/Regulation.swift
 PublicApi/Classes/OpenAPIs/Models/RegulationListEntryV1.swift
 PublicApi/Classes/OpenAPIs/Models/RemoveFilterFromDestination200Response.swift
@@ -450,11 +439,7 @@ PublicApi/Classes/OpenAPIs/Models/TrackingPlanV1.swift
 PublicApi/Classes/OpenAPIs/Models/Transformation.swift
 PublicApi/Classes/OpenAPIs/Models/Transformation1.swift
 PublicApi/Classes/OpenAPIs/Models/Transformation2.swift
-PublicApi/Classes/OpenAPIs/Models/Transformation3.swift
-PublicApi/Classes/OpenAPIs/Models/Transformation4.swift
-PublicApi/Classes/OpenAPIs/Models/Transformation5.swift
 PublicApi/Classes/OpenAPIs/Models/TransformationBeta.swift
-PublicApi/Classes/OpenAPIs/Models/TransformationV1.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateDestination200Response.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateDestinationV1Input.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateDestinationV1Output.swift
@@ -488,8 +473,6 @@ PublicApi/Classes/OpenAPIs/Models/UpdateTrackingPlanV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateTransformation200Response.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateTransformationBetaInput.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateTransformationBetaOutput.swift
-PublicApi/Classes/OpenAPIs/Models/UpdateTransformationV1Input.swift
-PublicApi/Classes/OpenAPIs/Models/UpdateTransformationV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateUserGroup200Response.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateUserGroupV1Input.swift
 PublicApi/Classes/OpenAPIs/Models/UpdateUserGroupV1Output.swift
@@ -599,8 +582,6 @@ docs/CreateTrackingPlanV1Output.md
 docs/CreateTransformation200Response.md
 docs/CreateTransformationBetaInput.md
 docs/CreateTransformationBetaOutput.md
-docs/CreateTransformationV1Input.md
-docs/CreateTransformationV1Output.md
 docs/CreateUserGroup200Response.md
 docs/CreateUserGroupV1Input.md
 docs/CreateUserGroupV1Output.md
@@ -632,9 +613,7 @@ docs/DeleteSourceV1Output.md
 docs/DeleteTrackingPlan200Response.md
 docs/DeleteTrackingPlanV1Output.md
 docs/DeleteTransformation200Response.md
-docs/DeleteTransformationBetaInput.md
 docs/DeleteTransformationBetaOutput.md
-docs/DeleteTransformationV1Output.md
 docs/DeleteUserGroup200Response.md
 docs/DeleteUserGroupV1Output.md
 docs/DeleteUsers200Response.md
@@ -735,9 +714,7 @@ docs/GetSubscriptionRequest.md
 docs/GetTrackingPlan200Response.md
 docs/GetTrackingPlanV1Output.md
 docs/GetTransformation200Response.md
-docs/GetTransformationBetaInput.md
 docs/GetTransformationBetaOutput.md
-docs/GetTransformationV1Output.md
 docs/GetUser200Response.md
 docs/GetUserGroup200Response.md
 docs/GetUserGroupV1Output.md
@@ -823,9 +800,7 @@ docs/ListSyncsFromWarehouseV1Output.md
 docs/ListTrackingPlans200Response.md
 docs/ListTrackingPlansV1Output.md
 docs/ListTransformations200Response.md
-docs/ListTransformationsBetaInput.md
 docs/ListTransformationsBetaOutput.md
-docs/ListTransformationsV1Output.md
 docs/ListUserGroups200Response.md
 docs/ListUserGroupsFromUser200Response.md
 docs/ListUserGroupsFromUserV1Output.md
@@ -854,7 +829,6 @@ docs/MinimalUserV1.md
 docs/MonthlyTrackedUsersAPI.md
 docs/MtuSnapshotV1.md
 docs/Pagination.md
-docs/Pagination1.md
 docs/PaginationInput.md
 docs/PaginationOutput.md
 docs/PermissionInputV1.md
@@ -865,9 +839,7 @@ docs/PreviewDestinationFilterV1.md
 docs/PreviewDestinationFilterV1Input.md
 docs/PreviewDestinationFilterV1Output.md
 docs/PropertyRenameBeta.md
-docs/PropertyRenameV1.md
 docs/PropertyValueTransformationBeta.md
-docs/PropertyValueTransformationV1.md
 docs/Regulation.md
 docs/RegulationListEntryV1.md
 docs/RemoveFilterFromDestination200Response.md
@@ -954,11 +926,7 @@ docs/TrackingPlansAPI.md
 docs/Transformation.md
 docs/Transformation1.md
 docs/Transformation2.md
-docs/Transformation3.md
-docs/Transformation4.md
-docs/Transformation5.md
 docs/TransformationBeta.md
-docs/TransformationV1.md
 docs/TransformationsAPI.md
 docs/UpdateDestination200Response.md
 docs/UpdateDestinationV1Input.md
@@ -993,8 +961,6 @@ docs/UpdateTrackingPlanV1Output.md
 docs/UpdateTransformation200Response.md
 docs/UpdateTransformationBetaInput.md
 docs/UpdateTransformationBetaOutput.md
-docs/UpdateTransformationV1Input.md
-docs/UpdateTransformationV1Output.md
 docs/UpdateUserGroup200Response.md
 docs/UpdateUserGroupV1Input.md
 docs/UpdateUserGroupV1Output.md

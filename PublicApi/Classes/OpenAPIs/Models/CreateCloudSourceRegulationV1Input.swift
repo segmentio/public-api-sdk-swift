@@ -14,6 +14,7 @@ import AnyCodable
 public struct CreateCloudSourceRegulationV1Input: Codable, JSONEncodable, Hashable {
 
     public enum RegulationType: String, Codable, CaseIterable {
+        case bulkDeleteOnly = "BULK_DELETE_ONLY"
         case deleteInternal = "DELETE_INTERNAL"
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
