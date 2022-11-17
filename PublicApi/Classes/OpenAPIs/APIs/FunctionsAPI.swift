@@ -220,8 +220,8 @@ open class FunctionsAPI {
     /**
      List Functions
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -244,8 +244,8 @@ open class FunctionsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
-     - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in v1. 
      - returns: RequestBuilder<ListFunctions200Response> 
      */
     open class func listFunctionsWithRequestBuilder(pagination: PaginationInput, resourceType: ResourceType_listFunctions) -> RequestBuilder<ListFunctions200Response> {

@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct DeleteSource200Response1: Codable, JSONEncodable, Hashable {
 
-    public var data: DeleteSourceV1Output?
+    public var data: DeleteSourceAlphaOutput?
 
-    public init(data: DeleteSourceV1Output? = nil) {
+    public init(data: DeleteSourceAlphaOutput? = nil) {
         self.data = data
     }
 

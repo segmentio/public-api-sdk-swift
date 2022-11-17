@@ -13,6 +13,8 @@ import AnyCodable
 /** The input to update a Transformation. */
 public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
 
+    /** ID of the Transformation to update. */
+    public var transformationId: String
     /** The name of the Transformation. */
     public var name: String?
     /** The optional Source to be associated with the Transformation. */
@@ -27,8 +29,11 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
     public var newEventName: String?
     /** Optional array for renaming properties collected by your events. */
     public var propertyRenames: [PropertyRenameBeta]?
+    /** Optional array for transforming properties and values collected by your events. Limited to 10 properties. */
+    public var propertyValueTransformations: [PropertyValueTransformationBeta]?
 
-    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil) {
+    public init(transformationId: String, name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil, propertyValueTransformations: [PropertyValueTransformationBeta]? = nil) {
+        self.transformationId = transformationId
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
@@ -36,9 +41,11 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         self._if = _if
         self.newEventName = newEventName
         self.propertyRenames = propertyRenames
+        self.propertyValueTransformations = propertyValueTransformations
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case transformationId
         case name
         case sourceId
         case destinationMetadataId
@@ -46,12 +53,14 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         case _if = "if"
         case newEventName
         case propertyRenames
+        case propertyValueTransformations
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(transformationId, forKey: .transformationId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(sourceId, forKey: .sourceId)
         try container.encodeIfPresent(destinationMetadataId, forKey: .destinationMetadataId)
@@ -59,6 +68,7 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(_if, forKey: ._if)
         try container.encodeIfPresent(newEventName, forKey: .newEventName)
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
+        try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
     }
 }
 

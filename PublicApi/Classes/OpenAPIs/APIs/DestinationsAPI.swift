@@ -279,10 +279,10 @@ open class DestinationsAPI {
      List Delivery Metrics Summary from Destination
      
      - parameter destinationId: (path)  
-     - parameter sourceId: (query) The id of the Source linked to the Destination.  Config API note: analogous to &#x60;parent&#x60;.  This parameter exists in alpha. 
-     - parameter startTime: (query) Filter events that happened after this time.  Defaults to: - 1 hour ago if granularity is &#x60;MINUTE&#x60;. - 7 days ago if granularity is &#x60;HOUR&#x60;. - 30 days ago if granularity is &#x60;DAY&#x60;.  This parameter exists in alpha. (optional)
-     - parameter endTime: (query) Filter events that happened before this time. Defaults to now if not set.  This parameter exists in alpha. (optional)
-     - parameter granularity: (query) The granularity to filter metrics to. Either &#x60;MINUTE&#x60;, &#x60;HOUR&#x60; or &#x60;DAY&#x60;.  Defaults to &#x60;MINUTE&#x60; if not set.  This parameter exists in alpha. (optional)
+     - parameter sourceId: (query) The id of the Source linked to the Destination.  Config API note: analogous to &#x60;parent&#x60;.  This parameter exists in beta. 
+     - parameter startTime: (query) Filter events that happened after this time.  Defaults to: - 1 hour ago if granularity is &#x60;MINUTE&#x60;. - 7 days ago if granularity is &#x60;HOUR&#x60;. - 30 days ago if granularity is &#x60;DAY&#x60;.  This parameter exists in beta. (optional)
+     - parameter endTime: (query) Filter events that happened before this time. Defaults to now if not set.  This parameter exists in beta. (optional)
+     - parameter granularity: (query) The granularity to filter metrics to. Either &#x60;MINUTE&#x60;, &#x60;HOUR&#x60; or &#x60;DAY&#x60;.  Defaults to &#x60;MINUTE&#x60; if not set.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -306,10 +306,10 @@ open class DestinationsAPI {
        - type: http
        - name: token
      - parameter destinationId: (path)  
-     - parameter sourceId: (query) The id of the Source linked to the Destination.  Config API note: analogous to &#x60;parent&#x60;.  This parameter exists in alpha. 
-     - parameter startTime: (query) Filter events that happened after this time.  Defaults to: - 1 hour ago if granularity is &#x60;MINUTE&#x60;. - 7 days ago if granularity is &#x60;HOUR&#x60;. - 30 days ago if granularity is &#x60;DAY&#x60;.  This parameter exists in alpha. (optional)
-     - parameter endTime: (query) Filter events that happened before this time. Defaults to now if not set.  This parameter exists in alpha. (optional)
-     - parameter granularity: (query) The granularity to filter metrics to. Either &#x60;MINUTE&#x60;, &#x60;HOUR&#x60; or &#x60;DAY&#x60;.  Defaults to &#x60;MINUTE&#x60; if not set.  This parameter exists in alpha. (optional)
+     - parameter sourceId: (query) The id of the Source linked to the Destination.  Config API note: analogous to &#x60;parent&#x60;.  This parameter exists in beta. 
+     - parameter startTime: (query) Filter events that happened after this time.  Defaults to: - 1 hour ago if granularity is &#x60;MINUTE&#x60;. - 7 days ago if granularity is &#x60;HOUR&#x60;. - 30 days ago if granularity is &#x60;DAY&#x60;.  This parameter exists in beta. (optional)
+     - parameter endTime: (query) Filter events that happened before this time. Defaults to now if not set.  This parameter exists in beta. (optional)
+     - parameter granularity: (query) The granularity to filter metrics to. Either &#x60;MINUTE&#x60;, &#x60;HOUR&#x60; or &#x60;DAY&#x60;.  Defaults to &#x60;MINUTE&#x60; if not set.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<ListDeliveryMetricsSummaryFromDestination200Response> 
      */
     open class func listDeliveryMetricsSummaryFromDestinationWithRequestBuilder(destinationId: String, sourceId: String, startTime: String? = nil, endTime: String? = nil, granularity: Granularity_listDeliveryMetricsSummaryFromDestination? = nil) -> RequestBuilder<ListDeliveryMetricsSummaryFromDestination200Response> {
@@ -342,7 +342,7 @@ open class DestinationsAPI {
     /**
      List Destinations
      
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -365,7 +365,7 @@ open class DestinationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. 
      - returns: RequestBuilder<ListDestinations200Response> 
      */
     open class func listDestinationsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListDestinations200Response> {

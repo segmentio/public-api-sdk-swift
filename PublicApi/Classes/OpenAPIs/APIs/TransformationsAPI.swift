@@ -15,13 +15,13 @@ open class TransformationsAPI {
     /**
      Create Transformation
      
-     - parameter createTransformationBetaInput: (body)  
+     - parameter createTransformationV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createTransformation(createTransformationBetaInput: CreateTransformationBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateTransformation200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createTransformationWithRequestBuilder(createTransformationBetaInput: createTransformationBetaInput).execute(apiResponseQueue) { result in
+    open class func createTransformation(createTransformationV1Input: CreateTransformationV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateTransformation200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createTransformationWithRequestBuilder(createTransformationV1Input: createTransformationV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -38,13 +38,13 @@ open class TransformationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter createTransformationBetaInput: (body)  
+     - parameter createTransformationV1Input: (body)  
      - returns: RequestBuilder<CreateTransformation200Response> 
      */
-    open class func createTransformationWithRequestBuilder(createTransformationBetaInput: CreateTransformationBetaInput) -> RequestBuilder<CreateTransformation200Response> {
+    open class func createTransformationWithRequestBuilder(createTransformationV1Input: CreateTransformationV1Input) -> RequestBuilder<CreateTransformation200Response> {
         let localVariablePath = "/transformations"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTransformationBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTransformationV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -162,7 +162,7 @@ open class TransformationsAPI {
     /**
      List Transformations
      
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -185,7 +185,7 @@ open class TransformationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - returns: RequestBuilder<ListTransformations200Response> 
      */
     open class func listTransformationsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListTransformations200Response> {
@@ -213,13 +213,13 @@ open class TransformationsAPI {
      Update Transformation
      
      - parameter transformationId: (path)  
-     - parameter updateTransformationBetaInput: (body)  
+     - parameter updateTransformationV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateTransformation(transformationId: String, updateTransformationBetaInput: UpdateTransformationBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateTransformation200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateTransformationWithRequestBuilder(transformationId: transformationId, updateTransformationBetaInput: updateTransformationBetaInput).execute(apiResponseQueue) { result in
+    open class func updateTransformation(transformationId: String, updateTransformationV1Input: UpdateTransformationV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateTransformation200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateTransformationWithRequestBuilder(transformationId: transformationId, updateTransformationV1Input: updateTransformationV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -237,16 +237,16 @@ open class TransformationsAPI {
        - type: http
        - name: token
      - parameter transformationId: (path)  
-     - parameter updateTransformationBetaInput: (body)  
+     - parameter updateTransformationV1Input: (body)  
      - returns: RequestBuilder<UpdateTransformation200Response> 
      */
-    open class func updateTransformationWithRequestBuilder(transformationId: String, updateTransformationBetaInput: UpdateTransformationBetaInput) -> RequestBuilder<UpdateTransformation200Response> {
+    open class func updateTransformationWithRequestBuilder(transformationId: String, updateTransformationV1Input: UpdateTransformationV1Input) -> RequestBuilder<UpdateTransformation200Response> {
         var localVariablePath = "/transformations/{transformationId}"
         let transformationIdPreEscape = "\(APIHelper.mapValueToPathItem(transformationId))"
         let transformationIdPostEscape = transformationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{transformationId}", with: transformationIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateTransformationBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateTransformationV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

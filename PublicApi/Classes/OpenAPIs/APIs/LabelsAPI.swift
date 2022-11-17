@@ -15,13 +15,13 @@ open class LabelsAPI {
     /**
      Create Label
      
-     - parameter createLabelAlphaInput: (body)  
+     - parameter createLabelV1Input: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createLabel(createLabelAlphaInput: CreateLabelAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateLabel200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createLabelWithRequestBuilder(createLabelAlphaInput: createLabelAlphaInput).execute(apiResponseQueue) { result in
+    open class func createLabel(createLabelV1Input: CreateLabelV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateLabel200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createLabelWithRequestBuilder(createLabelV1Input: createLabelV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -38,13 +38,13 @@ open class LabelsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter createLabelAlphaInput: (body)  
+     - parameter createLabelV1Input: (body)  
      - returns: RequestBuilder<CreateLabel200Response> 
      */
-    open class func createLabelWithRequestBuilder(createLabelAlphaInput: CreateLabelAlphaInput) -> RequestBuilder<CreateLabel200Response> {
+    open class func createLabelWithRequestBuilder(createLabelV1Input: CreateLabelV1Input) -> RequestBuilder<CreateLabel200Response> {
         let localVariablePath = "/labels"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createLabelAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createLabelV1Input)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
