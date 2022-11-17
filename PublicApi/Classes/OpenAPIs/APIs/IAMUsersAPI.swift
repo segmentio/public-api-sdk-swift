@@ -114,7 +114,7 @@ open class IAMUsersAPI {
     /**
      Delete Invites
      
-     - parameter emails: (query) The list of emails to delete invites for.  This parameter exists in alpha. 
+     - parameter emails: (query) The list of emails to delete invites for.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -137,7 +137,7 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter emails: (query) The list of emails to delete invites for.  This parameter exists in alpha. 
+     - parameter emails: (query) The list of emails to delete invites for.  This parameter exists in v1. 
      - returns: RequestBuilder<DeleteInvites200Response> 
      */
     open class func deleteInvitesWithRequestBuilder(emails: [String]) -> RequestBuilder<DeleteInvites200Response> {
@@ -164,7 +164,7 @@ open class IAMUsersAPI {
     /**
      Delete Users
      
-     - parameter userIds: (query) The ids of the users to remove.  This parameter exists in alpha. 
+     - parameter userIds: (query) The ids of the users to remove.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -187,7 +187,7 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter userIds: (query) The ids of the users to remove.  This parameter exists in alpha. 
+     - parameter userIds: (query) The ids of the users to remove.  This parameter exists in v1. 
      - returns: RequestBuilder<DeleteUsers200Response> 
      */
     open class func deleteUsersWithRequestBuilder(userIds: [String]) -> RequestBuilder<DeleteUsers200Response> {
@@ -264,7 +264,7 @@ open class IAMUsersAPI {
     /**
      List Invites
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -287,7 +287,7 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<ListInvites200Response> 
      */
     open class func listInvitesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListInvites200Response> {
@@ -315,7 +315,7 @@ open class IAMUsersAPI {
      List User Groups from User
      
      - parameter userId: (path)  
-     - parameter pagination: (query) Pagination for groups.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -339,7 +339,7 @@ open class IAMUsersAPI {
        - type: http
        - name: token
      - parameter userId: (path)  
-     - parameter pagination: (query) Pagination for groups.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. 
      - returns: RequestBuilder<ListUserGroupsFromUser200Response> 
      */
     open class func listUserGroupsFromUserWithRequestBuilder(userId: String, pagination: PaginationInput) -> RequestBuilder<ListUserGroupsFromUser200Response> {
@@ -369,7 +369,7 @@ open class IAMUsersAPI {
     /**
      List Users
      
-     - parameter pagination: (query) Pagination for users.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -392,7 +392,7 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination for users.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. 
      - returns: RequestBuilder<ListUsers200Response> 
      */
     open class func listUsersWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListUsers200Response> {

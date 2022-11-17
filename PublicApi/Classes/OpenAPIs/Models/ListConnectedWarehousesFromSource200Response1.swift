@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct ListConnectedWarehousesFromSource200Response1: Codable, JSONEncodable, Hashable {
 
-    public var data: ListConnectedWarehousesFromSourceV1Output?
+    public var data: ListConnectedWarehousesFromSourceAlphaOutput?
 
-    public init(data: ListConnectedWarehousesFromSourceV1Output? = nil) {
+    public init(data: ListConnectedWarehousesFromSourceAlphaOutput? = nil) {
         self.data = data
     }
 
