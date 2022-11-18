@@ -24,15 +24,15 @@ open class EventsAPI {
     /**
      Get Events Volume from Workspace
      
-     - parameter granularity: (query) The size of each bucket in the requested window.  This parameter exists in alpha. 
-     - parameter startTime: (query) The ISO8601 formatted timestamp that corresponds to the beginning of the requested time frame, inclusive.  This parameter exists in alpha. 
-     - parameter endTime: (query) The ISO8601 formatted timestamp that corresponds to the end of the requested time frame, noninclusive. Segment recommends that you lag queries 1 minute behind clock time to reduce the risk for latency to impact the counts.  This parameter exists in alpha. 
-     - parameter groupBy: (query) A comma-delimited list of strings that represents the dimensions to group the result by. The options are: &#x60;eventName&#x60;, &#x60;eventType&#x60; and &#x60;source&#x60;.  This parameter exists in alpha. (optional)
-     - parameter sourceId: (query) A list of strings which filters the results to the given SourceIds.  This parameter exists in alpha. (optional)
-     - parameter eventName: (query) A list of strings which filters the results to the given EventNames.  This parameter exists in alpha. (optional)
-     - parameter eventType: (query) A list of strings which filters the results to the given EventTypes.  This parameter exists in alpha. (optional)
-     - parameter appVersion: (query) A list of strings which filters the results to the given AppVersions.  This parameter exists in alpha. (optional)
-     - parameter pagination: (query) Pagination input for event volume by Workspace.  This parameter exists in alpha. (optional)
+     - parameter granularity: (query) The size of each bucket in the requested window.  This parameter exists in v1. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp that corresponds to the beginning of the requested time frame, inclusive.  This parameter exists in v1. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp that corresponds to the end of the requested time frame, noninclusive. Segment recommends that you lag queries 1 minute behind clock time to reduce the risk for latency to impact the counts.  This parameter exists in v1. 
+     - parameter groupBy: (query) A comma-delimited list of strings that represents the dimensions to group the result by. The options are: &#x60;eventName&#x60;, &#x60;eventType&#x60; and &#x60;source&#x60;.  This parameter exists in v1. (optional)
+     - parameter sourceId: (query) A list of strings which filters the results to the given SourceIds.  This parameter exists in v1. (optional)
+     - parameter eventName: (query) A list of strings which filters the results to the given EventNames.  This parameter exists in v1. (optional)
+     - parameter eventType: (query) A list of strings which filters the results to the given EventTypes.  This parameter exists in v1. (optional)
+     - parameter appVersion: (query) A list of strings which filters the results to the given AppVersions.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination input for event volume by Workspace.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -55,15 +55,15 @@ open class EventsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter granularity: (query) The size of each bucket in the requested window.  This parameter exists in alpha. 
-     - parameter startTime: (query) The ISO8601 formatted timestamp that corresponds to the beginning of the requested time frame, inclusive.  This parameter exists in alpha. 
-     - parameter endTime: (query) The ISO8601 formatted timestamp that corresponds to the end of the requested time frame, noninclusive. Segment recommends that you lag queries 1 minute behind clock time to reduce the risk for latency to impact the counts.  This parameter exists in alpha. 
-     - parameter groupBy: (query) A comma-delimited list of strings that represents the dimensions to group the result by. The options are: &#x60;eventName&#x60;, &#x60;eventType&#x60; and &#x60;source&#x60;.  This parameter exists in alpha. (optional)
-     - parameter sourceId: (query) A list of strings which filters the results to the given SourceIds.  This parameter exists in alpha. (optional)
-     - parameter eventName: (query) A list of strings which filters the results to the given EventNames.  This parameter exists in alpha. (optional)
-     - parameter eventType: (query) A list of strings which filters the results to the given EventTypes.  This parameter exists in alpha. (optional)
-     - parameter appVersion: (query) A list of strings which filters the results to the given AppVersions.  This parameter exists in alpha. (optional)
-     - parameter pagination: (query) Pagination input for event volume by Workspace.  This parameter exists in alpha. (optional)
+     - parameter granularity: (query) The size of each bucket in the requested window.  This parameter exists in v1. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp that corresponds to the beginning of the requested time frame, inclusive.  This parameter exists in v1. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp that corresponds to the end of the requested time frame, noninclusive. Segment recommends that you lag queries 1 minute behind clock time to reduce the risk for latency to impact the counts.  This parameter exists in v1. 
+     - parameter groupBy: (query) A comma-delimited list of strings that represents the dimensions to group the result by. The options are: &#x60;eventName&#x60;, &#x60;eventType&#x60; and &#x60;source&#x60;.  This parameter exists in v1. (optional)
+     - parameter sourceId: (query) A list of strings which filters the results to the given SourceIds.  This parameter exists in v1. (optional)
+     - parameter eventName: (query) A list of strings which filters the results to the given EventNames.  This parameter exists in v1. (optional)
+     - parameter eventType: (query) A list of strings which filters the results to the given EventTypes.  This parameter exists in v1. (optional)
+     - parameter appVersion: (query) A list of strings which filters the results to the given AppVersions.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination input for event volume by Workspace.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetEventsVolumeFromWorkspace200Response> 
      */
     open class func getEventsVolumeFromWorkspaceWithRequestBuilder(granularity: Granularity_getEventsVolumeFromWorkspace, startTime: String, endTime: String, groupBy: [String]? = nil, sourceId: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil, pagination: PaginationInput? = nil) -> RequestBuilder<GetEventsVolumeFromWorkspace200Response> {

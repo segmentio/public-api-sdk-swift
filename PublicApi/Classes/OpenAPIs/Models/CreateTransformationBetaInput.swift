@@ -27,8 +27,10 @@ public struct CreateTransformationBetaInput: Codable, JSONEncodable, Hashable {
     public var newEventName: String?
     /** Optional array for renaming properties collected by your events. */
     public var propertyRenames: [PropertyRenameBeta]?
+    /** Optional array for transforming properties and values collected by your events. Limited to 10 properties. */
+    public var propertyValueTransformations: [PropertyValueTransformationBeta]?
 
-    public init(name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil) {
+    public init(name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil, propertyValueTransformations: [PropertyValueTransformationBeta]? = nil) {
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
@@ -36,6 +38,7 @@ public struct CreateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         self._if = _if
         self.newEventName = newEventName
         self.propertyRenames = propertyRenames
+        self.propertyValueTransformations = propertyValueTransformations
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -46,6 +49,7 @@ public struct CreateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         case _if = "if"
         case newEventName
         case propertyRenames
+        case propertyValueTransformations
     }
 
     // Encodable protocol methods
@@ -59,6 +63,7 @@ public struct CreateTransformationBetaInput: Codable, JSONEncodable, Hashable {
         try container.encode(_if, forKey: ._if)
         try container.encodeIfPresent(newEventName, forKey: .newEventName)
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
+        try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
     }
 }
 

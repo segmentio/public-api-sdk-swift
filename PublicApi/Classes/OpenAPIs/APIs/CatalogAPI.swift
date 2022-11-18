@@ -65,7 +65,7 @@ open class CatalogAPI {
     /**
      Get Destinations Catalog
      
-     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -88,7 +88,7 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. 
      - returns: RequestBuilder<GetDestinationsCatalog200Response> 
      */
     open class func getDestinationsCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetDestinationsCatalog200Response> {
@@ -165,7 +165,7 @@ open class CatalogAPI {
     /**
      Get Sources Catalog
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -188,7 +188,7 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - returns: RequestBuilder<GetSourcesCatalog200Response> 
      */
     open class func getSourcesCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetSourcesCatalog200Response> {
@@ -265,7 +265,7 @@ open class CatalogAPI {
     /**
      Get Warehouses Catalog
      
-     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -288,7 +288,7 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in alpha. 
+     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in v1. 
      - returns: RequestBuilder<GetWarehousesCatalog200Response> 
      */
     open class func getWarehousesCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetWarehousesCatalog200Response> {

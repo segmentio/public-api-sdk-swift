@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 Cartfile
 LICENSE
 Package.swift
@@ -356,6 +357,7 @@ PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1.swift
 PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1Input.swift
 PublicApi/Classes/OpenAPIs/Models/PreviewDestinationFilterV1Output.swift
 PublicApi/Classes/OpenAPIs/Models/PropertyRenameBeta.swift
+PublicApi/Classes/OpenAPIs/Models/PropertyValueTransformationBeta.swift
 PublicApi/Classes/OpenAPIs/Models/Regulation.swift
 PublicApi/Classes/OpenAPIs/Models/RegulationListEntryV1.swift
 PublicApi/Classes/OpenAPIs/Models/RemoveFilterFromDestination200Response.swift
@@ -837,6 +839,7 @@ docs/PreviewDestinationFilterV1.md
 docs/PreviewDestinationFilterV1Input.md
 docs/PreviewDestinationFilterV1Output.md
 docs/PropertyRenameBeta.md
+docs/PropertyValueTransformationBeta.md
 docs/Regulation.md
 docs/RegulationListEntryV1.md
 docs/RemoveFilterFromDestination200Response.md

@@ -162,7 +162,7 @@ open class TransformationsAPI {
     /**
      List Transformations
      
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in beta. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -185,7 +185,7 @@ open class TransformationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in beta. 
      - returns: RequestBuilder<ListTransformations200Response> 
      */
     open class func listTransformationsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListTransformations200Response> {
