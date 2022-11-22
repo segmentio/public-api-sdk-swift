@@ -15,12 +15,12 @@ open class TestingAPI {
     /**
      Echo
      
-     - parameter message: (query) Sets the response &#x60;message&#x60; field. The response contains this field&#39;s entry.  This parameter exists in v1. 
-     - parameter delay: (query) The desired response delay, in milliseconds.  This parameter exists in v1. (optional)
-     - parameter triggerError: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the string in &#x60;message&#x60;.  This parameter exists in v1. (optional)
-     - parameter triggerMultipleErrors: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the value of the &#x60;message&#x60; field in the error message array.  This has no effect if the request sets &#x60;triggerError&#x60;.  This parameter exists in v1. (optional)
-     - parameter triggerUnexpectedError: (query) If &#x60;true&#x60;, triggers a &#x60;500&#x60; error.  This has no effect if the request sets either &#x60;triggerError&#x60; or &#x60;triggerMultipleErrors&#x60;.  This parameter exists in v1. (optional)
-     - parameter statusCode: (query) Sets the HTTP status code to return.  This parameter exists in v1. (optional)
+     - parameter message: (query) Sets the response &#x60;message&#x60; field. The response contains this field&#39;s entry.  This parameter exists in alpha. 
+     - parameter delay: (query) The desired response delay, in milliseconds.  This parameter exists in alpha. (optional)
+     - parameter triggerError: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the string in &#x60;message&#x60;.  This parameter exists in alpha. (optional)
+     - parameter triggerMultipleErrors: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the value of the &#x60;message&#x60; field in the error message array.  This has no effect if the request sets &#x60;triggerError&#x60;.  This parameter exists in alpha. (optional)
+     - parameter triggerUnexpectedError: (query) If &#x60;true&#x60;, triggers a &#x60;500&#x60; error.  This has no effect if the request sets either &#x60;triggerError&#x60; or &#x60;triggerMultipleErrors&#x60;.  This parameter exists in alpha. (optional)
+     - parameter statusCode: (query) Sets the HTTP status code to return.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -43,12 +43,12 @@ open class TestingAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter message: (query) Sets the response &#x60;message&#x60; field. The response contains this field&#39;s entry.  This parameter exists in v1. 
-     - parameter delay: (query) The desired response delay, in milliseconds.  This parameter exists in v1. (optional)
-     - parameter triggerError: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the string in &#x60;message&#x60;.  This parameter exists in v1. (optional)
-     - parameter triggerMultipleErrors: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the value of the &#x60;message&#x60; field in the error message array.  This has no effect if the request sets &#x60;triggerError&#x60;.  This parameter exists in v1. (optional)
-     - parameter triggerUnexpectedError: (query) If &#x60;true&#x60;, triggers a &#x60;500&#x60; error.  This has no effect if the request sets either &#x60;triggerError&#x60; or &#x60;triggerMultipleErrors&#x60;.  This parameter exists in v1. (optional)
-     - parameter statusCode: (query) Sets the HTTP status code to return.  This parameter exists in v1. (optional)
+     - parameter message: (query) Sets the response &#x60;message&#x60; field. The response contains this field&#39;s entry.  This parameter exists in alpha. 
+     - parameter delay: (query) The desired response delay, in milliseconds.  This parameter exists in alpha. (optional)
+     - parameter triggerError: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the string in &#x60;message&#x60;.  This parameter exists in alpha. (optional)
+     - parameter triggerMultipleErrors: (query) If &#x60;true&#x60;, returns an HTTP &#x60;4xx&#x60; error that contains the value of the &#x60;message&#x60; field in the error message array.  This has no effect if the request sets &#x60;triggerError&#x60;.  This parameter exists in alpha. (optional)
+     - parameter triggerUnexpectedError: (query) If &#x60;true&#x60;, triggers a &#x60;500&#x60; error.  This has no effect if the request sets either &#x60;triggerError&#x60; or &#x60;triggerMultipleErrors&#x60;.  This parameter exists in alpha. (optional)
+     - parameter statusCode: (query) Sets the HTTP status code to return.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<Echo200Response> 
      */
     open class func echoWithRequestBuilder(message: String, delay: Double? = nil, triggerError: Bool? = nil, triggerMultipleErrors: Bool? = nil, triggerUnexpectedError: Bool? = nil, statusCode: Double? = nil) -> RequestBuilder<Echo200Response> {

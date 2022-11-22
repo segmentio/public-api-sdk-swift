@@ -215,7 +215,7 @@ open class TrackingPlansAPI {
      List Rules from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -239,7 +239,7 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - returns: RequestBuilder<ListRulesFromTrackingPlan200Response> 
      */
     open class func listRulesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput) -> RequestBuilder<ListRulesFromTrackingPlan200Response> {
@@ -270,7 +270,7 @@ open class TrackingPlansAPI {
      List Sources from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -294,7 +294,7 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - returns: RequestBuilder<ListSourcesFromTrackingPlan200Response> 
      */
     open class func listSourcesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput) -> RequestBuilder<ListSourcesFromTrackingPlan200Response> {
@@ -334,8 +334,8 @@ open class TrackingPlansAPI {
     /**
      List Tracking Plans
      
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
-     - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -358,8 +358,8 @@ open class TrackingPlansAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
-     - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListTrackingPlans200Response> 
      */
     open class func listTrackingPlansWithRequestBuilder(pagination: PaginationInput, type: ModelType_listTrackingPlans? = nil) -> RequestBuilder<ListTrackingPlans200Response> {
@@ -388,7 +388,7 @@ open class TrackingPlansAPI {
      Remove Rules from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter rules: (query) Rules to delete.  This parameter exists in alpha. 
+     - parameter rules: (query) Rules to delete.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -412,7 +412,7 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter rules: (query) Rules to delete.  This parameter exists in alpha. 
+     - parameter rules: (query) Rules to delete.  This parameter exists in v1. 
      - returns: RequestBuilder<RemoveRulesFromTrackingPlan200Response> 
      */
     open class func removeRulesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, rules: [RemoveRuleV1]) -> RequestBuilder<RemoveRulesFromTrackingPlan200Response> {
@@ -443,7 +443,7 @@ open class TrackingPlansAPI {
      Remove Source from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter sourceId: (query) The id of the Source associated with the Tracking Plan.  Config API note: analogous to &#x60;sourceName&#x60;.  This parameter exists in alpha. 
+     - parameter sourceId: (query) The id of the Source associated with the Tracking Plan.  Config API note: analogous to &#x60;sourceName&#x60;.  This parameter exists in v1. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -467,7 +467,7 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter sourceId: (query) The id of the Source associated with the Tracking Plan.  Config API note: analogous to &#x60;sourceName&#x60;.  This parameter exists in alpha. 
+     - parameter sourceId: (query) The id of the Source associated with the Tracking Plan.  Config API note: analogous to &#x60;sourceName&#x60;.  This parameter exists in v1. 
      - returns: RequestBuilder<RemoveSourceFromTrackingPlan200Response> 
      */
     open class func removeSourceFromTrackingPlanWithRequestBuilder(trackingPlanId: String, sourceId: String) -> RequestBuilder<RemoveSourceFromTrackingPlan200Response> {
