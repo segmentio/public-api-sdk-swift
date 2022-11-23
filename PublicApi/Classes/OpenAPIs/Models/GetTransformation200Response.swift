@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GetTransformation200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: GetTransformationV1Output?
+    public var data: GetTransformationBetaOutput?
 
-    public init(data: GetTransformationV1Output? = nil) {
+    public init(data: GetTransformationBetaOutput? = nil) {
         self.data = data
     }
 

@@ -13,8 +13,6 @@ import AnyCodable
 /** The input to update a Transformation. */
 public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
 
-    /** ID of the Transformation to update. */
-    public var transformationId: String
     /** The name of the Transformation. */
     public var name: String?
     /** The optional Source to be associated with the Transformation. */
@@ -32,8 +30,7 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
     /** Optional array for transforming properties and values collected by your events. Limited to 10 properties. */
     public var propertyValueTransformations: [PropertyValueTransformationBeta]?
 
-    public init(transformationId: String, name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil, propertyValueTransformations: [PropertyValueTransformationBeta]? = nil) {
-        self.transformationId = transformationId
+    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameBeta]? = nil, propertyValueTransformations: [PropertyValueTransformationBeta]? = nil) {
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
@@ -45,7 +42,6 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case transformationId
         case name
         case sourceId
         case destinationMetadataId
@@ -60,7 +56,6 @@ public struct UpdateTransformationBetaInput: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(transformationId, forKey: .transformationId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(sourceId, forKey: .sourceId)
         try container.encodeIfPresent(destinationMetadataId, forKey: .destinationMetadataId)
