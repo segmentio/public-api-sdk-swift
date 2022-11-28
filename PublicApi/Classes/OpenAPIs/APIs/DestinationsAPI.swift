@@ -34,7 +34,7 @@ open class DestinationsAPI {
     /**
      Create Destination
      - POST /destinations
-     - Creates a new Destination.    When called, this endpoint may generate the `Integration Created` [Audit Trail](/tag/Audit-Trail) event.       
+     - Creates a new Destination.    When called, this endpoint may generate the `Integration Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -133,7 +133,7 @@ open class DestinationsAPI {
     /**
      Delete Destination
      - DELETE /destinations/{destinationId}
-     - Deletes an existing Destination.    When called, this endpoint may generate the `Integration Deleted` [Audit Trail](/tag/Audit-Trail) event.  Config API omitted fields: - `catalogId`       
+     - Deletes an existing Destination.    When called, this endpoint may generate the `Integration Deleted` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `catalogId`       
      - BASIC:
        - type: http
        - name: token
@@ -522,7 +522,7 @@ open class DestinationsAPI {
     /**
      Update Destination
      - PATCH /destinations/{destinationId}
-     - Updates an existing Destination.  **Note**: if you attempt to update read-only settings for your destination you'll encounter the following behavior:    * If only read-only properties are being updated, the endpoint will return an HTTP 400 error.   * If there's a mix of writable and read-only properties in the payload, the request will be accepted, the writable properties will be updated and the read-only properties ignored.     When called, this endpoint may generate the `Integration Disabled` [Audit Trail](/tag/Audit-Trail) event.  Config API omitted fields: - `updateMask`          
+     - Updates an existing Destination.  **Note**: if you attempt to update read-only settings for your destination you'll encounter the following behavior:    * If only read-only properties are being updated, the endpoint will return an HTTP 400 error.   * If there's a mix of writable and read-only properties in the payload, the request will be accepted, the writable properties will be updated and the read-only properties ignored.     When called, this endpoint may generate the `Integration Disabled` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `updateMask`          
      - BASIC:
        - type: http
        - name: token
