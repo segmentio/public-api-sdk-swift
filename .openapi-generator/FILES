@@ -503,6 +503,7 @@ PublicApi/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 PublicApi/Classes/OpenAPIs/SynchronizedDictionary.swift
 PublicApi/Classes/OpenAPIs/URLSessionImplementations.swift
 README.md
+Tests/PublicApiTests/SmokeTest.swift
 docs/APICallSnapshotV1.md
 docs/APICallsAPI.md
 docs/AccessPermissionV1.md
