@@ -5,8 +5,11 @@
 //
 
 import Foundation
-#if !os(macOS)
+#if !os(macOS) && !os(Linux) && !os(Windows)
 import MobileCoreServices
+#endif
+#if canImport(FoundationNetworking)
+import FoundationNetworking
 #endif
 
 public protocol URLSessionProtocol {
@@ -575,6 +578,7 @@ private class FormDataEncoding: ParameterEncoding {
     }
 
     func mimeType(for url: URL) -> String {
+        #if !os(Linux) && !os(Windows)
         let pathExtension = url.pathExtension
 
         if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue() {
@@ -582,6 +586,7 @@ private class FormDataEncoding: ParameterEncoding {
                 return mimetype as String
             }
         }
+        #endif
         return "application/octet-stream"
     }
 

@@ -5,9 +5,13 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 #if canImport(AnyCodable)
 import AnyCodable
 #endif
+
 
 extension Bool: JSONEncodable {
     func encodeToJSON() -> Any { self }

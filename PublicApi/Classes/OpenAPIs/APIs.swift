@@ -5,6 +5,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 // We reverted the change of PublicApiAPI to PublicApi introduced in https://github.com/OpenAPITools/openapi-generator/pull/9624
 // Because it was causing the following issue https://github.com/OpenAPITools/openapi-generator/issues/9953
