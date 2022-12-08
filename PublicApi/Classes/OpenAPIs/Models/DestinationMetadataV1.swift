@@ -54,8 +54,12 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
     public var contacts: [Contact]?
     /** Partner Owned flag. */
     public var partnerOwned: Bool?
+    /** A list of supported regions for this Destination. */
+    public var supportedRegions: [String]?
+    /** The list of regional endpoints for this Destination. */
+    public var regionEndpoints: [String]?
 
-    public init(id: String, name: String, description: String, slug: String, logos: Logos, options: [IntegrationOptionBeta], status: Status, previousNames: [String], categories: [String], website: String, components: [DestinationMetadataComponentV1], supportedFeatures: SupportedFeatures, supportedMethods: SupportedMethods, supportedPlatforms: SupportedPlatforms, actions: [DestinationMetadataActionV1], presets: [DestinationMetadataSubscriptionPresetV1], contacts: [Contact]? = nil, partnerOwned: Bool? = nil) {
+    public init(id: String, name: String, description: String, slug: String, logos: Logos, options: [IntegrationOptionBeta], status: Status, previousNames: [String], categories: [String], website: String, components: [DestinationMetadataComponentV1], supportedFeatures: SupportedFeatures, supportedMethods: SupportedMethods, supportedPlatforms: SupportedPlatforms, actions: [DestinationMetadataActionV1], presets: [DestinationMetadataSubscriptionPresetV1], contacts: [Contact]? = nil, partnerOwned: Bool? = nil, supportedRegions: [String]? = nil, regionEndpoints: [String]? = nil) {
         self.id = id
         self.name = name
         self.description = description
@@ -74,6 +78,8 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         self.presets = presets
         self.contacts = contacts
         self.partnerOwned = partnerOwned
+        self.supportedRegions = supportedRegions
+        self.regionEndpoints = regionEndpoints
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -95,6 +101,8 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         case presets
         case contacts
         case partnerOwned
+        case supportedRegions
+        case regionEndpoints
     }
 
     // Encodable protocol methods
@@ -119,6 +127,8 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         try container.encode(presets, forKey: .presets)
         try container.encodeIfPresent(contacts, forKey: .contacts)
         try container.encodeIfPresent(partnerOwned, forKey: .partnerOwned)
+        try container.encodeIfPresent(supportedRegions, forKey: .supportedRegions)
+        try container.encodeIfPresent(regionEndpoints, forKey: .regionEndpoints)
     }
 }
 
