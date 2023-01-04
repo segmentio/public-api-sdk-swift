@@ -14,9 +14,9 @@ import AnyCodable
 public struct ReplaceRulesInTrackingPlanV1Input: Codable, JSONEncodable, Hashable {
 
     /** Rules to replace. */
-    public var rules: [RuleV1]?
+    public var rules: [RuleV1]
 
-    public init(rules: [RuleV1]? = nil) {
+    public init(rules: [RuleV1]) {
         self.rules = rules
     }
 
@@ -28,7 +28,7 @@ public struct ReplaceRulesInTrackingPlanV1Input: Codable, JSONEncodable, Hashabl
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(rules, forKey: .rules)
+        try container.encode(rules, forKey: .rules)
     }
 }
 

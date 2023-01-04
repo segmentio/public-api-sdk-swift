@@ -14,9 +14,9 @@ import AnyCodable
 public struct AddSourceToTrackingPlanV1Input: Codable, JSONEncodable, Hashable {
 
     /** The id of the Source associated with the Tracking Plan.  Config API note: analogous to `sourceName`. */
-    public var sourceId: String?
+    public var sourceId: String
 
-    public init(sourceId: String? = nil) {
+    public init(sourceId: String) {
         self.sourceId = sourceId
     }
 
@@ -28,7 +28,7 @@ public struct AddSourceToTrackingPlanV1Input: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(sourceId, forKey: .sourceId)
+        try container.encode(sourceId, forKey: .sourceId)
     }
 }
 

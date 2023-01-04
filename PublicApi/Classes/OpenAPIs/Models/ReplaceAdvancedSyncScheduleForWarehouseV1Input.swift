@@ -14,10 +14,10 @@ import AnyCodable
 public struct ReplaceAdvancedSyncScheduleForWarehouseV1Input: Codable, JSONEncodable, Hashable {
 
     /** Enable to turn on an advanced sync schedule for the Warehouse. */
-    public var enabled: Bool?
+    public var enabled: Bool
     public var schedule: Schedule1?
 
-    public init(enabled: Bool? = nil, schedule: Schedule1? = nil) {
+    public init(enabled: Bool, schedule: Schedule1? = nil) {
         self.enabled = enabled
         self.schedule = schedule
     }
@@ -31,7 +31,7 @@ public struct ReplaceAdvancedSyncScheduleForWarehouseV1Input: Codable, JSONEncod
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(enabled, forKey: .enabled)
+        try container.encode(enabled, forKey: .enabled)
         try container.encodeIfPresent(schedule, forKey: .schedule)
     }
 }
