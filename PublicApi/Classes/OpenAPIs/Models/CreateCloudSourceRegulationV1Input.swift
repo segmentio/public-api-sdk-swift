@@ -26,13 +26,13 @@ public struct CreateCloudSourceRegulationV1Input: Codable, JSONEncodable, Hashab
     /** The regulation type to create. */
     public var regulationType: RegulationType
     /** The subject type. Must be `objectId` for Cloud Sources. */
-    public var subjectType: SubjectType?
+    public var subjectType: SubjectType
     /** The user or object ids of the subjects to regulate.  Config API note: equal to `parent` but allows an array. */
-    public var subjectIds: [String]?
+    public var subjectIds: [String]
     /** The Cloud Source collection to regulate. */
     public var collection: String
 
-    public init(regulationType: RegulationType, subjectType: SubjectType? = nil, subjectIds: [String]? = nil, collection: String) {
+    public init(regulationType: RegulationType, subjectType: SubjectType, subjectIds: [String], collection: String) {
         self.regulationType = regulationType
         self.subjectType = subjectType
         self.subjectIds = subjectIds
@@ -51,8 +51,8 @@ public struct CreateCloudSourceRegulationV1Input: Codable, JSONEncodable, Hashab
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(regulationType, forKey: .regulationType)
-        try container.encodeIfPresent(subjectType, forKey: .subjectType)
-        try container.encodeIfPresent(subjectIds, forKey: .subjectIds)
+        try container.encode(subjectType, forKey: .subjectType)
+        try container.encode(subjectIds, forKey: .subjectIds)
         try container.encode(collection, forKey: .collection)
     }
 }

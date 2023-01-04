@@ -14,9 +14,9 @@ import AnyCodable
 public struct ReplaceLabelsInSourceV1Input: Codable, JSONEncodable, Hashable {
 
     /** The list of labels to replace in the Source. */
-    public var labels: [LabelV1]?
+    public var labels: [LabelV1]
 
-    public init(labels: [LabelV1]? = nil) {
+    public init(labels: [LabelV1]) {
         self.labels = labels
     }
 
@@ -28,7 +28,7 @@ public struct ReplaceLabelsInSourceV1Input: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(labels, forKey: .labels)
+        try container.encode(labels, forKey: .labels)
     }
 }
 

@@ -14,19 +14,19 @@ import AnyCodable
 public struct CreateFilterForDestinationV1Input: Codable, JSONEncodable, Hashable {
 
     /** The id of the Source associated with this filter. */
-    public var sourceId: String?
+    public var sourceId: String
     /** The filter's condition. */
     public var _if: String
     /** Actions for the Destination filter. */
     public var actions: [DestinationFilterActionV1]
     /** The title of the filter. */
-    public var title: String?
+    public var title: String
     /** The description of the filter. */
     public var description: String?
     /** When set to true, the Destination filter is active. */
     public var enabled: Bool
 
-    public init(sourceId: String? = nil, _if: String, actions: [DestinationFilterActionV1], title: String? = nil, description: String? = nil, enabled: Bool) {
+    public init(sourceId: String, _if: String, actions: [DestinationFilterActionV1], title: String, description: String? = nil, enabled: Bool) {
         self.sourceId = sourceId
         self._if = _if
         self.actions = actions
@@ -48,10 +48,10 @@ public struct CreateFilterForDestinationV1Input: Codable, JSONEncodable, Hashabl
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(sourceId, forKey: .sourceId)
+        try container.encode(sourceId, forKey: .sourceId)
         try container.encode(_if, forKey: ._if)
         try container.encode(actions, forKey: .actions)
-        try container.encodeIfPresent(title, forKey: .title)
+        try container.encode(title, forKey: .title)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encode(enabled, forKey: .enabled)
     }

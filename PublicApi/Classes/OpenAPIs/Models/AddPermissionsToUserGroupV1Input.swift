@@ -14,9 +14,9 @@ import AnyCodable
 public struct AddPermissionsToUserGroupV1Input: Codable, JSONEncodable, Hashable {
 
     /** The permissions to add. */
-    public var permissions: [PermissionInputV1]?
+    public var permissions: [PermissionInputV1]
 
-    public init(permissions: [PermissionInputV1]? = nil) {
+    public init(permissions: [PermissionInputV1]) {
         self.permissions = permissions
     }
 
@@ -28,7 +28,7 @@ public struct AddPermissionsToUserGroupV1Input: Codable, JSONEncodable, Hashable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(permissions, forKey: .permissions)
+        try container.encode(permissions, forKey: .permissions)
     }
 }
 

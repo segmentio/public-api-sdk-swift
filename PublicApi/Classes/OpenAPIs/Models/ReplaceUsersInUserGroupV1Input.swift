@@ -14,9 +14,9 @@ import AnyCodable
 public struct ReplaceUsersInUserGroupV1Input: Codable, JSONEncodable, Hashable {
 
     /** The email addresses of the users and invites to replace. */
-    public var emails: [String]?
+    public var emails: [String]
 
-    public init(emails: [String]? = nil) {
+    public init(emails: [String]) {
         self.emails = emails
     }
 
@@ -28,7 +28,7 @@ public struct ReplaceUsersInUserGroupV1Input: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(emails, forKey: .emails)
+        try container.encode(emails, forKey: .emails)
     }
 }
 

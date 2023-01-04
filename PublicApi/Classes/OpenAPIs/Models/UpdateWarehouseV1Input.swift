@@ -20,7 +20,7 @@ public struct UpdateWarehouseV1Input: Codable, JSONEncodable, Hashable {
     /** A key-value object that contains instance-specific settings for a Warehouse.  Different kinds of Warehouses require different settings. The required and optional settings for a Warehouse are described in the `options` object of the associated Warehouse metadata.  You can find the full list of Warehouse metadata and related settings information in the `/catalog/warehouses` endpoint. */
     public var settings: JSON?
 
-    public init(name: String? = nil, enabled: Bool? = nil, settings: JSON? = nil) {
+    public init(name: String? = nil, enabled: Bool? = nil, settings: JSON?) {
         self.name = name
         self.enabled = enabled
         self.settings = settings
@@ -38,7 +38,7 @@ public struct UpdateWarehouseV1Input: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encodeIfPresent(settings, forKey: .settings)
+        try container.encode(settings, forKey: .settings)
     }
 }
 

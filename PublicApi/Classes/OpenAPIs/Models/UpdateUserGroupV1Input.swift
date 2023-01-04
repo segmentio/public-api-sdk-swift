@@ -14,9 +14,9 @@ import AnyCodable
 public struct UpdateUserGroupV1Input: Codable, JSONEncodable, Hashable {
 
     /** The intended value to rename the user group to. */
-    public var name: String?
+    public var name: String
 
-    public init(name: String? = nil) {
+    public init(name: String) {
         self.name = name
     }
 
@@ -28,7 +28,7 @@ public struct UpdateUserGroupV1Input: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(name, forKey: .name)
+        try container.encode(name, forKey: .name)
     }
 }
 

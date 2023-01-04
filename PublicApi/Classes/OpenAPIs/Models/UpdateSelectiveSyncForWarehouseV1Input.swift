@@ -14,9 +14,9 @@ import AnyCodable
 public struct UpdateSelectiveSyncForWarehouseV1Input: Codable, JSONEncodable, Hashable {
 
     /** A list of sync schema overrides to apply to this Warehouse. */
-    public var syncOverrides: [WarehouseSyncOverrideV1]?
+    public var syncOverrides: [WarehouseSyncOverrideV1]
 
-    public init(syncOverrides: [WarehouseSyncOverrideV1]? = nil) {
+    public init(syncOverrides: [WarehouseSyncOverrideV1]) {
         self.syncOverrides = syncOverrides
     }
 
@@ -28,7 +28,7 @@ public struct UpdateSelectiveSyncForWarehouseV1Input: Codable, JSONEncodable, Ha
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(syncOverrides, forKey: .syncOverrides)
+        try container.encode(syncOverrides, forKey: .syncOverrides)
     }
 }
 
