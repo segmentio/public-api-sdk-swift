@@ -35,7 +35,7 @@ open class TrackingPlansAPI {
     /**
      Add Source to Tracking Plan
      - POST /tracking-plans/{trackingPlanId}/sources
-     - Connects a Source to a Tracking Plan.    When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail). **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Connects a Source to a Tracking Plan.  • When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail).   • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -86,7 +86,7 @@ open class TrackingPlansAPI {
     /**
      Create Tracking Plan
      - POST /tracking-plans
-     - Creates a Tracking Plan.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Creates a Tracking Plan.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -133,7 +133,7 @@ open class TrackingPlansAPI {
     /**
      Delete Tracking Plan
      - DELETE /tracking-plans/{trackingPlanId}
-     - Deletes a Tracking Plan.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Deletes a Tracking Plan.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -183,7 +183,7 @@ open class TrackingPlansAPI {
     /**
      Get Tracking Plan
      - GET /tracking-plans/{trackingPlanId}
-     - Returns a Tracking Plan.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Returns a Tracking Plan.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -234,7 +234,7 @@ open class TrackingPlansAPI {
     /**
      List Rules from Tracking Plan
      - GET /tracking-plans/{trackingPlanId}/rules
-     - Lists Tracking Plan rules.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 20 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Lists Tracking Plan rules.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 20 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -289,7 +289,7 @@ open class TrackingPlansAPI {
     /**
      List Sources from Tracking Plan
      - GET /tracking-plans/{trackingPlanId}/sources
-     - Lists Sources connected to a Tracking Plan.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.   This endpoint requires the user to have at least the following permission(s):   * Source Read-only  * Tracking Plan Read-only
+     - Lists Sources connected to a Tracking Plan.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.   This endpoint requires the user to have at least the following permission(s):   * Source Read-only  * Tracking Plan Read-only
      - BASIC:
        - type: http
        - name: token
@@ -354,7 +354,7 @@ open class TrackingPlansAPI {
     /**
      List Tracking Plans
      - GET /tracking-plans
-     - Returns a list of Tracking Plans.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Returns a list of Tracking Plans.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -407,7 +407,7 @@ open class TrackingPlansAPI {
     /**
      Remove Rules from Tracking Plan
      - DELETE /tracking-plans/{trackingPlanId}/rules
-     - Deletes Tracking Plan rules.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Deletes Tracking Plan rules.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -462,7 +462,7 @@ open class TrackingPlansAPI {
     /**
      Remove Source from Tracking Plan
      - DELETE /tracking-plans/{trackingPlanId}/sources
-     - Disconnects a Source from a Tracking Plan.    When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail). **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Disconnects a Source from a Tracking Plan.  • When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail).   • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -517,7 +517,7 @@ open class TrackingPlansAPI {
     /**
      Replace Rules in Tracking Plan
      - PUT /tracking-plans/{trackingPlanId}/rules
-     - Replaces Tracking Plan rules.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Replaces Tracking Plan rules.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -569,7 +569,7 @@ open class TrackingPlansAPI {
     /**
      Update Rules in Tracking Plan
      - PATCH /tracking-plans/{trackingPlanId}/rules
-     - Updates Tracking Plan rules.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
+     - Updates Tracking Plan rules.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -621,7 +621,7 @@ open class TrackingPlansAPI {
     /**
      Update Tracking Plan
      - PATCH /tracking-plans/{trackingPlanId}
-     - Updates a Tracking Plan.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.  Config API omitted fields: - `updateMask`       
+     - Updates a Tracking Plan.    • In order to successfully call this endpoint, the specified Workspace needs to have the Protocols feature enabled. Please reach out to your customer success manager for more information.  Config API omitted fields: - `updateMask`       
      - BASIC:
        - type: http
        - name: token

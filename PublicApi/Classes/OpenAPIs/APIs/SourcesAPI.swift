@@ -35,7 +35,7 @@ open class SourcesAPI {
     /**
      Add Labels to Source
      - POST /sources/{sourceId}/labels
-     - Adds an existing label to a Source.    When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail).       
+     - Adds an existing label to a Source.  • When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -86,7 +86,7 @@ open class SourcesAPI {
     /**
      Create Source
      - POST /sources
-     - Creates a new Source.    When called, this endpoint may generate the `Source Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a new Source.  • When called, this endpoint may generate the `Source Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -133,7 +133,7 @@ open class SourcesAPI {
     /**
      Delete Source
      - DELETE /sources/{sourceId}
-     - Deletes an existing Source.    When called, this endpoint may generate the `Source Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes an existing Source.  • When called, this endpoint may generate the `Source Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -548,7 +548,7 @@ open class SourcesAPI {
     /**
      Update Source
      - PATCH /sources/{sourceId}
-     - Updates an existing Source.  When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events: * Source Modified * Source Enabled * Source Settings Modified * Source Disabled  Config API omitted fields: - `updateMask` 
+     - Updates an existing Source.  • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Source Modified * Source Enabled * Source Settings Modified * Source Disabled  Config API omitted fields: - `updateMask` 
      - BASIC:
        - type: http
        - name: token

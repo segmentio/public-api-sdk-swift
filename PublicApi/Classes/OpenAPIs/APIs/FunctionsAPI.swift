@@ -34,7 +34,7 @@ open class FunctionsAPI {
     /**
      Create Function
      - POST /functions
-     - Creates a Function.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Creates a Function.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -81,7 +81,7 @@ open class FunctionsAPI {
     /**
      Create Function Deployment
      - POST /functions/{functionId}/deploy
-     - Deploys a Function. Only applicable to Source Function instances.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Deploys a Function. Only applicable to Source Function instances.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -131,7 +131,7 @@ open class FunctionsAPI {
     /**
      Delete Function
      - DELETE /functions/{functionId}
-     - Deletes a Function.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Deletes a Function.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -181,7 +181,7 @@ open class FunctionsAPI {
     /**
      Get Function
      - GET /functions/{functionId}
-     - Gets a Function.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Gets a Function.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -240,7 +240,7 @@ open class FunctionsAPI {
     /**
      List Functions
      - GET /functions
-     - Lists all Functions in a Workspace.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Lists all Functions in a Workspace.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -293,7 +293,7 @@ open class FunctionsAPI {
     /**
      Update Function
      - PATCH /functions/{functionId}
-     - Updates a Function.  **Note**: In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.  Config API omitted fields: - `updateMask` 
+     - Updates a Function.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.  Config API omitted fields: - `updateMask` 
      - BASIC:
        - type: http
        - name: token
