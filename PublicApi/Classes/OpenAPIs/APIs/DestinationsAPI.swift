@@ -34,7 +34,7 @@ open class DestinationsAPI {
     /**
      Create Destination
      - POST /destinations
-     - Creates a new Destination.    When called, this endpoint may generate the `Integration Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a new Destination.  • When called, this endpoint may generate the `Integration Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -82,7 +82,7 @@ open class DestinationsAPI {
     /**
      Create Destination Subscription
      - POST /destinations/{destinationId}/subscriptions
-     - Creates a new Destination subscription.
+     - Creates a new Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -133,7 +133,7 @@ open class DestinationsAPI {
     /**
      Delete Destination
      - DELETE /destinations/{destinationId}
-     - Deletes an existing Destination.    When called, this endpoint may generate the `Integration Deleted` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `catalogId`       
+     - Deletes an existing Destination.  • When called, this endpoint may generate the `Integration Deleted` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `catalogId`       
      - BASIC:
        - type: http
        - name: token
@@ -234,7 +234,7 @@ open class DestinationsAPI {
     /**
      Get Subscription from Destination
      - GET /destinations/{destinationId}/subscriptions/{id}
-     - Gets a Destination subscription by id.
+     - Gets a Destination subscription by id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -412,7 +412,7 @@ open class DestinationsAPI {
     /**
      List Subscriptions from Destination
      - GET /destinations/{destinationId}/subscriptions
-     - Lists subscriptions for a Destination.
+     - Lists subscriptions for a Destination.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -467,7 +467,7 @@ open class DestinationsAPI {
     /**
      Remove Subscription from Destination
      - DELETE /destinations/{destinationId}/subscriptions/{id}
-     - Deletes an existing Destination subscription.
+     - Deletes an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -522,7 +522,7 @@ open class DestinationsAPI {
     /**
      Update Destination
      - PATCH /destinations/{destinationId}
-     - Updates an existing Destination.  **Note**: if you attempt to update read-only settings for your destination you'll encounter the following behavior:    * If only read-only properties are being updated, the endpoint will return an HTTP 400 error.   * If there's a mix of writable and read-only properties in the payload, the request will be accepted, the writable properties will be updated and the read-only properties ignored.     When called, this endpoint may generate the `Integration Disabled` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `updateMask`          
+     - Updates an existing Destination.  **Note**: if you attempt to update read-only settings for your destination you'll encounter the following behavior:    * If only read-only properties are being updated, the endpoint will return an HTTP 400 error.   * If there's a mix of writable and read-only properties in the payload, the request will be accepted, the writable properties will be updated and the read-only properties ignored.   • When called, this endpoint may generate the `Integration Disabled` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `updateMask`          
      - BASIC:
        - type: http
        - name: token
@@ -575,7 +575,7 @@ open class DestinationsAPI {
     /**
      Update Subscription for Destination
      - PATCH /destinations/{destinationId}/subscriptions/{id}
-     - Updates an existing Destination subscription.
+     - Updates an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token

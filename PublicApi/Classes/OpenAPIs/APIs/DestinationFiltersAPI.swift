@@ -35,7 +35,7 @@ open class DestinationFiltersAPI {
     /**
      Create Filter for Destination
      - POST /destination/{destinationId}/filters
-     - Creates a filter in a Destination.    When called, this endpoint may generate the `Destination Filter Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a filter in a Destination.  • When called, this endpoint may generate the `Destination Filter Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -244,7 +244,7 @@ open class DestinationFiltersAPI {
     /**
      Remove Filter from Destination
      - DELETE /destination/{destinationId}/filters/{filterId}
-     - Deletes a Destination filter.    When called, this endpoint may generate the `Destination Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes a Destination filter.  • When called, this endpoint may generate the `Destination Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -300,7 +300,7 @@ open class DestinationFiltersAPI {
     /**
      Update Filter for Destination
      - PATCH /destination/{destinationId}/filters/{filterId}
-     - Updates a filter in a Destination.  When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events: * Destination Filter Enabled * Destination Filter Disabled       
+     - Updates a filter in a Destination.  • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Destination Filter Enabled * Destination Filter Disabled       
      - BASIC:
        - type: http
        - name: token
