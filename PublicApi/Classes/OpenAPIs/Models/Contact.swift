@@ -14,15 +14,15 @@ import AnyCodable
 public struct Contact: Codable, JSONEncodable, Hashable {
 
     /** Name of this contact. */
-    public var name: String
+    public var name: String?
     /** Email of this contact. */
     public var email: String
     /** Role of this contact. */
-    public var role: String
+    public var role: String?
     /** Whether this is a primary contact. */
-    public var isPrimary: Bool
+    public var isPrimary: Bool?
 
-    public init(name: String, email: String, role: String, isPrimary: Bool) {
+    public init(name: String? = nil, email: String, role: String? = nil, isPrimary: Bool? = nil) {
         self.name = name
         self.email = email
         self.role = role
@@ -40,10 +40,10 @@ public struct Contact: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encode(email, forKey: .email)
-        try container.encode(role, forKey: .role)
-        try container.encode(isPrimary, forKey: .isPrimary)
+        try container.encodeIfPresent(role, forKey: .role)
+        try container.encodeIfPresent(isPrimary, forKey: .isPrimary)
     }
 }
 
