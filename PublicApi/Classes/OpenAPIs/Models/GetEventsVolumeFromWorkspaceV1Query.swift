@@ -14,9 +14,9 @@ import AnyCodable
 public struct GetEventsVolumeFromWorkspaceV1Query: Codable, JSONEncodable, Hashable {
 
     public enum Granularity: String, Codable, CaseIterable {
-        case day = "day"
-        case hour = "hour"
-        case minute = "minute"
+        case day = "DAY"
+        case hour = "HOUR"
+        case minute = "MINUTE"
     }
     /** Workspace being requested. */
     public var workspaceId: String
