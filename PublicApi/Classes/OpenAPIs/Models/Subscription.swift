@@ -29,8 +29,10 @@ public struct Subscription: Codable, JSONEncodable, Hashable {
     public var settings: JSON?
     /** FQL string that describes what events should trigger a Destination action. */
     public var trigger: String
+    /** The unique identifier for the linked ReverseETLModel, if this part of a Reverse ETL connection. */
+    public var modelId: String?
 
-    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: JSON?, trigger: String) {
+    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: JSON?, trigger: String, modelId: String? = nil) {
         self.id = id
         self.name = name
         self.actionId = actionId
@@ -39,6 +41,7 @@ public struct Subscription: Codable, JSONEncodable, Hashable {
         self.enabled = enabled
         self.settings = settings
         self.trigger = trigger
+        self.modelId = modelId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +53,7 @@ public struct Subscription: Codable, JSONEncodable, Hashable {
         case enabled
         case settings
         case trigger
+        case modelId
     }
 
     // Encodable protocol methods
@@ -64,6 +68,7 @@ public struct Subscription: Codable, JSONEncodable, Hashable {
         try container.encode(enabled, forKey: .enabled)
         try container.encode(settings, forKey: .settings)
         try container.encode(trigger, forKey: .trigger)
+        try container.encodeIfPresent(modelId, forKey: .modelId)
     }
 }
 
