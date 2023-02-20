@@ -301,7 +301,7 @@ open class DestinationsAPI {
     /**
      List Delivery Metrics Summary from Destination
      - GET /destinations/{destinationId}/delivery-metrics
-     - Get event delivery metrics summary from a Destination.          Based on the granularity, there are restrictions on the time range you can query:      **Minute Granularity**:    - Max time range: 4 hours    - Oldest possible start time: 48 hours in the past      **Hour Granularity**:    - Max Time range: 1 week    - Oldest possible start time: 10 days in the past      **Day Granularity**:    - Max time range: 60 days    - Oldest possible start time: 60 days in the past          
+     - Get an event delivery metrics summary from a Destination.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 1 week - Oldest possible start time: 10 days in the past  **Day**: - Max time range: 60 days - Oldest possible start time: 60 days in the past   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token

@@ -23,13 +23,16 @@ public struct CreateDestinationSubscriptionAlphaInput: Codable, JSONEncodable, H
     public var enabled: Bool
     /** The fields used for configuring this action. */
     public var settings: JSON?
+    /** When creating a Reverse ETL connection, indicates the Model being used to extract data. */
+    public var modelId: String?
 
-    public init(name: String, actionId: String, trigger: String, enabled: Bool, settings: JSON? = nil) {
+    public init(name: String, actionId: String, trigger: String, enabled: Bool, settings: JSON? = nil, modelId: String? = nil) {
         self.name = name
         self.actionId = actionId
         self.trigger = trigger
         self.enabled = enabled
         self.settings = settings
+        self.modelId = modelId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -38,6 +41,7 @@ public struct CreateDestinationSubscriptionAlphaInput: Codable, JSONEncodable, H
         case trigger
         case enabled
         case settings
+        case modelId
     }
 
     // Encodable protocol methods
@@ -49,6 +53,7 @@ public struct CreateDestinationSubscriptionAlphaInput: Codable, JSONEncodable, H
         try container.encode(trigger, forKey: .trigger)
         try container.encode(enabled, forKey: .enabled)
         try container.encodeIfPresent(settings, forKey: .settings)
+        try container.encodeIfPresent(modelId, forKey: .modelId)
     }
 }
 

@@ -15,6 +15,7 @@ public struct Function: Codable, JSONEncodable, Hashable {
 
     public enum ResourceType: String, Codable, CaseIterable {
         case destination = "DESTINATION"
+        case insertDestination = "INSERT_DESTINATION"
         case source = "SOURCE"
     }
     /** An identifier for this Function. */
