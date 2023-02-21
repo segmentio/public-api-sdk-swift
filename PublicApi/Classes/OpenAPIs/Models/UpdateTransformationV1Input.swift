@@ -29,8 +29,10 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
     public var propertyRenames: [PropertyRenameV1]?
     /** Optional array for transforming properties and values collected by your events. Limited to 10 properties. */
     public var propertyValueTransformations: [PropertyValueTransformationV1]?
+    /** Optional array for defining new properties in FQL. Currently limited to 1 property. */
+    public var fqlDefinedProperties: [FQLDefinedPropertyV1]?
 
-    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil) {
+    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil) {
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
@@ -39,6 +41,7 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
         self.newEventName = newEventName
         self.propertyRenames = propertyRenames
         self.propertyValueTransformations = propertyValueTransformations
+        self.fqlDefinedProperties = fqlDefinedProperties
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +53,7 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
         case newEventName
         case propertyRenames
         case propertyValueTransformations
+        case fqlDefinedProperties
     }
 
     // Encodable protocol methods
@@ -64,6 +68,7 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(newEventName, forKey: .newEventName)
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
         try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
+        try container.encodeIfPresent(fqlDefinedProperties, forKey: .fqlDefinedProperties)
     }
 }
 
