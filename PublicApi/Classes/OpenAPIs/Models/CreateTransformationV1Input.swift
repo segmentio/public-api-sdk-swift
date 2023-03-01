@@ -29,7 +29,7 @@ public struct CreateTransformationV1Input: Codable, JSONEncodable, Hashable {
     public var propertyRenames: [PropertyRenameV1]?
     /** Optional array for transforming properties and values collected by your events. Limited to 10 properties. */
     public var propertyValueTransformations: [PropertyValueTransformationV1]?
-    /** Optional array for defining new properties in FQL. Currently limited to 1 property. */
+    /** Optional array for defining new properties in [FQL](https://segment.com/docs/config-api/fql/). Currently limited to 1 property. */
     public var fqlDefinedProperties: [FQLDefinedPropertyV1]?
 
     public init(name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil) {
