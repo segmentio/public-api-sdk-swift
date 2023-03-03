@@ -210,6 +210,53 @@ open class FunctionsAPI {
     }
 
     /**
+     Handle Webhook
+     
+     - parameter handleWebhookInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func handleWebhook(handleWebhookInput: HandleWebhookInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: HandleWebhook200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return handleWebhookWithRequestBuilder(handleWebhookInput: handleWebhookInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Handle Webhook
+     - POST /functions/webhook
+     - Handles Function webhook calls.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter handleWebhookInput: (body)  
+     - returns: RequestBuilder<HandleWebhook200Response> 
+     */
+    open class func handleWebhookWithRequestBuilder(handleWebhookInput: HandleWebhookInput) -> RequestBuilder<HandleWebhook200Response> {
+        let localVariablePath = "/functions/webhook"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: handleWebhookInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<HandleWebhook200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      * enum for parameter resourceType
      */
     public enum ResourceType_listFunctions: String, CaseIterable {
