@@ -10,28 +10,34 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The metadata for the Warehouse. */
+/** The metadata for the Source.  Config API note: includes &#x60;catalogName&#x60; and &#x60;catalogId&#x60;. */
 public struct Metadata2: Codable, JSONEncodable, Hashable {
 
-    /** The id of this object. */
+    /** The id for this Source metadata in the Segment catalog.  Config API note: analogous to `name`. */
     public var id: String
-    /** The name of this object. */
+    /** The user-friendly name of this Source.  Config API note: equal to `displayName`. */
     public var name: String
-    /** A human-readable, unique identifier for object. */
+    /** The slug that identifies this Source in the Segment app.  Config API note: equal to `name`. */
     public var slug: String
-    /** A description, in English, of this object. */
+    /** The description of this Source. */
     public var description: String
-    public var logos: Logos2
-    /** The Integration options for this object. */
+    public var logos: Logos1
+    /** Options for this Source. */
     public var options: [IntegrationOptionBeta]
+    /** A list of categories this Source belongs to. */
+    public var categories: [String]
+    /** True if this is a Cloud Event Source. */
+    public var isCloudEventSource: Bool
 
-    public init(id: String, name: String, slug: String, description: String, logos: Logos2, options: [IntegrationOptionBeta]) {
+    public init(id: String, name: String, slug: String, description: String, logos: Logos1, options: [IntegrationOptionBeta], categories: [String], isCloudEventSource: Bool) {
         self.id = id
         self.name = name
         self.slug = slug
         self.description = description
         self.logos = logos
         self.options = options
+        self.categories = categories
+        self.isCloudEventSource = isCloudEventSource
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -41,6 +47,8 @@ public struct Metadata2: Codable, JSONEncodable, Hashable {
         case description
         case logos
         case options
+        case categories
+        case isCloudEventSource
     }
 
     // Encodable protocol methods
@@ -53,6 +61,8 @@ public struct Metadata2: Codable, JSONEncodable, Hashable {
         try container.encode(description, forKey: .description)
         try container.encode(logos, forKey: .logos)
         try container.encode(options, forKey: .options)
+        try container.encode(categories, forKey: .categories)
+        try container.encode(isCloudEventSource, forKey: .isCloudEventSource)
     }
 }
 
