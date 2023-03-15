@@ -24,7 +24,7 @@ public struct ProfilesWarehouse: Codable, JSONEncodable, Hashable {
     public var enabled: Bool
     /** The settings associated with this Warehouse.  Common settings are connection-related configuration used to connect to it, for example host, username, and port. */
     public var settings: JSON?
-    /** The custom schema name that is going to be use on the Warehouse side. */
+    /** The custom schema name that Segment uses on the Warehouse side. */
     public var schemaName: String?
 
     public init(id: String, spaceId: String, metadata: Metadata1, workspaceId: String, enabled: Bool, settings: JSON?, schemaName: String? = nil) {
