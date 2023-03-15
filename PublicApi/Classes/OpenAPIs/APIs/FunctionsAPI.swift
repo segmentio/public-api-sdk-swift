@@ -210,6 +210,56 @@ open class FunctionsAPI {
     }
 
     /**
+     List Function Versions
+     
+     - parameter functionId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listFunctionVersions(functionId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctionVersions200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listFunctionVersionsWithRequestBuilder(functionId: functionId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Function Versions
+     - GET /functions/{functionId}/versions
+     - Lists versions for a Functions in a Workspace.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter functionId: (path)  
+     - returns: RequestBuilder<ListFunctionVersions200Response> 
+     */
+    open class func listFunctionVersionsWithRequestBuilder(functionId: String) -> RequestBuilder<ListFunctionVersions200Response> {
+        var localVariablePath = "/functions/{functionId}/versions"
+        let functionIdPreEscape = "\(APIHelper.mapValueToPathItem(functionId))"
+        let functionIdPostEscape = functionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{functionId}", with: functionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListFunctionVersions200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      * enum for parameter resourceType
      */
     public enum ResourceType_listFunctions: String, CaseIterable {
@@ -269,6 +319,58 @@ open class FunctionsAPI {
         let localVariableRequestBuilder: RequestBuilder<ListFunctions200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Restore Function Version
+     
+     - parameter functionId: (path)  
+     - parameter restoreFunctionVersionAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func restoreFunctionVersion(functionId: String, restoreFunctionVersionAlphaInput: RestoreFunctionVersionAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RestoreFunctionVersion200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return restoreFunctionVersionWithRequestBuilder(functionId: functionId, restoreFunctionVersionAlphaInput: restoreFunctionVersionAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Restore Function Version
+     - POST /functions/{functionId}/versions
+     - Restore a given Function version and make the latest version.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter functionId: (path)  
+     - parameter restoreFunctionVersionAlphaInput: (body)  
+     - returns: RequestBuilder<RestoreFunctionVersion200Response> 
+     */
+    open class func restoreFunctionVersionWithRequestBuilder(functionId: String, restoreFunctionVersionAlphaInput: RestoreFunctionVersionAlphaInput) -> RequestBuilder<RestoreFunctionVersion200Response> {
+        var localVariablePath = "/functions/{functionId}/versions"
+        let functionIdPreEscape = "\(APIHelper.mapValueToPathItem(functionId))"
+        let functionIdPostEscape = functionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{functionId}", with: functionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: restoreFunctionVersionAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<RestoreFunctionVersion200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
