@@ -65,6 +65,61 @@ open class ProfilesSyncAPI {
     }
 
     /**
+     List Profiles Warehouse in Space
+     
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listProfilesWarehouseInSpace(spaceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListProfilesWarehouseInSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listProfilesWarehouseInSpaceWithRequestBuilder(spaceId: spaceId, pagination: pagination).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Profiles Warehouse in Space
+     - GET /spaces/{spaceId}/profiles-warehouses
+     - Lists all Profile Warehouses for a given space id.  • When called, this endpoint may generate the `Profiles Sync Warehouse Retrieved` event in the [audit trail](/tag/Audit-Trail).       
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListProfilesWarehouseInSpace200Response> 
+     */
+    open class func listProfilesWarehouseInSpaceWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListProfilesWarehouseInSpace200Response> {
+        var localVariablePath = "/spaces/{spaceId}/profiles-warehouses"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListProfilesWarehouseInSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Remove Profiles Warehouse from Space
      
      - parameter spaceId: (path)  
