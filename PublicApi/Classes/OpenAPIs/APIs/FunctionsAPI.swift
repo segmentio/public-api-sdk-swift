@@ -210,15 +210,71 @@ open class FunctionsAPI {
     }
 
     /**
-     List Function Versions
+     Get Function Version
      
      - parameter functionId: (path)  
+     - parameter versionId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFunctionVersions(functionId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctionVersions200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listFunctionVersionsWithRequestBuilder(functionId: functionId).execute(apiResponseQueue) { result in
+    open class func getFunctionVersion(functionId: String, versionId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetFunctionVersion200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getFunctionVersionWithRequestBuilder(functionId: functionId, versionId: versionId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Function Version
+     - GET /functions/{functionId}/versions/{versionId}
+     - Gets a Function version.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter functionId: (path)  
+     - parameter versionId: (path)  
+     - returns: RequestBuilder<GetFunctionVersion200Response> 
+     */
+    open class func getFunctionVersionWithRequestBuilder(functionId: String, versionId: String) -> RequestBuilder<GetFunctionVersion200Response> {
+        var localVariablePath = "/functions/{functionId}/versions/{versionId}"
+        let functionIdPreEscape = "\(APIHelper.mapValueToPathItem(functionId))"
+        let functionIdPostEscape = functionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{functionId}", with: functionIdPostEscape, options: .literal, range: nil)
+        let versionIdPreEscape = "\(APIHelper.mapValueToPathItem(versionId))"
+        let versionIdPostEscape = versionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{versionId}", with: versionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetFunctionVersion200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     List Function Versions
+     
+     - parameter functionId: (path)  
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listFunctionVersions(functionId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctionVersions200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listFunctionVersionsWithRequestBuilder(functionId: functionId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -236,9 +292,10 @@ open class FunctionsAPI {
        - type: http
        - name: token
      - parameter functionId: (path)  
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
      - returns: RequestBuilder<ListFunctionVersions200Response> 
      */
-    open class func listFunctionVersionsWithRequestBuilder(functionId: String) -> RequestBuilder<ListFunctionVersions200Response> {
+    open class func listFunctionVersionsWithRequestBuilder(functionId: String, pagination: PaginationInput) -> RequestBuilder<ListFunctionVersions200Response> {
         var localVariablePath = "/functions/{functionId}/versions"
         let functionIdPreEscape = "\(APIHelper.mapValueToPathItem(functionId))"
         let functionIdPostEscape = functionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -246,7 +303,10 @@ open class FunctionsAPI {
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
