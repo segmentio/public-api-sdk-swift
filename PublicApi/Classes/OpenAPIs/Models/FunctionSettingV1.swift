@@ -18,17 +18,17 @@ public struct FunctionSettingV1: Codable, JSONEncodable, Hashable {
         case string = "STRING"
         case textMap = "TEXT_MAP"
     }
-    /** The name of this Function. */
+    /** The name of this Function Setting. */
     public var name: String
-    /** The label for this Function. */
+    /** The label for this Function Setting. */
     public var label: String
-    /** A description of this Function. */
+    /** A description of this Function Setting. */
     public var description: String
-    /** The Function type. */
+    /** The type of this Function Setting. */
     public var type: ModelType
-    /** Whether this Function is required. */
+    /** Whether this Function Setting is required. */
     public var _required: Bool
-    /** Whether this Function contains sensitive information. */
+    /** Whether this Function Setting contains sensitive information. */
     public var sensitive: Bool
 
     public init(name: String, label: String, description: String, type: ModelType, _required: Bool, sensitive: Bool) {
