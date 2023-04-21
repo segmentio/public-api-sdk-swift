@@ -120,6 +120,66 @@ open class ProfilesSyncAPI {
     }
 
     /**
+     List Selective Syncs from Warehouse And Space
+     
+     - parameter spaceId: (path)  
+     - parameter warehouseId: (path)  
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listSelectiveSyncsFromWarehouseAndSpace(spaceId: String, warehouseId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSelectiveSyncsFromWarehouseAndSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listSelectiveSyncsFromWarehouseAndSpaceWithRequestBuilder(spaceId: spaceId, warehouseId: warehouseId, pagination: pagination).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Selective Syncs from Warehouse And Space
+     - GET /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
+     - Returns the schema for a Space Warehouse connection, including Sources, Collections, and Properties..  • When called, this endpoint may generate the `Profiles Sync Warehouse Schema Retrieved` event in the [audit trail](/tag/Audit-Trail).          The rate limit for this endpoint is 2 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter warehouseId: (path)  
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - returns: RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response> 
+     */
+    open class func listSelectiveSyncsFromWarehouseAndSpaceWithRequestBuilder(spaceId: String, warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response> {
+        var localVariablePath = "/spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
+        let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{warehouseId}", with: warehouseIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Remove Profiles Warehouse from Space
      
      - parameter spaceId: (path)  
