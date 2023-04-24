@@ -19,13 +19,19 @@ public struct SpaceWarehouseSelectiveSyncItemAlpha: Codable, JSONEncodable, Hash
     public var collection: String
     /** The id of the Warehouse this sync belongs to. */
     public var warehouseId: String
+    /** The Source of the collection in this Space Warehouse. */
+    public var source: String?
+    /** The Enabled flag ok telling whether the Collection is enabled or not. */
+    public var enabled: Bool
     /** A map that contains the properties within the collection to which the Warehouse should sync. */
     public var properties: [String: AnyCodable]
 
-    public init(spaceId: String, collection: String, warehouseId: String, properties: [String: AnyCodable]) {
+    public init(spaceId: String, collection: String, warehouseId: String, source: String? = nil, enabled: Bool, properties: [String: AnyCodable]) {
         self.spaceId = spaceId
         self.collection = collection
         self.warehouseId = warehouseId
+        self.source = source
+        self.enabled = enabled
         self.properties = properties
     }
 
@@ -33,6 +39,8 @@ public struct SpaceWarehouseSelectiveSyncItemAlpha: Codable, JSONEncodable, Hash
         case spaceId
         case collection
         case warehouseId
+        case source
+        case enabled
         case properties
     }
 
@@ -43,6 +51,8 @@ public struct SpaceWarehouseSelectiveSyncItemAlpha: Codable, JSONEncodable, Hash
         try container.encode(spaceId, forKey: .spaceId)
         try container.encode(collection, forKey: .collection)
         try container.encode(warehouseId, forKey: .warehouseId)
+        try container.encodeIfPresent(source, forKey: .source)
+        try container.encode(enabled, forKey: .enabled)
         try container.encode(properties, forKey: .properties)
     }
 }
