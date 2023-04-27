@@ -290,4 +290,61 @@ open class ProfilesSyncAPI {
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Update Selective Sync for Warehouse And Space
+     
+     - parameter spaceId: (path)  
+     - parameter warehouseId: (path)  
+     - parameter updateSelectiveSyncForWarehouseAndSpaceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func updateSelectiveSyncForWarehouseAndSpace(spaceId: String, warehouseId: String, updateSelectiveSyncForWarehouseAndSpaceAlphaInput: UpdateSelectiveSyncForWarehouseAndSpaceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateSelectiveSyncForWarehouseAndSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateSelectiveSyncForWarehouseAndSpaceWithRequestBuilder(spaceId: spaceId, warehouseId: warehouseId, updateSelectiveSyncForWarehouseAndSpaceAlphaInput: updateSelectiveSyncForWarehouseAndSpaceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Update Selective Sync for Warehouse And Space
+     - PATCH /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
+     - Updates an existing Profiles Warehouse.  • When called, this endpoint may generate the `Profiles Sync Schema Updated` event in the [audit trail](/tag/Audit-Trail).       
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter warehouseId: (path)  
+     - parameter updateSelectiveSyncForWarehouseAndSpaceAlphaInput: (body)  
+     - returns: RequestBuilder<UpdateSelectiveSyncForWarehouseAndSpace200Response> 
+     */
+    open class func updateSelectiveSyncForWarehouseAndSpaceWithRequestBuilder(spaceId: String, warehouseId: String, updateSelectiveSyncForWarehouseAndSpaceAlphaInput: UpdateSelectiveSyncForWarehouseAndSpaceAlphaInput) -> RequestBuilder<UpdateSelectiveSyncForWarehouseAndSpace200Response> {
+        var localVariablePath = "/spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
+        let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{warehouseId}", with: warehouseIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateSelectiveSyncForWarehouseAndSpaceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UpdateSelectiveSyncForWarehouseAndSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
