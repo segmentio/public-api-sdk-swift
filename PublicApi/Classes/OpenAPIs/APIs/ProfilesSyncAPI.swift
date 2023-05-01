@@ -143,7 +143,7 @@ open class ProfilesSyncAPI {
     /**
      List Selective Syncs from Warehouse And Space
      - GET /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
-     - Returns the schema for a Space Warehouse connection, including Sources, Collections, and Properties.  • When called, this endpoint may generate the `Profiles Sync Warehouse Schema Retrieved` event in the [audit trail](/tag/Audit-Trail).       
+     - Returns the schema for a Space Warehouse connection, including Collections and Properties.
      - BASIC:
        - type: http
        - name: token
@@ -315,7 +315,7 @@ open class ProfilesSyncAPI {
     /**
      Update Selective Sync for Warehouse And Space
      - PATCH /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
-     - Updates an existing Profiles Warehouse.  • When called, this endpoint may generate the `Profiles Sync Schema Updated` event in the [audit trail](/tag/Audit-Trail).       
+     - Updates the schema for a Space Warehouse connection, including Collections and Properties.  • When called, this endpoint may generate the `Profiles Sync Warehouse Modified` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
