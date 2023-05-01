@@ -18,9 +18,11 @@ public struct Regulation: Codable, JSONEncodable, Hashable {
         case finished = "FINISHED"
         case initialized = "INITIALIZED"
         case invalid = "INVALID"
+        case inProgress = "IN_PROGRESS"
         case notSupported = "NOT_SUPPORTED"
         case partialSuccess = "PARTIAL_SUCCESS"
         case running = "RUNNING"
+        case success = "SUCCESS"
     }
     /** The id of the regulate request. */
     public var id: String
