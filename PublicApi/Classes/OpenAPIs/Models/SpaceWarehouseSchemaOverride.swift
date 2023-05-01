@@ -13,29 +13,21 @@ import AnyCodable
 /** Represents the override for a Source/collection/property? path to apply to a Space Warehouse. */
 public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
 
-    /** The id of the space this schema item should apply to. */
-    public var spaceId: String
     /** The collection within the Source. */
     public var collection: String
-    /** The Source of the collection in this Space Warehouse. */
-    public var source: String
     /** The Enabled flag ok telling whether the Collection is enabled or not. */
     public var enabled: Bool
     /** A map that contains the properties within the collection to which the Warehouse should sync. */
     public var property: String
 
-    public init(spaceId: String, collection: String, source: String, enabled: Bool, property: String) {
-        self.spaceId = spaceId
+    public init(collection: String, enabled: Bool, property: String) {
         self.collection = collection
-        self.source = source
         self.enabled = enabled
         self.property = property
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case spaceId
         case collection
-        case source
         case enabled
         case property
     }
@@ -44,9 +36,7 @@ public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(spaceId, forKey: .spaceId)
         try container.encode(collection, forKey: .collection)
-        try container.encode(source, forKey: .source)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(property, forKey: .property)
     }
