@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Results from a selectiveSync patch to a Warehouse/Space pair. */
+/** Results from a selectiveSync patch to a Space Warehouse connection. */
 public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable {

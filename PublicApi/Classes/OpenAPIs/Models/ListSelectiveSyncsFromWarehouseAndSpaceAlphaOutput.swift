@@ -13,17 +13,21 @@ import AnyCodable
 /** Results containing the Selective Sync configuration for a Space Warehouse Connection. */
 public struct ListSelectiveSyncsFromWarehouseAndSpaceAlphaOutput: Codable, JSONEncodable, Hashable {
 
-    /** Represents a list of Source, collection, and properties synced to the Warehouse. */
+    /** Represents a list of collection and properties synced to the Warehouse. */
     public var items: [SpaceWarehouseSelectiveSyncItemAlpha]
+    /** A flag that represent if all event Tables are enable or disable. */
+    public var enableEventTables: Bool?
     public var pagination: Pagination
 
-    public init(items: [SpaceWarehouseSelectiveSyncItemAlpha], pagination: Pagination) {
+    public init(items: [SpaceWarehouseSelectiveSyncItemAlpha], enableEventTables: Bool? = nil, pagination: Pagination) {
         self.items = items
+        self.enableEventTables = enableEventTables
         self.pagination = pagination
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case items
+        case enableEventTables
         case pagination
     }
 
@@ -32,6 +36,7 @@ public struct ListSelectiveSyncsFromWarehouseAndSpaceAlphaOutput: Codable, JSONE
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(items, forKey: .items)
+        try container.encodeIfPresent(enableEventTables, forKey: .enableEventTables)
         try container.encode(pagination, forKey: .pagination)
     }
 }

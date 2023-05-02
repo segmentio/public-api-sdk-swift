@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the override for a Source/collection/property? path to apply to a Space Warehouse. */
+/** Represents the override for a collection/property? path to apply to a Space Warehouse. */
 public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
 
     /** The collection within the Source. */
