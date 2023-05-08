@@ -18,9 +18,9 @@ public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
     /** The Enabled flag ok telling whether the Collection is enabled or not. */
     public var enabled: Bool
     /** A map that contains the properties within the collection to which the Warehouse should sync. */
-    public var property: String
+    public var property: String?
 
-    public init(collection: String, enabled: Bool, property: String) {
+    public init(collection: String, enabled: Bool, property: String? = nil) {
         self.collection = collection
         self.enabled = enabled
         self.property = property
@@ -38,7 +38,7 @@ public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(collection, forKey: .collection)
         try container.encode(enabled, forKey: .enabled)
-        try container.encode(property, forKey: .property)
+        try container.encodeIfPresent(property, forKey: .property)
     }
 }
 

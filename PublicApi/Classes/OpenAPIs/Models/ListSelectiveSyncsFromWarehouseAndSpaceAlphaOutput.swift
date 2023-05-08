@@ -13,7 +13,7 @@ import AnyCodable
 /** Results containing the Selective Sync configuration for a Space Warehouse Connection. */
 public struct ListSelectiveSyncsFromWarehouseAndSpaceAlphaOutput: Codable, JSONEncodable, Hashable {
 
-    /** Represents a list of collection and properties synced to the Warehouse. */
+    /** Represents a list of collections and properties synced to the Warehouse. */
     public var items: [SpaceWarehouseSelectiveSyncItemAlpha]
     /** A flag that represent if all event Tables are enable or disable. */
     public var enableEventTables: Bool?
