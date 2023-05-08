@@ -28,7 +28,7 @@ public struct CreateWorkspaceRegulationV1Input: Codable, JSONEncodable, Hashable
     public var regulationType: RegulationType
     /** The subject type. Use `objectId` for Cloud Source regulations. */
     public var subjectType: SubjectType
-    /** The user or object ids of the subjects to regulate.  Config API note: equal to `parent` but allows an array. */
+    /** The list of `userId` or `objectId` values of the subjects to regulate.  Config API note: equal to `parent` but allows an array. */
     public var subjectIds: [String]
 
     public init(regulationType: RegulationType, subjectType: SubjectType, subjectIds: [String]) {

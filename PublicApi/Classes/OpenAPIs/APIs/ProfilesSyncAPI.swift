@@ -143,7 +143,7 @@ open class ProfilesSyncAPI {
     /**
      List Selective Syncs from Warehouse And Space
      - GET /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
-     - Returns the schema for a Space Warehouse connection, including Sources, Collections, and Properties.
+     - Returns the schema for a Space Warehouse connection, including Collections and Properties.
      - BASIC:
        - type: http
        - name: token

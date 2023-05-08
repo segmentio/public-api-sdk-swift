@@ -10,10 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Updates the schema for a Warehouse/sources pair. */
+/** Updates the schema for a Space Warehouse connection. */
 public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** A list of sync schema overrides to apply to this Space Warehouse. Note: Selective enabling of Event tables under disabled all event tables conditions is not currently supported. EnableEventTables flag need to be set to true before any selective operation on the event tables. */
+    /** A list of sync Schema overrides to apply to this Space Warehouse. Note: Selective Sync is not supported if the enableEventTables flag is false. */
     public var syncOverrides: [SpaceWarehouseSchemaOverride]?
     /** A flag to enable or disable all event Tables. */
     public var enableEventTables: Bool?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Results from a selectiveSync patch to a Warehouse/Space pair. */
+/** Results from a selectiveSync patch to a Space Warehouse connection. */
 public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable {
@@ -19,17 +19,13 @@ public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaOutput: Codable, JSONE
     }
     /** Status of the update operation. */
     public var status: Status
-    /** Warnings returned by the operation. */
-    public var warnings: [String]
 
-    public init(status: Status, warnings: [String]) {
+    public init(status: Status) {
         self.status = status
-        self.warnings = warnings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case status
-        case warnings
     }
 
     // Encodable protocol methods
@@ -37,7 +33,6 @@ public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaOutput: Codable, JSONE
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(status, forKey: .status)
-        try container.encode(warnings, forKey: .warnings)
     }
 }
 
