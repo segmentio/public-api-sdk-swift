@@ -15,7 +15,7 @@ public struct UpdateSelectiveSyncForWarehouseAndSpaceAlphaInput: Codable, JSONEn
 
     /** A list of sync Schema overrides to apply to this Space Warehouse. Note: Selective Sync is not supported if the enableEventTables flag is false. */
     public var syncOverrides: [SpaceWarehouseSchemaOverride]?
-    /** A flag to enable or disable all event Tables. */
+    /** A flag to enable or disable all event Tables. This field is optional. */
     public var enableEventTables: Bool?
 
     public init(syncOverrides: [SpaceWarehouseSchemaOverride]? = nil, enableEventTables: Bool? = nil) {
