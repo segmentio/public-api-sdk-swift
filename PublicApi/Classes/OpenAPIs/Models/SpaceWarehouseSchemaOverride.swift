@@ -10,12 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the override for a collection/property? path to apply to a Space Warehouse. */
+/** Overrides the enabled or disabled state of the specified collection and / or properties within the schema. */
 public struct SpaceWarehouseSchemaOverride: Codable, JSONEncodable, Hashable {
 
     /** The collection within the Source. */
     public var collection: String
-    /** The Enabled flag ok telling whether the Collection is enabled or not. */
+    /** Represents the overridden enabled state for the listed collection and / or properties. */
     public var enabled: Bool
     /** A map that contains the properties within the collection to which the Warehouse should sync. */
     public var property: String?
