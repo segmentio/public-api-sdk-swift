@@ -15,7 +15,7 @@ public struct ListSelectiveSyncsFromWarehouseAndSpaceAlphaOutput: Codable, JSONE
 
     /** Represents a list of collections and properties synced to the Warehouse. */
     public var items: [SpaceWarehouseSelectiveSyncItemAlpha]
-    /** A flag that represent if all event Tables are enable or disable. This field is optional. */
+    /** Optional. Represents the enabled state of all event tables. */
     public var enableEventTables: Bool?
     public var pagination: Pagination
 
