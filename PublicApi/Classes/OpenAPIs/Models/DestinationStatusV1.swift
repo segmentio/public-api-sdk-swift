@@ -16,14 +16,11 @@ public struct DestinationStatusV1: Codable, JSONEncodable, Hashable {
     public enum Status: String, Codable, CaseIterable {
         case failed = "FAILED"
         case finished = "FINISHED"
-        case forwarded = "FORWARDED"
         case initialized = "INITIALIZED"
         case invalid = "INVALID"
-        case inProgress = "IN_PROGRESS"
         case notSupported = "NOT_SUPPORTED"
         case partialSuccess = "PARTIAL_SUCCESS"
         case running = "RUNNING"
-        case success = "SUCCESS"
     }
     public var name: String
     public var id: String
