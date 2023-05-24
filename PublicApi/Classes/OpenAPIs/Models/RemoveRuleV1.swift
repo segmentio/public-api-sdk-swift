@@ -21,8 +21,11 @@ public struct RemoveRuleV1: Codable, JSONEncodable, Hashable {
         case screen = "SCREEN"
         case track = "TRACK"
     }
+    /** The type for this Tracking Plan rule. */
     public var type: ModelType
+    /** Key to this rule (free-form string like 'Button clicked'). */
     public var key: String?
+    /** Version of this rule. */
     public var version: Double
 
     public init(type: ModelType, key: String? = nil, version: Double) {
