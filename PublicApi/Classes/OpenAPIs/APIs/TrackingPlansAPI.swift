@@ -325,7 +325,6 @@ open class TrackingPlansAPI {
      * enum for parameter type
      */
     public enum ModelType_listTrackingPlans: String, CaseIterable {
-        case engage = "ENGAGE"
         case live = "LIVE"
         case propertyLibrary = "PROPERTY_LIBRARY"
         case ruleLibrary = "RULE_LIBRARY"

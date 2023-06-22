@@ -14,7 +14,6 @@ import AnyCodable
 public struct TrackingPlanV1: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
-        case engage = "ENGAGE"
         case live = "LIVE"
         case propertyLibrary = "PROPERTY_LIBRARY"
         case ruleLibrary = "RULE_LIBRARY"
