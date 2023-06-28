@@ -13,9 +13,9 @@ import AnyCodable
 /** Result of creating a new label in the current Workspace. */
 public struct CreateLabelV1Output: Codable, JSONEncodable, Hashable {
 
-    public var label: Label2
+    public var label: Label1
 
-    public init(label: Label2) {
+    public init(label: Label1) {
         self.label = label
     }
 

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The new label to create in the Workspace. */
+/** The newly created label. */
 public struct Label1: Codable, JSONEncodable, Hashable {
 
     /** The key that represents the name of this label. */
