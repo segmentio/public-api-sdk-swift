@@ -29,7 +29,7 @@ public struct UpsertRuleV1: Codable, JSONEncodable, Hashable {
     /** JSON Schema of this rule. */
     public var jsonSchema: AnyCodable?
     /** Version of this rule. */
-    public var version: Double?
+    public var version: Double
     /** The timestamp of this rule's creation. */
     public var createdAt: String?
     /** The timestamp of this rule's last change. */
@@ -37,7 +37,7 @@ public struct UpsertRuleV1: Codable, JSONEncodable, Hashable {
     /** The timestamp of this rule's deprecation. */
     public var deprecatedAt: String?
 
-    public init(newKey: String? = nil, type: ModelType, key: String? = nil, jsonSchema: AnyCodable? = nil, version: Double? = nil, createdAt: String? = nil, updatedAt: String? = nil, deprecatedAt: String? = nil) {
+    public init(newKey: String? = nil, type: ModelType, key: String? = nil, jsonSchema: AnyCodable?, version: Double, createdAt: String? = nil, updatedAt: String? = nil, deprecatedAt: String? = nil) {
         self.newKey = newKey
         self.type = type
         self.key = key
@@ -66,8 +66,8 @@ public struct UpsertRuleV1: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(newKey, forKey: .newKey)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(key, forKey: .key)
-        try container.encodeIfPresent(jsonSchema, forKey: .jsonSchema)
-        try container.encodeIfPresent(version, forKey: .version)
+        try container.encode(jsonSchema, forKey: .jsonSchema)
+        try container.encode(version, forKey: .version)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(deprecatedAt, forKey: .deprecatedAt)
