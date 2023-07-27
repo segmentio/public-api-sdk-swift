@@ -15,6 +15,7 @@ public struct MessageSubscriptionResponse: Codable, JSONEncodable, Hashable {
     public enum ModelType: String, Codable, CaseIterable {
         case email = "EMAIL"
         case sms = "SMS"
+        case whatsapp = "WHATSAPP"
     }
     public enum Status: String, Codable, CaseIterable {
         case didNotSubscribe = "DID_NOT_SUBSCRIBE"
@@ -23,18 +24,21 @@ public struct MessageSubscriptionResponse: Codable, JSONEncodable, Hashable {
     }
     /** Key is the phone number or email. */
     public var key: String
-    /** Type is communication medium used. Either EMAIL or SMS. */
+    /** Type is communication medium used. Either SMS, EMAIL or WHATSAPP. */
     public var type: ModelType
     /** The user subscribed, unsubscribed, or on initial status. */
-    public var status: Status
+    public var status: Status?
     /** Error messages. */
     public var errors: [MessageSubscriptionResponseError]?
+    /** Optional subscription groups. */
+    public var groups: [UpdateGroupSubscriptionStatusResponse]?
 
-    public init(key: String, type: ModelType, status: Status, errors: [MessageSubscriptionResponseError]? = nil) {
+    public init(key: String, type: ModelType, status: Status? = nil, errors: [MessageSubscriptionResponseError]? = nil, groups: [UpdateGroupSubscriptionStatusResponse]? = nil) {
         self.key = key
         self.type = type
         self.status = status
         self.errors = errors
+        self.groups = groups
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -42,6 +46,7 @@ public struct MessageSubscriptionResponse: Codable, JSONEncodable, Hashable {
         case type
         case status
         case errors
+        case groups
     }
 
     // Encodable protocol methods
@@ -50,8 +55,9 @@ public struct MessageSubscriptionResponse: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(key, forKey: .key)
         try container.encode(type, forKey: .type)
-        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(errors, forKey: .errors)
+        try container.encodeIfPresent(groups, forKey: .groups)
     }
 }
 

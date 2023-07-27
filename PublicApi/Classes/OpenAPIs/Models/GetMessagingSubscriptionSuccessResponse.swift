@@ -15,6 +15,7 @@ public struct GetMessagingSubscriptionSuccessResponse: Codable, JSONEncodable, H
     public enum ModelType: String, Codable, CaseIterable {
         case email = "EMAIL"
         case sms = "SMS"
+        case whatsapp = "WHATSAPP"
     }
     public enum Status: String, Codable, CaseIterable {
         case didNotSubscribe = "DID_NOT_SUBSCRIBE"
@@ -23,21 +24,29 @@ public struct GetMessagingSubscriptionSuccessResponse: Codable, JSONEncodable, H
     }
     /** Key is the phone number or email. */
     public var key: String
-    /** Type is communication medium used. Either EMAIL or SMS. */
+    /** Type is communication medium used. */
     public var type: ModelType
     /** The user subscribed, unsubscribed, or on initial status. This is absent if the phone number or email is not found. */
     public var status: Status?
+    /** Optional subscription groups. */
+    public var groups: [GroupSubscriptionStatusResponse]?
+    /** The timestamp of this subscription status's last change. */
+    public var updatedAt: String?
 
-    public init(key: String, type: ModelType, status: Status? = nil) {
+    public init(key: String, type: ModelType, status: Status? = nil, groups: [GroupSubscriptionStatusResponse]? = nil, updatedAt: String? = nil) {
         self.key = key
         self.type = type
         self.status = status
+        self.groups = groups
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case key
         case type
         case status
+        case groups
+        case updatedAt
     }
 
     // Encodable protocol methods
@@ -47,6 +56,8 @@ public struct GetMessagingSubscriptionSuccessResponse: Codable, JSONEncodable, H
         try container.encode(key, forKey: .key)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(groups, forKey: .groups)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
 

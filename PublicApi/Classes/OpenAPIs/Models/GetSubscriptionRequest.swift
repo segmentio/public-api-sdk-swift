@@ -15,10 +15,11 @@ public struct GetSubscriptionRequest: Codable, JSONEncodable, Hashable {
     public enum ModelType: String, Codable, CaseIterable {
         case email = "EMAIL"
         case sms = "SMS"
+        case whatsapp = "WHATSAPP"
     }
     /** Key is the phone number or email. */
     public var key: String
-    /** Type is communication medium used. Either EMAIL or SMS. */
+    /** Type is communication medium used. */
     public var type: ModelType
 
     public init(key: String, type: ModelType) {
