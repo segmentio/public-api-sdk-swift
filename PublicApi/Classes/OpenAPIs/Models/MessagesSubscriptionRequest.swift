@@ -15,6 +15,7 @@ public struct MessagesSubscriptionRequest: Codable, JSONEncodable, Hashable {
     public enum ModelType: String, Codable, CaseIterable {
         case email = "EMAIL"
         case sms = "SMS"
+        case whatsapp = "WHATSAPP"
     }
     public enum Status: String, Codable, CaseIterable {
         case didNotSubscribe = "DID_NOT_SUBSCRIBE"
@@ -23,21 +24,25 @@ public struct MessagesSubscriptionRequest: Codable, JSONEncodable, Hashable {
     }
     /** Key is the phone number or email. */
     public var key: String
-    /** Type is communication medium used. Either EMAIL or SMS. */
+    /** Type is communication medium used. */
     public var type: ModelType
-    /** The user subscribed, unsubscribed, or on initial status. */
-    public var status: Status
+    /** The user subscribed, unsubscribed, or on initial status globally. */
+    public var status: Status?
+    /** Optional groups subscription status. */
+    public var groups: [GroupSubscriptionStatus]?
 
-    public init(key: String, type: ModelType, status: Status) {
+    public init(key: String, type: ModelType, status: Status? = nil, groups: [GroupSubscriptionStatus]? = nil) {
         self.key = key
         self.type = type
         self.status = status
+        self.groups = groups
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case key
         case type
         case status
+        case groups
     }
 
     // Encodable protocol methods
@@ -46,7 +51,8 @@ public struct MessagesSubscriptionRequest: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(key, forKey: .key)
         try container.encode(type, forKey: .type)
-        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(groups, forKey: .groups)
     }
 }
 
