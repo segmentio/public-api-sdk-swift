@@ -110,6 +110,53 @@ open class FunctionsAPI {
     }
 
     /**
+     Create Insert Function Instance
+     
+     - parameter createInsertFunctionInstanceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createInsertFunctionInstance(createInsertFunctionInstanceAlphaInput: CreateInsertFunctionInstanceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateInsertFunctionInstance200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createInsertFunctionInstanceWithRequestBuilder(createInsertFunctionInstanceAlphaInput: createInsertFunctionInstanceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Insert Function Instance
+     - POST /insert-function/instance
+     - Creates an insert Function instance connected to the given Destination.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter createInsertFunctionInstanceAlphaInput: (body)  
+     - returns: RequestBuilder<CreateInsertFunctionInstance200Response> 
+     */
+    open class func createInsertFunctionInstanceWithRequestBuilder(createInsertFunctionInstanceAlphaInput: CreateInsertFunctionInstanceAlphaInput) -> RequestBuilder<CreateInsertFunctionInstance200Response> {
+        let localVariablePath = "/insert-function/instance"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createInsertFunctionInstanceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateInsertFunctionInstance200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Delete Function
      
      - parameter functionId: (path)  
@@ -155,6 +202,56 @@ open class FunctionsAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<DeleteFunction200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Delete Insert Function Instance
+     
+     - parameter instanceId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func deleteInsertFunctionInstance(instanceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteInsertFunctionInstance200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteInsertFunctionInstanceWithRequestBuilder(instanceId: instanceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Delete Insert Function Instance
+     - DELETE /insert-function/instance/{instanceId}
+     - Deletes an insert Function instance.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter instanceId: (path)  
+     - returns: RequestBuilder<DeleteInsertFunctionInstance200Response> 
+     */
+    open class func deleteInsertFunctionInstanceWithRequestBuilder(instanceId: String) -> RequestBuilder<DeleteInsertFunctionInstance200Response> {
+        var localVariablePath = "/insert-function/instance/{instanceId}"
+        let instanceIdPreEscape = "\(APIHelper.mapValueToPathItem(instanceId))"
+        let instanceIdPostEscape = instanceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{instanceId}", with: instanceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DeleteInsertFunctionInstance200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -382,6 +479,59 @@ open class FunctionsAPI {
     }
 
     /**
+     List Insert Function Instances
+     
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter functionId: (query) The insert Function class id to lookup.  This parameter exists in alpha. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listInsertFunctionInstances(pagination: PaginationInput, functionId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListInsertFunctionInstances200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listInsertFunctionInstancesWithRequestBuilder(pagination: pagination, functionId: functionId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Insert Function Instances
+     - GET /insert-function/instances
+     - Lists all insert Function instances connected to the given insert Function.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter functionId: (query) The insert Function class id to lookup.  This parameter exists in alpha. 
+     - returns: RequestBuilder<ListInsertFunctionInstances200Response> 
+     */
+    open class func listInsertFunctionInstancesWithRequestBuilder(pagination: PaginationInput, functionId: String) -> RequestBuilder<ListInsertFunctionInstances200Response> {
+        let localVariablePath = "/insert-function/instances"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination.encodeToJSON(),
+            "functionId": functionId.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListInsertFunctionInstances200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Restore Function Version
      
      - parameter functionId: (path)  
@@ -481,6 +631,58 @@ open class FunctionsAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<UpdateFunction200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Update Insert Function Instance
+     
+     - parameter instanceId: (path)  
+     - parameter updateInsertFunctionInstanceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func updateInsertFunctionInstance(instanceId: String, updateInsertFunctionInstanceAlphaInput: UpdateInsertFunctionInstanceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateInsertFunctionInstance200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateInsertFunctionInstanceWithRequestBuilder(instanceId: instanceId, updateInsertFunctionInstanceAlphaInput: updateInsertFunctionInstanceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Update Insert Function Instance
+     - PATCH /insert-function/instance/{instanceId}
+     - Updates an insert Function instance connected to the given Destination.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter instanceId: (path)  
+     - parameter updateInsertFunctionInstanceAlphaInput: (body)  
+     - returns: RequestBuilder<UpdateInsertFunctionInstance200Response> 
+     */
+    open class func updateInsertFunctionInstanceWithRequestBuilder(instanceId: String, updateInsertFunctionInstanceAlphaInput: UpdateInsertFunctionInstanceAlphaInput) -> RequestBuilder<UpdateInsertFunctionInstance200Response> {
+        var localVariablePath = "/insert-function/instance/{instanceId}"
+        let instanceIdPreEscape = "\(APIHelper.mapValueToPathItem(instanceId))"
+        let instanceIdPostEscape = instanceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{instanceId}", with: instanceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateInsertFunctionInstanceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UpdateInsertFunctionInstance200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
