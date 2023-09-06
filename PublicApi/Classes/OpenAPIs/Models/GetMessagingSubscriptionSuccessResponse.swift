@@ -13,9 +13,7 @@ import AnyCodable
 public struct GetMessagingSubscriptionSuccessResponse: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
-        case androidPush = "ANDROID_PUSH"
         case email = "EMAIL"
-        case iosPush = "IOS_PUSH"
         case sms = "SMS"
         case whatsapp = "WHATSAPP"
     }

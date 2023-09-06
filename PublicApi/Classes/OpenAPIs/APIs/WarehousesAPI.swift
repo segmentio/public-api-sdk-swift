@@ -35,7 +35,7 @@ open class WarehousesAPI {
     /**
      Add Connection from Source to Warehouse
      - POST /warehouses/{warehouseId}/connected-sources/{sourceId}
-     - Connects a Source to a Warehouse.    • When called, this endpoint may generate the `Storage Destination Modified` event in the [audit trail](/tag/Audit-Trail).       
+     - Connects a Source to a Warehouse.  • When called, this endpoint may generate the `Storage Destination Modified` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -89,7 +89,7 @@ open class WarehousesAPI {
     /**
      Create Validation in Warehouse
      - POST /warehouses/validation
-     - Validates input settings against a Warehouse.    • When called, this endpoint may generate the `Storage Destination Settings Validation` event in the [audit trail](/tag/Audit-Trail).       
+     - Validates input settings against a Warehouse.  • When called, this endpoint may generate the `Storage Destination Settings Validation` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -136,7 +136,7 @@ open class WarehousesAPI {
     /**
      Create Warehouse
      - POST /warehouses
-     - Creates a new Warehouse.    • When called, this endpoint may generate the `Storage Destination Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a new Warehouse.  • When called, this endpoint may generate the `Storage Destination Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -183,7 +183,7 @@ open class WarehousesAPI {
     /**
      Delete Warehouse
      - DELETE /warehouses/{warehouseId}
-     - Deletes an existing Warehouse.    • When called, this endpoint may generate the `Storage Destination Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes an existing Warehouse.  • When called, this endpoint may generate the `Storage Destination Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -494,7 +494,7 @@ open class WarehousesAPI {
     /**
      Update Warehouse
      - PATCH /warehouses/{warehouseId}
-     - Updates an existing Warehouse.    • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Storage Destination Modified * Storage Destination Enabled       
+     - Updates an existing Warehouse.  • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Storage Destination Modified * Storage Destination Enabled       
      - BASIC:
        - type: http
        - name: token
