@@ -34,7 +34,7 @@ open class ReverseETLAPI {
     /**
      Create Reverse Etl Model
      - POST /reverse-etl-models
-     - Creates a new Reverse ETL Model.        • When called, this endpoint may generate the `Model Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a new Reverse ETL Model.          • When called, this endpoint may generate the `Model Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -81,7 +81,7 @@ open class ReverseETLAPI {
     /**
      Delete Reverse Etl Model
      - DELETE /reverse-etl-models/{modelId}
-     - Deletes an existing Model.        • When called, this endpoint may generate the `Model Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes an existing Model.          • When called, this endpoint may generate the `Model Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -232,7 +232,7 @@ open class ReverseETLAPI {
     /**
      Update Reverse Etl Model
      - PATCH /reverse-etl-models/{modelId}
-     - Updates an existing Reverse ETL Model.        • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Model Settings Saved * Model State Change Toggled       
+     - Updates an existing Reverse ETL Model.          • When called, this endpoint may generate one or more of the following [audit trail](/tag/Audit-Trail) events:* Model Settings Saved * Model State Change Toggled       
      - BASIC:
        - type: http
        - name: token

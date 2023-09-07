@@ -35,7 +35,7 @@ open class ProfilesSyncAPI {
     /**
      Create Profiles Warehouse
      - POST /spaces/{spaceId}/profiles-warehouses
-     - Creates a new Profiles Warehouse.  • When called, this endpoint may generate the `Profiles Sync Warehouse Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a new Profiles Warehouse.    • When called, this endpoint may generate the `Profiles Sync Warehouse Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -87,7 +87,7 @@ open class ProfilesSyncAPI {
     /**
      List Profiles Warehouse in Space
      - GET /spaces/{spaceId}/profiles-warehouses
-     - Lists all Profile Warehouses for a given space id.  • When called, this endpoint may generate the `Profiles Sync Warehouse Retrieved` event in the [audit trail](/tag/Audit-Trail).       
+     - Lists all Profile Warehouses for a given space id.    • When called, this endpoint may generate the `Profiles Sync Warehouse Retrieved` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -202,7 +202,7 @@ open class ProfilesSyncAPI {
     /**
      Remove Profiles Warehouse from Space
      - DELETE /spaces/{spaceId}/profiles-warehouses/{warehouseId}
-     - Deletes an existing Profiles Warehouse.  • When called, this endpoint may generate the `Profiles Sync Warehouse Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes an existing Profiles Warehouse.    • When called, this endpoint may generate the `Profiles Sync Warehouse Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -258,7 +258,7 @@ open class ProfilesSyncAPI {
     /**
      Update Profiles Warehouse for Space Warehouse
      - PATCH /spaces/{spaceId}/profiles-warehouses/{warehouseId}
-     - Updates an existing Profiles Warehouse.  • When called, this endpoint may generate the `Profiles Sync Warehouse Updated` event in the [audit trail](/tag/Audit-Trail).       
+     - Updates an existing Profiles Warehouse.    • When called, this endpoint may generate the `Profiles Sync Warehouse Updated` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -315,7 +315,7 @@ open class ProfilesSyncAPI {
     /**
      Update Selective Sync for Warehouse And Space
      - PATCH /spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs
-     - Updates the schema for a Space Warehouse connection, including Collections and Properties.  • When called, this endpoint may generate the `Profiles Sync Warehouse Modified` event in the [audit trail](/tag/Audit-Trail).       
+     - Updates the schema for a Space Warehouse connection, including Collections and Properties.    • When called, this endpoint may generate the `Profiles Sync Warehouse Modified` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
