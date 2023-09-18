@@ -14,9 +14,9 @@ import AnyCodable
 public struct ReplaceRulesInTrackingPlanV1Input: Codable, JSONEncodable, Hashable {
 
     /** Rules to replace. */
-    public var rules: [RuleV1]
+    public var rules: [RuleInputV1]
 
-    public init(rules: [RuleV1]) {
+    public init(rules: [RuleInputV1]) {
         self.rules = rules
     }
 
