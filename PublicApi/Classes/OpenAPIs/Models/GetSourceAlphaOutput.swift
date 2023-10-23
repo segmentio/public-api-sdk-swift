@@ -14,13 +14,17 @@ import AnyCodable
 public struct GetSourceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public var source: Source1
+    /** The id of the Tracking Plan connected to the Source. */
+    public var trackingPlanId: String?
 
-    public init(source: Source1) {
+    public init(source: Source1, trackingPlanId: String?) {
         self.source = source
+        self.trackingPlanId = trackingPlanId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case source
+        case trackingPlanId
     }
 
     // Encodable protocol methods
@@ -28,6 +32,7 @@ public struct GetSourceAlphaOutput: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(source, forKey: .source)
+        try container.encode(trackingPlanId, forKey: .trackingPlanId)
     }
 }
 
