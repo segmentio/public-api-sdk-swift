@@ -19,16 +19,13 @@ public struct UpdateFunctionV1Input: Codable, JSONEncodable, Hashable {
     public var settings: [FunctionSettingV1]?
     /** A display name for this Function. */
     public var displayName: String?
-    /** A logo for this Function. */
-    public var logoUrl: String?
     /** A description for this Function. */
     public var description: String?
 
-    public init(code: String? = nil, settings: [FunctionSettingV1]? = nil, displayName: String? = nil, logoUrl: String? = nil, description: String? = nil) {
+    public init(code: String? = nil, settings: [FunctionSettingV1]? = nil, displayName: String? = nil, description: String? = nil) {
         self.code = code
         self.settings = settings
         self.displayName = displayName
-        self.logoUrl = logoUrl
         self.description = description
     }
 
@@ -36,7 +33,6 @@ public struct UpdateFunctionV1Input: Codable, JSONEncodable, Hashable {
         case code
         case settings
         case displayName
-        case logoUrl
         case description
     }
 
@@ -47,7 +43,6 @@ public struct UpdateFunctionV1Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(code, forKey: .code)
         try container.encodeIfPresent(settings, forKey: .settings)
         try container.encodeIfPresent(displayName, forKey: .displayName)
-        try container.encodeIfPresent(logoUrl, forKey: .logoUrl)
         try container.encodeIfPresent(description, forKey: .description)
     }
 }

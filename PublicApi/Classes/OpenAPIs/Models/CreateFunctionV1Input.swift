@@ -24,18 +24,15 @@ public struct CreateFunctionV1Input: Codable, JSONEncodable, Hashable {
     public var settings: [FunctionSettingV1]?
     /** A display name for this Function.  Note that Destination Functions append the Workspace to the display name. */
     public var displayName: String
-    /** The URL of the logo for this Function. */
-    public var logoUrl: String?
     /** The Function type.  Config API note: equal to `type`. */
     public var resourceType: ResourceType
     /** A description for this Function. */
     public var description: String?
 
-    public init(code: String, settings: [FunctionSettingV1]? = nil, displayName: String, logoUrl: String? = nil, resourceType: ResourceType, description: String? = nil) {
+    public init(code: String, settings: [FunctionSettingV1]? = nil, displayName: String, resourceType: ResourceType, description: String? = nil) {
         self.code = code
         self.settings = settings
         self.displayName = displayName
-        self.logoUrl = logoUrl
         self.resourceType = resourceType
         self.description = description
     }
@@ -44,7 +41,6 @@ public struct CreateFunctionV1Input: Codable, JSONEncodable, Hashable {
         case code
         case settings
         case displayName
-        case logoUrl
         case resourceType
         case description
     }
@@ -56,7 +52,6 @@ public struct CreateFunctionV1Input: Codable, JSONEncodable, Hashable {
         try container.encode(code, forKey: .code)
         try container.encodeIfPresent(settings, forKey: .settings)
         try container.encode(displayName, forKey: .displayName)
-        try container.encodeIfPresent(logoUrl, forKey: .logoUrl)
         try container.encode(resourceType, forKey: .resourceType)
         try container.encodeIfPresent(description, forKey: .description)
     }
