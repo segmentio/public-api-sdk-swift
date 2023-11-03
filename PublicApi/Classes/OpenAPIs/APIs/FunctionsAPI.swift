@@ -362,6 +362,56 @@ open class FunctionsAPI {
     }
 
     /**
+     Get Insert Function Instance
+     
+     - parameter instanceId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func getInsertFunctionInstance(instanceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetInsertFunctionInstance200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getInsertFunctionInstanceWithRequestBuilder(instanceId: instanceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Insert Function Instance
+     - GET /insert-function-instances/{instanceId}
+     - Gets an insert Function instance.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter instanceId: (path)  
+     - returns: RequestBuilder<GetInsertFunctionInstance200Response> 
+     */
+    open class func getInsertFunctionInstanceWithRequestBuilder(instanceId: String) -> RequestBuilder<GetInsertFunctionInstance200Response> {
+        var localVariablePath = "/insert-function-instances/{instanceId}"
+        let instanceIdPreEscape = "\(APIHelper.mapValueToPathItem(instanceId))"
+        let instanceIdPostEscape = instanceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{instanceId}", with: instanceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetInsertFunctionInstance200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      List Function Versions
      
      - parameter functionId: (path)  
