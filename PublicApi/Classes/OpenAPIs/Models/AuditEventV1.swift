@@ -21,6 +21,8 @@ public struct AuditEventV1: Codable, JSONEncodable, Hashable {
     public var type: String
     /** The user or API token that triggered this event. */
     public var actor: String
+    /** The email of the user that triggered this event. */
+    public var actorEmail: String?
     /** The identifier of the resource affected by this event. */
     public var resourceId: String
     /** The kind of resource affected by this event. */
@@ -28,11 +30,12 @@ public struct AuditEventV1: Codable, JSONEncodable, Hashable {
     /** The name of the resource affected by this event. */
     public var resourceName: String
 
-    public init(id: String, timestamp: String, type: String, actor: String, resourceId: String, resourceType: String, resourceName: String) {
+    public init(id: String, timestamp: String, type: String, actor: String, actorEmail: String? = nil, resourceId: String, resourceType: String, resourceName: String) {
         self.id = id
         self.timestamp = timestamp
         self.type = type
         self.actor = actor
+        self.actorEmail = actorEmail
         self.resourceId = resourceId
         self.resourceType = resourceType
         self.resourceName = resourceName
@@ -43,6 +46,7 @@ public struct AuditEventV1: Codable, JSONEncodable, Hashable {
         case timestamp
         case type
         case actor
+        case actorEmail
         case resourceId
         case resourceType
         case resourceName
@@ -56,6 +60,7 @@ public struct AuditEventV1: Codable, JSONEncodable, Hashable {
         try container.encode(timestamp, forKey: .timestamp)
         try container.encode(type, forKey: .type)
         try container.encode(actor, forKey: .actor)
+        try container.encodeIfPresent(actorEmail, forKey: .actorEmail)
         try container.encode(resourceId, forKey: .resourceId)
         try container.encode(resourceType, forKey: .resourceType)
         try container.encode(resourceName, forKey: .resourceName)
