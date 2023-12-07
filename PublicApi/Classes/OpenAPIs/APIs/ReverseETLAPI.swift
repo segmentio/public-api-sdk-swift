@@ -34,7 +34,7 @@ open class ReverseETLAPI {
     /**
      Create Reverse ETL Manual Sync
      - POST /reverse-etl-syncs
-     - Triggers a manual sync for a Reverse ETL Connection.
+     - Triggers a manual sync for a Reverse ETL Connection.   The rate limit for this endpoint is 5 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
