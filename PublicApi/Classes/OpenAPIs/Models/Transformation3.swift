@@ -23,7 +23,7 @@ public struct Transformation3: Codable, JSONEncodable, Hashable {
     public var destinationMetadataId: String?
     /** If the Transformation is enabled. */
     public var enabled: Bool
-    /** If statement ([FQL](https://segment.com/docs/config-api/fql/)) to match events.  For standard event matchers, use the following:   Track -\\> \"event='\\<eventName\\>'\"   Identify -\\> \"type='identify'\"   Group -\\> \"type='group'\" */
+    /** If statement ([FQL](https://segment.com/docs/config-api/fql/)) to match events.  For standard event matchers, use the following:  Track -\\> \"event='\\<eventName\\>'\"  Identify -\\> \"type='identify'\"  Group -\\> \"type='group'\" */
     public var _if: String
     /** Optional new event name for renaming events. Works only for 'track' event type. */
     public var newEventName: String?
