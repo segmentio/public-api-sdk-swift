@@ -21,7 +21,7 @@ public struct DestinationFilterActionV1: Codable, JSONEncodable, Hashable {
     }
     /** The kind of Transformation to apply to any matched properties. */
     public var type: ModelType
-    /** A dictionary of paths to object keys that this filter applies to.   The literal string '' represents the top level of the object. */
+    /** A dictionary of paths to object keys that this filter applies to.  The literal string '' represents the top level of the object. */
     public var fields: [String: AnyCodable]?
     /** A decimal between 0 and 1 used for 'sample' type events and influences the likelihood of sampling to occur. */
     public var percent: Double?
