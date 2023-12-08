@@ -31,8 +31,11 @@ public struct CreateTransformationV1Input: Codable, JSONEncodable, Hashable {
     public var propertyValueTransformations: [PropertyValueTransformationV1]?
     /** Optional array for defining new properties in [FQL](https://segment.com/docs/config-api/fql/). Currently limited to 1 property. */
     public var fqlDefinedProperties: [FQLDefinedPropertyV1]?
+    /** Optional array for allowing properties from your events. */
+    public var allowProperties: [String]?
+    public var hashPropertiesConfiguration: HashPropertiesConfiguration?
 
-    public init(name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil) {
+    public init(name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil, allowProperties: [String]? = nil, hashPropertiesConfiguration: HashPropertiesConfiguration? = nil) {
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
@@ -42,6 +45,8 @@ public struct CreateTransformationV1Input: Codable, JSONEncodable, Hashable {
         self.propertyRenames = propertyRenames
         self.propertyValueTransformations = propertyValueTransformations
         self.fqlDefinedProperties = fqlDefinedProperties
+        self.allowProperties = allowProperties
+        self.hashPropertiesConfiguration = hashPropertiesConfiguration
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -54,6 +59,8 @@ public struct CreateTransformationV1Input: Codable, JSONEncodable, Hashable {
         case propertyRenames
         case propertyValueTransformations
         case fqlDefinedProperties
+        case allowProperties
+        case hashPropertiesConfiguration
     }
 
     // Encodable protocol methods
@@ -69,6 +76,8 @@ public struct CreateTransformationV1Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
         try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
         try container.encodeIfPresent(fqlDefinedProperties, forKey: .fqlDefinedProperties)
+        try container.encodeIfPresent(allowProperties, forKey: .allowProperties)
+        try container.encodeIfPresent(hashPropertiesConfiguration, forKey: .hashPropertiesConfiguration)
     }
 }
 

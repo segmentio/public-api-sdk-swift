@@ -33,8 +33,11 @@ public struct Transformation3: Codable, JSONEncodable, Hashable {
     public var propertyValueTransformations: [PropertyValueTransformationV1]?
     /** Optional array for defining new properties in FQL. Limited to 1 property right now. */
     public var fqlDefinedProperties: [FQLDefinedPropertyV1]?
+    /** Optional array for allowing properties from your events. */
+    public var allowProperties: [String]?
+    public var hashPropertiesConfiguration: HashPropertiesConfiguration?
 
-    public init(id: String, name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil) {
+    public init(id: String, name: String, sourceId: String, destinationMetadataId: String? = nil, enabled: Bool, _if: String, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil, allowProperties: [String]? = nil, hashPropertiesConfiguration: HashPropertiesConfiguration? = nil) {
         self.id = id
         self.name = name
         self.sourceId = sourceId
@@ -45,6 +48,8 @@ public struct Transformation3: Codable, JSONEncodable, Hashable {
         self.propertyRenames = propertyRenames
         self.propertyValueTransformations = propertyValueTransformations
         self.fqlDefinedProperties = fqlDefinedProperties
+        self.allowProperties = allowProperties
+        self.hashPropertiesConfiguration = hashPropertiesConfiguration
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -58,6 +63,8 @@ public struct Transformation3: Codable, JSONEncodable, Hashable {
         case propertyRenames
         case propertyValueTransformations
         case fqlDefinedProperties
+        case allowProperties
+        case hashPropertiesConfiguration
     }
 
     // Encodable protocol methods
@@ -74,6 +81,8 @@ public struct Transformation3: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
         try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
         try container.encodeIfPresent(fqlDefinedProperties, forKey: .fqlDefinedProperties)
+        try container.encodeIfPresent(allowProperties, forKey: .allowProperties)
+        try container.encodeIfPresent(hashPropertiesConfiguration, forKey: .hashPropertiesConfiguration)
     }
 }
 
