@@ -13,6 +13,53 @@ import AnyCodable
 open class ReverseETLAPI {
 
     /**
+     Create Reverse ETL Manual Sync
+     
+     - parameter createReverseETLManualSyncInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createReverseETLManualSync(createReverseETLManualSyncInput: CreateReverseETLManualSyncInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateReverseETLManualSync200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createReverseETLManualSyncWithRequestBuilder(createReverseETLManualSyncInput: createReverseETLManualSyncInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Reverse ETL Manual Sync
+     - POST /reverse-etl-syncs
+     - Triggers a manual sync for a Reverse ETL Connection.   The rate limit for this endpoint is 20 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter createReverseETLManualSyncInput: (body)  
+     - returns: RequestBuilder<CreateReverseETLManualSync200Response> 
+     */
+    open class func createReverseETLManualSyncWithRequestBuilder(createReverseETLManualSyncInput: CreateReverseETLManualSyncInput) -> RequestBuilder<CreateReverseETLManualSync200Response> {
+        let localVariablePath = "/reverse-etl-syncs"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createReverseETLManualSyncInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateReverseETLManualSync200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create Reverse Etl Model
      
      - parameter createReverseEtlModelInput: (body)  
