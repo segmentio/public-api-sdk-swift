@@ -25,6 +25,9 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the computed trait. */
     public var enabled: Bool
+    public var definition: Definition?
+    /** Status for the computed trait.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
+    public var status: String?
     /** User id who created the computed trait. */
     public var createdBy: String
     /** User id who last updated the computed trait. */
@@ -34,13 +37,15 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
     /** The timestamp of the computed trait's last change. */
     public var updatedAt: String
 
-    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
         self.description = description
         self.key = key
         self.enabled = enabled
+        self.definition = definition
+        self.status = status
         self.createdBy = createdBy
         self.updatedBy = updatedBy
         self.createdAt = createdAt
@@ -54,6 +59,8 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
         case description
         case key
         case enabled
+        case definition
+        case status
         case createdBy
         case updatedBy
         case createdAt
@@ -70,6 +77,8 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
         try container.encode(description, forKey: .description)
         try container.encode(key, forKey: .key)
         try container.encode(enabled, forKey: .enabled)
+        try container.encode(definition, forKey: .definition)
+        try container.encodeIfPresent(status, forKey: .status)
         try container.encode(createdBy, forKey: .createdBy)
         try container.encode(updatedBy, forKey: .updatedBy)
         try container.encode(createdAt, forKey: .createdAt)
