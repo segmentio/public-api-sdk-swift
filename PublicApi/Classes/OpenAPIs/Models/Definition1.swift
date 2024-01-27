@@ -13,9 +13,9 @@ import AnyCodable
 /** Query language definition and type. */
 public struct Definition1: Codable, JSONEncodable, Hashable {
 
-    /** The query language string defining the audience segmentation criteria. */
+    /** The query language string defining the computed trait aggregation criteria. */
     public var query: String
-    /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
+    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
     public var type: String
 
     public init(query: String, type: String) {

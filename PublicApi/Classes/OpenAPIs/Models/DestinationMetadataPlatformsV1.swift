@@ -19,17 +19,25 @@ public struct DestinationMetadataPlatformsV1: Codable, JSONEncodable, Hashable {
     public var server: Bool?
     /** Whether this Destination supports mobile events. */
     public var mobile: Bool?
+    /** Whether this Destination supports Warehouse events. */
+    public var warehouse: Bool?
+    /** Whether this Destination supports cloud app object events. */
+    public var cloudAppObject: Bool?
 
-    public init(browser: Bool? = nil, server: Bool? = nil, mobile: Bool? = nil) {
+    public init(browser: Bool? = nil, server: Bool? = nil, mobile: Bool? = nil, warehouse: Bool? = nil, cloudAppObject: Bool? = nil) {
         self.browser = browser
         self.server = server
         self.mobile = mobile
+        self.warehouse = warehouse
+        self.cloudAppObject = cloudAppObject
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case browser
         case server
         case mobile
+        case warehouse
+        case cloudAppObject
     }
 
     // Encodable protocol methods
@@ -39,6 +47,8 @@ public struct DestinationMetadataPlatformsV1: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(browser, forKey: .browser)
         try container.encodeIfPresent(server, forKey: .server)
         try container.encodeIfPresent(mobile, forKey: .mobile)
+        try container.encodeIfPresent(warehouse, forKey: .warehouse)
+        try container.encodeIfPresent(cloudAppObject, forKey: .cloudAppObject)
     }
 }
 
