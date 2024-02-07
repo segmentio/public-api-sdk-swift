@@ -72,7 +72,7 @@ open class IAMUsersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createInvites(createInvitesV1Input: CreateInvitesV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateInvites200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createInvites(createInvitesV1Input: CreateInvitesV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateInvites201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createInvitesWithRequestBuilder(createInvitesV1Input: createInvitesV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -91,9 +91,9 @@ open class IAMUsersAPI {
        - type: http
        - name: token
      - parameter createInvitesV1Input: (body)  
-     - returns: RequestBuilder<CreateInvites200Response> 
+     - returns: RequestBuilder<CreateInvites201Response> 
      */
-    open class func createInvitesWithRequestBuilder(createInvitesV1Input: CreateInvitesV1Input) -> RequestBuilder<CreateInvites200Response> {
+    open class func createInvitesWithRequestBuilder(createInvitesV1Input: CreateInvitesV1Input) -> RequestBuilder<CreateInvites201Response> {
         let localVariablePath = "/invites"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createInvitesV1Input)
@@ -106,7 +106,7 @@ open class IAMUsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateInvites200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateInvites201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

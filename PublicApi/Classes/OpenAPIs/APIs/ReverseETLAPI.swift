@@ -67,7 +67,7 @@ open class ReverseETLAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createReverseEtlModel(createReverseEtlModelInput: CreateReverseEtlModelInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateReverseEtlModel200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createReverseEtlModel(createReverseEtlModelInput: CreateReverseEtlModelInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateReverseEtlModel201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createReverseEtlModelWithRequestBuilder(createReverseEtlModelInput: createReverseEtlModelInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -86,9 +86,9 @@ open class ReverseETLAPI {
        - type: http
        - name: token
      - parameter createReverseEtlModelInput: (body)  
-     - returns: RequestBuilder<CreateReverseEtlModel200Response> 
+     - returns: RequestBuilder<CreateReverseEtlModel201Response> 
      */
-    open class func createReverseEtlModelWithRequestBuilder(createReverseEtlModelInput: CreateReverseEtlModelInput) -> RequestBuilder<CreateReverseEtlModel200Response> {
+    open class func createReverseEtlModelWithRequestBuilder(createReverseEtlModelInput: CreateReverseEtlModelInput) -> RequestBuilder<CreateReverseEtlModel201Response> {
         let localVariablePath = "/reverse-etl-models"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createReverseEtlModelInput)
@@ -101,7 +101,7 @@ open class ReverseETLAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateReverseEtlModel200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateReverseEtlModel201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

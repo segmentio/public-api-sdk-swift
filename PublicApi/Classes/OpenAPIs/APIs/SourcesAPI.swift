@@ -72,7 +72,7 @@ open class SourcesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createSource(createSourceV1Input: CreateSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createSource(createSourceV1Input: CreateSourceV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateSource201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createSourceWithRequestBuilder(createSourceV1Input: createSourceV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -91,9 +91,9 @@ open class SourcesAPI {
        - type: http
        - name: token
      - parameter createSourceV1Input: (body)  
-     - returns: RequestBuilder<CreateSource200Response> 
+     - returns: RequestBuilder<CreateSource201Response> 
      */
-    open class func createSourceWithRequestBuilder(createSourceV1Input: CreateSourceV1Input) -> RequestBuilder<CreateSource200Response> {
+    open class func createSourceWithRequestBuilder(createSourceV1Input: CreateSourceV1Input) -> RequestBuilder<CreateSource201Response> {
         let localVariablePath = "/sources"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createSourceV1Input)
@@ -106,7 +106,7 @@ open class SourcesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateSource200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateSource201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

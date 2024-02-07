@@ -20,7 +20,7 @@ open class LabelsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createLabel(createLabelV1Input: CreateLabelV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateLabel200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createLabel(createLabelV1Input: CreateLabelV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateLabel201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createLabelWithRequestBuilder(createLabelV1Input: createLabelV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -39,9 +39,9 @@ open class LabelsAPI {
        - type: http
        - name: token
      - parameter createLabelV1Input: (body)  
-     - returns: RequestBuilder<CreateLabel200Response> 
+     - returns: RequestBuilder<CreateLabel201Response> 
      */
-    open class func createLabelWithRequestBuilder(createLabelV1Input: CreateLabelV1Input) -> RequestBuilder<CreateLabel200Response> {
+    open class func createLabelWithRequestBuilder(createLabelV1Input: CreateLabelV1Input) -> RequestBuilder<CreateLabel201Response> {
         let localVariablePath = "/labels"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createLabelV1Input)
@@ -54,7 +54,7 @@ open class LabelsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateLabel200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateLabel201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
