@@ -21,7 +21,7 @@ open class WarehousesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addConnectionFromSourceToWarehouse(warehouseId: String, sourceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddConnectionFromSourceToWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func addConnectionFromSourceToWarehouse(warehouseId: String, sourceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddConnectionFromSourceToWarehouse201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return addConnectionFromSourceToWarehouseWithRequestBuilder(warehouseId: warehouseId, sourceId: sourceId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -41,9 +41,9 @@ open class WarehousesAPI {
        - name: token
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - returns: RequestBuilder<AddConnectionFromSourceToWarehouse200Response> 
+     - returns: RequestBuilder<AddConnectionFromSourceToWarehouse201Response> 
      */
-    open class func addConnectionFromSourceToWarehouseWithRequestBuilder(warehouseId: String, sourceId: String) -> RequestBuilder<AddConnectionFromSourceToWarehouse200Response> {
+    open class func addConnectionFromSourceToWarehouseWithRequestBuilder(warehouseId: String, sourceId: String) -> RequestBuilder<AddConnectionFromSourceToWarehouse201Response> {
         var localVariablePath = "/warehouses/{warehouseId}/connected-sources/{sourceId}"
         let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
         let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -62,7 +62,7 @@ open class WarehousesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddConnectionFromSourceToWarehouse200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AddConnectionFromSourceToWarehouse201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -122,7 +122,7 @@ open class WarehousesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createWarehouse(createWarehouseV1Input: CreateWarehouseV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createWarehouse(createWarehouseV1Input: CreateWarehouseV1Input, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateWarehouse201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createWarehouseWithRequestBuilder(createWarehouseV1Input: createWarehouseV1Input).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -141,9 +141,9 @@ open class WarehousesAPI {
        - type: http
        - name: token
      - parameter createWarehouseV1Input: (body)  
-     - returns: RequestBuilder<CreateWarehouse200Response> 
+     - returns: RequestBuilder<CreateWarehouse201Response> 
      */
-    open class func createWarehouseWithRequestBuilder(createWarehouseV1Input: CreateWarehouseV1Input) -> RequestBuilder<CreateWarehouse200Response> {
+    open class func createWarehouseWithRequestBuilder(createWarehouseV1Input: CreateWarehouseV1Input) -> RequestBuilder<CreateWarehouse201Response> {
         let localVariablePath = "/warehouses"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createWarehouseV1Input)
@@ -156,7 +156,7 @@ open class WarehousesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateWarehouse200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateWarehouse201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

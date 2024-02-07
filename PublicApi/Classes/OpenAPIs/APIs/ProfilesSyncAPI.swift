@@ -21,7 +21,7 @@ open class ProfilesSyncAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createProfilesWarehouse(spaceId: String, createProfilesWarehouseAlphaInput: CreateProfilesWarehouseAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateProfilesWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func createProfilesWarehouse(spaceId: String, createProfilesWarehouseAlphaInput: CreateProfilesWarehouseAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateProfilesWarehouse201Response?, _ error: Error?) -> Void)) -> RequestTask {
         return createProfilesWarehouseWithRequestBuilder(spaceId: spaceId, createProfilesWarehouseAlphaInput: createProfilesWarehouseAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -41,9 +41,9 @@ open class ProfilesSyncAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter createProfilesWarehouseAlphaInput: (body)  
-     - returns: RequestBuilder<CreateProfilesWarehouse200Response> 
+     - returns: RequestBuilder<CreateProfilesWarehouse201Response> 
      */
-    open class func createProfilesWarehouseWithRequestBuilder(spaceId: String, createProfilesWarehouseAlphaInput: CreateProfilesWarehouseAlphaInput) -> RequestBuilder<CreateProfilesWarehouse200Response> {
+    open class func createProfilesWarehouseWithRequestBuilder(spaceId: String, createProfilesWarehouseAlphaInput: CreateProfilesWarehouseAlphaInput) -> RequestBuilder<CreateProfilesWarehouse201Response> {
         var localVariablePath = "/spaces/{spaceId}/profiles-warehouses"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -59,7 +59,7 @@ open class ProfilesSyncAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateProfilesWarehouse200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateProfilesWarehouse201Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
