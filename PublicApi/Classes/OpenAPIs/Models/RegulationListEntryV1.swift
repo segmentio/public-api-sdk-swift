@@ -21,19 +21,35 @@ public struct RegulationListEntryV1: Codable, JSONEncodable, Hashable {
         case partialSuccess = "PARTIAL_SUCCESS"
         case running = "RUNNING"
     }
+    public enum RegulationType: String, Codable, CaseIterable {
+        case deleteInternal = "DELETE_INTERNAL"
+        case deleteOnly = "DELETE_ONLY"
+        case suppressOnly = "SUPPRESS_ONLY"
+        case suppressWithDelete = "SUPPRESS_WITH_DELETE"
+        case unsuppress = "UNSUPPRESS"
+    }
+    /** The id of the regulate request. */
     public var id: String
+    /** The subject type. */
     public var subjectType: String
+    /** The list of `userId` or `objectId` values of the subjects to regulate. */
     public var subjects: [String]
+    /** The current status of the regulate request. */
     public var status: Status
+    /** The timestamp of the creation of the request. */
     public var createdAt: String
+    /** The regulation type. */
+    public var regulationType: RegulationType
+    /** The timestamp of when the request finished. */
     public var finishedAt: String?
 
-    public init(id: String, subjectType: String, subjects: [String], status: Status, createdAt: String, finishedAt: String? = nil) {
+    public init(id: String, subjectType: String, subjects: [String], status: Status, createdAt: String, regulationType: RegulationType, finishedAt: String? = nil) {
         self.id = id
         self.subjectType = subjectType
         self.subjects = subjects
         self.status = status
         self.createdAt = createdAt
+        self.regulationType = regulationType
         self.finishedAt = finishedAt
     }
 
@@ -43,6 +59,7 @@ public struct RegulationListEntryV1: Codable, JSONEncodable, Hashable {
         case subjects
         case status
         case createdAt
+        case regulationType
         case finishedAt
     }
 
@@ -55,6 +72,7 @@ public struct RegulationListEntryV1: Codable, JSONEncodable, Hashable {
         try container.encode(subjects, forKey: .subjects)
         try container.encode(status, forKey: .status)
         try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(regulationType, forKey: .regulationType)
         try container.encodeIfPresent(finishedAt, forKey: .finishedAt)
     }
 }
