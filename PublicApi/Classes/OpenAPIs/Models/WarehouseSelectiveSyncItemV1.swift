@@ -21,14 +21,17 @@ public struct WarehouseSelectiveSyncItemV1: Codable, JSONEncodable, Hashable {
     public var warehouseId: String
     /** Whether this Selective Sync item is enabled. */
     public var enabled: Bool
+    /** Source id attached to this sync. */
+    public var source: String?
     /** A map that contains the properties within the collection to which the Warehouse should sync. */
     public var properties: [String: AnyCodable]
 
-    public init(sourceId: String, collection: String, warehouseId: String, enabled: Bool, properties: [String: AnyCodable]) {
+    public init(sourceId: String, collection: String, warehouseId: String, enabled: Bool, source: String? = nil, properties: [String: AnyCodable]) {
         self.sourceId = sourceId
         self.collection = collection
         self.warehouseId = warehouseId
         self.enabled = enabled
+        self.source = source
         self.properties = properties
     }
 
@@ -37,6 +40,7 @@ public struct WarehouseSelectiveSyncItemV1: Codable, JSONEncodable, Hashable {
         case collection
         case warehouseId
         case enabled
+        case source
         case properties
     }
 
@@ -48,6 +52,7 @@ public struct WarehouseSelectiveSyncItemV1: Codable, JSONEncodable, Hashable {
         try container.encode(collection, forKey: .collection)
         try container.encode(warehouseId, forKey: .warehouseId)
         try container.encode(enabled, forKey: .enabled)
+        try container.encodeIfPresent(source, forKey: .source)
         try container.encode(properties, forKey: .properties)
     }
 }
