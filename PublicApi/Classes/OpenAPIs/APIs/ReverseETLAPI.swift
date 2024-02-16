@@ -157,6 +157,61 @@ open class ReverseETLAPI {
     }
 
     /**
+     Get Reverse ETL Sync from Model
+     
+     - parameter modelId: (path)  
+     - parameter syncId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func getReverseETLSyncFromModel(modelId: String, syncId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetReverseETLSyncFromModel200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getReverseETLSyncFromModelWithRequestBuilder(modelId: modelId, syncId: syncId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Reverse ETL Sync from Model
+     - GET /reverse-etl-models/{modelId}/syncs/{syncId}
+     - Get the sync status for a Reverse ETL sync.   The rate limit for this endpoint is 250 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter modelId: (path)  
+     - parameter syncId: (path)  
+     - returns: RequestBuilder<GetReverseETLSyncFromModel200Response> 
+     */
+    open class func getReverseETLSyncFromModelWithRequestBuilder(modelId: String, syncId: String) -> RequestBuilder<GetReverseETLSyncFromModel200Response> {
+        var localVariablePath = "/reverse-etl-models/{modelId}/syncs/{syncId}"
+        let modelIdPreEscape = "\(APIHelper.mapValueToPathItem(modelId))"
+        let modelIdPostEscape = modelIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{modelId}", with: modelIdPostEscape, options: .literal, range: nil)
+        let syncIdPreEscape = "\(APIHelper.mapValueToPathItem(syncId))"
+        let syncIdPostEscape = syncIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{syncId}", with: syncIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetReverseETLSyncFromModel200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Reverse Etl Model
      
      - parameter modelId: (path)  
