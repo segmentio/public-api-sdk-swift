@@ -14,9 +14,9 @@ import AnyCodable
 public struct UpdateComputedTraitForSpaceAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** Enabled/disabled status for the computed trait. */
-    public var enabled: Bool
+    public var enabled: Bool?
 
-    public init(enabled: Bool) {
+    public init(enabled: Bool? = nil) {
         self.enabled = enabled
     }
 
@@ -28,7 +28,7 @@ public struct UpdateComputedTraitForSpaceAlphaInput: Codable, JSONEncodable, Has
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(enabled, forKey: .enabled)
+        try container.encodeIfPresent(enabled, forKey: .enabled)
     }
 }
 
