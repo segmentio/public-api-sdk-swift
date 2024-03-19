@@ -13,9 +13,9 @@ import AnyCodable
 /** Returns the updated Source. */
 public struct UpdateSourceV1Output: Codable, JSONEncodable, Hashable {
 
-    public var source: Source6
+    public var source: Source7
 
-    public init(source: Source6) {
+    public init(source: Source7) {
         self.source = source
     }
 

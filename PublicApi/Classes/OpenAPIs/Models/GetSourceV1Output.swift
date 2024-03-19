@@ -13,11 +13,11 @@ import AnyCodable
 /** Returns a Source. */
 public struct GetSourceV1Output: Codable, JSONEncodable, Hashable {
 
-    public var source: Source4
+    public var source: Source5
     /** The id of the Tracking Plan connected to the Source. */
     public var trackingPlanId: String?
 
-    public init(source: Source4, trackingPlanId: String?) {
+    public init(source: Source5, trackingPlanId: String?) {
         self.source = source
         self.trackingPlanId = trackingPlanId
     }
