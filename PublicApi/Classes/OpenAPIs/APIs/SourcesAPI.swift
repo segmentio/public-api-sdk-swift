@@ -112,6 +112,56 @@ open class SourcesAPI {
     }
 
     /**
+     Create Write Key for Source
+     
+     - parameter sourceId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createWriteKeyForSource(sourceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateWriteKeyForSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createWriteKeyForSourceWithRequestBuilder(sourceId: sourceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Write Key for Source
+     - POST /sources/{sourceId}/writekey
+     - Creates a new Write Key for the Source.    • When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail). 
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter sourceId: (path)  
+     - returns: RequestBuilder<CreateWriteKeyForSource200Response> 
+     */
+    open class func createWriteKeyForSourceWithRequestBuilder(sourceId: String) -> RequestBuilder<CreateWriteKeyForSource200Response> {
+        var localVariablePath = "/sources/{sourceId}/writekey"
+        let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
+        let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateWriteKeyForSource200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Delete Source
      
      - parameter sourceId: (path)  
@@ -419,6 +469,61 @@ open class SourcesAPI {
         let localVariableRequestBuilder: RequestBuilder<ListSources200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Remove Write Key from Source
+     
+     - parameter sourceId: (path)  
+     - parameter writeKey: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func removeWriteKeyFromSource(sourceId: String, writeKey: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RemoveWriteKeyFromSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return removeWriteKeyFromSourceWithRequestBuilder(sourceId: sourceId, writeKey: writeKey).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Remove Write Key from Source
+     - DELETE /sources/{sourceId}/writekey/{writeKey}
+     - Removes a Write Key from a Source.    • When called, this endpoint may generate the `Source Modified` event in the [audit trail](/tag/Audit-Trail). 
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter sourceId: (path)  
+     - parameter writeKey: (path)  
+     - returns: RequestBuilder<RemoveWriteKeyFromSource200Response> 
+     */
+    open class func removeWriteKeyFromSourceWithRequestBuilder(sourceId: String, writeKey: String) -> RequestBuilder<RemoveWriteKeyFromSource200Response> {
+        var localVariablePath = "/sources/{sourceId}/writekey/{writeKey}"
+        let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
+        let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
+        let writeKeyPreEscape = "\(APIHelper.mapValueToPathItem(writeKey))"
+        let writeKeyPostEscape = writeKeyPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{writeKey}", with: writeKeyPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<RemoveWriteKeyFromSource200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**

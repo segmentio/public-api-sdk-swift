@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Returns the newly Source. */
+/** Returns the newly created Source. */
 public struct CreateSourceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public var source: Source2

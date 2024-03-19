@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The updated Source. */
+/** The newly created Source. */
 public struct Source6: Codable, JSONEncodable, Hashable {
 
     /** The id of the Source.  Config API note: analogous to `name`. */
