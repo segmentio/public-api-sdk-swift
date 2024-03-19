@@ -25,20 +25,20 @@ open class DeliveryOverviewAPI {
      Get Egress Failed Metrics from Delivery Overview
      
      - parameter sourceId: (query) The sourceId for the workspace.  This parameter exists in alpha. 
+     - parameter destinationConfigId: (query) The ID tied to a workspace destination. DestinationConfigId is required for Filtered at Destination, Failed Delivery, and Successful Delivery steps.  This parameter exists in alpha. 
      - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in alpha. 
      - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in alpha. 
      - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in alpha. 
-     - parameter destinationConfigId: (query) The ID tied to a workspace destination. DestinationConfigId is a required input for queries to Filtered at Destination, Failed Delivery, and Successful Delivery.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in alpha. 
      - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in alpha. (optional)
      - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in alpha. (optional)
-     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in alpha. (optional)
      - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getEgressFailedMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, pagination: PaginationInput? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, destinationConfigId: destinationConfigId, groupBy: groupBy, filter: filter, pagination: pagination, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
+    open class func getEgressFailedMetricsFromDeliveryOverview(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, destinationConfigId: destinationConfigId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -56,17 +56,17 @@ open class DeliveryOverviewAPI {
        - type: http
        - name: token
      - parameter sourceId: (query) The sourceId for the workspace.  This parameter exists in alpha. 
+     - parameter destinationConfigId: (query) The ID tied to a workspace destination. DestinationConfigId is required for Filtered at Destination, Failed Delivery, and Successful Delivery steps.  This parameter exists in alpha. 
      - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in alpha. 
      - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in alpha. 
      - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in alpha. 
-     - parameter destinationConfigId: (query) The ID tied to a workspace destination. DestinationConfigId is a required input for queries to Filtered at Destination, Failed Delivery, and Successful Delivery.  This parameter exists in alpha. (optional)
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in alpha. 
      - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in alpha. (optional)
      - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in alpha. (optional)
-     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in alpha. (optional)
      - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, pagination: PaginationInput? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/failed-delivery"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -74,13 +74,13 @@ open class DeliveryOverviewAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "sourceId": sourceId.encodeToJSON(),
-            "destinationConfigId": destinationConfigId?.encodeToJSON(),
+            "destinationConfigId": destinationConfigId.encodeToJSON(),
             "startTime": startTime.encodeToJSON(),
             "endTime": endTime.encodeToJSON(),
             "groupBy": groupBy?.encodeToJSON(),
             "granularity": granularity.encodeToJSON(),
             "filter": filter?.encodeToJSON(),
-            "pagination": pagination?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
             "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
@@ -186,14 +186,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getFilteredAtSourceMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Filtered At Source Metrics from Delivery Overview
      
+     - parameter sourceId: (query) The sourceId for the workspace.  This parameter exists in alpha. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in alpha. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in alpha. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in alpha. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in alpha. 
+     - parameter destinationConfigId: (query) The ID tied to a workspace destination.  This parameter exists in alpha. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in alpha. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in alpha. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getFilteredAtSourceMetricsFromDeliveryOverview(apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder().execute(apiResponseQueue) { result in
+    open class func getFilteredAtSourceMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtSourceMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, destinationConfigId: destinationConfigId, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -210,14 +228,34 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
+     - parameter sourceId: (query) The sourceId for the workspace.  This parameter exists in alpha. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in alpha. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in alpha. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in alpha. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in alpha. 
+     - parameter destinationConfigId: (query) The ID tied to a workspace destination.  This parameter exists in alpha. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in alpha. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in alpha. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder() -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtSourceMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/filtered-at-source"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId?.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
