@@ -15,7 +15,7 @@ public struct Pagination2: Codable, JSONEncodable, Hashable {
 
     /** The page to request.  Acceptable values to use here are in PaginationOutput objects, in the `current`, `next`, and `previous` keys.  Consumers of the API must treat this value as opaque. */
     public var cursor: String?
-    /** The number of items to retrieve in a page, between 1 and 200. */
+    /** The number of items to retrieve in a page, between 1 and 1000. */
     public var count: Int
 
     public init(cursor: String? = nil, count: Int) {
