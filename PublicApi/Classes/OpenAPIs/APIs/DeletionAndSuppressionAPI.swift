@@ -284,6 +284,7 @@ open class DeletionAndSuppressionAPI {
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
         case suppressWithDelete = "SUPPRESS_WITH_DELETE"
+        case suppressWithDeleteInternal = "SUPPRESS_WITH_DELETE_INTERNAL"
         case unsuppress = "UNSUPPRESS"
     }
 
@@ -419,6 +420,7 @@ open class DeletionAndSuppressionAPI {
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
         case suppressWithDelete = "SUPPRESS_WITH_DELETE"
+        case suppressWithDeleteInternal = "SUPPRESS_WITH_DELETE_INTERNAL"
         case unsuppress = "UNSUPPRESS"
     }
 
