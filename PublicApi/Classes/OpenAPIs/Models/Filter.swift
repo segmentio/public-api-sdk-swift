@@ -10,40 +10,30 @@ import Foundation
 import AnyCodable
 #endif
 
-/** An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;. */
+/** The filter to preview. */
 public struct Filter: Codable, JSONEncodable, Hashable {
 
-    /** A list of strings of discard reasons. Can be used to filter all Source and Destination steps, except for Successfully Received. If you would like to view retry attempts for a successful delivery, you can filter from `successes.attempt.1` to `successes.attempt.10`.  See [Discard Record Documentation](https://segment.com/docs/connections/delivery-overview/#troubleshooting) for valid error codes. */
-    public var discardReason: [String]?
-    /** A list of strings of event names. */
-    public var eventName: [String]?
-    /** A list of strings of event types. Valid options are: `alias`, `group`, `identify`, `page`, `screen`, and `track`. */
-    public var eventType: [String]?
-    /** A list of strings of app versions. */
-    public var appVersion: [String]?
+    /** A FQL statement which determines if the provided filter's actions will apply to the provided JSON payload. The literal string \"all\" will result in this filter to all events. For guidance on using FQL, see the Segment documentation site. */
+    public var _if: String
+    /** The filtering action to take on events that match the \"if\" statement. Action types must be one of: \"drop\", \"allow_properties\", \"drop_properties\" or \"sample\". */
+    public var actions: [DestinationFilterActionV1]
 
-    public init(discardReason: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil) {
-        self.discardReason = discardReason
-        self.eventName = eventName
-        self.eventType = eventType
-        self.appVersion = appVersion
+    public init(_if: String, actions: [DestinationFilterActionV1]) {
+        self._if = _if
+        self.actions = actions
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case discardReason
-        case eventName
-        case eventType
-        case appVersion
+        case _if = "if"
+        case actions
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(discardReason, forKey: .discardReason)
-        try container.encodeIfPresent(eventName, forKey: .eventName)
-        try container.encodeIfPresent(eventType, forKey: .eventType)
-        try container.encodeIfPresent(appVersion, forKey: .appVersion)
+        try container.encode(_if, forKey: ._if)
+        try container.encode(actions, forKey: .actions)
     }
 }
 

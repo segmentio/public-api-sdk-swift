@@ -13,9 +13,9 @@ import AnyCodable
 /** Output for UpdateDestinationFilterV1. */
 public struct UpdateFilterForDestinationV1Output: Codable, JSONEncodable, Hashable {
 
-    public var filter: Filter4
+    public var filter: Filter3
 
-    public init(filter: Filter4) {
+    public init(filter: Filter3) {
         self.filter = filter
     }
 

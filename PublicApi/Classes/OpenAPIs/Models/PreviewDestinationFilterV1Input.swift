@@ -13,11 +13,11 @@ import AnyCodable
 /** Input of the Destination filter to preview. For guidance on using FQL, see the Segment documentation site. */
 public struct PreviewDestinationFilterV1Input: Codable, JSONEncodable, Hashable {
 
-    public var filter: Filter1
+    public var filter: Filter
     /** The JSON payload to apply the filter to. */
     public var payload: [String: AnyCodable]
 
-    public init(filter: Filter1, payload: [String: AnyCodable]) {
+    public init(filter: Filter, payload: [String: AnyCodable]) {
         self.filter = filter
         self.payload = payload
     }

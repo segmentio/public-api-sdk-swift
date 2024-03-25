@@ -13,15 +13,32 @@ import AnyCodable
 open class DeliveryOverviewAPI {
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getEgressFailedMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Egress Failed Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getEgressFailedMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewDestMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getEgressFailedMetricsFromDeliveryOverview(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, destinationConfigId: destinationConfigId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -38,17 +55,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewDestMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getEgressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/failed-delivery"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -63,15 +96,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getEgressSuccessMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Egress Success Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getEgressSuccessMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewDestMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getEgressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getEgressSuccessMetricsFromDeliveryOverview(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getEgressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, destinationConfigId: destinationConfigId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -88,17 +138,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getEgressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewDestMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getEgressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getEgressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/successful-delivery"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -113,15 +179,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getFilteredAtDestinationMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Filtered At Destination Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getFilteredAtDestinationMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewDestMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getFilteredAtDestinationMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getFilteredAtDestinationMetricsFromDeliveryOverview(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtDestinationMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getFilteredAtDestinationMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, destinationConfigId: destinationConfigId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -138,17 +221,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Destination pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getFilteredAtDestinationMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewDestMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getFilteredAtDestinationMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, destinationConfigId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtDestinationMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/filtered-at-destination"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -163,15 +262,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getFilteredAtSourceMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Filtered At Source Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getFilteredAtSourceMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewSourceMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getFilteredAtSourceMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtSourceMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, destinationConfigId: destinationConfigId, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -188,17 +304,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewSourceMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getFilteredAtSourceMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getFilteredAtSourceMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/filtered-at-source"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId?.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -213,15 +345,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getIngressFailedMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Ingress Failed Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getIngressFailedMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewSourceMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getIngressFailedMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getIngressFailedMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getIngressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, destinationConfigId: destinationConfigId, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -238,17 +387,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getIngressFailedMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewSourceMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getIngressFailedMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressFailedMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/failed-on-ingest"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId?.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -263,15 +428,32 @@ open class DeliveryOverviewAPI {
     }
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getIngressSuccessMetricsFromDeliveryOverview: String, CaseIterable {
+        case day = "day"
+        case hour = "hour"
+        case minute = "minute"
+    }
+
+    /**
      Get Ingress Success Metrics from Delivery Overview
      
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getIngressSuccessMetricsFromDeliveryOverview(metrics: GetDeliveryOverviewSourceMetricsBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(metrics: metrics).execute(apiResponseQueue) { result in
+    open class func getIngressSuccessMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, destinationConfigId: destinationConfigId, groupBy: groupBy, filter: filter, subscriptionId: subscriptionId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -288,17 +470,33 @@ open class DeliveryOverviewAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter metrics: (query) Metrics for this Source pipeline step.  This parameter exists in beta. 
+     - parameter sourceId: (query) The sourceId for the Workspace.  This parameter exists in beta. 
+     - parameter startTime: (query) The ISO8601 formatted timestamp corresponding to the beginning of the requested timeframe, inclusive.  This parameter exists in beta. 
+     - parameter endTime: (query) The ISO8601 formatted timestamp corresponding to the end of the requested timeframe, noninclusive.  This parameter exists in beta. 
+     - parameter granularity: (query) The size of each bucket in the requested window.  Based on the granularity chosen, there are restrictions on the time range you can query:  **Minute**: - Max time range: 4 hours - Oldest possible start time: 48 hours in the past  **Hour**: - Max Time range: 14 days - Oldest possible start time: 30 days in the past  **Day**: - Max time range: 30 days - Oldest possible start time: 30 days in the past  This parameter exists in beta. 
+     - parameter pagination: (query) Optional params to specify the page cursor and count.  This parameter exists in beta. 
+     - parameter destinationConfigId: (query) The id tied to a Workspace Destination.  This parameter exists in beta. (optional)
+     - parameter groupBy: (query) A comma-delimited list of strings representing one or more dimensions to group the result by.  Valid options are: &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and &#x60;appVersion&#x60;.  This parameter exists in beta. (optional)
+     - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;discardReason&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. Example: &#x60;filter: {discardReason: [&#39;discard1&#39;], eventName: [&#39;name1&#39;, &#39;name2&#39;], eventType: [&#39;type1&#39;]}&#x60;.  This parameter exists in beta. (optional)
+     - parameter subscriptionId: (query) An optional filter for actions destinations, to filter by a specific action.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(metrics: GetDeliveryOverviewSourceMetricsBetaInput) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, destinationConfigId: String? = nil, groupBy: [String]? = nil, filter: DeliveryOverviewFilterBy? = nil, subscriptionId: String? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/successfully-received"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "metrics": metrics.encodeToJSON(),
+            "sourceId": sourceId.encodeToJSON(),
+            "destinationConfigId": destinationConfigId?.encodeToJSON(),
+            "startTime": startTime.encodeToJSON(),
+            "endTime": endTime.encodeToJSON(),
+            "groupBy": groupBy?.encodeToJSON(),
+            "granularity": granularity.encodeToJSON(),
+            "filter": filter?.encodeToJSON(),
+            "pagination": pagination.encodeToJSON(),
+            "subscriptionId": subscriptionId?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

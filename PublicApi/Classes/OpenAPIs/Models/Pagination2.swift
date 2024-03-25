@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Params to specify the page cursor and count. */
+/** Pagination options. */
 public struct Pagination2: Codable, JSONEncodable, Hashable {
 
     /** The page to request.  Acceptable values to use here are in PaginationOutput objects, in the `current`, `next`, and `previous` keys.  Consumers of the API must treat this value as opaque. */
