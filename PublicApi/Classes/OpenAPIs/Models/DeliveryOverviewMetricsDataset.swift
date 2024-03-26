@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Dataset within GetDeliveryOverviewMetricsAlphaOutput. */
+/** Dataset within GetDeliveryOverviewMetricsBetaOutput. */
 public struct DeliveryOverviewMetricsDataset: Codable, JSONEncodable, Hashable {
 
     /** The name of the event if groupBy[] included 'eventName' in the request. */

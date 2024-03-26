@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GetEgressFailedMetricsFromDeliveryOverview200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: GetDeliveryOverviewMetricsAlphaOutput?
+    public var data: GetDeliveryOverviewMetricsBetaOutput?
 
-    public init(data: GetDeliveryOverviewMetricsAlphaOutput? = nil) {
+    public init(data: GetDeliveryOverviewMetricsBetaOutput? = nil) {
         self.data = data
     }
 
