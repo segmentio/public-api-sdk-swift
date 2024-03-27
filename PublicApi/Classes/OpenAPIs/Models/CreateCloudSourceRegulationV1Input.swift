@@ -18,6 +18,7 @@ public struct CreateCloudSourceRegulationV1Input: Codable, JSONEncodable, Hashab
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
         case suppressWithDelete = "SUPPRESS_WITH_DELETE"
+        case suppressWithDeleteInternal = "SUPPRESS_WITH_DELETE_INTERNAL"
         case unsuppress = "UNSUPPRESS"
     }
     public enum SubjectType: String, Codable, CaseIterable {
