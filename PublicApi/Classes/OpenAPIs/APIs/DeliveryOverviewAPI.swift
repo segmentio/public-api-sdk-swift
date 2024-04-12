@@ -432,7 +432,7 @@ open class DeliveryOverviewAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getIngressSuccessMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewSourceFilterBy? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getIngressSuccessMetricsFromDeliveryOverview(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewSuccessfullyReceivedFilterBy? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetEgressFailedMetricsFromDeliveryOverview200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: sourceId, startTime: startTime, endTime: endTime, granularity: granularity, pagination: pagination, groupBy: groupBy, filter: filter).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -459,7 +459,7 @@ open class DeliveryOverviewAPI {
      - parameter filter: (query) An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, and/or &#x60;appVersion&#x60; that can be applied in addition to a &#x60;groupBy&#x60;.  This parameter exists in beta. (optional)
      - returns: RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> 
      */
-    open class func getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewSourceFilterBy? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
+    open class func getIngressSuccessMetricsFromDeliveryOverviewWithRequestBuilder(sourceId: String, startTime: String, endTime: String, granularity: Granularity_getIngressSuccessMetricsFromDeliveryOverview, pagination: PaginationInput, groupBy: [String]? = nil, filter: DeliveryOverviewSuccessfullyReceivedFilterBy? = nil) -> RequestBuilder<GetEgressFailedMetricsFromDeliveryOverview200Response> {
         let localVariablePath = "/delivery-overview/successfully-received"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
