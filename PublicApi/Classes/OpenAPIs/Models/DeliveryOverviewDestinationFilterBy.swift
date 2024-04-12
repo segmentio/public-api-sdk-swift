@@ -13,7 +13,7 @@ import AnyCodable
 /** The &#x60;DeliveryOverviewDestinationFilterBy&#x60; object is a map of the filterable fields and their values. */
 public struct DeliveryOverviewDestinationFilterBy: Codable, JSONEncodable, Hashable {
 
-    /** A list of strings of discard reasons. Can be used to filter all Delivery Overview steps, except for Successfully Received.  See [Discard Record Documentation](https://segment.com/docs/connections/delivery-overview/#troubleshooting) for valid error codes. */
+    /** A list of strings of discard reasons.  See [Discard Record Documentation](https://segment.com/docs/connections/delivery-overview/#troubleshooting) for valid error codes. */
     public var discardReason: [String]?
     /** A list of strings of event names. */
     public var eventName: [String]?
@@ -21,7 +21,7 @@ public struct DeliveryOverviewDestinationFilterBy: Codable, JSONEncodable, Hasha
     public var eventType: [String]?
     /** A list of strings of app versions. */
     public var appVersion: [String]?
-    /** A list of strings of subscriptionIDs. */
+    /** A list of strings of subscriptionIDs for Actions Destinations. */
     public var subscriptionId: [String]?
 
     public init(discardReason: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil, subscriptionId: [String]? = nil) {
