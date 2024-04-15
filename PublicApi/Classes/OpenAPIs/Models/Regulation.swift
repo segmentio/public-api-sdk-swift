@@ -29,13 +29,13 @@ public struct Regulation: Codable, JSONEncodable, Hashable {
     /** The current status of the regulate request. */
     public var overallStatus: OverallStatus
     /** The timestamp of when the request finished. */
-    public var finishedAt: String
+    public var finishedAt: String?
     /** The timestamp of the creation of the request. */
     public var createdAt: String
     /** The status of each stream including all the Destinations that correspond to the stream. */
     public var streamStatus: [StreamStatusV1]
 
-    public init(id: String, workspaceId: String, overallStatus: OverallStatus, finishedAt: String, createdAt: String, streamStatus: [StreamStatusV1]) {
+    public init(id: String, workspaceId: String, overallStatus: OverallStatus, finishedAt: String? = nil, createdAt: String, streamStatus: [StreamStatusV1]) {
         self.id = id
         self.workspaceId = workspaceId
         self.overallStatus = overallStatus
@@ -60,7 +60,7 @@ public struct Regulation: Codable, JSONEncodable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(overallStatus, forKey: .overallStatus)
-        try container.encode(finishedAt, forKey: .finishedAt)
+        try container.encodeIfPresent(finishedAt, forKey: .finishedAt)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(streamStatus, forKey: .streamStatus)
     }
