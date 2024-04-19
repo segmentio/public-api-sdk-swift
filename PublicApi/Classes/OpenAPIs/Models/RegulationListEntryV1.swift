@@ -26,6 +26,7 @@ public struct RegulationListEntryV1: Codable, JSONEncodable, Hashable {
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
         case suppressWithDelete = "SUPPRESS_WITH_DELETE"
+        case suppressWithDeleteInternal = "SUPPRESS_WITH_DELETE_INTERNAL"
         case unsuppress = "UNSUPPRESS"
     }
     /** The id of the regulate request. */
