@@ -73,7 +73,7 @@ open class ComputedTraitsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getComputedTrait(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getComputedTrait(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getComputedTraitWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -93,9 +93,9 @@ open class ComputedTraitsAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - returns: RequestBuilder<CreateComputedTrait200Response> 
+     - returns: RequestBuilder<GetComputedTrait200Response> 
      */
-    open class func getComputedTraitWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<CreateComputedTrait200Response> {
+    open class func getComputedTraitWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetComputedTrait200Response> {
         var localVariablePath = "/spaces/{spaceId}/computed-traits/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -114,7 +114,7 @@ open class ComputedTraitsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateComputedTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetComputedTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

@@ -73,7 +73,7 @@ open class AudiencesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getAudience(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getAudience(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getAudienceWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -93,9 +93,9 @@ open class AudiencesAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - returns: RequestBuilder<CreateAudience200Response> 
+     - returns: RequestBuilder<GetAudience200Response> 
      */
-    open class func getAudienceWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<CreateAudience200Response> {
+    open class func getAudienceWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -114,7 +114,7 @@ open class AudiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
