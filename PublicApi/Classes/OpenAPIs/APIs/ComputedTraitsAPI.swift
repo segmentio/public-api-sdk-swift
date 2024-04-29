@@ -13,6 +13,58 @@ import AnyCodable
 open class ComputedTraitsAPI {
 
     /**
+     Create Computed Trait
+     
+     - parameter spaceId: (path)  
+     - parameter createTraitAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createComputedTrait(spaceId: String, createTraitAlphaInput: CreateTraitAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createComputedTraitWithRequestBuilder(spaceId: spaceId, createTraitAlphaInput: createTraitAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Computed Trait
+     - POST /spaces/{spaceId}/computed-traits
+     - Creates a Computed Trait  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Computed Trait feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter createTraitAlphaInput: (body)  
+     - returns: RequestBuilder<CreateComputedTrait200Response> 
+     */
+    open class func createComputedTraitWithRequestBuilder(spaceId: String, createTraitAlphaInput: CreateTraitAlphaInput) -> RequestBuilder<CreateComputedTrait200Response> {
+        var localVariablePath = "/spaces/{spaceId}/computed-traits"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTraitAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateComputedTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Computed Trait
      
      - parameter spaceId: (path)  
@@ -21,7 +73,7 @@ open class ComputedTraitsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getComputedTrait(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getComputedTrait(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getComputedTraitWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -41,9 +93,9 @@ open class ComputedTraitsAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - returns: RequestBuilder<GetComputedTrait200Response> 
+     - returns: RequestBuilder<CreateComputedTrait200Response> 
      */
-    open class func getComputedTraitWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetComputedTrait200Response> {
+    open class func getComputedTraitWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<CreateComputedTrait200Response> {
         var localVariablePath = "/spaces/{spaceId}/computed-traits/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -62,7 +114,7 @@ open class ComputedTraitsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GetComputedTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateComputedTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

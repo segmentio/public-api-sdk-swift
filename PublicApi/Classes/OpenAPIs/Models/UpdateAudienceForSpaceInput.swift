@@ -15,13 +15,24 @@ public struct UpdateAudienceForSpaceInput: Codable, JSONEncodable, Hashable {
 
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool?
+    /** The name of the computation */
+    public var name: String?
+    /** The description of the computation */
+    public var description: String?
+    public var definition: Definition3?
 
-    public init(enabled: Bool? = nil) {
+    public init(enabled: Bool? = nil, name: String? = nil, description: String? = nil, definition: Definition3? = nil) {
         self.enabled = enabled
+        self.name = name
+        self.description = description
+        self.definition = definition
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case enabled
+        case name
+        case description
+        case definition
     }
 
     // Encodable protocol methods
@@ -29,6 +40,9 @@ public struct UpdateAudienceForSpaceInput: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(enabled, forKey: .enabled)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encodeIfPresent(definition, forKey: .definition)
     }
 }
 
