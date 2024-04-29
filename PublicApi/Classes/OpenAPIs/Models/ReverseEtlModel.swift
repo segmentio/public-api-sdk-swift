@@ -32,7 +32,7 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
     /** Indicates the column named in `query` that should be used to uniquely identify the extracted records. */
     public var queryIdentifierColumn: String
 
-    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: String, scheduleConfig: JSON?, query: String, queryIdentifierColumn: String) {
+    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: String, scheduleConfig: JSON? = nil, query: String, queryIdentifierColumn: String) {
         self.id = id
         self.sourceId = sourceId
         self.name = name
@@ -66,7 +66,7 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
         try container.encode(description, forKey: .description)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(scheduleStrategy, forKey: .scheduleStrategy)
-        try container.encode(scheduleConfig, forKey: .scheduleConfig)
+        try container.encodeIfPresent(scheduleConfig, forKey: .scheduleConfig)
         try container.encode(query, forKey: .query)
         try container.encode(queryIdentifierColumn, forKey: .queryIdentifierColumn)
     }
