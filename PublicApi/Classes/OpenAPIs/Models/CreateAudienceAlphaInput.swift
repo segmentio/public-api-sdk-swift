@@ -13,9 +13,9 @@ import AnyCodable
 /** Input to create an audience. */
 public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** The name of the computation */
+    /** The name of the computation . */
     public var name: String
-    /** The description of the computation */
+    /** The description of the computation. */
     public var description: String
     public var definition: Definition3
 

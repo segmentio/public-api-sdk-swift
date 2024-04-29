@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** represents the Compute Query Language definition of the computation and type of computation */
+/** Represents the Compute Query Language definition of the computation and type of computation. */
 public struct Definition3: Codable, JSONEncodable, Hashable {
 
     public var type: String

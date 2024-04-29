@@ -16,13 +16,13 @@ open class ComputedTraitsAPI {
      Create Computed Trait
      
      - parameter spaceId: (path)  
-     - parameter createTraitAlphaInput: (body)  
+     - parameter createComputedTraitAlphaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createComputedTrait(spaceId: String, createTraitAlphaInput: CreateTraitAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createComputedTraitWithRequestBuilder(spaceId: spaceId, createTraitAlphaInput: createTraitAlphaInput).execute(apiResponseQueue) { result in
+    open class func createComputedTrait(spaceId: String, createComputedTraitAlphaInput: CreateComputedTraitAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateComputedTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createComputedTraitWithRequestBuilder(spaceId: spaceId, createComputedTraitAlphaInput: createComputedTraitAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -40,16 +40,16 @@ open class ComputedTraitsAPI {
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter createTraitAlphaInput: (body)  
+     - parameter createComputedTraitAlphaInput: (body)  
      - returns: RequestBuilder<CreateComputedTrait200Response> 
      */
-    open class func createComputedTraitWithRequestBuilder(spaceId: String, createTraitAlphaInput: CreateTraitAlphaInput) -> RequestBuilder<CreateComputedTrait200Response> {
+    open class func createComputedTraitWithRequestBuilder(spaceId: String, createComputedTraitAlphaInput: CreateComputedTraitAlphaInput) -> RequestBuilder<CreateComputedTrait200Response> {
         var localVariablePath = "/spaces/{spaceId}/computed-traits"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTraitAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createComputedTraitAlphaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

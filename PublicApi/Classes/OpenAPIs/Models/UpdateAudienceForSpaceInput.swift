@@ -15,9 +15,9 @@ public struct UpdateAudienceForSpaceInput: Codable, JSONEncodable, Hashable {
 
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool?
-    /** The name of the computation */
+    /** The name of the computation. */
     public var name: String?
-    /** The description of the computation */
+    /** The description of the computation. */
     public var description: String?
     public var definition: Definition3?
 
