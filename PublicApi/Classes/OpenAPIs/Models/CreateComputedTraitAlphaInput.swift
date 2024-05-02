@@ -17,9 +17,9 @@ public struct CreateComputedTraitAlphaInput: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The description of the computation. */
     public var description: String
-    public var definition: Definition2
+    public var definition: Definition
 
-    public init(name: String, description: String, definition: Definition2) {
+    public init(name: String, description: String, definition: Definition) {
         self.name = name
         self.description = description
         self.definition = definition

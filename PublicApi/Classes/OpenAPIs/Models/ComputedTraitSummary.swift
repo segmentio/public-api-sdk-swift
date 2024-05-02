@@ -25,7 +25,7 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the computed trait. */
     public var enabled: Bool
-    public var definition: Definition3?
+    public var definition: Definition1?
     /** Status for the computed trait.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the computed trait. */
@@ -37,7 +37,7 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
     /** The timestamp of the computed trait's last change. */
     public var updatedAt: String
 
-    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition3?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition1?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
