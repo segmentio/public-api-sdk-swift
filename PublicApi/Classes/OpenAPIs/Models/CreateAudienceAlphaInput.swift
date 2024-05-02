@@ -17,18 +17,21 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The description of the computation. */
     public var description: String
-    public var definition: Definition3
+    public var definition: Definition1
+    public var options: Options?
 
-    public init(name: String, description: String, definition: Definition3) {
+    public init(name: String, description: String, definition: Definition1, options: Options? = nil) {
         self.name = name
         self.description = description
         self.definition = definition
+        self.options = options
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case description
         case definition
+        case options
     }
 
     // Encodable protocol methods
@@ -38,6 +41,7 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(description, forKey: .description)
         try container.encode(definition, forKey: .definition)
+        try container.encodeIfPresent(options, forKey: .options)
     }
 }
 
