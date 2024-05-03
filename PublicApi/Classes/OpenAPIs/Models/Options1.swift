@@ -13,25 +13,25 @@ import AnyCodable
 /** Represents the options of Including Anonymous users and Historical Data. */
 public struct Options1: Codable, JSONEncodable, Hashable {
 
-    public var includeHistorical: Bool?
-    public var includeAnonymous: Bool?
+    public var includeHistoricalData: Bool?
+    public var includeAnonymousUsers: Bool?
 
-    public init(includeHistorical: Bool? = nil, includeAnonymous: Bool? = nil) {
-        self.includeHistorical = includeHistorical
-        self.includeAnonymous = includeAnonymous
+    public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {
+        self.includeHistoricalData = includeHistoricalData
+        self.includeAnonymousUsers = includeAnonymousUsers
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case includeHistorical
-        case includeAnonymous
+        case includeHistoricalData
+        case includeAnonymousUsers
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(includeHistorical, forKey: .includeHistorical)
-        try container.encodeIfPresent(includeAnonymous, forKey: .includeAnonymous)
+        try container.encodeIfPresent(includeHistoricalData, forKey: .includeHistoricalData)
+        try container.encodeIfPresent(includeAnonymousUsers, forKey: .includeAnonymousUsers)
     }
 }
 
