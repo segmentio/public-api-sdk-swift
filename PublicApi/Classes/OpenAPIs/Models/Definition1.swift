@@ -13,12 +13,16 @@ import AnyCodable
 /** Query language definition and type. */
 public struct Definition1: Codable, JSONEncodable, Hashable {
 
+    public enum ModelType: String, Codable, CaseIterable {
+        case accounts = "accounts"
+        case users = "users"
+    }
     /** The query language string defining the computed trait aggregation criteria. */
     public var query: String
     /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
-    public var type: String
+    public var type: ModelType
 
-    public init(query: String, type: String) {
+    public init(query: String, type: ModelType) {
         self.query = query
         self.type = type
     }

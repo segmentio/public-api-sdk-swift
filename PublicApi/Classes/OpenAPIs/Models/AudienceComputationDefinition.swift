@@ -12,10 +12,14 @@ import AnyCodable
 
 public struct AudienceComputationDefinition: Codable, JSONEncodable, Hashable {
 
-    public var type: String
+    public enum ModelType: String, Codable, CaseIterable {
+        case accounts = "accounts"
+        case users = "users"
+    }
+    public var type: ModelType
     public var query: String
 
-    public init(type: String, query: String) {
+    public init(type: ModelType, query: String) {
         self.type = type
         self.query = query
     }
