@@ -10,34 +10,32 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Represents the Compute Query Language definition of the computation and type of computation. */
 public struct Definition3: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
         case accounts = "accounts"
         case users = "users"
     }
-    /** The query language string defining the computed trait aggregation criteria. */
-    public var query: String
-    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
     public var type: ModelType
+    public var query: String
 
-    public init(query: String, type: ModelType) {
-        self.query = query
+    public init(type: ModelType, query: String) {
         self.type = type
+        self.query = query
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case query
         case type
+        case query
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(query, forKey: .query)
         try container.encode(type, forKey: .type)
+        try container.encode(query, forKey: .query)
     }
 }
 
