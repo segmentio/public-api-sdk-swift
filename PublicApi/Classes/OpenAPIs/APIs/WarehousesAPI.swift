@@ -315,12 +315,12 @@ open class WarehousesAPI {
      List Connected Sources from Warehouse
      
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listConnectedSourcesFromWarehouse(warehouseId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListConnectedSourcesFromWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listConnectedSourcesFromWarehouse(warehouseId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListConnectedSourcesFromWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listConnectedSourcesFromWarehouseWithRequestBuilder(warehouseId: warehouseId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -339,10 +339,10 @@ open class WarehousesAPI {
        - type: http
        - name: token
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListConnectedSourcesFromWarehouse200Response> 
      */
-    open class func listConnectedSourcesFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListConnectedSourcesFromWarehouse200Response> {
+    open class func listConnectedSourcesFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListConnectedSourcesFromWarehouse200Response> {
         var localVariablePath = "/warehouses/{warehouseId}/connected-sources"
         let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
         let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -352,7 +352,7 @@ open class WarehousesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -369,12 +369,12 @@ open class WarehousesAPI {
     /**
      List Warehouses
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listWarehouses(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListWarehouses200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listWarehouses(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListWarehouses200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listWarehousesWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -392,17 +392,17 @@ open class WarehousesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListWarehouses200Response> 
      */
-    open class func listWarehousesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListWarehouses200Response> {
+    open class func listWarehousesWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListWarehouses200Response> {
         let localVariablePath = "/warehouses"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

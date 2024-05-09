@@ -165,12 +165,12 @@ open class CatalogAPI {
     /**
      Get Sources Catalog
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSourcesCatalog(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetSourcesCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getSourcesCatalog(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetSourcesCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getSourcesCatalogWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -188,17 +188,17 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetSourcesCatalog200Response> 
      */
-    open class func getSourcesCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetSourcesCatalog200Response> {
+    open class func getSourcesCatalogWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<GetSourcesCatalog200Response> {
         let localVariablePath = "/catalog/sources"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -265,12 +265,12 @@ open class CatalogAPI {
     /**
      Get Warehouses Catalog
      
-     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in v1. 
+     - parameter pagination: (query) Optional pagination params used to filter the Warehouses catalog.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getWarehousesCatalog(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetWarehousesCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getWarehousesCatalog(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetWarehousesCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getWarehousesCatalogWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -288,17 +288,17 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination params used to filter the Warehouses catalog.  This parameter exists in v1. 
+     - parameter pagination: (query) Optional pagination params used to filter the Warehouses catalog.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetWarehousesCatalog200Response> 
      */
-    open class func getWarehousesCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetWarehousesCatalog200Response> {
+    open class func getWarehousesCatalogWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<GetWarehousesCatalog200Response> {
         let localVariablePath = "/catalog/warehouses"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

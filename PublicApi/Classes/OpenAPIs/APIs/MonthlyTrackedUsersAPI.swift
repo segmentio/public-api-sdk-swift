@@ -16,12 +16,12 @@ open class MonthlyTrackedUsersAPI {
      Get Daily Per Source MTU Usage
      
      - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDailyPerSourceMTUUsage(period: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyPerSourceMTUUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDailyPerSourceMTUUsage(period: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyPerSourceMTUUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getDailyPerSourceMTUUsageWithRequestBuilder(period: period, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -40,10 +40,10 @@ open class MonthlyTrackedUsersAPI {
        - type: http
        - name: token
      - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source MTU counts.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetDailyPerSourceMTUUsage200Response> 
      */
-    open class func getDailyPerSourceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyPerSourceMTUUsage200Response> {
+    open class func getDailyPerSourceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput? = nil) -> RequestBuilder<GetDailyPerSourceMTUUsage200Response> {
         let localVariablePath = "/usage/mtu/sources/daily"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -51,7 +51,7 @@ open class MonthlyTrackedUsersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "period": period.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -69,12 +69,12 @@ open class MonthlyTrackedUsersAPI {
      Get Daily Workspace MTU Usage
      
      - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDailyWorkspaceMTUUsage(period: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyWorkspaceMTUUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDailyWorkspaceMTUUsage(period: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyWorkspaceMTUUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getDailyWorkspaceMTUUsageWithRequestBuilder(period: period, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -93,10 +93,10 @@ open class MonthlyTrackedUsersAPI {
        - type: http
        - name: token
      - parameter period: (query) The start of the usage month, in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace MTU counts.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetDailyWorkspaceMTUUsage200Response> 
      */
-    open class func getDailyWorkspaceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyWorkspaceMTUUsage200Response> {
+    open class func getDailyWorkspaceMTUUsageWithRequestBuilder(period: String, pagination: PaginationInput? = nil) -> RequestBuilder<GetDailyWorkspaceMTUUsage200Response> {
         let localVariablePath = "/usage/mtu/daily"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -104,7 +104,7 @@ open class MonthlyTrackedUsersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "period": period.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
