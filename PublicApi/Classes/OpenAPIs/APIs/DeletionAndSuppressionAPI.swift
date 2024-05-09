@@ -292,15 +292,15 @@ open class DeletionAndSuppressionAPI {
      List Regulations from Source
      
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in v1. (optional)
      - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listRegulationsFromSource(sourceId: String, pagination: PaginationInput, status: Status_listRegulationsFromSource? = nil, regulationTypes: [RegulationTypes_listRegulationsFromSource]? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListRegulationsFromSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listRegulationsFromSourceWithRequestBuilder(sourceId: sourceId, pagination: pagination, status: status, regulationTypes: regulationTypes).execute(apiResponseQueue) { result in
+    open class func listRegulationsFromSource(sourceId: String, status: Status_listRegulationsFromSource? = nil, regulationTypes: [RegulationTypes_listRegulationsFromSource]? = nil, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListRegulationsFromSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listRegulationsFromSourceWithRequestBuilder(sourceId: sourceId, status: status, regulationTypes: regulationTypes, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -318,12 +318,12 @@ open class DeletionAndSuppressionAPI {
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter status: (query) The status on which to filter returned regulations.  This parameter exists in v1. (optional)
      - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListRegulationsFromSource200Response> 
      */
-    open class func listRegulationsFromSourceWithRequestBuilder(sourceId: String, pagination: PaginationInput, status: Status_listRegulationsFromSource? = nil, regulationTypes: [RegulationTypes_listRegulationsFromSource]? = nil) -> RequestBuilder<ListRegulationsFromSource200Response> {
+    open class func listRegulationsFromSourceWithRequestBuilder(sourceId: String, status: Status_listRegulationsFromSource? = nil, regulationTypes: [RegulationTypes_listRegulationsFromSource]? = nil, pagination: PaginationInput? = nil) -> RequestBuilder<ListRegulationsFromSource200Response> {
         var localVariablePath = "/regulations/sources/{sourceId}"
         let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
         let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -335,7 +335,7 @@ open class DeletionAndSuppressionAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "status": status?.encodeToJSON(),
             "regulationTypes": regulationTypes?.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -352,12 +352,12 @@ open class DeletionAndSuppressionAPI {
     /**
      List Suppressions
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSuppressions(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSuppressions200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSuppressions(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSuppressions200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSuppressionsWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -375,17 +375,17 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListSuppressions200Response> 
      */
-    open class func listSuppressionsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListSuppressions200Response> {
+    open class func listSuppressionsWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListSuppressions200Response> {
         let localVariablePath = "/suppressions"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -427,15 +427,15 @@ open class DeletionAndSuppressionAPI {
     /**
      List Workspace Regulations
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in v1. (optional)
      - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listWorkspaceRegulations(pagination: PaginationInput, status: Status_listWorkspaceRegulations? = nil, regulationTypes: [RegulationTypes_listWorkspaceRegulations]? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListWorkspaceRegulations200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listWorkspaceRegulationsWithRequestBuilder(pagination: pagination, status: status, regulationTypes: regulationTypes).execute(apiResponseQueue) { result in
+    open class func listWorkspaceRegulations(status: Status_listWorkspaceRegulations? = nil, regulationTypes: [RegulationTypes_listWorkspaceRegulations]? = nil, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListWorkspaceRegulations200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listWorkspaceRegulationsWithRequestBuilder(status: status, regulationTypes: regulationTypes, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -452,12 +452,12 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter status: (query) The status on which to filter the returned regulations.  This parameter exists in v1. (optional)
      - parameter regulationTypes: (query) The regulation types on which to filter returned regulations.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListWorkspaceRegulations200Response> 
      */
-    open class func listWorkspaceRegulationsWithRequestBuilder(pagination: PaginationInput, status: Status_listWorkspaceRegulations? = nil, regulationTypes: [RegulationTypes_listWorkspaceRegulations]? = nil) -> RequestBuilder<ListWorkspaceRegulations200Response> {
+    open class func listWorkspaceRegulationsWithRequestBuilder(status: Status_listWorkspaceRegulations? = nil, regulationTypes: [RegulationTypes_listWorkspaceRegulations]? = nil, pagination: PaginationInput? = nil) -> RequestBuilder<ListWorkspaceRegulations200Response> {
         let localVariablePath = "/regulations"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -466,7 +466,7 @@ open class DeletionAndSuppressionAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "status": status?.encodeToJSON(),
             "regulationTypes": regulationTypes?.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

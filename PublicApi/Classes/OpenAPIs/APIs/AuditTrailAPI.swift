@@ -15,17 +15,17 @@ open class AuditTrailAPI {
     /**
      List Audit Events
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter startTime: (query) Filter response to events that happened after this time.  This parameter exists in v1. (optional)
      - parameter endTime: (query) Filter response to events that happened before this time. Defaults to the current time, or the end time from the pagination cursor.  This parameter exists in v1. (optional)
      - parameter resourceId: (query) Filter response to events that affect a specific resource, for example, a single Source.  This parameter exists in v1. (optional)
      - parameter resourceType: (query) Filter response to events that affect a specific type, for example, Sources, Warehouses, and Tracking Plans.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAuditEvents(pagination: PaginationInput, startTime: String? = nil, endTime: String? = nil, resourceId: String? = nil, resourceType: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAuditEvents200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAuditEventsWithRequestBuilder(pagination: pagination, startTime: startTime, endTime: endTime, resourceId: resourceId, resourceType: resourceType).execute(apiResponseQueue) { result in
+    open class func listAuditEvents(startTime: String? = nil, endTime: String? = nil, resourceId: String? = nil, resourceType: String? = nil, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAuditEvents200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listAuditEventsWithRequestBuilder(startTime: startTime, endTime: endTime, resourceId: resourceId, resourceType: resourceType, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -42,14 +42,14 @@ open class AuditTrailAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
      - parameter startTime: (query) Filter response to events that happened after this time.  This parameter exists in v1. (optional)
      - parameter endTime: (query) Filter response to events that happened before this time. Defaults to the current time, or the end time from the pagination cursor.  This parameter exists in v1. (optional)
      - parameter resourceId: (query) Filter response to events that affect a specific resource, for example, a single Source.  This parameter exists in v1. (optional)
      - parameter resourceType: (query) Filter response to events that affect a specific type, for example, Sources, Warehouses, and Tracking Plans.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListAuditEvents200Response> 
      */
-    open class func listAuditEventsWithRequestBuilder(pagination: PaginationInput, startTime: String? = nil, endTime: String? = nil, resourceId: String? = nil, resourceType: String? = nil) -> RequestBuilder<ListAuditEvents200Response> {
+    open class func listAuditEventsWithRequestBuilder(startTime: String? = nil, endTime: String? = nil, resourceId: String? = nil, resourceType: String? = nil, pagination: PaginationInput? = nil) -> RequestBuilder<ListAuditEvents200Response> {
         let localVariablePath = "/audit-events"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -60,7 +60,7 @@ open class AuditTrailAPI {
             "endTime": endTime?.encodeToJSON(),
             "resourceId": resourceId?.encodeToJSON(),
             "resourceType": resourceType?.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

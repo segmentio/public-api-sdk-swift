@@ -13,58 +13,6 @@ import AnyCodable
 open class AudiencesAPI {
 
     /**
-     Create Audience
-     
-     - parameter spaceId: (path)  
-     - parameter createAudienceAlphaInput: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func createAudience(spaceId: String, createAudienceAlphaInput: CreateAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAudienceWithRequestBuilder(spaceId: spaceId, createAudienceAlphaInput: createAudienceAlphaInput).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Create Audience
-     - POST /spaces/{spaceId}/audiences
-     - Creates Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter createAudienceAlphaInput: (body)  
-     - returns: RequestBuilder<CreateAudience200Response> 
-     */
-    open class func createAudienceWithRequestBuilder(spaceId: String, createAudienceAlphaInput: CreateAudienceAlphaInput) -> RequestBuilder<CreateAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudienceAlphaInput)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<CreateAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Get Audience
      
      - parameter spaceId: (path)  
@@ -123,12 +71,12 @@ open class AudiencesAPI {
      List Audiences
      
      - parameter spaceId: (path)  
-     - parameter pagination: (query) Information about the pagination of this response.  This parameter exists in alpha. 
+     - parameter pagination: (query) Information about the pagination of this response.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudiences(spaceId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAudiences(spaceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -147,10 +95,10 @@ open class AudiencesAPI {
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter pagination: (query) Information about the pagination of this response.  This parameter exists in alpha. 
+     - parameter pagination: (query) Information about the pagination of this response.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudiences200Response> 
      */
-    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: PaginationInput) -> RequestBuilder<ListAudiences200Response> {
+    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListAudiences200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -160,7 +108,7 @@ open class AudiencesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Audience output for get. */
+/** Audience output for update. */
 public struct GetAudienceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public var audience: Audience

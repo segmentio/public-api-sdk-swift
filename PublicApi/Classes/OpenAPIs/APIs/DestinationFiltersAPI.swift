@@ -123,12 +123,12 @@ open class DestinationFiltersAPI {
      List Filters from Destination
      
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFiltersFromDestination(destinationId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFiltersFromDestination200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listFiltersFromDestination(destinationId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFiltersFromDestination200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listFiltersFromDestinationWithRequestBuilder(destinationId: destinationId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -147,10 +147,10 @@ open class DestinationFiltersAPI {
        - type: http
        - name: token
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListFiltersFromDestination200Response> 
      */
-    open class func listFiltersFromDestinationWithRequestBuilder(destinationId: String, pagination: PaginationInput) -> RequestBuilder<ListFiltersFromDestination200Response> {
+    open class func listFiltersFromDestinationWithRequestBuilder(destinationId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListFiltersFromDestination200Response> {
         var localVariablePath = "/destination/{destinationId}/filters"
         let destinationIdPreEscape = "\(APIHelper.mapValueToPathItem(destinationId))"
         let destinationIdPostEscape = destinationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -160,7 +160,7 @@ open class DestinationFiltersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

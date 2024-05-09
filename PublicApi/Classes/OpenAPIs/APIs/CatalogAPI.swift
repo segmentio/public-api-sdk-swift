@@ -65,12 +65,12 @@ open class CatalogAPI {
     /**
      Get Destinations Catalog
      
-     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. 
+     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDestinationsCatalog(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDestinationsCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDestinationsCatalog(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDestinationsCatalog200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getDestinationsCatalogWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -88,17 +88,17 @@ open class CatalogAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. 
+     - parameter pagination: (query) Required pagination parameters used to filter the Destinations catalog.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetDestinationsCatalog200Response> 
      */
-    open class func getDestinationsCatalogWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<GetDestinationsCatalog200Response> {
+    open class func getDestinationsCatalogWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<GetDestinationsCatalog200Response> {
         let localVariablePath = "/catalog/destinations"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

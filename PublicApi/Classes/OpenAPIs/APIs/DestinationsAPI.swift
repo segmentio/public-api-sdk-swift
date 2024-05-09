@@ -342,12 +342,12 @@ open class DestinationsAPI {
     /**
      List Destinations
      
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listDestinations(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListDestinations200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listDestinations(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListDestinations200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listDestinationsWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -365,17 +365,17 @@ open class DestinationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. 
+     - parameter pagination: (query) Required pagination params for the request.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListDestinations200Response> 
      */
-    open class func listDestinationsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListDestinations200Response> {
+    open class func listDestinationsWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListDestinations200Response> {
         let localVariablePath = "/destinations"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -393,12 +393,12 @@ open class DestinationsAPI {
      List Subscriptions from Destination
      
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSubscriptionsFromDestination(destinationId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSubscriptionsFromDestination200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSubscriptionsFromDestination(destinationId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSubscriptionsFromDestination200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSubscriptionsFromDestinationWithRequestBuilder(destinationId: destinationId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -417,10 +417,10 @@ open class DestinationsAPI {
        - type: http
        - name: token
      - parameter destinationId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListSubscriptionsFromDestination200Response> 
      */
-    open class func listSubscriptionsFromDestinationWithRequestBuilder(destinationId: String, pagination: PaginationInput) -> RequestBuilder<ListSubscriptionsFromDestination200Response> {
+    open class func listSubscriptionsFromDestinationWithRequestBuilder(destinationId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSubscriptionsFromDestination200Response> {
         var localVariablePath = "/destinations/{destinationId}/subscriptions"
         let destinationIdPreEscape = "\(APIHelper.mapValueToPathItem(destinationId))"
         let destinationIdPostEscape = destinationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -430,7 +430,7 @@ open class DestinationsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
