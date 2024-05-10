@@ -264,12 +264,12 @@ open class ReverseETLAPI {
     /**
      List Reverse Etl Models
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listReverseEtlModels(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListReverseEtlModels200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listReverseEtlModels(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListReverseEtlModels200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listReverseEtlModelsWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -287,17 +287,17 @@ open class ReverseETLAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListReverseEtlModels200Response> 
      */
-    open class func listReverseEtlModelsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListReverseEtlModels200Response> {
+    open class func listReverseEtlModelsWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListReverseEtlModels200Response> {
         let localVariablePath = "/reverse-etl-models"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

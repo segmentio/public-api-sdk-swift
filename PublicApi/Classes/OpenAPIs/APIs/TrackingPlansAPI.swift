@@ -215,12 +215,12 @@ open class TrackingPlansAPI {
      List Rules from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listRulesFromTrackingPlan(trackingPlanId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListRulesFromTrackingPlan200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listRulesFromTrackingPlan(trackingPlanId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListRulesFromTrackingPlan200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listRulesFromTrackingPlanWithRequestBuilder(trackingPlanId: trackingPlanId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -239,10 +239,10 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListRulesFromTrackingPlan200Response> 
      */
-    open class func listRulesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput) -> RequestBuilder<ListRulesFromTrackingPlan200Response> {
+    open class func listRulesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListRulesFromTrackingPlan200Response> {
         var localVariablePath = "/tracking-plans/{trackingPlanId}/rules"
         let trackingPlanIdPreEscape = "\(APIHelper.mapValueToPathItem(trackingPlanId))"
         let trackingPlanIdPostEscape = trackingPlanIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -252,7 +252,7 @@ open class TrackingPlansAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -270,12 +270,12 @@ open class TrackingPlansAPI {
      List Sources from Tracking Plan
      
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSourcesFromTrackingPlan(trackingPlanId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSourcesFromTrackingPlan200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSourcesFromTrackingPlan(trackingPlanId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSourcesFromTrackingPlan200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSourcesFromTrackingPlanWithRequestBuilder(trackingPlanId: trackingPlanId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -294,10 +294,10 @@ open class TrackingPlansAPI {
        - type: http
        - name: token
      - parameter trackingPlanId: (path)  
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListSourcesFromTrackingPlan200Response> 
      */
-    open class func listSourcesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput) -> RequestBuilder<ListSourcesFromTrackingPlan200Response> {
+    open class func listSourcesFromTrackingPlanWithRequestBuilder(trackingPlanId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSourcesFromTrackingPlan200Response> {
         var localVariablePath = "/tracking-plans/{trackingPlanId}/sources"
         let trackingPlanIdPreEscape = "\(APIHelper.mapValueToPathItem(trackingPlanId))"
         let trackingPlanIdPostEscape = trackingPlanIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -307,7 +307,7 @@ open class TrackingPlansAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -335,14 +335,14 @@ open class TrackingPlansAPI {
     /**
      List Tracking Plans
      
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listTrackingPlans(pagination: PaginationInput, type: ModelType_listTrackingPlans? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListTrackingPlans200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listTrackingPlansWithRequestBuilder(pagination: pagination, type: type).execute(apiResponseQueue) { result in
+    open class func listTrackingPlans(type: ModelType_listTrackingPlans? = nil, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListTrackingPlans200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listTrackingPlansWithRequestBuilder(type: type, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -359,11 +359,11 @@ open class TrackingPlansAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
      - parameter type: (query) Requests Tracking Plans of a certain type. If omitted, lists all types.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListTrackingPlans200Response> 
      */
-    open class func listTrackingPlansWithRequestBuilder(pagination: PaginationInput, type: ModelType_listTrackingPlans? = nil) -> RequestBuilder<ListTrackingPlans200Response> {
+    open class func listTrackingPlansWithRequestBuilder(type: ModelType_listTrackingPlans? = nil, pagination: PaginationInput? = nil) -> RequestBuilder<ListTrackingPlans200Response> {
         let localVariablePath = "/tracking-plans"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -371,7 +371,7 @@ open class TrackingPlansAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "type": type?.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

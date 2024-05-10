@@ -124,12 +124,12 @@ open class ProfilesSyncAPI {
      
      - parameter spaceId: (path)  
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSelectiveSyncsFromWarehouseAndSpace(spaceId: String, warehouseId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSelectiveSyncsFromWarehouseAndSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSelectiveSyncsFromWarehouseAndSpace(spaceId: String, warehouseId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSelectiveSyncsFromWarehouseAndSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSelectiveSyncsFromWarehouseAndSpaceWithRequestBuilder(spaceId: spaceId, warehouseId: warehouseId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -149,10 +149,10 @@ open class ProfilesSyncAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response> 
      */
-    open class func listSelectiveSyncsFromWarehouseAndSpaceWithRequestBuilder(spaceId: String, warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response> {
+    open class func listSelectiveSyncsFromWarehouseAndSpaceWithRequestBuilder(spaceId: String, warehouseId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSpace200Response> {
         var localVariablePath = "/spaces/{spaceId}/profiles-warehouses/{warehouseId}/selective-syncs"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -165,7 +165,7 @@ open class ProfilesSyncAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

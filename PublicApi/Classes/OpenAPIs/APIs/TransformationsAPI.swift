@@ -162,12 +162,12 @@ open class TransformationsAPI {
     /**
      List Transformations
      
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listTransformations(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListTransformations200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listTransformations(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListTransformations200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listTransformationsWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -185,17 +185,17 @@ open class TransformationsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination options.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination options.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListTransformations200Response> 
      */
-    open class func listTransformationsWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListTransformations200Response> {
+    open class func listTransformationsWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListTransformations200Response> {
         let localVariablePath = "/transformations"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

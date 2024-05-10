@@ -264,12 +264,12 @@ open class IAMUsersAPI {
     /**
      List Invites
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listInvites(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListInvites200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listInvites(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListInvites200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listInvitesWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -287,17 +287,17 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListInvites200Response> 
      */
-    open class func listInvitesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListInvites200Response> {
+    open class func listInvitesWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListInvites200Response> {
         let localVariablePath = "/invites"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -315,12 +315,12 @@ open class IAMUsersAPI {
      List User Groups from User
      
      - parameter userId: (path)  
-     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listUserGroupsFromUser(userId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListUserGroupsFromUser200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listUserGroupsFromUser(userId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListUserGroupsFromUser200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listUserGroupsFromUserWithRequestBuilder(userId: userId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -339,10 +339,10 @@ open class IAMUsersAPI {
        - type: http
        - name: token
      - parameter userId: (path)  
-     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination for groups.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListUserGroupsFromUser200Response> 
      */
-    open class func listUserGroupsFromUserWithRequestBuilder(userId: String, pagination: PaginationInput) -> RequestBuilder<ListUserGroupsFromUser200Response> {
+    open class func listUserGroupsFromUserWithRequestBuilder(userId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListUserGroupsFromUser200Response> {
         var localVariablePath = "/users/{userId}/groups"
         let userIdPreEscape = "\(APIHelper.mapValueToPathItem(userId))"
         let userIdPostEscape = userIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -352,7 +352,7 @@ open class IAMUsersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -369,12 +369,12 @@ open class IAMUsersAPI {
     /**
      List Users
      
-     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listUsers(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListUsers200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listUsers(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListUsers200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listUsersWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -392,17 +392,17 @@ open class IAMUsersAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination for users.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListUsers200Response> 
      */
-    open class func listUsersWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListUsers200Response> {
+    open class func listUsersWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListUsers200Response> {
         let localVariablePath = "/users"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
