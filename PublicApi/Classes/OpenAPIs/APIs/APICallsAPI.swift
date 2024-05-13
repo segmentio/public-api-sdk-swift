@@ -16,12 +16,12 @@ open class APICallsAPI {
      Get Daily Per Source API Calls Usage
      
      - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDailyPerSourceAPICallsUsage(period: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyPerSourceAPICallsUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDailyPerSourceAPICallsUsage(period: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyPerSourceAPICallsUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getDailyPerSourceAPICallsUsageWithRequestBuilder(period: period, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -40,10 +40,10 @@ open class APICallsAPI {
        - type: http
        - name: token
      - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for per Source API calls counts.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetDailyPerSourceAPICallsUsage200Response> 
      */
-    open class func getDailyPerSourceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyPerSourceAPICallsUsage200Response> {
+    open class func getDailyPerSourceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput? = nil) -> RequestBuilder<GetDailyPerSourceAPICallsUsage200Response> {
         let localVariablePath = "/usage/api-calls/sources/daily"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -51,7 +51,7 @@ open class APICallsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "period": period.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -69,12 +69,12 @@ open class APICallsAPI {
      Get Daily Workspace API Calls Usage
      
      - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDailyWorkspaceAPICallsUsage(period: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyWorkspaceAPICallsUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDailyWorkspaceAPICallsUsage(period: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetDailyWorkspaceAPICallsUsage200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getDailyWorkspaceAPICallsUsageWithRequestBuilder(period: period, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -93,10 +93,10 @@ open class APICallsAPI {
        - type: http
        - name: token
      - parameter period: (query) The start of the usage month in the ISO-8601 format.  This parameter exists in v1. 
-     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination input for Workspace API call counts.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<GetDailyWorkspaceAPICallsUsage200Response> 
      */
-    open class func getDailyWorkspaceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput) -> RequestBuilder<GetDailyWorkspaceAPICallsUsage200Response> {
+    open class func getDailyWorkspaceAPICallsUsageWithRequestBuilder(period: String, pagination: PaginationInput? = nil) -> RequestBuilder<GetDailyWorkspaceAPICallsUsage200Response> {
         let localVariablePath = "/usage/api-calls/daily"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -104,7 +104,7 @@ open class APICallsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "period": period.encodeToJSON(),
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

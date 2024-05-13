@@ -415,12 +415,12 @@ open class FunctionsAPI {
      List Function Versions
      
      - parameter functionId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFunctionVersions(functionId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctionVersions200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listFunctionVersions(functionId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctionVersions200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listFunctionVersionsWithRequestBuilder(functionId: functionId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -439,10 +439,10 @@ open class FunctionsAPI {
        - type: http
        - name: token
      - parameter functionId: (path)  
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListFunctionVersions200Response> 
      */
-    open class func listFunctionVersionsWithRequestBuilder(functionId: String, pagination: PaginationInput) -> RequestBuilder<ListFunctionVersions200Response> {
+    open class func listFunctionVersionsWithRequestBuilder(functionId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListFunctionVersions200Response> {
         var localVariablePath = "/functions/{functionId}/versions"
         let functionIdPreEscape = "\(APIHelper.mapValueToPathItem(functionId))"
         let functionIdPostEscape = functionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -452,7 +452,7 @@ open class FunctionsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -478,14 +478,14 @@ open class FunctionsAPI {
     /**
      List Functions
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFunctions(pagination: PaginationInput, resourceType: ResourceType_listFunctions, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctions200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listFunctionsWithRequestBuilder(pagination: pagination, resourceType: resourceType).execute(apiResponseQueue) { result in
+    open class func listFunctions(resourceType: ResourceType_listFunctions, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFunctions200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listFunctionsWithRequestBuilder(resourceType: resourceType, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -502,18 +502,18 @@ open class FunctionsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. 
      - parameter resourceType: (query) The Function type.  Config API note: equal to &#x60;type&#x60;.  This parameter exists in v1. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListFunctions200Response> 
      */
-    open class func listFunctionsWithRequestBuilder(pagination: PaginationInput, resourceType: ResourceType_listFunctions) -> RequestBuilder<ListFunctions200Response> {
+    open class func listFunctionsWithRequestBuilder(resourceType: ResourceType_listFunctions, pagination: PaginationInput? = nil) -> RequestBuilder<ListFunctions200Response> {
         let localVariablePath = "/functions"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
             "resourceType": resourceType.encodeToJSON(),
         ])
 
@@ -531,14 +531,14 @@ open class FunctionsAPI {
     /**
      List Insert Function Instances
      
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
      - parameter functionId: (query) The insert Function class id to lookup.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listInsertFunctionInstances(pagination: PaginationInput, functionId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListInsertFunctionInstances200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listInsertFunctionInstancesWithRequestBuilder(pagination: pagination, functionId: functionId).execute(apiResponseQueue) { result in
+    open class func listInsertFunctionInstances(functionId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListInsertFunctionInstances200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listInsertFunctionInstancesWithRequestBuilder(functionId: functionId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -555,18 +555,18 @@ open class FunctionsAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. 
      - parameter functionId: (query) The insert Function class id to lookup.  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListInsertFunctionInstances200Response> 
      */
-    open class func listInsertFunctionInstancesWithRequestBuilder(pagination: PaginationInput, functionId: String) -> RequestBuilder<ListInsertFunctionInstances200Response> {
+    open class func listInsertFunctionInstancesWithRequestBuilder(functionId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListInsertFunctionInstances200Response> {
         let localVariablePath = "/insert-function-instances"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
             "functionId": functionId.encodeToJSON(),
         ])
 

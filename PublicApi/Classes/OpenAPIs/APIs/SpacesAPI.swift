@@ -117,12 +117,12 @@ open class SpacesAPI {
     /**
      List Spaces
      
-     - parameter pagination: (query) Pagination params  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination params  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSpaces(pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSpaces200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSpaces(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSpaces200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSpacesWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -140,17 +140,17 @@ open class SpacesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Pagination params  This parameter exists in alpha. 
+     - parameter pagination: (query) Pagination params  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListSpaces200Response> 
      */
-    open class func listSpacesWithRequestBuilder(pagination: PaginationInput) -> RequestBuilder<ListSpaces200Response> {
+    open class func listSpacesWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListSpaces200Response> {
         let localVariablePath = "/spaces"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

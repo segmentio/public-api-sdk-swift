@@ -67,12 +67,12 @@ open class SelectiveSyncAPI {
      
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSelectiveSyncsFromWarehouseAndSource(warehouseId: String, sourceId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSelectiveSyncsFromWarehouseAndSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSelectiveSyncsFromWarehouseAndSource(warehouseId: String, sourceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSelectiveSyncsFromWarehouseAndSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSelectiveSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: warehouseId, sourceId: sourceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -92,10 +92,10 @@ open class SelectiveSyncAPI {
        - name: token
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListSelectiveSyncsFromWarehouseAndSource200Response> 
      */
-    open class func listSelectiveSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSource200Response> {
+    open class func listSelectiveSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSelectiveSyncsFromWarehouseAndSource200Response> {
         var localVariablePath = "/warehouses/{warehouseId}/connected-sources/{sourceId}/selective-syncs"
         let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
         let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -108,7 +108,7 @@ open class SelectiveSyncAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -126,12 +126,12 @@ open class SelectiveSyncAPI {
      List Syncs from Warehouse
      
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSyncsFromWarehouse(warehouseId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSyncsFromWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSyncsFromWarehouse(warehouseId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSyncsFromWarehouse200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSyncsFromWarehouseWithRequestBuilder(warehouseId: warehouseId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -150,10 +150,10 @@ open class SelectiveSyncAPI {
        - type: http
        - name: token
      - parameter warehouseId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListSyncsFromWarehouse200Response> 
      */
-    open class func listSyncsFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput) -> RequestBuilder<ListSyncsFromWarehouse200Response> {
+    open class func listSyncsFromWarehouseWithRequestBuilder(warehouseId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSyncsFromWarehouse200Response> {
         var localVariablePath = "/warehouses/{warehouseId}/syncs"
         let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
         let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -163,7 +163,7 @@ open class SelectiveSyncAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -182,12 +182,12 @@ open class SelectiveSyncAPI {
      
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSyncsFromWarehouseAndSource(warehouseId: String, sourceId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSyncsFromWarehouseAndSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSyncsFromWarehouseAndSource(warehouseId: String, sourceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSyncsFromWarehouseAndSource200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: warehouseId, sourceId: sourceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -207,10 +207,10 @@ open class SelectiveSyncAPI {
        - name: token
      - parameter warehouseId: (path)  
      - parameter sourceId: (path)  
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. 
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
      - returns: RequestBuilder<ListSyncsFromWarehouseAndSource200Response> 
      */
-    open class func listSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput) -> RequestBuilder<ListSyncsFromWarehouseAndSource200Response> {
+    open class func listSyncsFromWarehouseAndSourceWithRequestBuilder(warehouseId: String, sourceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListSyncsFromWarehouseAndSource200Response> {
         var localVariablePath = "/warehouses/{warehouseId}/connected-sources/{sourceId}/syncs"
         let warehouseIdPreEscape = "\(APIHelper.mapValueToPathItem(warehouseId))"
         let warehouseIdPostEscape = warehouseIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -223,7 +223,7 @@ open class SelectiveSyncAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

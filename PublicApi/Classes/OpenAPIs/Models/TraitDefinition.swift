@@ -12,14 +12,10 @@ import AnyCodable
 
 public struct TraitDefinition: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case accounts = "accounts"
-        case users = "users"
-    }
-    public var type: ModelType
+    public var type: String
     public var query: String
 
-    public init(type: ModelType, query: String) {
+    public init(type: String, query: String) {
         self.type = type
         self.query = query
     }

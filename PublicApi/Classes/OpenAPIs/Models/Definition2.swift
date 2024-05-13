@@ -13,16 +13,12 @@ import AnyCodable
 /** Query language definition and type. */
 public struct Definition2: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case accounts = "accounts"
-        case users = "users"
-    }
     /** The query language string defining the audience segmentation criteria. */
     public var query: String
     /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
-    public var type: ModelType
+    public var type: String
 
-    public init(query: String, type: ModelType) {
+    public init(query: String, type: String) {
         self.query = query
         self.type = type
     }
