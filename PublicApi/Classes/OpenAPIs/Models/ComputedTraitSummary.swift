@@ -36,8 +36,9 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** The timestamp of the computed trait's last change. */
     public var updatedAt: String
+    public var options: Options1?
 
-    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition1?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition1?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options1? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -50,6 +51,7 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
         self.updatedBy = updatedBy
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.options = options
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -65,6 +67,7 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
         case updatedBy
         case createdAt
         case updatedAt
+        case options
     }
 
     // Encodable protocol methods
@@ -83,6 +86,7 @@ public struct ComputedTraitSummary: Codable, JSONEncodable, Hashable {
         try container.encode(updatedBy, forKey: .updatedBy)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(options, forKey: .options)
     }
 }
 
