@@ -13,7 +13,7 @@ import AnyCodable
 /** Query language definition and type. */
 public struct Definition1: Codable, JSONEncodable, Hashable {
 
-    /** The query language string defining the computed trait aggregation criteria. */
+    /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
     /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
     public var type: String

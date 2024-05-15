@@ -12,7 +12,9 @@ import AnyCodable
 
 public struct AudienceOptions: Codable, JSONEncodable, Hashable {
 
+    /** Determines whether data prior to the audience being created is included when determining audience membership. */
     public var includeHistoricalData: Bool?
+    /** Determines whether anonymous users should be included when determining audience membership. */
     public var includeAnonymousUsers: Bool?
 
     public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {

@@ -10,30 +10,30 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Query language definition and type. Note: The definition for a Computed Trait updated via the API is not editable via the Segment App. */
 public struct Definition2: Codable, JSONEncodable, Hashable {
 
-    /** The query language string defining the audience segmentation criteria. */
-    public var query: String
-    /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
+    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
     public var type: String
+    /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
+    public var query: String
 
-    public init(query: String, type: String) {
-        self.query = query
+    public init(type: String, query: String) {
         self.type = type
+        self.query = query
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case query
         case type
+        case query
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(query, forKey: .query)
         try container.encode(type, forKey: .type)
+        try container.encode(query, forKey: .query)
     }
 }
 

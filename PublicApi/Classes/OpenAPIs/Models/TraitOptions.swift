@@ -12,7 +12,9 @@ import AnyCodable
 
 public struct TraitOptions: Codable, JSONEncodable, Hashable {
 
+    /** Determines whether data prior to the computed trait being created is included when determining the computed trait value. */
     public var includeHistoricalData: Bool?
+    /** Determines whether anonymous users should be included when determining the computed trait value. */
     public var includeAnonymousUsers: Bool?
 
     public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {

@@ -35,7 +35,7 @@ open class EdgeFunctionsAPI {
     /**
      Create Edge Functions
      - POST /sources/{sourceId}/edge-functions
-     - Create EdgeFunctions for your Source given a valid upload URL for an Edge Functions bundle.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Create EdgeFunctions for your Source given a valid upload URL for an Edge Functions bundle.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -86,7 +86,7 @@ open class EdgeFunctionsAPI {
     /**
      Disable Edge Functions
      - PATCH /sources/{sourceId}/edge-functions/disable
-     - Disable Edge Functions for your Source.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Disable Edge Functions for your Source.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -136,7 +136,7 @@ open class EdgeFunctionsAPI {
     /**
      Generate Upload URL for Edge Functions
      - POST /sources/{sourceId}/edge-functions/upload-url
-     - Generate a temporary upload URL that can be used to upload an Edge Functions bundle.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Generate a temporary upload URL that can be used to upload an Edge Functions bundle.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -186,7 +186,7 @@ open class EdgeFunctionsAPI {
     /**
      Get Latest from Edge Functions
      - GET /sources/{sourceId}/edge-functions/latest
-     - Get the latest Edge Functions for your Source.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     - Get the latest Edge Functions for your Source.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
