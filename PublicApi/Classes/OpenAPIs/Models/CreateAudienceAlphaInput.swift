@@ -17,10 +17,10 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
     public var name: String
     /** Description of the audience. */
     public var description: String
-    public var definition: Definition4
-    public var options: Options3?
+    public var definition: Definition1
+    public var options: Options1?
 
-    public init(name: String, description: String, definition: Definition4, options: Options3? = nil) {
+    public init(name: String, description: String, definition: Definition1, options: Options1? = nil) {
         self.name = name
         self.description = description
         self.definition = definition
