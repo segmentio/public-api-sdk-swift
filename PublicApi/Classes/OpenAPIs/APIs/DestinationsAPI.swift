@@ -82,7 +82,7 @@ open class DestinationsAPI {
     /**
      Create Destination Subscription
      - POST /destinations/{destinationId}/subscriptions
-     - Creates a new Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
+     - Creates a new Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -234,7 +234,7 @@ open class DestinationsAPI {
     /**
      Get Subscription from Destination
      - GET /destinations/{destinationId}/subscriptions/{id}
-     - Gets a Destination subscription by id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
+     - Gets a Destination subscription by id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -412,7 +412,7 @@ open class DestinationsAPI {
     /**
      List Subscriptions from Destination
      - GET /destinations/{destinationId}/subscriptions
-     - Lists subscriptions for a Destination.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
+     - Lists subscriptions for a Destination.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -467,7 +467,7 @@ open class DestinationsAPI {
     /**
      Remove Subscription from Destination
      - DELETE /destinations/{destinationId}/subscriptions/{id}
-     - Deletes an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
+     - Deletes an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -575,7 +575,7 @@ open class DestinationsAPI {
     /**
      Update Subscription for Destination
      - PATCH /destinations/{destinationId}/subscriptions/{id}
-     - Updates an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
+     - Updates an existing Destination subscription.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Destination Subscriptions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
