@@ -15,14 +15,14 @@ public struct CreateComputedTraitAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** The name of the computation. */
     public var name: String
-    /** Determines whether a computation is enabled */
+    /** Determines whether a computation is enabled. */
     public var enabled: Bool?
     /** The description of the computation. */
     public var description: String
-    public var definition: Definition
-    public var options: Options?
+    public var definition: Definition3
+    public var options: Options2?
 
-    public init(name: String, enabled: Bool? = nil, description: String, definition: Definition, options: Options? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String, definition: Definition3, options: Options2? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
