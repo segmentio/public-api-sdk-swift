@@ -18,11 +18,11 @@ public struct CreateComputedTraitAlphaInput: Codable, JSONEncodable, Hashable {
     /** Determines whether a computation is enabled. */
     public var enabled: Bool?
     /** The description of the computation. */
-    public var description: String
-    public var definition: Definition
-    public var options: Options?
+    public var description: String?
+    public var definition: Definition3
+    public var options: Options2?
 
-    public init(name: String, enabled: Bool? = nil, description: String, definition: Definition, options: Options? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition3, options: Options2? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
@@ -44,7 +44,7 @@ public struct CreateComputedTraitAlphaInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encode(description, forKey: .description)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encode(definition, forKey: .definition)
         try container.encodeIfPresent(options, forKey: .options)
     }
