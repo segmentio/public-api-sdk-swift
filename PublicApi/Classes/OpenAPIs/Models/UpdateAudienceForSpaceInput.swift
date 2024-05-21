@@ -19,9 +19,9 @@ public struct UpdateAudienceForSpaceInput: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** The description of the computation. */
     public var description: String?
-    public var definition: Definition5?
+    public var definition: Definition2?
 
-    public init(enabled: Bool? = nil, name: String? = nil, description: String? = nil, definition: Definition5? = nil) {
+    public init(enabled: Bool? = nil, name: String? = nil, description: String? = nil, definition: Definition2? = nil) {
         self.enabled = enabled
         self.name = name
         self.description = description
