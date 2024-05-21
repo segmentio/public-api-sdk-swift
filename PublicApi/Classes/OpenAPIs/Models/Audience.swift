@@ -20,12 +20,12 @@ public struct Audience: Codable, JSONEncodable, Hashable {
     /** Name of the audience. */
     public var name: String
     /** Description of the audience. */
-    public var description: String
+    public var description: String?
     /** Key for the audience. */
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition3?
+    public var definition: Definition?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -36,9 +36,9 @@ public struct Audience: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
-    public var options: Options2?
+    public var options: Options?
 
-    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition3?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options2? = nil) {
+    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -77,7 +77,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(spaceId, forKey: .spaceId)
         try container.encode(name, forKey: .name)
-        try container.encode(description, forKey: .description)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encode(key, forKey: .key)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(definition, forKey: .definition)

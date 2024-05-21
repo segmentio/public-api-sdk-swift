@@ -20,12 +20,12 @@ public struct ComputedTrait: Codable, JSONEncodable, Hashable {
     /** Name of the computed trait. */
     public var name: String
     /** Description of the computed trait. */
-    public var description: String
+    public var description: String?
     /** Key for the computed trait. */
     public var key: String
     /** Enabled/disabled status for the computed trait. */
     public var enabled: Bool
-    public var definition: Definition1?
+    public var definition: Definition4?
     /** Status for the computed trait.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the computed trait. */
@@ -36,9 +36,9 @@ public struct ComputedTrait: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** The timestamp of the computed trait's last change. */
     public var updatedAt: String
-    public var options: Options1?
+    public var options: Options3?
 
-    public init(id: String, spaceId: String, name: String, description: String, key: String, enabled: Bool, definition: Definition1?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options1? = nil) {
+    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition4?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options3? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -77,7 +77,7 @@ public struct ComputedTrait: Codable, JSONEncodable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(spaceId, forKey: .spaceId)
         try container.encode(name, forKey: .name)
-        try container.encode(description, forKey: .description)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encode(key, forKey: .key)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(definition, forKey: .definition)

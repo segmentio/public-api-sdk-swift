@@ -18,11 +18,11 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
     /** Determines whether a computation is enabled. */
     public var enabled: Bool?
     /** Description of the audience. */
-    public var description: String
-    public var definition: Definition4
-    public var options: Options3?
+    public var description: String?
+    public var definition: Definition1
+    public var options: Options1?
 
-    public init(name: String, enabled: Bool? = nil, description: String, definition: Definition4, options: Options3? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition1, options: Options1? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
@@ -44,7 +44,7 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encode(description, forKey: .description)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encode(definition, forKey: .definition)
         try container.encodeIfPresent(options, forKey: .options)
     }
