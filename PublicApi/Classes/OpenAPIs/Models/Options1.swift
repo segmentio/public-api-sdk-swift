@@ -10,12 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the options of Including Anonymous users and Historical Data. */
+/** Options which should be applied when segmenting traits. */
 public struct Options1: Codable, JSONEncodable, Hashable {
 
-    /** Determines whether data prior to the audience being created is included when determining audience membership. */
+    /** Determines whether data prior to the computed trait being created is included when determining the computed trait value. Note that including historical data may be needed in order to properly handle the definition specified. In these cases, Segment will automatically handle including historical data and the response will return the includeHistoricalData parameter as true. */
     public var includeHistoricalData: Bool?
-    /** Determines whether anonymous users should be included when determining audience membership. */
+    /** Determines whether anonymous users should be included when determining the computed trait value. */
     public var includeAnonymousUsers: Bool?
 
     public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {
