@@ -13,12 +13,16 @@ import AnyCodable
 /** Query language definition and type. Note: The definition for a Computed Trait updated via the API is not editable via the Segment App. */
 public struct Definition2: Codable, JSONEncodable, Hashable {
 
+    public enum ModelType: String, Codable, CaseIterable {
+        case accounts = "ACCOUNTS"
+        case users = "USERS"
+    }
     /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
-    public var type: String
+    public var type: ModelType
     /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
 
-    public init(type: String, query: String) {
+    public init(type: ModelType, query: String) {
         self.type = type
         self.query = query
     }

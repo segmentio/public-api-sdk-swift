@@ -13,12 +13,16 @@ import AnyCodable
 /** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated via the API is not editable via the Segment App. */
 public struct Definition5: Codable, JSONEncodable, Hashable {
 
+    public enum ModelType: String, Codable, CaseIterable {
+        case accounts = "ACCOUNTS"
+        case users = "USERS"
+    }
     /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
-    public var type: String
+    public var type: ModelType
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
 
-    public init(type: String, query: String) {
+    public init(type: ModelType, query: String) {
         self.type = type
         self.query = query
     }
