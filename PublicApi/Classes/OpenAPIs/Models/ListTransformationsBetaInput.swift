@@ -13,9 +13,9 @@ import AnyCodable
 /** Lists the Transformations associated with the current Workspace. */
 public struct ListTransformationsBetaInput: Codable, JSONEncodable, Hashable {
 
-    public var pagination: Pagination2?
+    public var pagination: Pagination3?
 
-    public init(pagination: Pagination2? = nil) {
+    public init(pagination: Pagination3? = nil) {
         self.pagination = pagination
     }
 
