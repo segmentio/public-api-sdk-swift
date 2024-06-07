@@ -123,12 +123,12 @@ open class ComputedTraitsAPI {
      List Computed Traits
      
      - parameter spaceId: (path)  
-     - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. 
+     - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listComputedTraits(spaceId: String, pagination: PaginationInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListComputedTraits200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listComputedTraits(spaceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListComputedTraits200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listComputedTraitsWithRequestBuilder(spaceId: spaceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -147,10 +147,10 @@ open class ComputedTraitsAPI {
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. 
+     - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListComputedTraits200Response> 
      */
-    open class func listComputedTraitsWithRequestBuilder(spaceId: String, pagination: PaginationInput) -> RequestBuilder<ListComputedTraits200Response> {
+    open class func listComputedTraitsWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListComputedTraits200Response> {
         var localVariablePath = "/spaces/{spaceId}/computed-traits"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -160,7 +160,7 @@ open class ComputedTraitsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination.encodeToJSON(),
+            "pagination": pagination?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
