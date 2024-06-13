@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The newly created Destination filter. */
+/** The updated Destination filter. */
 public struct Filter3: Codable, JSONEncodable, Hashable {
 
     /** The unique id of this filter. */

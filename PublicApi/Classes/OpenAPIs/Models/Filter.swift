@@ -10,45 +10,30 @@ import Foundation
 import AnyCodable
 #endif
 
-/** An optional filter for &#x60;eventName&#x60;, &#x60;eventType&#x60;, &#x60;activationId&#x60;, &#x60;audienceId&#x60;, and/or &#x60;spaceId&#x60; that can be applied in addition to a &#x60;groupBy&#x60;. If you would like to view retry attempts for a successful delivery, you can filter &#x60;discardReason&#x60; from &#x60;successes.attempt.1&#x60; through &#x60;successes.attempt.10&#x60;. */
+/** The filter to preview. */
 public struct Filter: Codable, JSONEncodable, Hashable {
 
-    /** A list of strings of event names. */
-    public var eventName: [String]?
-    /** A list of strings of event types. Valid options are: `alias`, `group`, `identify`, `page`, `screen`, and `track`. */
-    public var eventType: [String]?
-    /** A list of strings of event context IDs from a Linked Audience mapping/activation. */
-    public var activationId: [String]?
-    /** A list of strings of audienceIDs for a Linked Audience. */
-    public var audienceId: [String]?
-    /** A list of strings of spaceIDs for a Linked Audience. */
-    public var spaceId: [String]?
+    /** A FQL statement which determines if the provided filter's actions will apply to the provided JSON payload. The literal string \"all\" will result in this filter to all events. For guidance on using FQL, see the Segment documentation site. */
+    public var _if: String
+    /** The filtering action to take on events that match the \"if\" statement. Action types must be one of: \"drop\", \"allow_properties\", \"drop_properties\" or \"sample\". */
+    public var actions: [DestinationFilterActionV1]
 
-    public init(eventName: [String]? = nil, eventType: [String]? = nil, activationId: [String]? = nil, audienceId: [String]? = nil, spaceId: [String]? = nil) {
-        self.eventName = eventName
-        self.eventType = eventType
-        self.activationId = activationId
-        self.audienceId = audienceId
-        self.spaceId = spaceId
+    public init(_if: String, actions: [DestinationFilterActionV1]) {
+        self._if = _if
+        self.actions = actions
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case eventName
-        case eventType
-        case activationId
-        case audienceId
-        case spaceId
+        case _if = "if"
+        case actions
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(eventName, forKey: .eventName)
-        try container.encodeIfPresent(eventType, forKey: .eventType)
-        try container.encodeIfPresent(activationId, forKey: .activationId)
-        try container.encodeIfPresent(audienceId, forKey: .audienceId)
-        try container.encodeIfPresent(spaceId, forKey: .spaceId)
+        try container.encode(_if, forKey: ._if)
+        try container.encode(actions, forKey: .actions)
     }
 }
 
