@@ -10,70 +10,30 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The requested Destination filter. */
+/** The filter to preview. */
 public struct Filter1: Codable, JSONEncodable, Hashable {
 
-    /** The unique id of this filter. */
-    public var id: String
-    /** The id of the Source associated with this filter. */
-    public var sourceId: String
-    /** The id of the Destination associated with this filter. */
-    public var destinationId: String
-    /** A condition that defines whether to apply this filter to a payload. */
+    /** A FQL statement which determines if the provided filter's actions will apply to the provided JSON payload. The literal string \"all\" will result in this filter to all events. For guidance on using FQL, see the Segment documentation site. */
     public var _if: String
-    /** A list of actions this filter performs. */
+    /** The filtering action to take on events that match the \"if\" statement. Action types must be one of: \"drop\", \"allow_properties\", \"drop_properties\" or \"sample\". */
     public var actions: [DestinationFilterActionV1]
-    /** A title for this filter. */
-    public var title: String
-    /** A description for this filter. */
-    public var description: String?
-    /** When set to true, this filter is active. */
-    public var enabled: Bool
-    /** The timestamp of this filter's creation. */
-    public var createdAt: String
-    /** The timestamp of this filter's last change. */
-    public var updatedAt: String
 
-    public init(id: String, sourceId: String, destinationId: String, _if: String, actions: [DestinationFilterActionV1], title: String, description: String? = nil, enabled: Bool, createdAt: String, updatedAt: String) {
-        self.id = id
-        self.sourceId = sourceId
-        self.destinationId = destinationId
+    public init(_if: String, actions: [DestinationFilterActionV1]) {
         self._if = _if
         self.actions = actions
-        self.title = title
-        self.description = description
-        self.enabled = enabled
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case sourceId
-        case destinationId
         case _if = "if"
         case actions
-        case title
-        case description
-        case enabled
-        case createdAt
-        case updatedAt
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(sourceId, forKey: .sourceId)
-        try container.encode(destinationId, forKey: .destinationId)
         try container.encode(_if, forKey: ._if)
         try container.encode(actions, forKey: .actions)
-        try container.encode(title, forKey: .title)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encode(enabled, forKey: .enabled)
-        try container.encode(createdAt, forKey: .createdAt)
-        try container.encode(updatedAt, forKey: .updatedAt)
     }
 }
 
