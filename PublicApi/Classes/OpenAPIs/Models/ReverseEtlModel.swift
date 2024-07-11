@@ -25,14 +25,13 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
     public var enabled: Bool
     /** Determines the strategy used for triggering syncs, which will be used in conjunction with scheduleConfig.  Possible values: \"manual\", \"periodic\", \"specific_days\". */
     public var scheduleStrategy: String
-    /** Depending on the chosen strategy, configures the schedule for this model. */
-    public var scheduleConfig: JSON?
+    public var scheduleConfig: ScheduleConfig?
     /** The SQL query that will be executed to extract data from the connected Source. */
     public var query: String
     /** Indicates the column named in `query` that should be used to uniquely identify the extracted records. */
     public var queryIdentifierColumn: String
 
-    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: String, scheduleConfig: JSON? = nil, query: String, queryIdentifierColumn: String) {
+    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: String, scheduleConfig: ScheduleConfig? = nil, query: String, queryIdentifierColumn: String) {
         self.id = id
         self.sourceId = sourceId
         self.name = name
