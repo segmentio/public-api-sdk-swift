@@ -50,8 +50,10 @@ public struct DestinationMetadataActionFieldV1: Codable, JSONEncodable, Hashable
     public var _dynamic: Bool
     /** Whether this field allows null values. */
     public var allowNull: Bool
+    /** Whether the action field should be hidden or not. */
+    public var hidden: Bool?
 
-    public init(id: String, sortOrder: Double, fieldKey: String, label: String, type: ModelType, description: String, placeholder: String? = nil, defaultValue: AnyCodable? = nil, _required: Bool, multiple: Bool, choices: AnyCodable? = nil, _dynamic: Bool, allowNull: Bool) {
+    public init(id: String, sortOrder: Double, fieldKey: String, label: String, type: ModelType, description: String, placeholder: String? = nil, defaultValue: AnyCodable? = nil, _required: Bool, multiple: Bool, choices: AnyCodable? = nil, _dynamic: Bool, allowNull: Bool, hidden: Bool? = nil) {
         self.id = id
         self.sortOrder = sortOrder
         self.fieldKey = fieldKey
@@ -65,6 +67,7 @@ public struct DestinationMetadataActionFieldV1: Codable, JSONEncodable, Hashable
         self.choices = choices
         self._dynamic = _dynamic
         self.allowNull = allowNull
+        self.hidden = hidden
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -81,6 +84,7 @@ public struct DestinationMetadataActionFieldV1: Codable, JSONEncodable, Hashable
         case choices
         case _dynamic = "dynamic"
         case allowNull
+        case hidden
     }
 
     // Encodable protocol methods
@@ -100,6 +104,7 @@ public struct DestinationMetadataActionFieldV1: Codable, JSONEncodable, Hashable
         try container.encodeIfPresent(choices, forKey: .choices)
         try container.encode(_dynamic, forKey: ._dynamic)
         try container.encode(allowNull, forKey: .allowNull)
+        try container.encodeIfPresent(hidden, forKey: .hidden)
     }
 }
 
