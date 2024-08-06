@@ -35,6 +35,8 @@ class SmokeTests: XCTestCase {
                               "alt": "https://cdn.filepicker.io/api/file/qWgSP5cpS7eeW2voq13u"
                             },
                             "options": [],
+                            "partnerOwned": false,
+                            "status": "PUBLIC",
                             "isCloudEventSource": false
                           },
                           "settings": {},
@@ -44,27 +46,27 @@ class SmokeTests: XCTestCase {
                     }
                 """))
             }
-            
+
             return HttpResponse.notFound
         }
         try! server.start(getPort())
-        
+
         let port = try! server.port()
         PublicApiAPI.basePath = "http://localhost:" + String(port)
-        
-        
+
+
         let expectation = self.expectation(description: "Calling Public API")
-        
+
         SourcesAPI.createSource(createSourceV1Input: CreateSourceV1Input(slug: "ios", enabled: true, metadataId: "UBrsG9RVzw"), completion: { data, error in
             XCTAssertNil(error)
             XCTAssertEqual(data!.data!.source.id, "qQEHquLrjRDN9j1ByrChyn")
             expectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: 5, handler: nil)
         server.stop()
     }
-    
+
     func testGetSource() {
         let server = HttpServer()
         server["/sources/qQEHquLrjRDN9j1ByrChyn"] = { request in
@@ -90,6 +92,8 @@ class SmokeTests: XCTestCase {
                               "alt": "https://cdn.filepicker.io/api/file/qWgSP5cpS7eeW2voq13u"
                             },
                             "options": [],
+                            "partnerOwned": false,
+                            "status": "PUBLIC",
                             "isCloudEventSource": false
                           },
                           "settings": {},
@@ -99,27 +103,27 @@ class SmokeTests: XCTestCase {
                     }
                 """))
             }
-            
+
             return HttpResponse.notFound
         }
         try! server.start(getPort())
-        
+
         let port = try! server.port()
         PublicApiAPI.basePath = "http://localhost:" + String(port)
-        
-        
+
+
         let expectation = self.expectation(description: "Calling Public API")
-        
+
         SourcesAPI.getSource(sourceId: "qQEHquLrjRDN9j1ByrChyn", completion: { data, error in
             XCTAssertNil(error)
             XCTAssertEqual(data!.data!.source.id, "qQEHquLrjRDN9j1ByrChyn")
             expectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: 5, handler: nil)
         server.stop()
     }
-    
+
     func testListSources() {
         let server = HttpServer()
         server["/sources"] = { request in
@@ -146,6 +150,8 @@ class SmokeTests: XCTestCase {
                                 "alt": "https://cdn.filepicker.io/api/file/qWgSP5cpS7eeW2voq13u"
                               },
                               "options": [],
+                              "partnerOwned": false,
+                              "status": "PUBLIC",
                               "isCloudEventSource": false
                             },
                             "settings": {},
@@ -170,6 +176,8 @@ class SmokeTests: XCTestCase {
                                 "mark": "https://cdn.filepicker.io/api/file/kBpmEoSSaakidAvoFmzd"
                               },
                               "options": [],
+                              "partnerOwned": false,
+                              "status": "PUBLIC",
                               "isCloudEventSource": false
                             },
                             "settings": {},
@@ -181,27 +189,27 @@ class SmokeTests: XCTestCase {
                     }
                 """))
             }
-            
+
             return HttpResponse.notFound
         }
         try! server.start(getPort())
-        
+
         let port = try! server.port()
         PublicApiAPI.basePath = "http://localhost:" + String(port)
-        
-        
+
+
         let expectation = self.expectation(description: "Calling Public API")
-        
+
         SourcesAPI.listSources(pagination: PaginationInput(count: 2), completion: { data, error in
             XCTAssertNil(error)
             XCTAssertEqual(data!.data!.sources.count, 2)
             expectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: 5, handler: nil)
         server.stop()
     }
-    
+
     func testUpdateSource() {
         let server = HttpServer()
         server["/sources/piTVHEYNrRgBMM1uQGCPbK"] = { request in
@@ -228,6 +236,8 @@ class SmokeTests: XCTestCase {
                               "mark": "https://cdn.filepicker.io/api/file/kBpmEoSSaakidAvoFmzd"
                             },
                             "options": [],
+                            "partnerOwned": false,
+                            "status": "PUBLIC",
                             "isCloudEventSource": false
                           },
                           "settings": {},
@@ -237,27 +247,27 @@ class SmokeTests: XCTestCase {
                     }
                 """))
             }
-            
+
             return HttpResponse.notFound
         }
         try! server.start(getPort())
-        
+
         let port = try! server.port()
         PublicApiAPI.basePath = "http://localhost:" + String(port)
-        
-        
+
+
         let expectation = self.expectation(description: "Calling Public API")
-        
+
         SourcesAPI.updateSource(sourceId: "piTVHEYNrRgBMM1uQGCPbK", updateSourceV1Input: UpdateSourceV1Input(name: "My updated source", enabled: false, slug: "my-new-slug"), completion: { data, error in
             XCTAssertNil(error)
             XCTAssertEqual(data!.data!.source.id, "piTVHEYNrRgBMM1uQGCPbK")
             expectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: 5, handler: nil)
         server.stop()
     }
-    
+
     func testDeleteSource() {
         let server = HttpServer()
         server["/sources/piTVHEYNrRgBMM1uQGCPbK"] = { request in
@@ -266,23 +276,23 @@ class SmokeTests: XCTestCase {
                     { "data": { "status": "SUCCESS" } }
                 """))
             }
-            
+
             return HttpResponse.notFound
         }
         try! server.start(getPort())
-        
+
         let port = try! server.port()
         PublicApiAPI.basePath = "http://localhost:" + String(port)
-        
-        
+
+
         let expectation = self.expectation(description: "Calling Public API")
-        
+
         SourcesAPI.deleteSource(sourceId: "piTVHEYNrRgBMM1uQGCPbK", completion: { data, error in
             XCTAssertNil(error)
             XCTAssertEqual(data!.data!.status, DeleteSourceV1Output.Status.success)
             expectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: 5, handler: nil)
         server.stop()
     }

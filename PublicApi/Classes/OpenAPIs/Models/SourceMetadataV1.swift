@@ -13,6 +13,15 @@ import AnyCodable
 /** A website, server library, mobile SDK, or cloud application which can send data into Segment. */
 public struct SourceMetadataV1: Codable, JSONEncodable, Hashable {
 
+    public enum Status: String, Codable, CaseIterable {
+        case deprecated = "DEPRECATED"
+        case privateBeta = "PRIVATE_BETA"
+        case privateBuilding = "PRIVATE_BUILDING"
+        case privateSubmitted = "PRIVATE_SUBMITTED"
+        case _public = "PUBLIC"
+        case publicBeta = "PUBLIC_BETA"
+        case unavailable = "UNAVAILABLE"
+    }
     /** The id for this Source metadata in the Segment catalog.  Config API note: analogous to `name`. */
     public var id: String
     /** The user-friendly name of this Source.  Config API note: equal to `displayName`. */
@@ -28,8 +37,12 @@ public struct SourceMetadataV1: Codable, JSONEncodable, Hashable {
     public var categories: [String]
     /** True if this is a Cloud Event Source. */
     public var isCloudEventSource: Bool
+    /** Support status of the Source. */
+    public var status: Status
+    /** Partner Owned flag. */
+    public var partnerOwned: Bool?
 
-    public init(id: String, name: String, slug: String, description: String, logos: Logos1, options: [IntegrationOptionBeta], categories: [String], isCloudEventSource: Bool) {
+    public init(id: String, name: String, slug: String, description: String, logos: Logos1, options: [IntegrationOptionBeta], categories: [String], isCloudEventSource: Bool, status: Status, partnerOwned: Bool? = nil) {
         self.id = id
         self.name = name
         self.slug = slug
@@ -38,6 +51,8 @@ public struct SourceMetadataV1: Codable, JSONEncodable, Hashable {
         self.options = options
         self.categories = categories
         self.isCloudEventSource = isCloudEventSource
+        self.status = status
+        self.partnerOwned = partnerOwned
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -49,6 +64,8 @@ public struct SourceMetadataV1: Codable, JSONEncodable, Hashable {
         case options
         case categories
         case isCloudEventSource
+        case status
+        case partnerOwned
     }
 
     // Encodable protocol methods
@@ -63,6 +80,8 @@ public struct SourceMetadataV1: Codable, JSONEncodable, Hashable {
         try container.encode(options, forKey: .options)
         try container.encode(categories, forKey: .categories)
         try container.encode(isCloudEventSource, forKey: .isCloudEventSource)
+        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(partnerOwned, forKey: .partnerOwned)
     }
 }
 
