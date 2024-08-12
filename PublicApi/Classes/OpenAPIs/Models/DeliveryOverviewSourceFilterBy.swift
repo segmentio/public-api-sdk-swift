@@ -21,21 +21,12 @@ public struct DeliveryOverviewSourceFilterBy: Codable, JSONEncodable, Hashable {
     public var eventType: [String]?
     /** A list of strings of app versions. */
     public var appVersion: [String]?
-    /** A list of strings of event context IDs from a Linked Audience mapping/activation. */
-    public var activationId: [String]?
-    /** A list of strings of audienceIDs for a Linked Audience. */
-    public var audienceId: [String]?
-    /** A list of strings of spaceIDs for a Linked Audience. */
-    public var spaceId: [String]?
 
-    public init(discardReason: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil, activationId: [String]? = nil, audienceId: [String]? = nil, spaceId: [String]? = nil) {
+    public init(discardReason: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil) {
         self.discardReason = discardReason
         self.eventName = eventName
         self.eventType = eventType
         self.appVersion = appVersion
-        self.activationId = activationId
-        self.audienceId = audienceId
-        self.spaceId = spaceId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -43,9 +34,6 @@ public struct DeliveryOverviewSourceFilterBy: Codable, JSONEncodable, Hashable {
         case eventName
         case eventType
         case appVersion
-        case activationId
-        case audienceId
-        case spaceId
     }
 
     // Encodable protocol methods
@@ -56,9 +44,6 @@ public struct DeliveryOverviewSourceFilterBy: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(eventName, forKey: .eventName)
         try container.encodeIfPresent(eventType, forKey: .eventType)
         try container.encodeIfPresent(appVersion, forKey: .appVersion)
-        try container.encodeIfPresent(activationId, forKey: .activationId)
-        try container.encodeIfPresent(audienceId, forKey: .audienceId)
-        try container.encodeIfPresent(spaceId, forKey: .spaceId)
     }
 }
 
