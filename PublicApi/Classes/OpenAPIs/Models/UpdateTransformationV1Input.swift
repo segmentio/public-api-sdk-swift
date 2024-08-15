@@ -23,8 +23,6 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
     public var enabled: Bool?
     /** If statement ([FQL](https://segment.com/docs/config-api/fql/)) to match events.  For standard event matchers, use the following:  Track -\\> \"event='\\<eventName\\>'\"  Identify -\\> \"type='identify'\"  Group -\\> \"type='group'\" */
     public var _if: String?
-    /** Optional boolean value if the Transformation should drop the event entirely when the if statement matches, ignores all other transforms. */
-    public var drop: Bool?
     /** Optional new event name for renaming events. Works only for 'track' event type. */
     public var newEventName: String?
     /** Optional array for renaming properties collected by your events. */
@@ -37,13 +35,12 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
     public var allowProperties: [String]?
     public var hashPropertiesConfiguration: HashPropertiesConfiguration?
 
-    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, drop: Bool? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil, allowProperties: [String]? = nil, hashPropertiesConfiguration: HashPropertiesConfiguration? = nil) {
+    public init(name: String? = nil, sourceId: String? = nil, destinationMetadataId: String? = nil, enabled: Bool? = nil, _if: String? = nil, newEventName: String? = nil, propertyRenames: [PropertyRenameV1]? = nil, propertyValueTransformations: [PropertyValueTransformationV1]? = nil, fqlDefinedProperties: [FQLDefinedPropertyV1]? = nil, allowProperties: [String]? = nil, hashPropertiesConfiguration: HashPropertiesConfiguration? = nil) {
         self.name = name
         self.sourceId = sourceId
         self.destinationMetadataId = destinationMetadataId
         self.enabled = enabled
         self._if = _if
-        self.drop = drop
         self.newEventName = newEventName
         self.propertyRenames = propertyRenames
         self.propertyValueTransformations = propertyValueTransformations
@@ -58,7 +55,6 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
         case destinationMetadataId
         case enabled
         case _if = "if"
-        case drop
         case newEventName
         case propertyRenames
         case propertyValueTransformations
@@ -76,7 +72,6 @@ public struct UpdateTransformationV1Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(destinationMetadataId, forKey: .destinationMetadataId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encodeIfPresent(_if, forKey: ._if)
-        try container.encodeIfPresent(drop, forKey: .drop)
         try container.encodeIfPresent(newEventName, forKey: .newEventName)
         try container.encodeIfPresent(propertyRenames, forKey: .propertyRenames)
         try container.encodeIfPresent(propertyValueTransformations, forKey: .propertyValueTransformations)
