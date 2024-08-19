@@ -21,12 +21,15 @@ public struct CreateWarehouseV1Input: Codable, JSONEncodable, Hashable {
     public var enabled: Bool?
     /** A key-value object that contains instance-specific settings for a Warehouse.  Different kinds of Warehouses require different settings. The required and optional settings for a Warehouse are described in the `options` object of the associated Warehouse metadata.  You can find the full list of Warehouse metadata and related settings information in the `/catalog/warehouses` endpoint. */
     public var settings: JSON?
+    /** Whether to disconnect all Sources from this Warehouse. */
+    public var disconnectAllSources: Bool?
 
-    public init(metadataId: String, name: String? = nil, enabled: Bool? = nil, settings: JSON?) {
+    public init(metadataId: String, name: String? = nil, enabled: Bool? = nil, settings: JSON?, disconnectAllSources: Bool? = nil) {
         self.metadataId = metadataId
         self.name = name
         self.enabled = enabled
         self.settings = settings
+        self.disconnectAllSources = disconnectAllSources
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +37,7 @@ public struct CreateWarehouseV1Input: Codable, JSONEncodable, Hashable {
         case name
         case enabled
         case settings
+        case disconnectAllSources
     }
 
     // Encodable protocol methods
@@ -44,6 +48,7 @@ public struct CreateWarehouseV1Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encode(settings, forKey: .settings)
+        try container.encodeIfPresent(disconnectAllSources, forKey: .disconnectAllSources)
     }
 }
 
