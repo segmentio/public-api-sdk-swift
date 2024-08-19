@@ -21,12 +21,15 @@ public struct CreateSourceV1Input: Codable, JSONEncodable, Hashable {
     public var metadataId: String
     /** A key-value object that contains instance-specific settings for the Source. */
     public var settings: JSON?
+    /** Whether to disconnect all Warehouses from the Source. */
+    public var disconnectAllWarehouses: Bool?
 
-    public init(slug: String, enabled: Bool, metadataId: String, settings: JSON? = nil) {
+    public init(slug: String, enabled: Bool, metadataId: String, settings: JSON? = nil, disconnectAllWarehouses: Bool? = nil) {
         self.slug = slug
         self.enabled = enabled
         self.metadataId = metadataId
         self.settings = settings
+        self.disconnectAllWarehouses = disconnectAllWarehouses
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +37,7 @@ public struct CreateSourceV1Input: Codable, JSONEncodable, Hashable {
         case enabled
         case metadataId
         case settings
+        case disconnectAllWarehouses
     }
 
     // Encodable protocol methods
@@ -44,6 +48,7 @@ public struct CreateSourceV1Input: Codable, JSONEncodable, Hashable {
         try container.encode(enabled, forKey: .enabled)
         try container.encode(metadataId, forKey: .metadataId)
         try container.encodeIfPresent(settings, forKey: .settings)
+        try container.encodeIfPresent(disconnectAllWarehouses, forKey: .disconnectAllWarehouses)
     }
 }
 
