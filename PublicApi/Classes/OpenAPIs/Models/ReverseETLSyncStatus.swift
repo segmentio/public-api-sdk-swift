@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The reverse ETL connection job that was manually started. */
+/** The status of the reverse ETL connection job. */
 public struct ReverseETLSyncStatus: Codable, JSONEncodable, Hashable {
 
     /** The id of the sync. */
