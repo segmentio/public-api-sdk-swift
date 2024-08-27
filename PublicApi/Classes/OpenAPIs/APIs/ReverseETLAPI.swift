@@ -266,13 +266,14 @@ open class ReverseETLAPI {
      
      - parameter modelId: (path)  
      - parameter subscriptionId: (path)  
-     - parameter pagination: (query) Optional pagination params.  This parameter exists in alpha. (optional)
+     - parameter count: (query) The number of items to retrieve in a page, between 1 and 100. Default is 10  This parameter exists in alpha. (optional)
+     - parameter cursor: (query) The page to request. Acceptable values to use here are in PaginationOutput objects, in the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listReverseETLSyncStatusesFromModelAndSubscriptionId(modelId: String, subscriptionId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listReverseETLSyncStatusesFromModelAndSubscriptionIdWithRequestBuilder(modelId: modelId, subscriptionId: subscriptionId, pagination: pagination).execute(apiResponseQueue) { result in
+    open class func listReverseETLSyncStatusesFromModelAndSubscriptionId(modelId: String, subscriptionId: String, count: Double? = nil, cursor: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listReverseETLSyncStatusesFromModelAndSubscriptionIdWithRequestBuilder(modelId: modelId, subscriptionId: subscriptionId, count: count, cursor: cursor).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -291,10 +292,11 @@ open class ReverseETLAPI {
        - name: token
      - parameter modelId: (path)  
      - parameter subscriptionId: (path)  
-     - parameter pagination: (query) Optional pagination params.  This parameter exists in alpha. (optional)
+     - parameter count: (query) The number of items to retrieve in a page, between 1 and 100. Default is 10  This parameter exists in alpha. (optional)
+     - parameter cursor: (query) The page to request. Acceptable values to use here are in PaginationOutput objects, in the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response> 
      */
-    open class func listReverseETLSyncStatusesFromModelAndSubscriptionIdWithRequestBuilder(modelId: String, subscriptionId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response> {
+    open class func listReverseETLSyncStatusesFromModelAndSubscriptionIdWithRequestBuilder(modelId: String, subscriptionId: String, count: Double? = nil, cursor: String? = nil) -> RequestBuilder<ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response> {
         var localVariablePath = "/reverse-etl-models/{modelId}/subscriptionId/{subscriptionId}/syncs"
         let modelIdPreEscape = "\(APIHelper.mapValueToPathItem(modelId))"
         let modelIdPostEscape = modelIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -307,7 +309,8 @@ open class ReverseETLAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "pagination": pagination?.encodeToJSON(),
+            "count": count?.encodeToJSON(),
+            "cursor": cursor?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
