@@ -15,13 +15,25 @@ public struct ScheduleConfig: Codable, JSONEncodable, Hashable {
 
     /** Duration is specified as a string, eg: 15m, 3h25m30s. */
     public var interval: String
+    /** Days of the week. */
+    public var days: [Double]
+    /** Hours of the day. */
+    public var hours: [Double]
+    /** Timezone for the specified times. */
+    public var timezone: String
 
-    public init(interval: String) {
+    public init(interval: String, days: [Double], hours: [Double], timezone: String) {
         self.interval = interval
+        self.days = days
+        self.hours = hours
+        self.timezone = timezone
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case interval
+        case days
+        case hours
+        case timezone
     }
 
     // Encodable protocol methods
@@ -29,6 +41,9 @@ public struct ScheduleConfig: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(interval, forKey: .interval)
+        try container.encode(days, forKey: .days)
+        try container.encode(hours, forKey: .hours)
+        try container.encode(timezone, forKey: .timezone)
     }
 }
 
