@@ -267,7 +267,7 @@ open class ReverseETLAPI {
      - parameter modelId: (path)  
      - parameter subscriptionId: (path)  
      - parameter count: (query) The number of items to retrieve in a page, between 1 and 100. Default is 10  This parameter exists in alpha. (optional)
-     - parameter cursor: (query) The page to request. Acceptable values to use here are in the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
+     - parameter cursor: (query) The page to request. Acceptable values to use are from the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -293,7 +293,7 @@ open class ReverseETLAPI {
      - parameter modelId: (path)  
      - parameter subscriptionId: (path)  
      - parameter count: (query) The number of items to retrieve in a page, between 1 and 100. Default is 10  This parameter exists in alpha. (optional)
-     - parameter cursor: (query) The page to request. Acceptable values to use here are in the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
+     - parameter cursor: (query) The page to request. Acceptable values to use are from the &#x60;current&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60; keys.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response> 
      */
     open class func listReverseETLSyncStatusesFromModelAndSubscriptionIdWithRequestBuilder(modelId: String, subscriptionId: String, count: Double? = nil, cursor: String? = nil) -> RequestBuilder<ListReverseETLSyncStatusesFromModelAndSubscriptionId200Response> {
