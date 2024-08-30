@@ -15,9 +15,9 @@ public struct ListReverseETLSyncStatusesFromModelAndSubscriptionIdOutput: Codabl
 
     /** The reverse ETL sync statuses that were looked up of the subscriptionId. */
     public var syncStatuses: [ReverseETLSyncStatus]
-    public var pagination: Pagination3?
+    public var pagination: Pagination4?
 
-    public init(syncStatuses: [ReverseETLSyncStatus], pagination: Pagination3? = nil) {
+    public init(syncStatuses: [ReverseETLSyncStatus], pagination: Pagination4? = nil) {
         self.syncStatuses = syncStatuses
         self.pagination = pagination
     }

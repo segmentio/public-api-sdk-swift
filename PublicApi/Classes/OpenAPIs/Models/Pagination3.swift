@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Optional pagination params. Present when output is paginated. */
+/** Pagination parameters. */
 public struct Pagination3: Codable, JSONEncodable, Hashable {
 
     /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
