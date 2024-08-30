@@ -184,7 +184,7 @@ open class FiltersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFiltersByIntegrationId(integrationId: String, productArea: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listFiltersByIntegrationId(integrationId: String, productArea: String, pagination: ListFiltersPaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
         return listFiltersByIntegrationIdWithRequestBuilder(integrationId: integrationId, productArea: productArea, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case .success:
@@ -207,7 +207,7 @@ open class FiltersAPI {
      - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func listFiltersByIntegrationIdWithRequestBuilder(integrationId: String, productArea: String, pagination: PaginationInput? = nil) -> RequestBuilder<Void> {
+    open class func listFiltersByIntegrationIdWithRequestBuilder(integrationId: String, productArea: String, pagination: ListFiltersPaginationInput? = nil) -> RequestBuilder<Void> {
         var localVariablePath = "/filters/{integrationId}"
         let integrationIdPreEscape = "\(APIHelper.mapValueToPathItem(integrationId))"
         let integrationIdPostEscape = integrationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
