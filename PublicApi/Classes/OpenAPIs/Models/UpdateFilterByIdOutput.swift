@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output for UpdateFilterById */
+/** Output for UpdateFilterById. */
 public struct UpdateFilterByIdOutput: Codable, JSONEncodable, Hashable {
 
     public var filter: Filter4

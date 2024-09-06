@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output for DeleteFilterById */
+/** Output for DeleteFilterById. */
 public struct DeleteFilterByIdOutput: Codable, JSONEncodable, Hashable {
 
     /** Filter deleted by filter id. */

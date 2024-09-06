@@ -15,14 +15,13 @@ open class FiltersAPI {
     /**
      Create Filter
      
-     - parameter integrationId: (path)  
      - parameter createFilterInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createFilter(integrationId: String, createFilterInput: CreateFilterInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return createFilterWithRequestBuilder(integrationId: integrationId, createFilterInput: createFilterInput).execute(apiResponseQueue) { result in
+    open class func createFilter(createFilterInput: CreateFilterInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return createFilterWithRequestBuilder(createFilterInput: createFilterInput).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -34,20 +33,16 @@ open class FiltersAPI {
 
     /**
      Create Filter
-     - POST /filters/create/{integrationId}
+     - POST /filters
      - Creates a filter.    • When called, this endpoint may generate the `Filter Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
-     - parameter integrationId: (path)  
      - parameter createFilterInput: (body)  
      - returns: RequestBuilder<Void> 
      */
-    open class func createFilterWithRequestBuilder(integrationId: String, createFilterInput: CreateFilterInput) -> RequestBuilder<Void> {
-        var localVariablePath = "/filters/create/{integrationId}"
-        let integrationIdPreEscape = "\(APIHelper.mapValueToPathItem(integrationId))"
-        let integrationIdPostEscape = integrationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{integrationId}", with: integrationIdPostEscape, options: .literal, range: nil)
+    open class func createFilterWithRequestBuilder(createFilterInput: CreateFilterInput) -> RequestBuilder<Void> {
+        let localVariablePath = "/filters"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFilterInput)
 
@@ -68,7 +63,7 @@ open class FiltersAPI {
      Delete Filter By Id
      
      - parameter id: (path)  
-     - parameter productArea: (query) The product area of the filter  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter.  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -86,17 +81,17 @@ open class FiltersAPI {
 
     /**
      Delete Filter By Id
-     - DELETE /filters/delete/{id}
+     - DELETE /filters/{id}
      - Deletes a filter by id.    • When called, this endpoint may generate the `Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
      - parameter id: (path)  
-     - parameter productArea: (query) The product area of the filter  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter.  This parameter exists in alpha. 
      - returns: RequestBuilder<Void> 
      */
     open class func deleteFilterByIdWithRequestBuilder(id: String, productArea: String) -> RequestBuilder<Void> {
-        var localVariablePath = "/filters/delete/{id}"
+        var localVariablePath = "/filters/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
@@ -123,7 +118,7 @@ open class FiltersAPI {
      Get Filter By Id
      
      - parameter id: (path)  
-     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource)  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource).  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -141,17 +136,17 @@ open class FiltersAPI {
 
     /**
      Get Filter By Id
-     - GET /filters/filter/{id}
+     - GET /filters/{id}
      - Gets a filter by id.
      - BASIC:
        - type: http
        - name: token
      - parameter id: (path)  
-     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource)  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource).  This parameter exists in alpha. 
      - returns: RequestBuilder<Void> 
      */
     open class func getFilterByIdWithRequestBuilder(id: String, productArea: String) -> RequestBuilder<Void> {
-        var localVariablePath = "/filters/filter/{id}"
+        var localVariablePath = "/filters/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
@@ -177,8 +172,8 @@ open class FiltersAPI {
     /**
      List Filters By Integration Id
      
-     - parameter integrationId: (path)  
-     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource)  This parameter exists in alpha. 
+     - parameter integrationId: (query) The integration id used to fetch filters.  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource).  This parameter exists in alpha. 
      - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
@@ -197,26 +192,24 @@ open class FiltersAPI {
 
     /**
      List Filters By Integration Id
-     - GET /filters/{integrationId}
+     - GET /filters
      - Lists filters by integration id.
      - BASIC:
        - type: http
        - name: token
-     - parameter integrationId: (path)  
-     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource)  This parameter exists in alpha. 
+     - parameter integrationId: (query) The integration id used to fetch filters.  This parameter exists in alpha. 
+     - parameter productArea: (query) The product area of the filter, which should be spaces (endpoint table should be able to determine the resource).  This parameter exists in alpha. 
      - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<Void> 
      */
     open class func listFiltersByIntegrationIdWithRequestBuilder(integrationId: String, productArea: String, pagination: ListFiltersPaginationInput? = nil) -> RequestBuilder<Void> {
-        var localVariablePath = "/filters/{integrationId}"
-        let integrationIdPreEscape = "\(APIHelper.mapValueToPathItem(integrationId))"
-        let integrationIdPostEscape = integrationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{integrationId}", with: integrationIdPostEscape, options: .literal, range: nil)
+        let localVariablePath = "/filters"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "integrationId": integrationId.encodeToJSON(),
             "productArea": productArea.encodeToJSON(),
             "pagination": pagination?.encodeToJSON(),
         ])
@@ -254,7 +247,7 @@ open class FiltersAPI {
 
     /**
      Update Filter By Id
-     - PATCH /filters/update/{id}
+     - PATCH /filters/{id}
      - Updates a filter by id.    • When called, this endpoint may generate the `Filter Updated` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
@@ -264,7 +257,7 @@ open class FiltersAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func updateFilterByIdWithRequestBuilder(id: String, updateFilterByIdInput: UpdateFilterByIdInput) -> RequestBuilder<Void> {
-        var localVariablePath = "/filters/update/{id}"
+        var localVariablePath = "/filters/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)

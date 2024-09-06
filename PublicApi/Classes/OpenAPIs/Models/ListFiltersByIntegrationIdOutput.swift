@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output for ListFiltersByIntegrationId */
+/** Output for ListFiltersByIntegrationId. */
 public struct ListFiltersByIntegrationIdOutput: Codable, JSONEncodable, Hashable {
 
     /** Filter output. */

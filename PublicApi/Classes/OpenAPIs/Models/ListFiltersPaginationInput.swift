@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Pagination for list filters */
+/** Pagination for list filters. */
 public struct ListFiltersPaginationInput: Codable, JSONEncodable, Hashable {
 
     /** The offset. */

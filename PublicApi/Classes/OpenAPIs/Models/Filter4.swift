@@ -12,23 +12,23 @@ import AnyCodable
 
 public struct Filter4: Codable, JSONEncodable, Hashable {
 
-    /** The newly created filter ID */
+    /** The newly created filter ID. */
     public var id: String
-    /** The workspace id to create the filter */
+    /** The workspace id to create the filter. */
     public var workspaceId: String
-    /** The integration id of the resource */
+    /** The integration id of the resource. */
     public var integrationId: String
-    /** Whether the filter is enabled */
+    /** Whether the filter is enabled. */
     public var enabled: Bool?
-    /** Whether the event is dropped */
+    /** Whether the event is dropped. */
     public var drop: Bool?
-    /** The name of the filter */
+    /** The name of the filter. */
     public var name: String
-    /** The description of the filter */
+    /** The description of the filter. */
     public var description: String?
-    /** The \"if\" statement for a filter */
+    /** The \"if\" statement for a filter. */
     public var _if: String
-    /** The product area of the filter, which should be spaces */
+    /** The product area of the filter, which should be spaces. */
     public var productArea: String?
     /** Describes the properties to be dropped on events that match the \"if\" statement. */
     public var propertyDrops: [String]?

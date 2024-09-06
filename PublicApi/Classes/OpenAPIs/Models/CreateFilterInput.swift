@@ -13,24 +13,27 @@ import AnyCodable
 /** Input for CreateFilter. */
 public struct CreateFilterInput: Codable, JSONEncodable, Hashable {
 
-    /** Whether the filter is enabled */
+    /** The integration id of the resource. */
+    public var integrationId: String
+    /** Whether the filter is enabled. */
     public var enabled: Bool?
-    /** Whether the event is dropped */
+    /** Whether the event is dropped. */
     public var drop: Bool?
-    /** The name of the filter */
+    /** The name of the filter. */
     public var name: String
-    /** The description of the filter */
+    /** The description of the filter. */
     public var description: String?
-    /** The \"if\" statement for a filter */
+    /** The \"if\" statement for a filter. */
     public var _if: String
-    /** The product area of the filter, which should be spaces (endpoint table should be able to determine the resource) */
+    /** The product area of the filter, which should be spaces (endpoint table should be able to determine the resource). */
     public var productArea: String?
     /** Describes the properties to be dropped on events that match the \"if\" statement. */
     public var propertyDrops: [String]?
     /** Describes the properties allowed on events that match the \"if\" statement. */
     public var allowProperties: [String]?
 
-    public init(enabled: Bool? = nil, drop: Bool? = nil, name: String, description: String? = nil, _if: String, productArea: String? = nil, propertyDrops: [String]? = nil, allowProperties: [String]? = nil) {
+    public init(integrationId: String, enabled: Bool? = nil, drop: Bool? = nil, name: String, description: String? = nil, _if: String, productArea: String? = nil, propertyDrops: [String]? = nil, allowProperties: [String]? = nil) {
+        self.integrationId = integrationId
         self.enabled = enabled
         self.drop = drop
         self.name = name
@@ -42,6 +45,7 @@ public struct CreateFilterInput: Codable, JSONEncodable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case integrationId
         case enabled
         case drop
         case name
@@ -56,6 +60,7 @@ public struct CreateFilterInput: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(integrationId, forKey: .integrationId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encodeIfPresent(drop, forKey: .drop)
         try container.encode(name, forKey: .name)

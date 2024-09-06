@@ -10,22 +10,22 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Input for UpdateFilterById */
+/** Input for UpdateFilterById. */
 public struct UpdateFilterByIdInput: Codable, JSONEncodable, Hashable {
 
-    /** The integration id of the resource */
+    /** The integration id of the resource. */
     public var integrationId: String
-    /** Whether the filter is enabled */
+    /** Whether the filter is enabled. */
     public var enabled: Bool?
-    /** Whether the event is dropped */
+    /** Whether the event is dropped. */
     public var drop: Bool?
-    /** The name of the filter */
+    /** The name of the filter. */
     public var name: String
-    /** The description of the filter */
+    /** The description of the filter. */
     public var description: String?
-    /** The \"if\" statement for a filter */
+    /** The \"if\" statement for a filter. */
     public var _if: String
-    /** The product area of the filter, which should be spaces (endpoint table should be able to determine the resource) */
+    /** The product area of the filter, which should be spaces (endpoint table should be able to determine the resource). */
     public var productArea: String?
     /** Describes the properties to be dropped on events that match the \"if\" statement. */
     public var propertyDrops: [String]?
