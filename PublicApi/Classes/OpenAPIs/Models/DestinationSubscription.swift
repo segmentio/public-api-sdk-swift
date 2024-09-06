@@ -31,10 +31,9 @@ public struct DestinationSubscription: Codable, JSONEncodable, Hashable {
     public var trigger: String
     /** The unique identifier for the linked ReverseETLModel, if this part of a Reverse ETL connection. */
     public var modelId: String?
-    /** The schedule for the Reverse ETL subscription. */
-    public var reverseETLSchedule: AnyCodable?
+    public var reverseETLSchedule: ReverseETLSchedule?
 
-    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: JSON?, trigger: String, modelId: String? = nil, reverseETLSchedule: AnyCodable? = nil) {
+    public init(id: String, name: String, actionId: String, actionSlug: String, destinationId: String, enabled: Bool, settings: JSON?, trigger: String, modelId: String? = nil, reverseETLSchedule: ReverseETLSchedule? = nil) {
         self.id = id
         self.name = name
         self.actionId = actionId
