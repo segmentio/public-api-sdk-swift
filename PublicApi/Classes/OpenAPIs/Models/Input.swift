@@ -23,9 +23,9 @@ public struct Input: Codable, JSONEncodable, Hashable {
     public var settings: JSON?
     /** (Reverse ETL only) The reverse ETL model to attach this subscription to. */
     public var reverseETLModelId: String?
-    public var reverseETLSchedule: ReverseETLSchedule?
+    public var reverseETLSchedule: ReverseETLSchedule1?
 
-    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: JSON? = nil, reverseETLModelId: String? = nil, reverseETLSchedule: ReverseETLSchedule? = nil) {
+    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: JSON? = nil, reverseETLModelId: String? = nil, reverseETLSchedule: ReverseETLSchedule1? = nil) {
         self.name = name
         self.trigger = trigger
         self.enabled = enabled
