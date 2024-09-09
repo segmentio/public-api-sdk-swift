@@ -21,12 +21,17 @@ public struct Input: Codable, JSONEncodable, Hashable {
     public var enabled: Bool?
     /** The fields used for configuring this action. */
     public var settings: JSON?
+    /** (Reverse ETL only) The reverse ETL model to attach this subscription to. */
+    public var reverseETLModelId: String?
+    public var reverseETLSchedule: ReverseETLSchedule1?
 
-    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: JSON? = nil) {
+    public init(name: String? = nil, trigger: String? = nil, enabled: Bool? = nil, settings: JSON? = nil, reverseETLModelId: String? = nil, reverseETLSchedule: ReverseETLSchedule1? = nil) {
         self.name = name
         self.trigger = trigger
         self.enabled = enabled
         self.settings = settings
+        self.reverseETLModelId = reverseETLModelId
+        self.reverseETLSchedule = reverseETLSchedule
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +39,8 @@ public struct Input: Codable, JSONEncodable, Hashable {
         case trigger
         case enabled
         case settings
+        case reverseETLModelId
+        case reverseETLSchedule
     }
 
     // Encodable protocol methods
@@ -44,6 +51,8 @@ public struct Input: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(trigger, forKey: .trigger)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encodeIfPresent(settings, forKey: .settings)
+        try container.encodeIfPresent(reverseETLModelId, forKey: .reverseETLModelId)
+        try container.encodeIfPresent(reverseETLSchedule, forKey: .reverseETLSchedule)
     }
 }
 
