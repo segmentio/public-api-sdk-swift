@@ -34,7 +34,7 @@ open class FiltersAPI {
     /**
      Create Filter
      - POST /filters
-     - Creates a filter.    • When called, this endpoint may generate the `Filter Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a filter.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -81,7 +81,7 @@ open class FiltersAPI {
     /**
      Delete Filter By Id
      - DELETE /filters/{id}
-     - Deletes a filter by id.    • When called, this endpoint may generate the `Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes a filter by id.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -131,7 +131,7 @@ open class FiltersAPI {
     /**
      Get Filter By Id
      - GET /filters/{id}
-     - Gets a filter by id.
+     - Gets a filter by id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Filters feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -182,7 +182,7 @@ open class FiltersAPI {
     /**
      List Filters By Integration Id
      - GET /filters
-     - Lists filters by Integration id.
+     - Lists filters by Integration id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Filters feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -235,7 +235,7 @@ open class FiltersAPI {
     /**
      Update Filter By Id
      - PATCH /filters/{id}
-     - Updates a filter by id.    • When called, this endpoint may generate the `Filter Updated` event in the [audit trail](/tag/Audit-Trail).       
+     - Updates a filter by id and replaces the existing filter.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Updated` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
