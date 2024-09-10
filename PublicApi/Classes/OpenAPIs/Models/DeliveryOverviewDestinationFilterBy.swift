@@ -21,13 +21,13 @@ public struct DeliveryOverviewDestinationFilterBy: Codable, JSONEncodable, Hasha
     public var eventType: [String]?
     /** A list of strings of app versions. */
     public var appVersion: [String]?
-    /** A list of strings of subscriptionIDs for Actions Destinations. */
+    /** A list of strings of subscription IDs for Actions Destinations. */
     public var subscriptionId: [String]?
     /** A list of strings of event context IDs from a Linked Audience mapping/activation. */
     public var activationId: [String]?
-    /** A list of strings of audienceIDs for a Linked Audience. */
+    /** A list of strings of audience IDs for a Linked Audience. */
     public var audienceId: [String]?
-    /** A list of strings of spaceIDs for a Linked Audience. */
+    /** A list of strings of space IDs for a Linked Audience. */
     public var spaceId: [String]?
 
     public init(discardReason: [String]? = nil, eventName: [String]? = nil, eventType: [String]? = nil, appVersion: [String]? = nil, subscriptionId: [String]? = nil, activationId: [String]? = nil, audienceId: [String]? = nil, spaceId: [String]? = nil) {

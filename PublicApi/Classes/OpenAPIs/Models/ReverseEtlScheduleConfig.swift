@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct ReverseEtlScheduleConfig: Codable, JSONEncodable, Hashable {
 
-    /** Duration is specified as a string, eg: 15m, 3h25m30s. */
+    /** Duration is specified as a string, EG: 15m, 3h25m30s. */
     public var interval: String
     /** Days of the week. */
     public var days: [Double]

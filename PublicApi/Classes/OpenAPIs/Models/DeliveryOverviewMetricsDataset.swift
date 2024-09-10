@@ -13,17 +13,17 @@ import AnyCodable
 /** Dataset within GetDeliveryOverviewMetricsBetaOutput. */
 public struct DeliveryOverviewMetricsDataset: Codable, JSONEncodable, Hashable {
 
-    /** The name of the event if groupBy[] included 'eventName' in the request. */
+    /** The name of the event if group By[] included 'event Name' in the request. */
     public var eventName: String?
-    /** The version of the app if groupBy[] included 'appVersion' in the request. */
+    /** The version of the app if group By[] included 'app Version' in the request. */
     public var appVersion: String?
-    /** The event type if groupBy[] included 'eventType' in the request. */
+    /** The event type if group By[] included 'event Type' in the request. */
     public var eventType: String?
-    /** The discard reason for dropped events if groupBy[] included 'discardReason' in the request. */
+    /** The discard reason for dropped events if group By[] included 'discard Reason' in the request. */
     public var discardReason: String?
-    /** Holds the count of all event counts over the timeframe of the series. */
+    /** Holds the count of all event counts over the time frame of the series. */
     public var total: Double
-    /** A list of the event counts broken down by the requested granularity, timeframe, and groupBy options. */
+    /** A list of the event counts broken down by the requested granularity, time frame, and group By options. */
     public var series: [DeliveryOverviewMetricsDatapoint]
     /** The number of events successfully delivered upon retry. */
     public var totalRetryCount: Double?

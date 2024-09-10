@@ -15,7 +15,7 @@ public struct DeliveryOverviewMetricsDatapoint: Codable, JSONEncodable, Hashable
 
     /** The timestamp corresponding to the beginning of the window given by the requested granularity. */
     public var time: String
-    /** Holds the number of events within the specified granularity and groupBy options. */
+    /** Holds the number of events within the specified granularity and group By options. */
     public var count: Double
     /** The number of retried events that were successfully delivered. */
     public var retryCount: Double?
