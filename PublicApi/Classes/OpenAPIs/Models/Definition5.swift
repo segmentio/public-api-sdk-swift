@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. Note: The definition for a Computed Trait updated via the API is not editable via the Segment App. */
+/** Query language definition and type. Note: The definition for a Computed Trait updated using the API is not editable through the Segment App. */
 public struct Definition5: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

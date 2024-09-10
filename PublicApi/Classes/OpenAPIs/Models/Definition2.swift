@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated via the API is not editable via the Segment App. */
+/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated using the API is not editable through the Segment App. */
 public struct Definition2: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

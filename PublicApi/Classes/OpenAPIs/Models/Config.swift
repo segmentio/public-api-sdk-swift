@@ -13,7 +13,7 @@ import AnyCodable
 /** Config contains interval duration in case of periodic or day and hours in case of specific_days. Empty if strategy is MANUAL. */
 public struct Config: Codable, JSONEncodable, Hashable {
 
-    /** Duration is specified as a string, eg: 15m, 3h25m30s. */
+    /** Duration is specified as a string, EG: 15m, 3h25m30s. */
     public var interval: String
     /** Days of the week. */
     public var days: [Double]
