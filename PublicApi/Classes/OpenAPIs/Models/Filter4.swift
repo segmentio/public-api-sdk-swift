@@ -20,29 +20,29 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
     public var integrationId: String
     /** Whether the filter is enabled. */
     public var enabled: Bool?
-    /** Whether the event is dropped. */
-    public var drop: Bool?
     /** The name of the filter. */
     public var name: String?
     /** The description of the filter. */
     public var description: String?
     /** The \"if\" statement for a filter. */
     public var _if: String?
+    /** Whether the event is dropped. */
+    public var drop: Bool?
     /** Describes the properties to be dropped on events that match the \"if\" statement. */
-    public var propertyDrops: [String]?
+    public var dropProperties: [String]?
     /** Describes the properties allowed on events that match the \"if\" statement. */
     public var allowProperties: [String]?
 
-    public init(id: String, workspaceId: String, integrationId: String, enabled: Bool? = nil, drop: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, propertyDrops: [String]? = nil, allowProperties: [String]? = nil) {
+    public init(id: String, workspaceId: String, integrationId: String, enabled: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, drop: Bool? = nil, dropProperties: [String]? = nil, allowProperties: [String]? = nil) {
         self.id = id
         self.workspaceId = workspaceId
         self.integrationId = integrationId
         self.enabled = enabled
-        self.drop = drop
         self.name = name
         self.description = description
         self._if = _if
-        self.propertyDrops = propertyDrops
+        self.drop = drop
+        self.dropProperties = dropProperties
         self.allowProperties = allowProperties
     }
 
@@ -51,11 +51,11 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
         case workspaceId
         case integrationId
         case enabled
-        case drop
         case name
         case description
         case _if = "if"
-        case propertyDrops
+        case drop
+        case dropProperties
         case allowProperties
     }
 
@@ -67,11 +67,11 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
         try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(integrationId, forKey: .integrationId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encodeIfPresent(drop, forKey: .drop)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(_if, forKey: ._if)
-        try container.encodeIfPresent(propertyDrops, forKey: .propertyDrops)
+        try container.encodeIfPresent(drop, forKey: .drop)
+        try container.encodeIfPresent(dropProperties, forKey: .dropProperties)
         try container.encodeIfPresent(allowProperties, forKey: .allowProperties)
     }
 }
