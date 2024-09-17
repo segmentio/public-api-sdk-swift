@@ -13,15 +13,15 @@ import AnyCodable
 open class SpaceFiltersAPI {
 
     /**
-     Create Filter
+     Create Filter for Space
      
-     - parameter createFilterInput: (body)  
+     - parameter createFilterForSpaceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createFilter(createFilterInput: CreateFilterInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateFilter200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createFilterWithRequestBuilder(createFilterInput: createFilterInput).execute(apiResponseQueue) { result in
+    open class func createFilterForSpace(createFilterForSpaceInput: CreateFilterForSpaceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateFilterForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createFilterForSpaceWithRequestBuilder(createFilterForSpaceInput: createFilterForSpaceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -32,19 +32,19 @@ open class SpaceFiltersAPI {
     }
 
     /**
-     Create Filter
+     Create Filter for Space
      - POST /filters
-     - Creates a filter.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Created` event in the [audit trail](/tag/Audit-Trail).       
+     - Creates a filter for a space. A space filter applies to events coming from all Sources connected to a space.    • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Created` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
-     - parameter createFilterInput: (body)  
-     - returns: RequestBuilder<CreateFilter200Response> 
+     - parameter createFilterForSpaceInput: (body)  
+     - returns: RequestBuilder<CreateFilterForSpace200Response> 
      */
-    open class func createFilterWithRequestBuilder(createFilterInput: CreateFilterInput) -> RequestBuilder<CreateFilter200Response> {
+    open class func createFilterForSpaceWithRequestBuilder(createFilterForSpaceInput: CreateFilterForSpaceInput) -> RequestBuilder<CreateFilterForSpace200Response> {
         let localVariablePath = "/filters"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFilterInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFilterForSpaceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -54,7 +54,7 @@ open class SpaceFiltersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateFilter200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateFilterForSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -81,7 +81,7 @@ open class SpaceFiltersAPI {
     /**
      Delete Filter By Id
      - DELETE /filters/{id}
-     - Deletes a filter by id.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes a filter by id.    • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Deleted` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
@@ -131,7 +131,7 @@ open class SpaceFiltersAPI {
     /**
      Get Filter By Id
      - GET /filters/{id}
-     - Gets a filter by id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.
+     - Gets a filter by id.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -160,16 +160,16 @@ open class SpaceFiltersAPI {
     }
 
     /**
-     List Filters By Integration Id
+     List Filters for Space
      
-     - parameter integrationId: (query) The integration id used to fetch filters.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
+     - parameter integrationId: (query) The Space Id for which to fetch filters  This parameter exists in beta. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in beta. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFiltersByIntegrationId(integrationId: String, pagination: ListFiltersPaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFiltersByIntegrationId200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listFiltersByIntegrationIdWithRequestBuilder(integrationId: integrationId, pagination: pagination).execute(apiResponseQueue) { result in
+    open class func listFiltersForSpace(integrationId: String, pagination: ListFiltersPaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListFiltersForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listFiltersForSpaceWithRequestBuilder(integrationId: integrationId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -180,17 +180,17 @@ open class SpaceFiltersAPI {
     }
 
     /**
-     List Filters By Integration Id
+     List Filters for Space
      - GET /filters
-     - Lists filters by Integration id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.
+     - Lists filters for a space.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
-     - parameter integrationId: (query) The integration id used to fetch filters.  This parameter exists in alpha. 
-     - parameter pagination: (query) Pagination parameters.  This parameter exists in alpha. (optional)
-     - returns: RequestBuilder<ListFiltersByIntegrationId200Response> 
+     - parameter integrationId: (query) The Space Id for which to fetch filters  This parameter exists in beta. 
+     - parameter pagination: (query) Pagination parameters.  This parameter exists in beta. (optional)
+     - returns: RequestBuilder<ListFiltersForSpace200Response> 
      */
-    open class func listFiltersByIntegrationIdWithRequestBuilder(integrationId: String, pagination: ListFiltersPaginationInput? = nil) -> RequestBuilder<ListFiltersByIntegrationId200Response> {
+    open class func listFiltersForSpaceWithRequestBuilder(integrationId: String, pagination: ListFiltersPaginationInput? = nil) -> RequestBuilder<ListFiltersForSpace200Response> {
         let localVariablePath = "/filters"
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -207,7 +207,7 @@ open class SpaceFiltersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ListFiltersByIntegrationId200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ListFiltersForSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -235,7 +235,7 @@ open class SpaceFiltersAPI {
     /**
      Update Filter By Id
      - PATCH /filters/{id}
-     - Updates a filter by id and replaces the existing filter.    • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Updated` event in the [audit trail](/tag/Audit-Trail).       
+     - Updates a filter by id and replaces the existing filter.    • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.    • In order to successfully call this endpoint, the specified Workspace needs to have the Space Filters feature enabled. Please reach out to your customer success manager for more information.   • When called, this endpoint may generate the `Filter Updated` event in the [audit trail](/tag/Audit-Trail).       
      - BASIC:
        - type: http
        - name: token
