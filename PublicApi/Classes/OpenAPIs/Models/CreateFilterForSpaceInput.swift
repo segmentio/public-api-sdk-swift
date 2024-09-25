@@ -13,7 +13,7 @@ import AnyCodable
 /** Input for CreateFilter. */
 public struct CreateFilterForSpaceInput: Codable, JSONEncodable, Hashable {
 
-    /** The Space id to filer on. */
+    /** The Space id to filter on. */
     public var integrationId: String
     /** Whether the filter is enabled. */
     public var enabled: Bool?

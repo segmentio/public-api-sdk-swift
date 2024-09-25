@@ -32,8 +32,12 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
     public var dropProperties: [String]?
     /** Describes the properties allowed on events that match the \"if\" statement. */
     public var allowProperties: [String]?
+    /** The timestamp of this filter's creation. */
+    public var createdAt: String
+    /** The timestamp of this filter's last change. */
+    public var updatedAt: String
 
-    public init(id: String, workspaceId: String, integrationId: String, enabled: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, drop: Bool? = nil, dropProperties: [String]? = nil, allowProperties: [String]? = nil) {
+    public init(id: String, workspaceId: String, integrationId: String, enabled: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, drop: Bool? = nil, dropProperties: [String]? = nil, allowProperties: [String]? = nil, createdAt: String, updatedAt: String) {
         self.id = id
         self.workspaceId = workspaceId
         self.integrationId = integrationId
@@ -44,6 +48,8 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
         self.drop = drop
         self.dropProperties = dropProperties
         self.allowProperties = allowProperties
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -57,6 +63,8 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
         case drop
         case dropProperties
         case allowProperties
+        case createdAt
+        case updatedAt
     }
 
     // Encodable protocol methods
@@ -73,6 +81,8 @@ public struct Filter4: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(drop, forKey: .drop)
         try container.encodeIfPresent(dropProperties, forKey: .dropProperties)
         try container.encodeIfPresent(allowProperties, forKey: .allowProperties)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(updatedAt, forKey: .updatedAt)
     }
 }
 
