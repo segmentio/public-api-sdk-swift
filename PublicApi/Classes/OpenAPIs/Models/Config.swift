@@ -21,12 +21,15 @@ public struct Config: Codable, JSONEncodable, Hashable {
     public var hours: [Double]
     /** Timezone for the specified times. */
     public var timezone: String
+    /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
+    public var spec: String
 
-    public init(interval: String, days: [Double], hours: [Double], timezone: String) {
+    public init(interval: String, days: [Double], hours: [Double], timezone: String, spec: String) {
         self.interval = interval
         self.days = days
         self.hours = hours
         self.timezone = timezone
+        self.spec = spec
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +37,7 @@ public struct Config: Codable, JSONEncodable, Hashable {
         case days
         case hours
         case timezone
+        case spec
     }
 
     // Encodable protocol methods
@@ -44,6 +48,7 @@ public struct Config: Codable, JSONEncodable, Hashable {
         try container.encode(days, forKey: .days)
         try container.encode(hours, forKey: .hours)
         try container.encode(timezone, forKey: .timezone)
+        try container.encode(spec, forKey: .spec)
     }
 }
 
