@@ -58,10 +58,8 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
     public var supportedRegions: [String]?
     /** The list of regional endpoints for this Destination. */
     public var regionEndpoints: [String]?
-    /** This Destination's support for multiple instance types. */
-    public var multiInstanceSupportedVersion: String?
 
-    public init(id: String, name: String, description: String, slug: String, logos: Logos, options: [IntegrationOptionBeta], status: Status, previousNames: [String], categories: [String], website: String, components: [DestinationMetadataComponentV1], supportedFeatures: SupportedFeatures, supportedMethods: SupportedMethods, supportedPlatforms: SupportedPlatforms, actions: [DestinationMetadataActionV1], presets: [DestinationMetadataSubscriptionPresetV1], contacts: [Contact]? = nil, partnerOwned: Bool? = nil, supportedRegions: [String]? = nil, regionEndpoints: [String]? = nil, multiInstanceSupportedVersion: String? = nil) {
+    public init(id: String, name: String, description: String, slug: String, logos: Logos, options: [IntegrationOptionBeta], status: Status, previousNames: [String], categories: [String], website: String, components: [DestinationMetadataComponentV1], supportedFeatures: SupportedFeatures, supportedMethods: SupportedMethods, supportedPlatforms: SupportedPlatforms, actions: [DestinationMetadataActionV1], presets: [DestinationMetadataSubscriptionPresetV1], contacts: [Contact]? = nil, partnerOwned: Bool? = nil, supportedRegions: [String]? = nil, regionEndpoints: [String]? = nil) {
         self.id = id
         self.name = name
         self.description = description
@@ -82,7 +80,6 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         self.partnerOwned = partnerOwned
         self.supportedRegions = supportedRegions
         self.regionEndpoints = regionEndpoints
-        self.multiInstanceSupportedVersion = multiInstanceSupportedVersion
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -106,7 +103,6 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         case partnerOwned
         case supportedRegions
         case regionEndpoints
-        case multiInstanceSupportedVersion
     }
 
     // Encodable protocol methods
@@ -133,7 +129,6 @@ public struct DestinationMetadataV1: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(partnerOwned, forKey: .partnerOwned)
         try container.encodeIfPresent(supportedRegions, forKey: .supportedRegions)
         try container.encodeIfPresent(regionEndpoints, forKey: .regionEndpoints)
-        try container.encodeIfPresent(multiInstanceSupportedVersion, forKey: .multiInstanceSupportedVersion)
     }
 }
 
