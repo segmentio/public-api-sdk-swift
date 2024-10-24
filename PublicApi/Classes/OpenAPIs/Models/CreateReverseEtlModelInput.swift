@@ -13,11 +13,6 @@ import AnyCodable
 /** Defines how to create a new Model. */
 public struct CreateReverseEtlModelInput: Codable, JSONEncodable, Hashable {
 
-    public enum ScheduleStrategy: String, Codable, CaseIterable {
-        case manual = "MANUAL"
-        case periodic = "PERIODIC"
-        case specificDays = "SPECIFIC_DAYS"
-    }
     /** Indicates which Source to attach this model to. */
     public var sourceId: String
     /** A short, human-readable description of the Model. */
@@ -26,22 +21,16 @@ public struct CreateReverseEtlModelInput: Codable, JSONEncodable, Hashable {
     public var description: String
     /** Indicates whether the Model should have syncs enabled. When disabled, no syncs will be triggered, regardless of the enabled status of the attached destinations/subscriptions. */
     public var enabled: Bool
-    /** Determines the strategy used for triggering syncs, which will be used in conjunction with scheduleConfig. */
-    public var scheduleStrategy: ScheduleStrategy
-    /** Depending on the chosen strategy, configures the schedule for this model. */
-    public var scheduleConfig: JSON?
     /** The SQL query that will be executed to extract data from the connected Source. */
     public var query: String
     /** Indicates the column named in `query` that should be used to uniquely identify the extracted records. */
     public var queryIdentifierColumn: String
 
-    public init(sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: ScheduleStrategy, scheduleConfig: JSON?, query: String, queryIdentifierColumn: String) {
+    public init(sourceId: String, name: String, description: String, enabled: Bool, query: String, queryIdentifierColumn: String) {
         self.sourceId = sourceId
         self.name = name
         self.description = description
         self.enabled = enabled
-        self.scheduleStrategy = scheduleStrategy
-        self.scheduleConfig = scheduleConfig
         self.query = query
         self.queryIdentifierColumn = queryIdentifierColumn
     }
@@ -51,8 +40,6 @@ public struct CreateReverseEtlModelInput: Codable, JSONEncodable, Hashable {
         case name
         case description
         case enabled
-        case scheduleStrategy
-        case scheduleConfig
         case query
         case queryIdentifierColumn
     }
@@ -65,8 +52,6 @@ public struct CreateReverseEtlModelInput: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(description, forKey: .description)
         try container.encode(enabled, forKey: .enabled)
-        try container.encode(scheduleStrategy, forKey: .scheduleStrategy)
-        try container.encode(scheduleConfig, forKey: .scheduleConfig)
         try container.encode(query, forKey: .query)
         try container.encode(queryIdentifierColumn, forKey: .queryIdentifierColumn)
     }

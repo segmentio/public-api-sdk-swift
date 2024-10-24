@@ -23,22 +23,17 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
     public var description: String
     /** Indicates whether the Model should have syncs enabled. When disabled, no syncs will be triggered, regardless of the enabled status of the attached destinations/subscriptions. */
     public var enabled: Bool
-    /** Determines the strategy used for triggering syncs, which will be used in conjunction with scheduleConfig.  Possible values: \"manual\", \"periodic\", \"specific_days\". */
-    public var scheduleStrategy: String
-    public var scheduleConfig: ScheduleConfig?
     /** The SQL query that will be executed to extract data from the connected Source. */
     public var query: String
     /** Indicates the column named in `query` that should be used to uniquely identify the extracted records. */
     public var queryIdentifierColumn: String
 
-    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, scheduleStrategy: String, scheduleConfig: ScheduleConfig? = nil, query: String, queryIdentifierColumn: String) {
+    public init(id: String, sourceId: String, name: String, description: String, enabled: Bool, query: String, queryIdentifierColumn: String) {
         self.id = id
         self.sourceId = sourceId
         self.name = name
         self.description = description
         self.enabled = enabled
-        self.scheduleStrategy = scheduleStrategy
-        self.scheduleConfig = scheduleConfig
         self.query = query
         self.queryIdentifierColumn = queryIdentifierColumn
     }
@@ -49,8 +44,6 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
         case name
         case description
         case enabled
-        case scheduleStrategy
-        case scheduleConfig
         case query
         case queryIdentifierColumn
     }
@@ -64,8 +57,6 @@ public struct ReverseEtlModel: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(description, forKey: .description)
         try container.encode(enabled, forKey: .enabled)
-        try container.encode(scheduleStrategy, forKey: .scheduleStrategy)
-        try container.encodeIfPresent(scheduleConfig, forKey: .scheduleConfig)
         try container.encode(query, forKey: .query)
         try container.encode(queryIdentifierColumn, forKey: .queryIdentifierColumn)
     }

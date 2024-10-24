@@ -19,7 +19,7 @@ public struct Config: Codable, JSONEncodable, Hashable {
     public var days: [Double]
     /** Hours of the day. */
     public var hours: [Double]
-    /** Timezone for the specified times. */
+    /** Timezone respected by the cron string. Format must be in IANA Timezone Identifier. Example: 'America/Los_Angeles'. */
     public var timezone: String
     /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
     public var spec: String

@@ -14,11 +14,12 @@ import AnyCodable
 public struct ReverseETLSchedule: Codable, JSONEncodable, Hashable {
 
     public enum Strategy: String, Codable, CaseIterable {
+        case cron = "CRON"
         case manual = "MANUAL"
         case periodic = "PERIODIC"
         case specificDays = "SPECIFIC_DAYS"
     }
-    /** Strategy supports three modes: Periodic, Specific Days, or Manual. */
+    /** Strategy supports: Periodic, Specific Days, Manual, CRON. */
     public var strategy: Strategy
     public var config: Config?
 
