@@ -23,13 +23,16 @@ public struct SupportedPlatforms: Codable, JSONEncodable, Hashable {
     public var warehouse: Bool?
     /** Whether this Destination supports cloud app object events. */
     public var cloudAppObject: Bool?
+    /** Whether this Destination supports linked audiences. */
+    public var linkedAudiences: Bool?
 
-    public init(browser: Bool? = nil, server: Bool? = nil, mobile: Bool? = nil, warehouse: Bool? = nil, cloudAppObject: Bool? = nil) {
+    public init(browser: Bool? = nil, server: Bool? = nil, mobile: Bool? = nil, warehouse: Bool? = nil, cloudAppObject: Bool? = nil, linkedAudiences: Bool? = nil) {
         self.browser = browser
         self.server = server
         self.mobile = mobile
         self.warehouse = warehouse
         self.cloudAppObject = cloudAppObject
+        self.linkedAudiences = linkedAudiences
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -38,6 +41,7 @@ public struct SupportedPlatforms: Codable, JSONEncodable, Hashable {
         case mobile
         case warehouse
         case cloudAppObject
+        case linkedAudiences
     }
 
     // Encodable protocol methods
@@ -49,6 +53,7 @@ public struct SupportedPlatforms: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(mobile, forKey: .mobile)
         try container.encodeIfPresent(warehouse, forKey: .warehouse)
         try container.encodeIfPresent(cloudAppObject, forKey: .cloudAppObject)
+        try container.encodeIfPresent(linkedAudiences, forKey: .linkedAudiences)
     }
 }
 
