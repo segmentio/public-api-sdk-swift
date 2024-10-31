@@ -14,7 +14,7 @@ public struct ReverseEtlCronScheduleConfig: Codable, JSONEncodable, Hashable {
 
     /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
     public var spec: String
-    /** Timezone for the specified times. */
+    /** Timezone respected by the cron string. Format must be in IANA Timezone Identifier. Example: 'America/Los_Angeles'. */
     public var timezone: String
 
     public init(spec: String, timezone: String) {
