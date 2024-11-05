@@ -10,16 +10,16 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output of the Delivery Overview public API endpoints. */
+/** Output of the Delivery Overview public api endpoints. */
 public struct GetDeliveryOverviewMetricsBetaOutput: Codable, JSONEncodable, Hashable {
 
     /** The total number of events for the returned dataset. */
     public var total: Double
     /** Represents the list of series broken down by the dimensions and time frame requested. */
     public var dataset: [DeliveryOverviewMetricsDataset]
-    public var pagination: Pagination1
+    public var pagination: Pagination2
 
-    public init(total: Double, dataset: [DeliveryOverviewMetricsDataset], pagination: Pagination1) {
+    public init(total: Double, dataset: [DeliveryOverviewMetricsDataset], pagination: Pagination2) {
         self.total = total
         self.dataset = dataset
         self.pagination = pagination
