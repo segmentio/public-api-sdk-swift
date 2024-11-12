@@ -17,9 +17,9 @@ public struct ReplaceMessagingSubscriptionsInSpacesAlphaOutput: Codable, JSONEnc
     public var successes: [MessageSubscriptionResponse]
     /** Array of failure subscription status. */
     public var failures: [MessageSubscriptionResponse]
-    public var pagination: Pagination2?
+    public var pagination: Pagination?
 
-    public init(successes: [MessageSubscriptionResponse], failures: [MessageSubscriptionResponse], pagination: Pagination2? = nil) {
+    public init(successes: [MessageSubscriptionResponse], failures: [MessageSubscriptionResponse], pagination: Pagination? = nil) {
         self.successes = successes
         self.failures = failures
         self.pagination = pagination
