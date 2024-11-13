@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output of the Delivery Overview public api endpoints. */
+/** Output of the Delivery Overview public API endpoints. */
 public struct GetDeliveryOverviewMetricsBetaOutput: Codable, JSONEncodable, Hashable {
 
     /** The total number of events for the returned dataset. */
