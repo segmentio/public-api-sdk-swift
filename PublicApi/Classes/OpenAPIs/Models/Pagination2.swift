@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Information about the pagination of this response. */
+/** The result object used to specify the page cursor and count. */
 public struct Pagination2: Codable, JSONEncodable, Hashable {
 
     /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
