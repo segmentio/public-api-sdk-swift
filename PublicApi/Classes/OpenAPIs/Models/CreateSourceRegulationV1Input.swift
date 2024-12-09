@@ -14,6 +14,7 @@ import AnyCodable
 public struct CreateSourceRegulationV1Input: Codable, JSONEncodable, Hashable {
 
     public enum RegulationType: String, Codable, CaseIterable {
+        case deleteArchiveOnly = "DELETE_ARCHIVE_ONLY"
         case deleteInternal = "DELETE_INTERNAL"
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
@@ -22,6 +23,7 @@ public struct CreateSourceRegulationV1Input: Codable, JSONEncodable, Hashable {
         case unsuppress = "UNSUPPRESS"
     }
     public enum SubjectType: String, Codable, CaseIterable {
+        case anonymousId = "ANONYMOUS_ID"
         case userId = "USER_ID"
     }
     /** The regulation type to create. */
