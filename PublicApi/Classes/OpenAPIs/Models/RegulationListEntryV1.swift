@@ -22,6 +22,7 @@ public struct RegulationListEntryV1: Codable, JSONEncodable, Hashable {
         case running = "RUNNING"
     }
     public enum RegulationType: String, Codable, CaseIterable {
+        case deleteArchiveOnly = "DELETE_ARCHIVE_ONLY"
         case deleteInternal = "DELETE_INTERNAL"
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
