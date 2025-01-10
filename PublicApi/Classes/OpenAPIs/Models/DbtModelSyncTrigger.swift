@@ -10,10 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The DBT Model Sync Trigger. */
+/** The dbt model sync trigger. */
 public struct DbtModelSyncTrigger: Codable, JSONEncodable, Hashable {
 
-    /** The id of the DBT Model Sync. */
+    /** The id of the dbt model sync. */
     public var id: String
     /** The Source id that was triggered. */
     public var sourceId: String?

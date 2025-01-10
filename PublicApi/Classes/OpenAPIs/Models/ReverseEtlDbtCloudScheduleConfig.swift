@@ -10,12 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Definition for dbt cloud job event schedule. */
+/** Definition for a schedule triggered by dbt Cloud job events. */
 public struct ReverseEtlDbtCloudScheduleConfig: Codable, JSONEncodable, Hashable {
 
-    /** The dbt cloud job id used to start a reverse ETL sync. */
+    /** The dbt Cloud job used to trigger a sync for a Reverse ETL Connection. */
     public var jobId: String
-    /** The dbt cloud account id where the job belongs to. */
+    /** The dbt Cloud account where the job belongs to. */
     public var accountId: String
 
     public init(jobId: String, accountId: String) {

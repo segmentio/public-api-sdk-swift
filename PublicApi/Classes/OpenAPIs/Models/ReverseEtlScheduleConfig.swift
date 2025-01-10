@@ -22,9 +22,9 @@ public struct ReverseEtlScheduleConfig: Codable, JSONEncodable, Hashable {
     public var timezone: String
     /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
     public var spec: String
-    /** The dbt cloud job id used to start a reverse ETL sync. */
+    /** The dbt Cloud job used to trigger a sync for a Reverse ETL Connection. */
     public var jobId: String
-    /** The dbt cloud account id where the job belongs to. */
+    /** The dbt Cloud account where the job belongs to. */
     public var accountId: String
 
     public init(interval: String, days: [Double], hours: [Double], timezone: String, spec: String, jobId: String, accountId: String) {
