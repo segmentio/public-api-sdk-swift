@@ -15,11 +15,12 @@ public struct ReverseEtlScheduleDefinition: Codable, JSONEncodable, Hashable {
 
     public enum Strategy: String, Codable, CaseIterable {
         case cron = "CRON"
+        case dbtCloud = "DBT_CLOUD"
         case manual = "MANUAL"
         case periodic = "PERIODIC"
         case specificDays = "SPECIFIC_DAYS"
     }
-    /** Strategy supports: Periodic, Specific Days, Manual, CRON. */
+    /** Strategy supports: Periodic, Specific Days, Manual, CRON and DBT_CLOUD. */
     public var strategy: Strategy
     public var config: Config?
 

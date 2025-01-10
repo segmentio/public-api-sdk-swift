@@ -23,13 +23,19 @@ public struct Config: Codable, JSONEncodable, Hashable {
     public var timezone: String
     /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
     public var spec: String
+    /** The dbt cloud job id used to start a reverse ETL sync. */
+    public var jobId: String
+    /** The dbt cloud account id where the job belongs to. */
+    public var accountId: String
 
-    public init(interval: String, days: [Double], hours: [Double], timezone: String, spec: String) {
+    public init(interval: String, days: [Double], hours: [Double], timezone: String, spec: String, jobId: String, accountId: String) {
         self.interval = interval
         self.days = days
         self.hours = hours
         self.timezone = timezone
         self.spec = spec
+        self.jobId = jobId
+        self.accountId = accountId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -38,6 +44,8 @@ public struct Config: Codable, JSONEncodable, Hashable {
         case hours
         case timezone
         case spec
+        case jobId
+        case accountId
     }
 
     // Encodable protocol methods
@@ -49,6 +57,8 @@ public struct Config: Codable, JSONEncodable, Hashable {
         try container.encode(hours, forKey: .hours)
         try container.encode(timezone, forKey: .timezone)
         try container.encode(spec, forKey: .spec)
+        try container.encode(jobId, forKey: .jobId)
+        try container.encode(accountId, forKey: .accountId)
     }
 }
 
