@@ -35,7 +35,7 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Cloud Source Regulation
      - POST /regulations/cloudsources/{sourceId}
-     - Creates a Source-scoped regulation.        Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment        Config API omitted fields: - `attributes`, - `userAgent`       
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment        Config API omitted fields: - `attributes`, - `userAgent`       
      - BASIC:
        - type: http
        - name: token
@@ -87,7 +87,7 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Source Regulation
      - POST /regulations/sources/{sourceId}
-     - Creates a Source-scoped regulation.        Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment     • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`       
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`       
      - BASIC:
        - type: http
        - name: token
