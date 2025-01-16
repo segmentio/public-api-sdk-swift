@@ -26,7 +26,7 @@ public struct CreateSourceRegulationV1Input: Codable, JSONEncodable, Hashable {
         case anonymousId = "ANONYMOUS_ID"
         case userId = "USER_ID"
     }
-    /** The regulation type to create. */
+    /** The regulation type to create. Please note that `DELETE_ARCHIVE_ONLY` is only supported for limited Workspaces for Source-scoped regulations. */
     public var regulationType: RegulationType
     /** The subject type. */
     public var subjectType: SubjectType
