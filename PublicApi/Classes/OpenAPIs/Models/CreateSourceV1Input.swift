@@ -19,7 +19,7 @@ public struct CreateSourceV1Input: Codable, JSONEncodable, Hashable {
     public var enabled: Bool
     /** The id of the Source metadata from which this instance of the Source derives.  All Source metadata is available under `/catalog/sources`. */
     public var metadataId: String
-    /** A key-value object that contains instance-specific settings for the Source. */
+    /** A key-value object that contains instance-specific settings for the Source.  \"websiteUrl\" and \"apiHost\" configured here for the relevant Sources. */
     public var settings: JSON?
     /** Whether to disconnect all Warehouses from the Source. */
     public var disconnectAllWarehouses: Bool?
