@@ -280,6 +280,7 @@ open class DeletionAndSuppressionAPI {
      * enum for parameter regulationTypes
      */
     public enum RegulationTypes_listRegulationsFromSource: String, CaseIterable {
+        case deleteArchiveOnly = "DELETE_ARCHIVE_ONLY"
         case deleteInternal = "DELETE_INTERNAL"
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
@@ -416,7 +417,6 @@ open class DeletionAndSuppressionAPI {
      * enum for parameter regulationTypes
      */
     public enum RegulationTypes_listWorkspaceRegulations: String, CaseIterable {
-        case deleteArchiveOnly = "DELETE_ARCHIVE_ONLY"
         case deleteInternal = "DELETE_INTERNAL"
         case deleteOnly = "DELETE_ONLY"
         case suppressOnly = "SUPPRESS_ONLY"
