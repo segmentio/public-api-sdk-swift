@@ -271,9 +271,9 @@ open class DeletionAndSuppressionAPI {
         case finished = "FINISHED"
         case initialized = "INITIALIZED"
         case invalid = "INVALID"
+        case inProgress = "IN_PROGRESS"
         case notSupported = "NOT_SUPPORTED"
         case partialSuccess = "PARTIAL_SUCCESS"
-        case running = "RUNNING"
     }
 
     /**
@@ -408,9 +408,9 @@ open class DeletionAndSuppressionAPI {
         case finished = "FINISHED"
         case initialized = "INITIALIZED"
         case invalid = "INVALID"
+        case inProgress = "IN_PROGRESS"
         case notSupported = "NOT_SUPPORTED"
         case partialSuccess = "PARTIAL_SUCCESS"
-        case running = "RUNNING"
     }
 
     /**
