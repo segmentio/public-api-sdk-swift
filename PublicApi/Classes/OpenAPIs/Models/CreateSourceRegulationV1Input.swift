@@ -28,9 +28,9 @@ public struct CreateSourceRegulationV1Input: Codable, JSONEncodable, Hashable {
     }
     /** The regulation type to create. Please note that `DELETE_ARCHIVE_ONLY` is only supported for limited Workspaces for Source-scoped regulations. */
     public var regulationType: RegulationType
-    /** The subject type. */
+    /** The subject type. Note: `ANONYMOUS_ID` is only supported for limited Workspaces for Source-scoped regulations. `ANONYMOUS_ID` is only supported when regulationType is `DELETE_ARCHIVE_ONLY`. */
     public var subjectType: SubjectType
-    /** The list of `userId` or `objectId` values of the subjects to regulate.  Config API note: equal to `parent` but allows an array. */
+    /** The list of `userId` or `objectId` or `anonymousId` values of the subjects to regulate.  Config API note: equal to `parent` but allows an array. */
     public var subjectIds: [String]
 
     public init(regulationType: RegulationType, subjectType: SubjectType, subjectIds: [String]) {
