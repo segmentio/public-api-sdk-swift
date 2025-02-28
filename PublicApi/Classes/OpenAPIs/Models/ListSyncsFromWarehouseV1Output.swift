@@ -15,9 +15,9 @@ public struct ListSyncsFromWarehouseV1Output: Codable, JSONEncodable, Hashable {
 
     /** A list that contains the latest syncs for the specified Warehouse. */
     public var reports: [SyncV1]
-    public var pagination: Pagination1
+    public var pagination: Pagination2
 
-    public init(reports: [SyncV1], pagination: Pagination1) {
+    public init(reports: [SyncV1], pagination: Pagination2) {
         self.reports = reports
         self.pagination = pagination
     }
