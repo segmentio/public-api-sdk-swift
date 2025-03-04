@@ -14,16 +14,19 @@ import AnyCodable
 public struct ExitRulesConfig: Codable, JSONEncodable, Hashable {
 
     public var enabled: Bool
-    public var states: [StatesInner]
+    public var rules: [RulesInner]
+    public var relatedDestinations: [ExitDestinationState]?
 
-    public init(enabled: Bool, states: [StatesInner]) {
+    public init(enabled: Bool, rules: [RulesInner], relatedDestinations: [ExitDestinationState]? = nil) {
         self.enabled = enabled
-        self.states = states
+        self.rules = rules
+        self.relatedDestinations = relatedDestinations
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case enabled
-        case states
+        case rules
+        case relatedDestinations
     }
 
     // Encodable protocol methods
@@ -31,7 +34,8 @@ public struct ExitRulesConfig: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(enabled, forKey: .enabled)
-        try container.encode(states, forKey: .states)
+        try container.encode(rules, forKey: .rules)
+        try container.encodeIfPresent(relatedDestinations, forKey: .relatedDestinations)
     }
 }
 

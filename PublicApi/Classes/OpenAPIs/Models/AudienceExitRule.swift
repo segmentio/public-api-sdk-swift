@@ -23,16 +23,16 @@ public struct AudienceExitRule: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var enabled: Bool
     public var concurrencyEnabled: Bool
-    public var transitions: [Transitions]?
+    public var connectedDestinations: [String]?
     public var key: Key
 
-    public init(exitType: ExitType, audienceId: String, type: ModelType, enabled: Bool, concurrencyEnabled: Bool, transitions: [Transitions]? = nil, key: Key) {
+    public init(exitType: ExitType, audienceId: String, type: ModelType, enabled: Bool, concurrencyEnabled: Bool, connectedDestinations: [String]? = nil, key: Key) {
         self.exitType = exitType
         self.audienceId = audienceId
         self.type = type
         self.enabled = enabled
         self.concurrencyEnabled = concurrencyEnabled
-        self.transitions = transitions
+        self.connectedDestinations = connectedDestinations
         self.key = key
     }
 
@@ -42,7 +42,7 @@ public struct AudienceExitRule: Codable, JSONEncodable, Hashable {
         case type
         case enabled
         case concurrencyEnabled
-        case transitions
+        case connectedDestinations
         case key
     }
 
@@ -55,7 +55,7 @@ public struct AudienceExitRule: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(concurrencyEnabled, forKey: .concurrencyEnabled)
-        try container.encodeIfPresent(transitions, forKey: .transitions)
+        try container.encodeIfPresent(connectedDestinations, forKey: .connectedDestinations)
         try container.encode(key, forKey: .key)
     }
 }

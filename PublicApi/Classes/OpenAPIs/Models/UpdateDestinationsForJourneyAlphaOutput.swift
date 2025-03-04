@@ -18,9 +18,9 @@ public struct UpdateDestinationsForJourneyAlphaOutput: Codable, JSONEncodable, H
     /** The version of journey. */
     public var version: Double?
     /** The updated DESTINATIONS. */
-    public var destinations: [DestinationState]
+    public var destinations: [DestinationsInner]
 
-    public init(containerId: String, version: Double? = nil, destinations: [DestinationState]) {
+    public init(containerId: String, version: Double? = nil, destinations: [DestinationsInner]) {
         self.containerId = containerId
         self.version = version
         self.destinations = destinations

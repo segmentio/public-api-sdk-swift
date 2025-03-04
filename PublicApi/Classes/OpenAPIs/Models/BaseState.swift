@@ -11,6 +11,7 @@ import AnyCodable
 #endif
 
 public enum BaseState: Codable, JSONEncodable, Hashable {
+    case typeExitDestinationState(ExitDestinationState)
     case typeExitRule(ExitRule)
     case typeExitState(ExitState)
     case typeTransitionState(TransitionState)
@@ -18,6 +19,8 @@ public enum BaseState: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
+        case .typeExitDestinationState(let value):
+            try container.encode(value)
         case .typeExitRule(let value):
             try container.encode(value)
         case .typeExitState(let value):
@@ -29,7 +32,9 @@ public enum BaseState: Codable, JSONEncodable, Hashable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(ExitRule.self) {
+        if let value = try? container.decode(ExitDestinationState.self) {
+            self = .typeExitDestinationState(value)
+        } else if let value = try? container.decode(ExitRule.self) {
             self = .typeExitRule(value)
         } else if let value = try? container.decode(ExitState.self) {
             self = .typeExitState(value)
