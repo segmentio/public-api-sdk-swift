@@ -25,20 +25,14 @@ public struct UpdateFilterByIdInput: Codable, JSONEncodable, Hashable {
     public var _if: String?
     /** Whether the event is dropped. */
     public var drop: Bool?
-    /** Describes the properties to be dropped on events that match the \"if\" statement. */
-    public var dropProperties: [String]?
-    /** Describes the properties allowed on events that match the \"if\" statement. */
-    public var allowProperties: [String]?
 
-    public init(integrationId: String, enabled: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, drop: Bool? = nil, dropProperties: [String]? = nil, allowProperties: [String]? = nil) {
+    public init(integrationId: String, enabled: Bool? = nil, name: String? = nil, description: String? = nil, _if: String? = nil, drop: Bool? = nil) {
         self.integrationId = integrationId
         self.enabled = enabled
         self.name = name
         self.description = description
         self._if = _if
         self.drop = drop
-        self.dropProperties = dropProperties
-        self.allowProperties = allowProperties
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -48,8 +42,6 @@ public struct UpdateFilterByIdInput: Codable, JSONEncodable, Hashable {
         case description
         case _if = "if"
         case drop
-        case dropProperties
-        case allowProperties
     }
 
     // Encodable protocol methods
@@ -62,8 +54,6 @@ public struct UpdateFilterByIdInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(_if, forKey: ._if)
         try container.encodeIfPresent(drop, forKey: .drop)
-        try container.encodeIfPresent(dropProperties, forKey: .dropProperties)
-        try container.encodeIfPresent(allowProperties, forKey: .allowProperties)
     }
 }
 
