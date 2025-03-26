@@ -142,7 +142,7 @@ open class AudiencesAPI {
 
     /**
      List Audience Consumers from Space And Audience
-     - GET /spaces/{spaceId}/audiences/{id}/consumers
+     - GET /spaces/{spaceId}/audiences/{id}/audience-references
      - Returns the list of consumers for the given audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
@@ -153,7 +153,7 @@ open class AudiencesAPI {
      - returns: RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> 
      */
     open class func listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/consumers"
+        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/audience-references"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
