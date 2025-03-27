@@ -10,10 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
-/** List the audience consumers endpoint output. */
+/** List Audience consumers output. */
 public struct ListAudienceConsumersFromSpaceAndAudienceOutput: Codable, JSONEncodable, Hashable {
 
-    /** A list of audience summary results. */
+    /** The list of audience consumers. */
     public var audiences: [AudienceSummary]
     public var pagination: Pagination
 
