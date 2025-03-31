@@ -21,13 +21,13 @@ public struct JourneyVersionOutput: Codable, JSONEncodable, Hashable {
     public var id: String
     public var version: Double
     public var status: Status
-    public var definition: Definition7
+    public var definition: Definition8
     public var createdAt: String
     public var updatedAt: String?
     public var createdBy: String
     public var updatedBy: String?
 
-    public init(id: String, version: Double, status: Status, definition: Definition7, createdAt: String, updatedAt: String? = nil, createdBy: String, updatedBy: String? = nil) {
+    public init(id: String, version: Double, status: Status, definition: Definition8, createdAt: String, updatedAt: String? = nil, createdBy: String, updatedBy: String? = nil) {
         self.id = id
         self.version = version
         self.status = status

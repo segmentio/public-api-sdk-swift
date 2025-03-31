@@ -17,9 +17,9 @@ public struct CreateJourneyAlphaInput: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The description of the journey. */
     public var description: String
-    public var definition: Definition6
+    public var definition: Definition7
 
-    public init(name: String, description: String, definition: Definition6) {
+    public init(name: String, description: String, definition: Definition7) {
         self.name = name
         self.description = description
         self.definition = definition
