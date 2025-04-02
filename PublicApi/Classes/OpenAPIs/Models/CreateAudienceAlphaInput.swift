@@ -19,10 +19,10 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
     public var enabled: Bool?
     /** Description of the audience. */
     public var description: String?
-    public var definition: Definition4
-    public var options: Options3?
+    public var definition: Definition1
+    public var options: Options1?
 
-    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition4, options: Options3? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition1, options: Options1? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
