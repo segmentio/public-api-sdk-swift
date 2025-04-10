@@ -15,9 +15,9 @@ public struct ListComputedTraitsAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of computed trait summary results. */
     public var computedTraits: [ComputedTraitSummary]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(computedTraits: [ComputedTraitSummary], pagination: Pagination) {
+    public init(computedTraits: [ComputedTraitSummary], pagination: Pagination1) {
         self.computedTraits = computedTraits
         self.pagination = pagination
     }
