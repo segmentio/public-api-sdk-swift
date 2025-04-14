@@ -25,7 +25,7 @@ public struct AudienceSummaryBeta: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition6?
+    public var definition: Definition3?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -36,9 +36,9 @@ public struct AudienceSummaryBeta: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
-    public var options: Options4?
+    public var options: Options2?
 
-    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition6?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options4? = nil) {
+    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition3?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options2? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
