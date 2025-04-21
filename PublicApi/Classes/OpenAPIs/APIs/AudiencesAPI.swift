@@ -300,13 +300,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceInput: (body)  
+     - parameter updateAudienceForSpaceAlphaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceInput: updateAudienceForSpaceInput).execute(apiResponseQueue) { result in
+    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceAlphaInput: UpdateAudienceForSpaceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceAlphaInput: updateAudienceForSpaceAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -325,10 +325,10 @@ open class AudiencesAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceInput: (body)  
+     - parameter updateAudienceForSpaceAlphaInput: (body)  
      - returns: RequestBuilder<UpdateAudienceForSpace200Response> 
      */
-    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
+    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceAlphaInput: UpdateAudienceForSpaceAlphaInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -337,7 +337,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceAlphaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
