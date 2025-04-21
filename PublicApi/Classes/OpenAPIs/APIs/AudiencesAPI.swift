@@ -125,12 +125,14 @@ open class AudiencesAPI {
      - parameter spaceId: (path)  
      - parameter id: (path)  
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Optional search criteria  This parameter exists in alpha. (optional)
+     - parameter sort: (query) Optional sort criteria  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudienceConsumersFromSpaceAndAudience(spaceId: String, id: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudienceConsumersFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: spaceId, id: id, pagination: pagination).execute(apiResponseQueue) { result in
+    open class func listAudienceConsumersFromSpaceAndAudience(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceConsumersSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudienceConsumersFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: spaceId, id: id, pagination: pagination, search: search, sort: sort).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -150,9 +152,11 @@ open class AudiencesAPI {
      - parameter spaceId: (path)  
      - parameter id: (path)  
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Optional search criteria  This parameter exists in alpha. (optional)
+     - parameter sort: (query) Optional sort criteria  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> 
      */
-    open class func listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> {
+    open class func listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceConsumersSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil) -> RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}/audience-references"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -166,6 +170,8 @@ open class AudiencesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "pagination": pagination?.encodeToJSON(),
+            "search": search?.encodeToJSON(),
+            "sort": sort?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -294,13 +300,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceInput: (body)  
+     - parameter updateAudienceForSpaceAlphaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceInput: updateAudienceForSpaceInput).execute(apiResponseQueue) { result in
+    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceAlphaInput: UpdateAudienceForSpaceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceAlphaInput: updateAudienceForSpaceAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -319,10 +325,10 @@ open class AudiencesAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceInput: (body)  
+     - parameter updateAudienceForSpaceAlphaInput: (body)  
      - returns: RequestBuilder<UpdateAudienceForSpace200Response> 
      */
-    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
+    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceAlphaInput: UpdateAudienceForSpaceAlphaInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -331,7 +337,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceAlphaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
