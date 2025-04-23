@@ -15,9 +15,9 @@ public struct ListFunctionsV1Output: Codable, JSONEncodable, Hashable {
 
     /** An array of Functions. */
     public var functions: [ListFunctionItemV1]
-    public var pagination: Pagination2
+    public var pagination: Pagination1
 
-    public init(functions: [ListFunctionItemV1], pagination: Pagination2) {
+    public init(functions: [ListFunctionItemV1], pagination: Pagination1) {
         self.functions = functions
         self.pagination = pagination
     }
