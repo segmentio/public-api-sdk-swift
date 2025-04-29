@@ -194,7 +194,7 @@ open class AudiencesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAudiences(spaceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -216,7 +216,7 @@ open class AudiencesAPI {
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudiences200Response> 
      */
-    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil) -> RequestBuilder<ListAudiences200Response> {
+    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListAudiences200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
