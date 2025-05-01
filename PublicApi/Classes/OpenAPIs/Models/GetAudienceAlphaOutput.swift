@@ -13,9 +13,9 @@ import AnyCodable
 /** Audience output for get. */
 public struct GetAudienceAlphaOutput: Codable, JSONEncodable, Hashable {
 
-    public var audience: Audience1
+    public var audience: Audience
 
-    public init(audience: Audience1) {
+    public init(audience: Audience) {
         self.audience = audience
     }
 

@@ -14,10 +14,10 @@ import AnyCodable
 public struct ListAudiencesBetaOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of audience summary results. */
-    public var audiences: [AudienceSummaryWithAudienceTypeAndLookback]
-    public var pagination: Pagination2
+    public var audiences: [AudienceSummary]
+    public var pagination: Pagination
 
-    public init(audiences: [AudienceSummaryWithAudienceTypeAndLookback], pagination: Pagination2) {
+    public init(audiences: [AudienceSummary], pagination: Pagination) {
         self.audiences = audiences
         self.pagination = pagination
     }
