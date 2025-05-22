@@ -241,6 +241,58 @@ open class AudiencesAPI {
     }
 
     /**
+     Preview Audience
+     
+     - parameter spaceId: (path)  
+     - parameter previewAudienceInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func previewAudience(spaceId: String, previewAudienceInput: PreviewAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: PreviewAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return previewAudienceWithRequestBuilder(spaceId: spaceId, previewAudienceInput: previewAudienceInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Preview Audience
+     - POST /spaces/{spaceId}/audiences/previews
+     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter previewAudienceInput: (body)  
+     - returns: RequestBuilder<PreviewAudience200Response> 
+     */
+    open class func previewAudienceWithRequestBuilder(spaceId: String, previewAudienceInput: PreviewAudienceInput) -> RequestBuilder<PreviewAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/previews"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: previewAudienceInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<PreviewAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Remove Audience from Space
      
      - parameter spaceId: (path)  
