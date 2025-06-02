@@ -19,9 +19,9 @@ public struct UpdateComputedTraitForSpaceAlphaInput: Codable, JSONEncodable, Has
     public var name: String?
     /** The description of the computation. */
     public var description: String?
-    public var definition: Definition2?
+    public var definition: Definition6?
 
-    public init(enabled: Bool? = nil, name: String? = nil, description: String? = nil, definition: Definition2? = nil) {
+    public init(enabled: Bool? = nil, name: String? = nil, description: String? = nil, definition: Definition6? = nil) {
         self.enabled = enabled
         self.name = name
         self.description = description
