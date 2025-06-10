@@ -65,6 +65,58 @@ open class AudiencesAPI {
     }
 
     /**
+     Create Audience Preview
+     
+     - parameter spaceId: (path)  
+     - parameter createAudiencePreviewAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createAudiencePreview(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewAlphaInput: createAudiencePreviewAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Audience Preview
+     - POST /spaces/{spaceId}/audiences/previews
+     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter createAudiencePreviewAlphaInput: (body)  
+     - returns: RequestBuilder<CreateAudiencePreview200Response> 
+     */
+    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput) -> RequestBuilder<CreateAudiencePreview200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/previews"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateAudiencePreview200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Audience
      
      - parameter spaceId: (path)  
@@ -115,6 +167,61 @@ open class AudiencesAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GetAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get Audience Preview
+     
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func getAudiencePreview(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getAudiencePreviewWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Audience Preview
+     - GET /spaces/{spaceId}/audiences/previews/{id}
+     - Reads the results of an audience preview.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - returns: RequestBuilder<GetAudiencePreview200Response> 
+     */
+    open class func getAudiencePreviewWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetAudiencePreview200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/previews/{id}"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetAudiencePreview200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -238,58 +345,6 @@ open class AudiencesAPI {
         let localVariableRequestBuilder: RequestBuilder<ListAudiences200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
-     Preview Audience
-     
-     - parameter spaceId: (path)  
-     - parameter previewAudienceInput: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func previewAudience(spaceId: String, previewAudienceInput: PreviewAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: PreviewAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return previewAudienceWithRequestBuilder(spaceId: spaceId, previewAudienceInput: previewAudienceInput).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Preview Audience
-     - POST /spaces/{spaceId}/audiences/previews
-     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter previewAudienceInput: (body)  
-     - returns: RequestBuilder<PreviewAudience200Response> 
-     */
-    open class func previewAudienceWithRequestBuilder(spaceId: String, previewAudienceInput: PreviewAudienceInput) -> RequestBuilder<PreviewAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/previews"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: previewAudienceInput)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<PreviewAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
