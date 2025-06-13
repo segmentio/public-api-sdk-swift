@@ -21,10 +21,10 @@ public struct CommonAudiencePreview: Codable, JSONEncodable, Hashable {
     public var id: String
     /** The audience type of the preview. */
     public var audienceType: AudienceType
-    public var definition: Definition6
-    public var options: Options4
+    public var definition: Definition3
+    public var options: Options2
 
-    public init(id: String, audienceType: AudienceType, definition: Definition6, options: Options4) {
+    public init(id: String, audienceType: AudienceType, definition: Definition3, options: Options2) {
         self.id = id
         self.audienceType = audienceType
         self.definition = definition

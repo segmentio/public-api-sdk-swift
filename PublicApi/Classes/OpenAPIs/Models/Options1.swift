@@ -10,30 +10,30 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Options which should be applied when segmenting traits. */
+/** Options which should be applied when segmenting audiences. */
 public struct Options1: Codable, JSONEncodable, Hashable {
 
-    /** Determines whether data prior to the computed trait being created is included when determining the computed trait value. Note that including historical data may be needed in order to properly handle the definition specified. In these cases, Segment will automatically handle including historical data and the response will return the includeHistoricalData parameter as true. */
-    public var includeHistoricalData: Bool?
-    /** Determines whether anonymous users should be included when determining the computed trait value. */
-    public var includeAnonymousUsers: Bool?
+    /** The set of profile external identifiers being used to determine audience preview membership. Profiles will only be considered for audience preview membership if the profile has at least one external id whose key matches a value in this set. If unspecified, a default set of external identifiers will be used: `['user_id', 'email', 'android.idfa', 'ios.idfa']`. */
+    public var filterByExternalIds: [String]?
+    /** If specified, the value of this field indicates the number of days (specified from the date the audience preview was created) that event data will be included from when determining audience preview membership. If unspecified, event data will not be included when determining audience preview membership. */
+    public var backfillEventDataDays: Double?
 
-    public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {
-        self.includeHistoricalData = includeHistoricalData
-        self.includeAnonymousUsers = includeAnonymousUsers
+    public init(filterByExternalIds: [String]? = nil, backfillEventDataDays: Double? = nil) {
+        self.filterByExternalIds = filterByExternalIds
+        self.backfillEventDataDays = backfillEventDataDays
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case includeHistoricalData
-        case includeAnonymousUsers
+        case filterByExternalIds
+        case backfillEventDataDays
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(includeHistoricalData, forKey: .includeHistoricalData)
-        try container.encodeIfPresent(includeAnonymousUsers, forKey: .includeAnonymousUsers)
+        try container.encodeIfPresent(filterByExternalIds, forKey: .filterByExternalIds)
+        try container.encodeIfPresent(backfillEventDataDays, forKey: .backfillEventDataDays)
     }
 }
 
