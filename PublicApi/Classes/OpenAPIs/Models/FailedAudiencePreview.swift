@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Audience preview that has failed to calculate. */
 public struct FailedAudiencePreview: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable {

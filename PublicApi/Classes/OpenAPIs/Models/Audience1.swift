@@ -21,7 +21,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Discriminator denoting the audience's product type. */
     public var audienceType: AudienceType
     public var computeCadence: ComputeCadence
-    public var options: Options3?
+    public var options: Options6?
     /** Audience id. */
     public var id: String
     /** Space id for the audience. */
@@ -46,7 +46,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Date the audience was last updated. */
     public var updatedAt: String
 
-    public init(audienceType: AudienceType, computeCadence: ComputeCadence, options: Options3? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(audienceType: AudienceType, computeCadence: ComputeCadence, options: Options6? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
         self.audienceType = audienceType
         self.computeCadence = computeCadence
         self.options = options
