@@ -24,17 +24,17 @@ public struct AudiencePreview1: Codable, JSONEncodable, Hashable {
     public var status: Status
     /** Sampled result membership for the audience preview. */
     public var results: [AudiencePreviewResult]
-    public var size: AudienceSize
+    public var size: Size
     /** Unique identifier for tracking and retrieving results of an audience preview. */
     public var id: String
     /** The audience type of the preview. */
     public var audienceType: AudienceType
-    public var definition: AudienceDefinitionWithoutType
-    public var options: AudiencePreviewOptions
+    public var definition: Definition6
+    public var options: Options4
     /** Explanation of why the audience preview failed, if available. */
     public var failureReason: String?
 
-    public init(status: Status, results: [AudiencePreviewResult], size: AudienceSize, id: String, audienceType: AudienceType, definition: AudienceDefinitionWithoutType, options: AudiencePreviewOptions, failureReason: String? = nil) {
+    public init(status: Status, results: [AudiencePreviewResult], size: Size, id: String, audienceType: AudienceType, definition: Definition6, options: Options4, failureReason: String? = nil) {
         self.status = status
         self.results = results
         self.size = size
