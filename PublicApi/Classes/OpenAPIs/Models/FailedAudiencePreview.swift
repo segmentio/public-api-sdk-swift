@@ -28,10 +28,10 @@ public struct FailedAudiencePreview: Codable, JSONEncodable, Hashable {
     public var id: String
     /** The audience type of the preview. */
     public var audienceType: AudienceType
-    public var definition: Definition3
-    public var options: Options2
+    public var definition: Definition6
+    public var options: Options4
 
-    public init(status: Status, failureReason: String? = nil, id: String, audienceType: AudienceType, definition: Definition3, options: Options2) {
+    public init(status: Status, failureReason: String? = nil, id: String, audienceType: AudienceType, definition: Definition6, options: Options4) {
         self.status = status
         self.failureReason = failureReason
         self.id = id
