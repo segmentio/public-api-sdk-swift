@@ -13,46 +13,48 @@ import AnyCodable
 /** The audience preview. */
 public struct AudiencePreview1: Codable, JSONEncodable, Hashable {
 
-    public enum Status: String, Codable, CaseIterable {
-        case failed = "FAILED"
-    }
     public enum AudienceType: String, Codable, CaseIterable {
         case accounts = "ACCOUNTS"
         case users = "USERS"
     }
-    /** Status for the audience preview. */
-    public var status: Status
-    /** Sampled result membership for the audience preview. */
-    public var results: [AudiencePreviewResult]
-    public var size: Size
+    public enum Status: String, Codable, CaseIterable {
+        case completed = "COMPLETED"
+        case failed = "FAILED"
+        case running = "RUNNING"
+    }
     /** Unique identifier for tracking and retrieving results of an audience preview. */
     public var id: String
     /** The audience type of the preview. */
     public var audienceType: AudienceType
     public var definition: Definition6
     public var options: Options4
-    /** Explanation of why the audience preview failed, if available. */
+    /** Status for the audience preview. */
+    public var status: Status
+    /** Sampled result membership for the audience preview. Only has a value if the status is 'COMPLETED'. */
+    public var results: [AudiencePreviewResult]?
+    public var size: Size?
+    /** Explanation of why the audience preview failed. Only has a value if status is 'FAILED'. */
     public var failureReason: String?
 
-    public init(status: Status, results: [AudiencePreviewResult], size: Size, id: String, audienceType: AudienceType, definition: Definition6, options: Options4, failureReason: String? = nil) {
-        self.status = status
-        self.results = results
-        self.size = size
+    public init(id: String, audienceType: AudienceType, definition: Definition6, options: Options4, status: Status, results: [AudiencePreviewResult]? = nil, size: Size? = nil, failureReason: String? = nil) {
         self.id = id
         self.audienceType = audienceType
         self.definition = definition
         self.options = options
+        self.status = status
+        self.results = results
+        self.size = size
         self.failureReason = failureReason
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case status
-        case results
-        case size
         case id
         case audienceType
         case definition
         case options
+        case status
+        case results
+        case size
         case failureReason
     }
 
@@ -60,13 +62,13 @@ public struct AudiencePreview1: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(status, forKey: .status)
-        try container.encode(results, forKey: .results)
-        try container.encode(size, forKey: .size)
         try container.encode(id, forKey: .id)
         try container.encode(audienceType, forKey: .audienceType)
         try container.encode(definition, forKey: .definition)
         try container.encode(options, forKey: .options)
+        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(results, forKey: .results)
+        try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(failureReason, forKey: .failureReason)
     }
 }
