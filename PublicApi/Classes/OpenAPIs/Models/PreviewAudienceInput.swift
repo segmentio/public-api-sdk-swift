@@ -17,12 +17,12 @@ public struct PreviewAudienceInput: Codable, JSONEncodable, Hashable {
         case accounts = "ACCOUNTS"
         case users = "USERS"
     }
-    public var definition: Definition2
+    public var definition: Definition5
     /** Discriminator denoting the audience's product type.  Possible values: USERS, ACCOUNTS. */
     public var audienceType: AudienceType
-    public var options: Options1?
+    public var options: Options3?
 
-    public init(definition: Definition2, audienceType: AudienceType, options: Options1? = nil) {
+    public init(definition: Definition5, audienceType: AudienceType, options: Options3? = nil) {
         self.definition = definition
         self.audienceType = audienceType
         self.options = options
