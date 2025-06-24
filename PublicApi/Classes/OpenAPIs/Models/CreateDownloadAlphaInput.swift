@@ -15,20 +15,16 @@ public struct CreateDownloadAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** The collection's unique id. */
     public var collectionId: String
-    /** The Workspace id for the collection. */
-    public var workspaceId: String
     /** The ISO8601 formatted timestamp corresponding to a specific hour and day to retrieve data for. E.g.: 2025-05-07T23:00:00Z Objects are bucketed by hour and a month of data is retained. */
     public var hour: String
 
-    public init(collectionId: String, workspaceId: String, hour: String) {
+    public init(collectionId: String, hour: String) {
         self.collectionId = collectionId
-        self.workspaceId = workspaceId
         self.hour = hour
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case collectionId
-        case workspaceId
         case hour
     }
 
@@ -37,7 +33,6 @@ public struct CreateDownloadAlphaInput: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(collectionId, forKey: .collectionId)
-        try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(hour, forKey: .hour)
     }
 }
