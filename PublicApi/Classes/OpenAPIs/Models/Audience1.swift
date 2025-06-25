@@ -21,7 +21,6 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Discriminator denoting the audience's product type. */
     public var audienceType: AudienceType
     public var computeCadence: ComputeCadence
-    public var size: Size1?
     public var options: Options6?
     /** Audience id. */
     public var id: String
@@ -47,10 +46,9 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Date the audience was last updated. */
     public var updatedAt: String
 
-    public init(audienceType: AudienceType, computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(audienceType: AudienceType, computeCadence: ComputeCadence, options: Options6? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
         self.audienceType = audienceType
         self.computeCadence = computeCadence
-        self.size = size
         self.options = options
         self.id = id
         self.spaceId = spaceId
@@ -69,7 +67,6 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case audienceType
         case computeCadence
-        case size
         case options
         case id
         case spaceId
@@ -91,7 +88,6 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(audienceType, forKey: .audienceType)
         try container.encode(computeCadence, forKey: .computeCadence)
-        try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(options, forKey: .options)
         try container.encode(id, forKey: .id)
         try container.encode(spaceId, forKey: .spaceId)
