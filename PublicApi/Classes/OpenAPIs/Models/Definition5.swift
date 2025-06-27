@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition. */
+/** Query language definition and type. */
 public struct Definition5: Codable, JSONEncodable, Hashable {
 
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
