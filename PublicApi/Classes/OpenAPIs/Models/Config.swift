@@ -10,23 +10,32 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Configuration for PERIODIC or SPECIFIC_DAYS strategies. */
+/** Config contains interval duration in case of periodic or day and hours in case of specific_days. Empty if strategy is MANUAL. */
 public struct Config: Codable, JSONEncodable, Hashable {
 
-    /** Go duration format string, only supporting units \"h\" (hours) and \"m\" (minutes). */
+    /** Duration is specified as a string, EG: 15m, 3h25m30s. */
     public var interval: String
-    /** Days of week for schedule (0=Saturday, 6=Sunday). */
+    /** Days of the week. */
     public var days: [Double]
-    /** Hours of day for schedule (0-23). */
+    /** Hours of the day. */
     public var hours: [Double]
-    /** TZ database time zone identifier; for example, America/New_York. */
+    /** Timezone respected by the cron string. Format must be in IANA Timezone Identifier. Example: 'America/Los_Angeles'. */
     public var timezone: String
+    /** 5 field cron string expression. The cron expression must be larger than 15 minutes. */
+    public var spec: String
+    /** The dbt Cloud job used to trigger a sync for a Reverse ETL Connection. */
+    public var jobId: String
+    /** The dbt Cloud account where the job belongs to. */
+    public var accountId: String
 
-    public init(interval: String, days: [Double], hours: [Double], timezone: String) {
+    public init(interval: String, days: [Double], hours: [Double], timezone: String, spec: String, jobId: String, accountId: String) {
         self.interval = interval
         self.days = days
         self.hours = hours
         self.timezone = timezone
+        self.spec = spec
+        self.jobId = jobId
+        self.accountId = accountId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +43,9 @@ public struct Config: Codable, JSONEncodable, Hashable {
         case days
         case hours
         case timezone
+        case spec
+        case jobId
+        case accountId
     }
 
     // Encodable protocol methods
@@ -44,6 +56,9 @@ public struct Config: Codable, JSONEncodable, Hashable {
         try container.encode(days, forKey: .days)
         try container.encode(hours, forKey: .hours)
         try container.encode(timezone, forKey: .timezone)
+        try container.encode(spec, forKey: .spec)
+        try container.encode(jobId, forKey: .jobId)
+        try container.encode(accountId, forKey: .accountId)
     }
 }
 

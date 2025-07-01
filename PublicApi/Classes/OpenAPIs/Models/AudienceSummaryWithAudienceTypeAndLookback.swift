@@ -20,10 +20,7 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
     /** Discriminator denoting the audience's product type. */
     public var audienceType: AudienceType
     public var computeCadence: ComputeCadence
-    public var size: Size1?
-    public var options: Options6?
-    /** List of schedules for the audience. */
-    public var schedules: [AudienceSchedule]?
+    public var options: Options1?
     /** Audience id. */
     public var id: String
     /** Space id for the audience. */
@@ -36,7 +33,7 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition7?
+    public var definition: Definition3?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -48,12 +45,10 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
     /** Date the audience was last updated. */
     public var updatedAt: String
 
-    public init(audienceType: AudienceType, computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
+    public init(audienceType: AudienceType, computeCadence: ComputeCadence, options: Options1? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition3?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
         self.audienceType = audienceType
         self.computeCadence = computeCadence
-        self.size = size
         self.options = options
-        self.schedules = schedules
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -71,9 +66,7 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case audienceType
         case computeCadence
-        case size
         case options
-        case schedules
         case id
         case spaceId
         case name
@@ -94,9 +87,7 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(audienceType, forKey: .audienceType)
         try container.encode(computeCadence, forKey: .computeCadence)
-        try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(options, forKey: .options)
-        try container.encodeIfPresent(schedules, forKey: .schedules)
         try container.encode(id, forKey: .id)
         try container.encode(spaceId, forKey: .spaceId)
         try container.encode(name, forKey: .name)

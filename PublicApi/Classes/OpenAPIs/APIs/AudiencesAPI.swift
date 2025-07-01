@@ -65,69 +65,16 @@ open class AudiencesAPI {
     }
 
     /**
-     Create Audience Preview
-     
-     - parameter spaceId: (path)  
-     - parameter createAudiencePreviewAlphaInput: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func createAudiencePreview(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewAlphaInput: createAudiencePreviewAlphaInput).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Create Audience Preview
-     - POST /spaces/{spaceId}/audiences/previews
-     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 5 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information. This endpoint also has a rate limit of 700 requests per month per spaceId, which is lower than the default due to access pattern restrictions.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter createAudiencePreviewAlphaInput: (body)  
-     - returns: RequestBuilder<CreateAudiencePreview200Response> 
-     */
-    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput) -> RequestBuilder<CreateAudiencePreview200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/previews"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewAlphaInput)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<CreateAudiencePreview200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Get Audience
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getAudience(spaceId: String, id: String, include: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getAudienceWithRequestBuilder(spaceId: spaceId, id: id, include: include).execute(apiResponseQueue) { result in
+    open class func getAudience(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getAudienceWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -140,16 +87,15 @@ open class AudiencesAPI {
     /**
      Get Audience
      - GET /spaces/{spaceId}/audiences/{id}
-     - Returns the Audience by id and spaceId. Supports including audience schedules via `?include=schedules`.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Returns the Audience by id and spaceId.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<GetAudience200Response> 
      */
-    open class func getAudienceWithRequestBuilder(spaceId: String, id: String, include: String? = nil) -> RequestBuilder<GetAudience200Response> {
+    open class func getAudienceWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -160,10 +106,7 @@ open class AudiencesAPI {
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "include": include?.encodeToJSON(),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -172,121 +115,6 @@ open class AudiencesAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GetAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
-     Get Audience Preview
-     
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func getAudiencePreview(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getAudiencePreviewWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Get Audience Preview
-     - GET /spaces/{spaceId}/audiences/previews/{id}
-     - Reads the results of an audience preview.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - returns: RequestBuilder<GetAudiencePreview200Response> 
-     */
-    open class func getAudiencePreviewWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<GetAudiencePreview200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/previews/{id}"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<GetAudiencePreview200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
-     Get Audience Schedule from Space And Audience
-     
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - parameter scheduleId: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func getAudienceScheduleFromSpaceAndAudience(spaceId: String, id: String, scheduleId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudienceScheduleFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getAudienceScheduleFromSpaceAndAudienceWithRequestBuilder(spaceId: spaceId, id: id, scheduleId: scheduleId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Get Audience Schedule from Space And Audience
-     - GET /spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}
-     - Returns the schedule for the given audience and scheduleId.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - parameter scheduleId: (path)  
-     - returns: RequestBuilder<GetAudienceScheduleFromSpaceAndAudience200Response> 
-     */
-    open class func getAudienceScheduleFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String) -> RequestBuilder<GetAudienceScheduleFromSpaceAndAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let scheduleIdPreEscape = "\(APIHelper.mapValueToPathItem(scheduleId))"
-        let scheduleIdPostEscape = scheduleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{scheduleId}", with: scheduleIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<GetAudienceScheduleFromSpaceAndAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -358,72 +186,16 @@ open class AudiencesAPI {
     }
 
     /**
-     List Audience Schedules from Space And Audience
-     
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func listAudienceSchedulesFromSpaceAndAudience(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudienceSchedulesFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAudienceSchedulesFromSpaceAndAudienceWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     List Audience Schedules from Space And Audience
-     - GET /spaces/{spaceId}/audiences/{id}/schedules
-     - Returns the list of schedules for the given audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter spaceId: (path)  
-     - parameter id: (path)  
-     - returns: RequestBuilder<ListAudienceSchedulesFromSpaceAndAudience200Response> 
-     */
-    open class func listAudienceSchedulesFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<ListAudienceSchedulesFromSpaceAndAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules"
-        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
-        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<ListAudienceSchedulesFromSpaceAndAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      List Audiences
      
      - parameter spaceId: (path)  
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
-     - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination, include: include).execute(apiResponseQueue) { result in
+    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -436,16 +208,15 @@ open class AudiencesAPI {
     /**
      List Audiences
      - GET /spaces/{spaceId}/audiences
-     - Returns Audiences by spaceId. Supports including audience schedules via `?include=schedules`.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Returns Audiences by spaceId.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
-     - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudiences200Response> 
      */
-    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: String? = nil) -> RequestBuilder<ListAudiences200Response> {
+    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil) -> RequestBuilder<ListAudiences200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -456,7 +227,6 @@ open class AudiencesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "pagination": pagination?.encodeToJSON(),
-            "include": include?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -468,6 +238,58 @@ open class AudiencesAPI {
         let localVariableRequestBuilder: RequestBuilder<ListAudiences200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Preview Audience
+     
+     - parameter spaceId: (path)  
+     - parameter previewAudienceInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func previewAudience(spaceId: String, previewAudienceInput: PreviewAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: PreviewAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return previewAudienceWithRequestBuilder(spaceId: spaceId, previewAudienceInput: previewAudienceInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Preview Audience
+     - POST /spaces/{spaceId}/audiences/previews
+     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 5 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information. The rate limit for this endpoint is 700 requests per month per spaceId, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter previewAudienceInput: (body)  
+     - returns: RequestBuilder<PreviewAudience200Response> 
+     */
+    open class func previewAudienceWithRequestBuilder(spaceId: String, previewAudienceInput: PreviewAudienceInput) -> RequestBuilder<PreviewAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/previews"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: previewAudienceInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<PreviewAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
