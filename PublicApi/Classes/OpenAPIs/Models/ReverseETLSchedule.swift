@@ -22,9 +22,9 @@ public struct ReverseETLSchedule: Codable, JSONEncodable, Hashable {
     }
     /** Strategy supports: Periodic, Specific Days, Manual, CRON and DBT_CLOUD. */
     public var strategy: Strategy
-    public var config: Config?
+    public var config: Config1?
 
-    public init(strategy: Strategy, config: Config? = nil) {
+    public init(strategy: Strategy, config: Config1? = nil) {
         self.strategy = strategy
         self.config = config
     }
