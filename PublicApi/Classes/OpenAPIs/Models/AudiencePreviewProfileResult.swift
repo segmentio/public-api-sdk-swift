@@ -15,7 +15,7 @@ public struct AudiencePreviewProfileResult: Codable, JSONEncodable, Hashable {
 
     /** Segment id. */
     public var id: String
-    /** The entities associated with the profile. Will only have a value if the audience preview has `audienceType: LINKED` and entities are references in the audience preview's definition. */
+    /** The entities associated with the profile. Will only have a value if the audience preview has `audienceType: LINKED` and entities are referenced in the audience preview's definition. */
     public var entities: JSON?
 
     public init(id: String, entities: JSON? = nil) {

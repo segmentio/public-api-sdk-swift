@@ -21,7 +21,7 @@ public struct EntityDetails: Codable, JSONEncodable, Hashable {
     public var relationshipSlug: String
     /** The entity properties. */
     public var properties: JSON?
-    /** The related entities one level deeper into an entity branch. */
+    /** Related entities that are one level deeper will only be returned if those entities are referenced in the audience definition. */
     public var entities: [String: AnyCodable]?
 
     public init(id: String, idProperty: String, relationshipSlug: String, properties: JSON? = nil, entities: [String: AnyCodable]? = nil) {
