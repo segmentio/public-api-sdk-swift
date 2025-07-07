@@ -15,15 +15,14 @@ public struct CreateAudiencePreviewAlphaInput: Codable, JSONEncodable, Hashable 
 
     public enum AudienceType: String, Codable, CaseIterable {
         case accounts = "ACCOUNTS"
-        case linked = "LINKED"
         case users = "USERS"
     }
-    public var definition: Definition5
-    /** Discriminator denoting the audience's product type.  Possible values: USERS, ACCOUNTS, LINKED. */
+    public var definition: Definition2
+    /** Discriminator denoting the audience's product type.  Possible values: USERS, ACCOUNTS. */
     public var audienceType: AudienceType
-    public var options: Options3?
+    public var options: Options1?
 
-    public init(definition: Definition5, audienceType: AudienceType, options: Options3? = nil) {
+    public init(definition: Definition2, audienceType: AudienceType, options: Options1? = nil) {
         self.definition = definition
         self.audienceType = audienceType
         self.options = options

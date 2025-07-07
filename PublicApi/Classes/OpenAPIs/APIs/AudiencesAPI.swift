@@ -117,13 +117,6 @@ open class AudiencesAPI {
     }
 
     /**
-     * enum for parameter include
-     */
-    public enum Include_getAudience: String, CaseIterable {
-        case schedules = "schedules"
-    }
-
-    /**
      Get Audience
      
      - parameter spaceId: (path)  
@@ -133,7 +126,7 @@ open class AudiencesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getAudience(spaceId: String, id: String, include: Include_getAudience? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getAudience(spaceId: String, id: String, include: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return getAudienceWithRequestBuilder(spaceId: spaceId, id: id, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -156,7 +149,7 @@ open class AudiencesAPI {
      - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<GetAudience200Response> 
      */
-    open class func getAudienceWithRequestBuilder(spaceId: String, id: String, include: Include_getAudience? = nil) -> RequestBuilder<GetAudience200Response> {
+    open class func getAudienceWithRequestBuilder(spaceId: String, id: String, include: String? = nil) -> RequestBuilder<GetAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -420,13 +413,6 @@ open class AudiencesAPI {
     }
 
     /**
-     * enum for parameter include
-     */
-    public enum Include_listAudiences: String, CaseIterable {
-        case schedules = "schedules"
-    }
-
-    /**
      List Audiences
      
      - parameter spaceId: (path)  
@@ -436,7 +422,7 @@ open class AudiencesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -459,7 +445,7 @@ open class AudiencesAPI {
      - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudiences200Response> 
      */
-    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil) -> RequestBuilder<ListAudiences200Response> {
+    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: String? = nil) -> RequestBuilder<ListAudiences200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

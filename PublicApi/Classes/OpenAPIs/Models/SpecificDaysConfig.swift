@@ -13,7 +13,7 @@ import AnyCodable
 /** Configures a schedule for specific days and times. */
 public struct SpecificDaysConfig: Codable, JSONEncodable, Hashable {
 
-    /** Days of week for schedule (0=Sunday, 6=Saturday). */
+    /** Days of week for schedule (0=Saturday, 6=Sunday). */
     public var days: [Double]
     /** Hours of day for schedule (0-23). */
     public var hours: [Double]
