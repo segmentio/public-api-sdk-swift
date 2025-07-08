@@ -15,6 +15,7 @@ public struct AudiencePreview1: Codable, JSONEncodable, Hashable {
 
     public enum AudienceType: String, Codable, CaseIterable {
         case accounts = "ACCOUNTS"
+        case linked = "LINKED"
         case users = "USERS"
     }
     public enum Status: String, Codable, CaseIterable {
