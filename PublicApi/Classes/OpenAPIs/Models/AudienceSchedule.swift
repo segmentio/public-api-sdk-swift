@@ -23,16 +23,13 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
     /** Strategy of the audience schedule (manual, periodic, or specific days). */
     public var strategy: Strategy
     public var config: Config?
-    /** Whether the schedule is enabled. */
-    public var enabled: Bool
     /** The next scheduled execution time (RFC3339). */
-    public var nextExecution: String
+    public var nextExecution: String?
 
-    public init(id: String, strategy: Strategy, config: Config? = nil, enabled: Bool, nextExecution: String) {
+    public init(id: String, strategy: Strategy, config: Config? = nil, nextExecution: String? = nil) {
         self.id = id
         self.strategy = strategy
         self.config = config
-        self.enabled = enabled
         self.nextExecution = nextExecution
     }
 
@@ -40,7 +37,6 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
         case id
         case strategy
         case config
-        case enabled
         case nextExecution
     }
 
@@ -51,8 +47,7 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(strategy, forKey: .strategy)
         try container.encodeIfPresent(config, forKey: .config)
-        try container.encode(enabled, forKey: .enabled)
-        try container.encode(nextExecution, forKey: .nextExecution)
+        try container.encodeIfPresent(nextExecution, forKey: .nextExecution)
     }
 }
 

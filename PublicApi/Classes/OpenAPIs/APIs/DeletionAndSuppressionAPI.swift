@@ -170,6 +170,7 @@ open class DeletionAndSuppressionAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
     open class func deleteRegulation(regulateId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteRegulation200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return deleteRegulationWithRequestBuilder(regulateId: regulateId).execute(apiResponseQueue) { result in
@@ -185,13 +186,14 @@ open class DeletionAndSuppressionAPI {
     /**
      Delete Regulation
      - DELETE /regulations/{regulateId}
-     - Deletes a regulation from the Workspace. The regulation must be in the initialized state to be deleted.    • When called, this endpoint may generate the `Regulation Deleted` event in the [audit trail](/tag/Audit-Trail).       
+     - Deletes a regulation from the Workspace. The regulation must be in the initialized state to be deleted.    • When called, this endpoint may generate the `Regulation Deleted` event in the [audit trail](/tag/Audit-Trail).         **DEPRECATED**: this endpoint has been deprecated according to the guidelines, and may experience reduced SLA guarantees.
      - BASIC:
        - type: http
        - name: token
      - parameter regulateId: (path)  
      - returns: RequestBuilder<DeleteRegulation200Response> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func deleteRegulationWithRequestBuilder(regulateId: String) -> RequestBuilder<DeleteRegulation200Response> {
         var localVariablePath = "/regulations/{regulateId}"
         let regulateIdPreEscape = "\(APIHelper.mapValueToPathItem(regulateId))"
