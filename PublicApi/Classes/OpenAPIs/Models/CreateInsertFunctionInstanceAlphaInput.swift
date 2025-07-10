@@ -13,7 +13,7 @@ import AnyCodable
 /** Creates an insert Function instance. */
 public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** Insert Function id to which this instance is associated. */
+    /** Insert Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_ prefix from the id. */
     public var functionId: String
     /** The Source or Destination id to be connected. */
     public var integrationId: String
