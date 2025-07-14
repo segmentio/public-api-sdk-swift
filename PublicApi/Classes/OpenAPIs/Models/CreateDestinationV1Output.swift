@@ -13,9 +13,9 @@ import AnyCodable
 /** Creates a new Destination. */
 public struct CreateDestinationV1Output: Codable, JSONEncodable, Hashable {
 
-    public var destination: Destination2
+    public var destination: Destination3
 
-    public init(destination: Destination2) {
+    public init(destination: Destination3) {
         self.destination = destination
     }
 
