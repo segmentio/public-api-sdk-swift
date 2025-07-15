@@ -310,7 +310,7 @@ open class AudiencesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudienceConsumersFromSpaceAndAudience(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceConsumersSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudienceConsumersFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAudienceConsumersFromSpaceAndAudience(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudienceConsumersFromSpaceAndAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: spaceId, id: id, pagination: pagination, search: search, sort: sort).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -335,7 +335,7 @@ open class AudiencesAPI {
      - parameter sort: (query) Optional sort criteria  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> 
      */
-    open class func listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceConsumersSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil) -> RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> {
+    open class func listAudienceConsumersFromSpaceAndAudienceWithRequestBuilder(spaceId: String, id: String, pagination: PaginationInput? = nil, search: ListAudienceSearchInput? = nil, sort: ListAudienceConsumersSortInput? = nil) -> RequestBuilder<ListAudienceConsumersFromSpaceAndAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}/audience-references"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -430,14 +430,15 @@ open class AudiencesAPI {
      List Audiences
      
      - parameter spaceId: (path)  
+     - parameter search: (query) Optional search criteria  This parameter exists in alpha. (optional)
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
      - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAudiences(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAudiencesWithRequestBuilder(spaceId: spaceId, pagination: pagination, include: include).execute(apiResponseQueue) { result in
+    open class func listAudiences(spaceId: String, search: ListAudienceSearchInput? = nil, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListAudiences200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listAudiencesWithRequestBuilder(spaceId: spaceId, search: search, pagination: pagination, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -455,11 +456,12 @@ open class AudiencesAPI {
        - type: http
        - name: token
      - parameter spaceId: (path)  
+     - parameter search: (query) Optional search criteria  This parameter exists in alpha. (optional)
      - parameter pagination: (query) Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info.  This parameter exists in alpha. (optional)
      - parameter include: (query) Additional resource to include, support schedules only.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListAudiences200Response> 
      */
-    open class func listAudiencesWithRequestBuilder(spaceId: String, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil) -> RequestBuilder<ListAudiences200Response> {
+    open class func listAudiencesWithRequestBuilder(spaceId: String, search: ListAudienceSearchInput? = nil, pagination: ListAudiencesPaginationInput? = nil, include: Include_listAudiences? = nil) -> RequestBuilder<ListAudiences200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -469,6 +471,7 @@ open class AudiencesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "search": search?.encodeToJSON(),
             "pagination": pagination?.encodeToJSON(),
             "include": include?.encodeToJSON(),
         ])
