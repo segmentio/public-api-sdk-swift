@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The updated Destination. */
+/** The Destination looked up. */
 public struct Destination1: Codable, JSONEncodable, Hashable {
 
     /** The unique identifier of this instance of a Destination.  Config API note: analogous to `name`. */
