@@ -15,9 +15,9 @@ public struct ListReverseEtlModelsOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of Models that belong to the Workspace. */
     public var models: [ReverseEtlModel]
-    public var pagination: Pagination1
+    public var pagination: Pagination3
 
-    public init(models: [ReverseEtlModel], pagination: Pagination1) {
+    public init(models: [ReverseEtlModel], pagination: Pagination3) {
         self.models = models
         self.pagination = pagination
     }
