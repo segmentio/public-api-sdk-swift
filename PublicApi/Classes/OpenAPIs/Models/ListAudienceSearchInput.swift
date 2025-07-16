@@ -20,7 +20,7 @@ public struct ListAudienceSearchInput: Codable, JSONEncodable, Hashable {
     }
     /** Field to filter by. */
     public var type: ModelType
-    /** Text to match the field value. */
+    /** Text to match against the selected field (max 255 characters). */
     public var query: String
 
     public init(type: ModelType, query: String) {
