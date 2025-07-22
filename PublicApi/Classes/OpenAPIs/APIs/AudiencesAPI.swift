@@ -206,7 +206,7 @@ open class AudiencesAPI {
     /**
      Get Audience Echo
      - GET /spaces/{spaceId}/audiences/echo
-     - Get Audience Echo test endpoint for rate limiting per spaceId. Returns an echo response from the control plane service.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.  This endpoint has a rate limit of 5 requests per day per spaceId for testing purposes.
+     - Get Audience Echo test endpoint for rate limiting per spaceId. Returns an echo response from the control plane service.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.  This endpoint has a rate limit of 5 requests per day per spaceId for testing rate limiting functionality.
      - BASIC:
        - type: http
        - name: token
