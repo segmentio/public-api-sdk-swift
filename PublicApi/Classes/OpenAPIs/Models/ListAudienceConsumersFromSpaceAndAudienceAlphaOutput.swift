@@ -15,9 +15,9 @@ public struct ListAudienceConsumersFromSpaceAndAudienceAlphaOutput: Codable, JSO
 
     /** The list of audience consumers. */
     public var audiences: [AudienceSummary]
-    public var pagination: Pagination1
+    public var pagination: Pagination2
 
-    public init(audiences: [AudienceSummary], pagination: Pagination1) {
+    public init(audiences: [AudienceSummary], pagination: Pagination2) {
         self.audiences = audiences
         self.pagination = pagination
     }
