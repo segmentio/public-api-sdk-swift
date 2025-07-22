@@ -184,6 +184,61 @@ open class AudiencesAPI {
     }
 
     /**
+     Get Audience Echo
+     
+     - parameter spaceId: (path)  
+     - parameter message: (query) Optional message to echo back.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func getAudienceEcho(spaceId: String, message: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetAudienceEcho200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getAudienceEchoWithRequestBuilder(spaceId: spaceId, message: message).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Audience Echo
+     - GET /spaces/{spaceId}/audiences/echo
+     - Get Audience Echo test endpoint for rate limiting per spaceId. Returns an echo response from the control plane service.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.  This endpoint has a rate limit of 5 requests per day per spaceId for testing purposes.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter message: (query) Optional message to echo back.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<GetAudienceEcho200Response> 
+     */
+    open class func getAudienceEchoWithRequestBuilder(spaceId: String, message: String? = nil) -> RequestBuilder<GetAudienceEcho200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/echo"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "message": message?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetAudienceEcho200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Audience Preview
      
      - parameter spaceId: (path)  
