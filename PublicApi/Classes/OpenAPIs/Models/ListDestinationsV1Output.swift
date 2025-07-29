@@ -15,9 +15,9 @@ public struct ListDestinationsV1Output: Codable, JSONEncodable, Hashable {
 
     /** The list that contains the Destinations connected to the Workspace. */
     public var destinations: [DestinationV1]
-    public var pagination: Pagination1
+    public var pagination: Pagination
 
-    public init(destinations: [DestinationV1], pagination: Pagination1) {
+    public init(destinations: [DestinationV1], pagination: Pagination) {
         self.destinations = destinations
         self.pagination = pagination
     }
