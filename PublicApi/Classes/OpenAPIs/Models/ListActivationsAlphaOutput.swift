@@ -15,9 +15,9 @@ public struct ListActivationsAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of activation results. */
     public var activations: [ActivationSummaryOutput]
-    public var pagination: Pagination1?
+    public var pagination: Pagination2?
 
-    public init(activations: [ActivationSummaryOutput], pagination: Pagination1? = nil) {
+    public init(activations: [ActivationSummaryOutput], pagination: Pagination2? = nil) {
         self.activations = activations
         self.pagination = pagination
     }
