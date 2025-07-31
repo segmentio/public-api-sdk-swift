@@ -18,8 +18,6 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
         case linked = "LINKED"
         case users = "USERS"
     }
-    /** Discriminator denoting the audience's product type. */
-    public var audienceType: AudienceType
     public var computeCadence: ComputeCadence
     public var size: Size1?
     public var options: Options6?
@@ -48,9 +46,10 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
+    /** Discriminator denoting the audience's product type. */
+    public var audienceType: AudienceType
 
-    public init(audienceType: AudienceType, computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String) {
-        self.audienceType = audienceType
+    public init(computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType) {
         self.computeCadence = computeCadence
         self.size = size
         self.options = options
@@ -67,10 +66,10 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
         self.updatedBy = updatedBy
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.audienceType = audienceType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case audienceType
         case computeCadence
         case size
         case options
@@ -87,13 +86,13 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
         case updatedBy
         case createdAt
         case updatedAt
+        case audienceType
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(audienceType, forKey: .audienceType)
         try container.encode(computeCadence, forKey: .computeCadence)
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(options, forKey: .options)
@@ -110,6 +109,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
         try container.encode(updatedBy, forKey: .updatedBy)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
+        try container.encode(audienceType, forKey: .audienceType)
     }
 }
 
