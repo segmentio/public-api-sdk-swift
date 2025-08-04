@@ -13,6 +13,11 @@ import AnyCodable
 /** The audience summary output. */
 public struct Audience: Codable, JSONEncodable, Hashable {
 
+    public enum AudienceType: String, Codable, CaseIterable {
+        case accounts = "ACCOUNTS"
+        case linked = "LINKED"
+        case users = "USERS"
+    }
     /** Audience id. */
     public var id: String
     /** Space id for the audience. */
@@ -25,7 +30,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition7?
+    public var definition: Definition4?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -36,9 +41,11 @@ public struct Audience: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
-    public var options: Options5?
+    /** Discriminator denoting the audience's product type. */
+    public var audienceType: AudienceType
+    public var options: Options3?
 
-    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, options: Options5? = nil) {
+    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition4?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType, options: Options3? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -51,6 +58,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
         self.updatedBy = updatedBy
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.audienceType = audienceType
         self.options = options
     }
 
@@ -67,6 +75,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
         case updatedBy
         case createdAt
         case updatedAt
+        case audienceType
         case options
     }
 
@@ -86,6 +95,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
         try container.encode(updatedBy, forKey: .updatedBy)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
+        try container.encode(audienceType, forKey: .audienceType)
         try container.encodeIfPresent(options, forKey: .options)
     }
 }
