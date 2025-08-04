@@ -20,7 +20,7 @@ public struct ListAudienceSearchInput: Codable, JSONEncodable, Hashable {
     }
     /** Field to filter by. */
     public var type: ModelType
-    /** Text to match against the selected field (max 255 characters). */
+    /** Text to match against the selected field (max 255 characters). When searching by KEY, a prefix match is used. For all other options, a full wildcard search will be used. */
     public var query: String
 
     public init(type: ModelType, query: String) {
