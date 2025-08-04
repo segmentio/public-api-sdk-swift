@@ -15,9 +15,9 @@ public struct ListWorkspaceRegulationsV1Output: Codable, JSONEncodable, Hashable
 
     /** List of Workspace-scoped regulations with statuses. */
     public var regulations: [RegulationListEntryV1]
-    public var pagination: Pagination3
+    public var pagination: Pagination1
 
-    public init(regulations: [RegulationListEntryV1], pagination: Pagination3) {
+    public init(regulations: [RegulationListEntryV1], pagination: Pagination1) {
         self.regulations = regulations
         self.pagination = pagination
     }
