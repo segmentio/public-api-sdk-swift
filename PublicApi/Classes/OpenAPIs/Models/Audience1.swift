@@ -20,7 +20,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     }
     public var computeCadence: ComputeCadence
     public var size: Size1?
-    public var options: Options6?
+    public var options: Options4?
     /** List of schedules for the audience. */
     public var schedules: [AudienceSchedule]?
     /** Audience id. */
@@ -35,7 +35,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition7?
+    public var definition: Definition4?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -49,7 +49,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Discriminator denoting the audience's product type. */
     public var audienceType: AudienceType
 
-    public init(computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType) {
+    public init(computeCadence: ComputeCadence, size: Size1? = nil, options: Options4? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition4?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType) {
         self.computeCadence = computeCadence
         self.size = size
         self.options = options
