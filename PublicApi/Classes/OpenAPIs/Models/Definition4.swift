@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated using the API is not editable through the Segment App. */
+/** Query language definition and type. */
 public struct Definition4: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
@@ -21,15 +21,19 @@ public struct Definition4: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
+    /** The target entity slug. */
+    public var targetEntity: String?
 
-    public init(type: ModelType, query: String) {
+    public init(type: ModelType, query: String, targetEntity: String? = nil) {
         self.type = type
         self.query = query
+        self.targetEntity = targetEntity
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case query
+        case targetEntity
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct Definition4: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encode(query, forKey: .query)
+        try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
     }
 }
 
