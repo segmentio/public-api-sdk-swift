@@ -10,30 +10,26 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Represents the Compute Query Language definition of the computation and type of computation. */
 public struct Definition: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
         case accounts = "ACCOUNTS"
         case users = "USERS"
     }
-    /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
+    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
     public var type: ModelType
-    /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
+    /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
-    /** The target entity slug. */
-    public var targetEntity: String?
 
-    public init(type: ModelType, query: String, targetEntity: String? = nil) {
+    public init(type: ModelType, query: String) {
         self.type = type
         self.query = query
-        self.targetEntity = targetEntity
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case query
-        case targetEntity
     }
 
     // Encodable protocol methods
@@ -42,7 +38,6 @@ public struct Definition: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encode(query, forKey: .query)
-        try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
     }
 }
 

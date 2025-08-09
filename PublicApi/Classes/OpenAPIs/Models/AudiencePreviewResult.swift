@@ -12,19 +12,39 @@ import AnyCodable
 
 public struct AudiencePreviewResult: Codable, JSONEncodable, Hashable {
 
-    /** Segment id. */
-    public var id: String
     /** The entities associated with the profile. Will only have a value if the audience preview has `audienceType: LINKED` and entities are referenced in the audience preview's definition. */
-    public var entities: JSON?
+    public var id: String
+    /** Related entities that are one level deeper will only be returned if those entities are referenced in the audience definition. */
+    public var entities: [String: AnyCodable]?
+    /** The entity primary key column name. */
+    public var idProperty: String
+    /** The entity relationship slug. */
+    public var relationshipSlug: String
+    /** The entity properties. */
+    public var properties: JSON?
+    /** List of profiles. */
+    public var profiles: [Profile]?
+    /** Indicates if only a subset of the profiles associated with the entity were returned. */
+    public var profilesTruncated: Bool
 
-    public init(id: String, entities: JSON? = nil) {
+    public init(id: String, entities: [String: AnyCodable]? = nil, idProperty: String, relationshipSlug: String, properties: JSON? = nil, profiles: [Profile]? = nil, profilesTruncated: Bool) {
         self.id = id
         self.entities = entities
+        self.idProperty = idProperty
+        self.relationshipSlug = relationshipSlug
+        self.properties = properties
+        self.profiles = profiles
+        self.profilesTruncated = profilesTruncated
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case entities
+        case idProperty
+        case relationshipSlug
+        case properties
+        case profiles
+        case profilesTruncated
     }
 
     // Encodable protocol methods
@@ -33,6 +53,11 @@ public struct AudiencePreviewResult: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(entities, forKey: .entities)
+        try container.encode(idProperty, forKey: .idProperty)
+        try container.encode(relationshipSlug, forKey: .relationshipSlug)
+        try container.encodeIfPresent(properties, forKey: .properties)
+        try container.encodeIfPresent(profiles, forKey: .profiles)
+        try container.encode(profilesTruncated, forKey: .profilesTruncated)
     }
 }
 
