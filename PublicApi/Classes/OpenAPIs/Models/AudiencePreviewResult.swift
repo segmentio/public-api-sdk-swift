@@ -22,7 +22,7 @@ public struct AudiencePreviewResult: Codable, JSONEncodable, Hashable {
     public var relationshipSlug: String
     /** The entity properties. */
     public var properties: JSON?
-    /** List of profiles. */
+    /** Related list of profiles. */
     public var profiles: [Profile]?
     /** Indicates if only a subset of the profiles associated with the entity were returned. */
     public var profilesTruncated: Bool

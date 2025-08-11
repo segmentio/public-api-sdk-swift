@@ -23,7 +23,7 @@ public struct AudiencePreviewEntitiesResult: Codable, JSONEncodable, Hashable {
     public var properties: JSON?
     /** Related entities that are one level deeper will only be returned if those entities are referenced in the audience definition. */
     public var entities: [String: AnyCodable]?
-    /** List of profiles. */
+    /** Related list of profiles. */
     public var profiles: [Profile]?
     /** Indicates if only a subset of the profiles associated with the entity were returned. */
     public var profilesTruncated: Bool
