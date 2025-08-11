@@ -15,9 +15,9 @@ public struct ListRulesFromTrackingPlanV1Output: Codable, JSONEncodable, Hashabl
 
     /** Rules associated with the given Tracking Plan. */
     public var rules: [RuleV1]
-    public var pagination: Pagination1
+    public var pagination: Pagination
 
-    public init(rules: [RuleV1], pagination: Pagination1) {
+    public init(rules: [RuleV1], pagination: Pagination) {
         self.rules = rules
         self.pagination = pagination
     }
