@@ -15,29 +15,35 @@ public struct Size: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
         case accounts = "ACCOUNTS"
+        case entities = "ENTITIES"
         case users = "USERS"
     }
     /** The total audience membership count. Refer to the type field to determine the unit for this field (profiles, accounts, etc). */
-    public var count: Double
+    public var count: Double?
     /** The unit type for the count(s) being returned. */
     public var type: ModelType
+    /** The unique audience membership count. */
+    public var uniqueCount: Double?
 
-    public init(count: Double, type: ModelType) {
+    public init(count: Double? = nil, type: ModelType, uniqueCount: Double? = nil) {
         self.count = count
         self.type = type
+        self.uniqueCount = uniqueCount
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case count
         case type
+        case uniqueCount
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(count, forKey: .count)
+        try container.encodeIfPresent(count, forKey: .count)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(uniqueCount, forKey: .uniqueCount)
     }
 }
 
