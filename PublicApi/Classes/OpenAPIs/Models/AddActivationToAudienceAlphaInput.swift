@@ -13,57 +13,55 @@ import AnyCodable
 /** Input to create an activation. */
 public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** Version Schema. */
-    public var versionSchema: String
-    /** The id of the Workspace the audience exists within. */
-    public var workspaceId: String
     /** The Destination id. */
     public var destinationId: String
-    /** Whether the event emitter should be created in an enabled state. */
+    /** Whether the event emitter should be created in an enabled state. Will trigger an audience run if enabled. */
     public var enabled: Bool?
-    /** Whether the event emitter should be created with the resync option. */
-    public var hasEnabledResync: Bool?
-    /** Whether the event emitter should emit events when the profile changes or when any enriched entity values changes. Only valid for identify events. */
-    public var emitEntityContext: String?
-    /** Configuration settings for the event emitter to be created. */
-    public var eventEmitter: AnyCodable?
-    /** Subscription info to connect the event emitter to a Destination attached to the audience. */
-    public var subscription: AnyCodable?
+    /** Whether to skip the first sync so the activation events are not generated on the first audience sync. */
+    public var performFirstSync: Bool
+    /** Type of activation trigger. */
+    public var activationType: String
+    /** Name of the activation. */
+    public var activationName: String
+    /** Segment event type to emit. */
+    public var segmentEvent: String
+    public var personalization: Personalization?
+    public var destinationMapping: DestinationMapping
 
-    public init(versionSchema: String, workspaceId: String, destinationId: String, enabled: Bool? = nil, hasEnabledResync: Bool? = nil, emitEntityContext: String? = nil, eventEmitter: AnyCodable?, subscription: AnyCodable?) {
-        self.versionSchema = versionSchema
-        self.workspaceId = workspaceId
+    public init(destinationId: String, enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, segmentEvent: String, personalization: Personalization? = nil, destinationMapping: DestinationMapping) {
         self.destinationId = destinationId
         self.enabled = enabled
-        self.hasEnabledResync = hasEnabledResync
-        self.emitEntityContext = emitEntityContext
-        self.eventEmitter = eventEmitter
-        self.subscription = subscription
+        self.performFirstSync = performFirstSync
+        self.activationType = activationType
+        self.activationName = activationName
+        self.segmentEvent = segmentEvent
+        self.personalization = personalization
+        self.destinationMapping = destinationMapping
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case versionSchema
-        case workspaceId
         case destinationId
         case enabled
-        case hasEnabledResync
-        case emitEntityContext
-        case eventEmitter
-        case subscription
+        case performFirstSync
+        case activationType
+        case activationName
+        case segmentEvent
+        case personalization
+        case destinationMapping
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(versionSchema, forKey: .versionSchema)
-        try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(destinationId, forKey: .destinationId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encodeIfPresent(hasEnabledResync, forKey: .hasEnabledResync)
-        try container.encodeIfPresent(emitEntityContext, forKey: .emitEntityContext)
-        try container.encode(eventEmitter, forKey: .eventEmitter)
-        try container.encode(subscription, forKey: .subscription)
+        try container.encode(performFirstSync, forKey: .performFirstSync)
+        try container.encode(activationType, forKey: .activationType)
+        try container.encode(activationName, forKey: .activationName)
+        try container.encode(segmentEvent, forKey: .segmentEvent)
+        try container.encodeIfPresent(personalization, forKey: .personalization)
+        try container.encode(destinationMapping, forKey: .destinationMapping)
     }
 }
 
