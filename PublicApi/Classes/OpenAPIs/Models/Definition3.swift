@@ -10,28 +10,20 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Definition that was used to calculate the audience preview. */
 public struct Definition3: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case accounts = "ACCOUNTS"
-        case users = "USERS"
-    }
-    /** The underlying data type being segmented for this audience.  Possible values: users, accounts. */
-    public var type: ModelType
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
     /** The target entity slug. */
     public var targetEntity: String?
 
-    public init(type: ModelType, query: String, targetEntity: String? = nil) {
-        self.type = type
+    public init(query: String, targetEntity: String? = nil) {
         self.query = query
         self.targetEntity = targetEntity
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
         case query
         case targetEntity
     }
@@ -40,7 +32,6 @@ public struct Definition3: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(type, forKey: .type)
         try container.encode(query, forKey: .query)
         try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
     }
