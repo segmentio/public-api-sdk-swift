@@ -23,18 +23,15 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var activationType: String
     /** Name of the activation. */
     public var activationName: String
-    /** Segment event type to emit. */
-    public var segmentEvent: String
-    public var personalization: Personalization?
+    public var personalization: Personalization
     public var destinationMapping: DestinationMapping
 
-    public init(destinationId: String, enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, segmentEvent: String, personalization: Personalization? = nil, destinationMapping: DestinationMapping) {
+    public init(destinationId: String, enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
         self.destinationId = destinationId
         self.enabled = enabled
         self.performFirstSync = performFirstSync
         self.activationType = activationType
         self.activationName = activationName
-        self.segmentEvent = segmentEvent
         self.personalization = personalization
         self.destinationMapping = destinationMapping
     }
@@ -45,7 +42,6 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         case performFirstSync
         case activationType
         case activationName
-        case segmentEvent
         case personalization
         case destinationMapping
     }
@@ -59,8 +55,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         try container.encode(performFirstSync, forKey: .performFirstSync)
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
-        try container.encode(segmentEvent, forKey: .segmentEvent)
-        try container.encodeIfPresent(personalization, forKey: .personalization)
+        try container.encode(personalization, forKey: .personalization)
         try container.encode(destinationMapping, forKey: .destinationMapping)
     }
 }
