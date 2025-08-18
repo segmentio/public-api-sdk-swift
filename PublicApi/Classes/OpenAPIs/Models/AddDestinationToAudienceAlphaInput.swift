@@ -13,31 +13,31 @@ import AnyCodable
 /** Input to Add a Destination into an Audience. */
 public struct AddDestinationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** Version Schema. */
-    public var versionSchema: String
-    /** The id of the Workspace the audience exists within. */
-    public var workspaceId: String
     public var destination: Destination
+    /** Identifier sync configuration object. */
+    public var idSyncConfiguration: AnyCodable?
+    /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific and thus are best defined as unknown. */
+    public var connectionSettings: AnyCodable?
 
-    public init(versionSchema: String, workspaceId: String, destination: Destination) {
-        self.versionSchema = versionSchema
-        self.workspaceId = workspaceId
+    public init(destination: Destination, idSyncConfiguration: AnyCodable? = nil, connectionSettings: AnyCodable? = nil) {
         self.destination = destination
+        self.idSyncConfiguration = idSyncConfiguration
+        self.connectionSettings = connectionSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case versionSchema
-        case workspaceId
         case destination
+        case idSyncConfiguration
+        case connectionSettings
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(versionSchema, forKey: .versionSchema)
-        try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(destination, forKey: .destination)
+        try container.encodeIfPresent(idSyncConfiguration, forKey: .idSyncConfiguration)
+        try container.encodeIfPresent(connectionSettings, forKey: .connectionSettings)
     }
 }
 

@@ -36,7 +36,7 @@ open class ActivationsAPI {
 
     /**
      Add Activation to Audience
-     - POST /spaces/{spaceId}/audiences/{audienceId}/{connectionId}/activations
+     - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{connectionId}/activations
      - Creates Activation.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Activation Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 10 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
@@ -48,7 +48,7 @@ open class ActivationsAPI {
      - returns: RequestBuilder<AddActivationToAudience200Response> 
      */
     open class func addActivationToAudienceWithRequestBuilder(spaceId: String, audienceId: String, connectionId: String, addActivationToAudienceAlphaInput: AddActivationToAudienceAlphaInput) -> RequestBuilder<AddActivationToAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/{connectionId}/activations"
+        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/destination-connections/{connectionId}/activations"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
@@ -97,7 +97,7 @@ open class ActivationsAPI {
 
     /**
      Add Destination to Audience
-     - POST /spaces/{spaceId}/audiences/{audienceId}/destinations
+     - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections
      - Adds a Destination to an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Added into Audience` event in the [audit trail](/tag/Audit-Trail).
      - BASIC:
        - type: http
@@ -108,7 +108,7 @@ open class ActivationsAPI {
      - returns: RequestBuilder<AddDestinationToAudience200Response> 
      */
     open class func addDestinationToAudienceWithRequestBuilder(spaceId: String, audienceId: String, addDestinationToAudienceAlphaInput: AddDestinationToAudienceAlphaInput) -> RequestBuilder<AddDestinationToAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/destinations"
+        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/destination-connections"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
@@ -137,13 +137,12 @@ open class ActivationsAPI {
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
      - parameter id: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getActivationFromAudience(spaceId: String, audienceId: String, id: String, workspaceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetActivationFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return getActivationFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, id: id, workspaceId: workspaceId).execute(apiResponseQueue) { result in
+    open class func getActivationFromAudience(spaceId: String, audienceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetActivationFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getActivationFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -163,10 +162,9 @@ open class ActivationsAPI {
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
      - parameter id: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - returns: RequestBuilder<GetActivationFromAudience200Response> 
      */
-    open class func getActivationFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, id: String, workspaceId: String) -> RequestBuilder<GetActivationFromAudience200Response> {
+    open class func getActivationFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, id: String) -> RequestBuilder<GetActivationFromAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/activations/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -180,10 +178,7 @@ open class ActivationsAPI {
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "workspaceId": workspaceId.encodeToJSON(),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -201,14 +196,13 @@ open class ActivationsAPI {
      
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - parameter pagination: (query) Optional pagination.  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listActivationsFromAudience(spaceId: String, audienceId: String, workspaceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListActivationsFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return listActivationsFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, workspaceId: workspaceId, pagination: pagination).execute(apiResponseQueue) { result in
+    open class func listActivationsFromAudience(spaceId: String, audienceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListActivationsFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listActivationsFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, pagination: pagination).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -227,11 +221,10 @@ open class ActivationsAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - parameter pagination: (query) Optional pagination.  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<ListActivationsFromAudience200Response> 
      */
-    open class func listActivationsFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, workspaceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListActivationsFromAudience200Response> {
+    open class func listActivationsFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListActivationsFromAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/activations"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -244,7 +237,6 @@ open class ActivationsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "workspaceId": workspaceId.encodeToJSON(),
             "pagination": pagination?.encodeToJSON(),
         ])
 
@@ -265,13 +257,12 @@ open class ActivationsAPI {
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
      - parameter id: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func removeActivationFromAudience(spaceId: String, audienceId: String, id: String, workspaceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RemoveActivationFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return removeActivationFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, id: id, workspaceId: workspaceId).execute(apiResponseQueue) { result in
+    open class func removeActivationFromAudience(spaceId: String, audienceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RemoveActivationFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return removeActivationFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -291,10 +282,9 @@ open class ActivationsAPI {
      - parameter spaceId: (path)  
      - parameter audienceId: (path)  
      - parameter id: (path)  
-     - parameter workspaceId: (query) The workspace id  This parameter exists in alpha. 
      - returns: RequestBuilder<RemoveActivationFromAudience200Response> 
      */
-    open class func removeActivationFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, id: String, workspaceId: String) -> RequestBuilder<RemoveActivationFromAudience200Response> {
+    open class func removeActivationFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, id: String) -> RequestBuilder<RemoveActivationFromAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/activations/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -308,10 +298,7 @@ open class ActivationsAPI {
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "workspaceId": workspaceId.encodeToJSON(),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
