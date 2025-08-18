@@ -19,7 +19,7 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
     public var activationName: String?
     public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
-    /** Whether to skip the first sync so the activation events are not generated on the first audience sync. Will only work if the Audience has not already synced. */
+    /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
     public var performFirstSync: Bool?
 
     public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performFirstSync: Bool? = nil) {

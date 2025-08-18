@@ -17,7 +17,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var destinationId: String
     /** Whether the event emitter should be created in an enabled state. Will trigger an audience run if enabled. */
     public var enabled: Bool?
-    /** Whether to skip the first sync so the activation events are not generated on the first audience sync. */
+    /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
     public var performFirstSync: Bool
     /** Type of activation trigger. */
     public var activationType: String
