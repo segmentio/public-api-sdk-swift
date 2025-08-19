@@ -13,37 +13,40 @@ import AnyCodable
 /** Input to update an activation. */
 public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** The Workspace id. */
-    public var workspaceId: String
     /** Determines whether an activation is enabled. */
     public var enabled: Bool?
-    /** Configuration settings for the event emitter to be created. */
-    public var eventEmitter: AnyCodable?
-    /** Subscription info to connect the event emitter to a Destination attached to the audience. */
-    public var subscription: AnyCodable?
+    /** Activation name. */
+    public var activationName: String?
+    public var personalization: Personalization?
+    public var destinationMapping: DestinationMapping?
+    /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
+    public var performFirstSync: Bool?
 
-    public init(workspaceId: String, enabled: Bool? = nil, eventEmitter: AnyCodable?, subscription: AnyCodable?) {
-        self.workspaceId = workspaceId
+    public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performFirstSync: Bool? = nil) {
         self.enabled = enabled
-        self.eventEmitter = eventEmitter
-        self.subscription = subscription
+        self.activationName = activationName
+        self.personalization = personalization
+        self.destinationMapping = destinationMapping
+        self.performFirstSync = performFirstSync
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case workspaceId
         case enabled
-        case eventEmitter
-        case subscription
+        case activationName
+        case personalization
+        case destinationMapping
+        case performFirstSync
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(workspaceId, forKey: .workspaceId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encode(eventEmitter, forKey: .eventEmitter)
-        try container.encode(subscription, forKey: .subscription)
+        try container.encodeIfPresent(activationName, forKey: .activationName)
+        try container.encodeIfPresent(personalization, forKey: .personalization)
+        try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
+        try container.encodeIfPresent(performFirstSync, forKey: .performFirstSync)
     }
 }
 
