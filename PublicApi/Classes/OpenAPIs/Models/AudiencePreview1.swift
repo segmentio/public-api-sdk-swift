@@ -25,7 +25,7 @@ public struct AudiencePreview1: Codable, JSONEncodable, Hashable {
     }
     /** Unique identifier for tracking and retrieving results of an audience preview. */
     public var id: String
-    /** The audience type of the preview. */
+    /** The audience type of the preview.  Possible values: USERS, ACCOUNTS, LINKED. */
     public var audienceType: AudienceType
     public var definition: Definition6
     public var options: Options4

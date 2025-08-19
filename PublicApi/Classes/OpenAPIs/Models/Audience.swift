@@ -41,7 +41,7 @@ public struct Audience: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
-    /** Discriminator denoting the audience's product type. */
+    /** Denotes the type of audience product. */
     public var audienceType: AudienceType
     public var options: Options5?
 

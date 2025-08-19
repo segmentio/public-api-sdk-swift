@@ -19,7 +19,7 @@ public struct CreateAudiencePreviewAlphaInput: Codable, JSONEncodable, Hashable 
         case users = "USERS"
     }
     public var definition: Definition5
-    /** Discriminator denoting the audience's product type.  Possible values: USERS, ACCOUNTS, LINKED. */
+    /** Denotes the type of audience product.  Possible values: USERS, ACCOUNTS, LINKED. */
     public var audienceType: AudienceType
     public var options: Options3?
 

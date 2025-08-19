@@ -45,7 +45,7 @@ public struct AudienceSummaryWithAudienceTypeAndLookback: Codable, JSONEncodable
     public var createdAt: String
     /** Date the audience was last updated. */
     public var updatedAt: String
-    /** Discriminator denoting the audience's product type. */
+    /** Denotes the type of audience product. */
     public var audienceType: AudienceType
 
     public init(computeCadence: ComputeCadence, size: Size1? = nil, options: Options6? = nil, schedules: [AudienceSchedule]? = nil, id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition7?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType) {
