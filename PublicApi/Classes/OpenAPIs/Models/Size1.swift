@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Object containing details about audience membership size(s). */
+/** Result membership size for the audience preview. Only has a value if status is &#39;COMPLETED&#39;. */
 public struct Size1: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
