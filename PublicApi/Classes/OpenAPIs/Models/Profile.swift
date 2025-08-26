@@ -14,13 +14,16 @@ import AnyCodable
 public struct Profile: Codable, JSONEncodable, Hashable {
 
     public var properties: [String]
+    public var mapping: [String: String]?
 
-    public init(properties: [String]) {
+    public init(properties: [String], mapping: [String: String]? = nil) {
         self.properties = properties
+        self.mapping = mapping
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case properties
+        case mapping
     }
 
     // Encodable protocol methods
@@ -28,6 +31,7 @@ public struct Profile: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(properties, forKey: .properties)
+        try container.encodeIfPresent(mapping, forKey: .mapping)
     }
 }
 

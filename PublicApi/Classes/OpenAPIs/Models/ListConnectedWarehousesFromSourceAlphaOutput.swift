@@ -15,9 +15,9 @@ public struct ListConnectedWarehousesFromSourceAlphaOutput: Codable, JSONEncodab
 
     /** A list that contains the Warehouses connected to the Source. */
     public var warehouses: [WarehouseV1]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(warehouses: [WarehouseV1], pagination: Pagination) {
+    public init(warehouses: [WarehouseV1], pagination: Pagination1) {
         self.warehouses = warehouses
         self.pagination = pagination
     }
