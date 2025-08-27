@@ -68,13 +68,13 @@ open class AudiencesAPI {
      Create Audience Preview
      
      - parameter spaceId: (path)  
-     - parameter createAudiencePreviewAlphaInput: (body)  
+     - parameter createAudiencePreviewBetaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createAudiencePreview(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewAlphaInput: createAudiencePreviewAlphaInput).execute(apiResponseQueue) { result in
+    open class func createAudiencePreview(spaceId: String, createAudiencePreviewBetaInput: CreateAudiencePreviewBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewBetaInput: createAudiencePreviewBetaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -87,21 +87,21 @@ open class AudiencesAPI {
     /**
      Create Audience Preview
      - POST /spaces/{spaceId}/audiences/previews
-     - Previews Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 5 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information. This endpoint also has a rate limit of 700 requests per month per spaceId, which is lower than the default due to access pattern restrictions.
+     - Previews Audience.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Preview Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 5 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information. This endpoint also has a rate limit of 700 requests per month per spaceId, which is lower than the default due to access pattern restrictions.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter createAudiencePreviewAlphaInput: (body)  
+     - parameter createAudiencePreviewBetaInput: (body)  
      - returns: RequestBuilder<CreateAudiencePreview200Response> 
      */
-    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewAlphaInput: CreateAudiencePreviewAlphaInput) -> RequestBuilder<CreateAudiencePreview200Response> {
+    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewBetaInput: CreateAudiencePreviewBetaInput) -> RequestBuilder<CreateAudiencePreview200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/previews"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewBetaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -206,7 +206,7 @@ open class AudiencesAPI {
     /**
      Get Audience Preview
      - GET /spaces/{spaceId}/audiences/previews/{id}
-     - Reads the results of an audience preview.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Reads the results of an audience preview.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 100 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
