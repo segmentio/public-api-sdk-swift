@@ -13,8 +13,6 @@ import AnyCodable
 /** Input to create an activation. */
 public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** The Destination id. */
-    public var destinationId: String
     /** Whether the event emitter should be created in an enabled state. Will trigger an audience run if enabled. */
     public var enabled: Bool?
     /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
@@ -26,8 +24,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var personalization: Personalization
     public var destinationMapping: DestinationMapping
 
-    public init(destinationId: String, enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
-        self.destinationId = destinationId
+    public init(enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
         self.enabled = enabled
         self.performFirstSync = performFirstSync
         self.activationType = activationType
@@ -37,7 +34,6 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case destinationId
         case enabled
         case performFirstSync
         case activationType
@@ -50,7 +46,6 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(destinationId, forKey: .destinationId)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encode(performFirstSync, forKey: .performFirstSync)
         try container.encode(activationType, forKey: .activationType)
