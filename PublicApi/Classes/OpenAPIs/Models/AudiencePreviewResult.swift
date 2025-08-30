@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct AudiencePreviewResult: Codable, JSONEncodable, Hashable {
 
-    /** The entities associated with the profile. Will only have a value if the audience preview has `audienceType: LINKED` and entities are referenced in the audience preview's definition. */
+    /** Entity id. */
     public var id: String
     /** Related entities that are one level deeper will only be returned if those entities are referenced in the audience definition. */
     public var entities: [String: AnyCodable]?

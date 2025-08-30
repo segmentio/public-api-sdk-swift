@@ -13,7 +13,7 @@ import AnyCodable
 /** Result membership object for an audience preview with &#x60;audienceType: USERS&#x60; or &#x60;audienceType: LINKED&#x60;. */
 public struct AudiencePreviewEntitiesResult: Codable, JSONEncodable, Hashable {
 
-    /** The entities associated with the profile. Will only have a value if the audience preview has `audienceType: LINKED` and entities are referenced in the audience preview's definition. */
+    /** Entity id. */
     public var id: String
     /** The entity primary key column name. */
     public var idProperty: String
