@@ -37,7 +37,7 @@ open class ActivationsAPI {
     /**
      Add Activation to Audience
      - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{connectionId}/activations
-     - Creates Activation.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Activation Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 10 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Creates Activation.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Activation Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -98,7 +98,7 @@ open class ActivationsAPI {
     /**
      Add Destination to Audience
      - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections
-     - Adds a Destination to an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Added into Audience` event in the [audit trail](/tag/Audit-Trail).
+     - Adds a Destination to an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Added into Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -275,7 +275,7 @@ open class ActivationsAPI {
     /**
      Remove Activation from Audience
      - DELETE /spaces/{spaceId}/audiences/{audienceId}/activations/{id}
-     - Deletes an Activation.   The rate limit for this endpoint is 10 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Deletes an Activation.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -336,7 +336,7 @@ open class ActivationsAPI {
     /**
      Update Activation for Audience
      - PATCH /spaces/{spaceId}/audiences/{audienceId}/activations/{id}
-     - Updates an Activation.   The rate limit for this endpoint is 10 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Updates an Activation.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
