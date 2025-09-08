@@ -15,9 +15,9 @@ public struct ListInvitesV1Output: Codable, JSONEncodable, Hashable {
 
     /** The list of invites. */
     public var invites: [String]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(invites: [String], pagination: Pagination) {
+    public init(invites: [String], pagination: Pagination1) {
         self.invites = invites
         self.pagination = pagination
     }
