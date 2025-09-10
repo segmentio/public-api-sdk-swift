@@ -30,7 +30,9 @@ public struct AudienceSummary: Codable, JSONEncodable, Hashable {
     public var key: String
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
-    public var definition: Definition3?
+    public var definition: Definition6?
+    /** Array of conditions in different formats (AST, CQL) - Enhanced format. */
+    public var conditions: [AudienceConditionsWrapper]?
     /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
     public var status: String?
     /** User id who created the audience. */
@@ -43,9 +45,9 @@ public struct AudienceSummary: Codable, JSONEncodable, Hashable {
     public var updatedAt: String
     /** Denotes the type of audience product. */
     public var audienceType: AudienceType
-    public var options: Options2?
+    public var options: Options4?
 
-    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition3?, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType, options: Options2? = nil) {
+    public init(id: String, spaceId: String, name: String, description: String? = nil, key: String, enabled: Bool, definition: Definition6?, conditions: [AudienceConditionsWrapper]? = nil, status: String? = nil, createdBy: String, updatedBy: String, createdAt: String, updatedAt: String, audienceType: AudienceType, options: Options4? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.name = name
@@ -53,6 +55,7 @@ public struct AudienceSummary: Codable, JSONEncodable, Hashable {
         self.key = key
         self.enabled = enabled
         self.definition = definition
+        self.conditions = conditions
         self.status = status
         self.createdBy = createdBy
         self.updatedBy = updatedBy
@@ -70,6 +73,7 @@ public struct AudienceSummary: Codable, JSONEncodable, Hashable {
         case key
         case enabled
         case definition
+        case conditions
         case status
         case createdBy
         case updatedBy
@@ -90,6 +94,7 @@ public struct AudienceSummary: Codable, JSONEncodable, Hashable {
         try container.encode(key, forKey: .key)
         try container.encode(enabled, forKey: .enabled)
         try container.encode(definition, forKey: .definition)
+        try container.encodeIfPresent(conditions, forKey: .conditions)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encode(createdBy, forKey: .createdBy)
         try container.encode(updatedBy, forKey: .updatedBy)
