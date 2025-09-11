@@ -10,7 +10,6 @@ import Foundation
 import AnyCodable
 #endif
 
-/** A class that encapsulates the output shared across endpoints for a given activation. */
 public struct ActivationSummaryOutput: Codable, JSONEncodable, Hashable {
 
     /** The activation id. */
