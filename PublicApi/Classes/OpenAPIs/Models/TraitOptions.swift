@@ -16,15 +16,19 @@ public struct TraitOptions: Codable, JSONEncodable, Hashable {
     public var includeHistoricalData: Bool?
     /** Determines whether anonymous users should be included when determining the computed trait value. */
     public var includeAnonymousUsers: Bool?
+    /** If specified, the value of this field indicates the number of days, specified from the date the audience was created, that event data will be included from when determining audience membership. If unspecified, defer to the value of `includeHistoricalData` to determine whether historical data is either entirely included or entirely excluded when determining audience membership. */
+    public var backfillDurationDays: Double?
 
-    public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil) {
+    public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil, backfillDurationDays: Double? = nil) {
         self.includeHistoricalData = includeHistoricalData
         self.includeAnonymousUsers = includeAnonymousUsers
+        self.backfillDurationDays = backfillDurationDays
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case includeHistoricalData
         case includeAnonymousUsers
+        case backfillDurationDays
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TraitOptions: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(includeHistoricalData, forKey: .includeHistoricalData)
         try container.encodeIfPresent(includeAnonymousUsers, forKey: .includeAnonymousUsers)
+        try container.encodeIfPresent(backfillDurationDays, forKey: .backfillDurationDays)
     }
 }
 
