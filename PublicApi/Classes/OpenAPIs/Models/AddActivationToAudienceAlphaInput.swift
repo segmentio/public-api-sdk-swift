@@ -15,8 +15,8 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
 
     /** Whether the event emitter should be created in an enabled state. Will trigger an audience run if enabled. */
     public var enabled: Bool?
-    /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
-    public var performFirstSync: Bool
+    /** Whether to perform a resync after creation of the activation. */
+    public var performResync: Bool
     /** Type of activation trigger. */
     public var activationType: String
     /** Name of the activation. */
@@ -24,9 +24,9 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var personalization: Personalization
     public var destinationMapping: DestinationMapping
 
-    public init(enabled: Bool? = nil, performFirstSync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
+    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
         self.enabled = enabled
-        self.performFirstSync = performFirstSync
+        self.performResync = performResync
         self.activationType = activationType
         self.activationName = activationName
         self.personalization = personalization
@@ -35,7 +35,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case enabled
-        case performFirstSync
+        case performResync
         case activationType
         case activationName
         case personalization
@@ -47,7 +47,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encode(performFirstSync, forKey: .performFirstSync)
+        try container.encode(performResync, forKey: .performResync)
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encode(personalization, forKey: .personalization)

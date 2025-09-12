@@ -19,15 +19,15 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
     public var activationName: String?
     public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
-    /** Whether to perform the first sync so the activation events are generated on the first audience sync. */
-    public var performFirstSync: Bool?
+    /** Whether to perform a resync after creation of the activation. */
+    public var performResync: Bool?
 
-    public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performFirstSync: Bool? = nil) {
+    public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performResync: Bool? = nil) {
         self.enabled = enabled
         self.activationName = activationName
         self.personalization = personalization
         self.destinationMapping = destinationMapping
-        self.performFirstSync = performFirstSync
+        self.performResync = performResync
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -35,7 +35,7 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
         case activationName
         case personalization
         case destinationMapping
-        case performFirstSync
+        case performResync
     }
 
     // Encodable protocol methods
@@ -46,7 +46,7 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
         try container.encodeIfPresent(activationName, forKey: .activationName)
         try container.encodeIfPresent(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
-        try container.encodeIfPresent(performFirstSync, forKey: .performFirstSync)
+        try container.encodeIfPresent(performResync, forKey: .performResync)
     }
 }
 
