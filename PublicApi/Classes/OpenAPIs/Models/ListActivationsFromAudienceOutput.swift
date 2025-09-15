@@ -14,10 +14,10 @@ import AnyCodable
 public struct ListActivationsFromAudienceOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of activation results. */
-    public var activations: [ActivationSummaryOutput]
-    public var pagination: Pagination2?
+    public var activations: [ActivationOutput]
+    public var pagination: Pagination?
 
-    public init(activations: [ActivationSummaryOutput], pagination: Pagination2? = nil) {
+    public init(activations: [ActivationOutput], pagination: Pagination? = nil) {
         self.activations = activations
         self.pagination = pagination
     }
