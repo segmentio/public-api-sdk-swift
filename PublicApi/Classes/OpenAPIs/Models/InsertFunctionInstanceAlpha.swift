@@ -21,8 +21,9 @@ public struct InsertFunctionInstanceAlpha: Codable, JSONEncodable, Hashable {
     public var updatedAt: String
     public var settings: [String: AnyCodable]
     public var encryptedSettings: [String: AnyCodable]
+    public var integrationType: AnyCodable?
 
-    public init(id: String, name: String? = nil, integrationId: String, classId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], encryptedSettings: [String: AnyCodable]) {
+    public init(id: String, name: String? = nil, integrationId: String, classId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], encryptedSettings: [String: AnyCodable], integrationType: AnyCodable? = nil) {
         self.id = id
         self.name = name
         self.integrationId = integrationId
@@ -32,6 +33,7 @@ public struct InsertFunctionInstanceAlpha: Codable, JSONEncodable, Hashable {
         self.updatedAt = updatedAt
         self.settings = settings
         self.encryptedSettings = encryptedSettings
+        self.integrationType = integrationType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -44,6 +46,7 @@ public struct InsertFunctionInstanceAlpha: Codable, JSONEncodable, Hashable {
         case updatedAt
         case settings
         case encryptedSettings
+        case integrationType
     }
 
     // Encodable protocol methods
@@ -59,6 +62,7 @@ public struct InsertFunctionInstanceAlpha: Codable, JSONEncodable, Hashable {
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(settings, forKey: .settings)
         try container.encode(encryptedSettings, forKey: .encryptedSettings)
+        try container.encodeIfPresent(integrationType, forKey: .integrationType)
     }
 }
 
