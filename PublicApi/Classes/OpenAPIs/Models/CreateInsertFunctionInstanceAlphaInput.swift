@@ -18,7 +18,7 @@ public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Ha
         case journey = "JOURNEY"
         case source = "SOURCE"
     }
-    /** Insert Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_ prefix from the id. */
+    /** Insert Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_/ifn_ prefix from the id. */
     public var functionId: String
     /** The Source or Destination id to be connected. */
     public var integrationId: String
