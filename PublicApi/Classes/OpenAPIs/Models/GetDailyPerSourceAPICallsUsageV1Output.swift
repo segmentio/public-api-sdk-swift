@@ -15,9 +15,9 @@ public struct GetDailyPerSourceAPICallsUsageV1Output: Codable, JSONEncodable, Ha
 
     /** The list of daily per Source API calls count aggregates. */
     public var dailyPerSourceAPICallsUsage: [SourceAPICallSnapshotV1]
-    public var pagination: Pagination3
+    public var pagination: Pagination1
 
-    public init(dailyPerSourceAPICallsUsage: [SourceAPICallSnapshotV1], pagination: Pagination3) {
+    public init(dailyPerSourceAPICallsUsage: [SourceAPICallSnapshotV1], pagination: Pagination1) {
         self.dailyPerSourceAPICallsUsage = dailyPerSourceAPICallsUsage
         self.pagination = pagination
     }
