@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition. */
+/** Query language definition and type. */
 public struct Definition3: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
