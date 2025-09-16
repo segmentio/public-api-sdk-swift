@@ -15,9 +15,9 @@ public struct ListSelectiveSyncsFromWarehouseAndSourceV1Output: Codable, JSONEnc
 
     /** Represents a list of Source, collection, and properties synced to the Warehouse. */
     public var items: [WarehouseSelectiveSyncItemV1]
-    public var pagination: Pagination
+    public var pagination: Pagination3
 
-    public init(items: [WarehouseSelectiveSyncItemV1], pagination: Pagination) {
+    public init(items: [WarehouseSelectiveSyncItemV1], pagination: Pagination3) {
         self.items = items
         self.pagination = pagination
     }
