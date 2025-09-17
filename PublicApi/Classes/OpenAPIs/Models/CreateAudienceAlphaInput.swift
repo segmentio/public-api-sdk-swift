@@ -25,10 +25,10 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
     public var description: String?
     public var definition: Definition3
     /** Denotes the type of audience product.  Possible values: USERS, ACCOUNTS. */
-    public var audienceType: AudienceType?
+    public var audienceType: AudienceType
     public var options: Options2?
 
-    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition3, audienceType: AudienceType? = nil, options: Options2? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition3, audienceType: AudienceType, options: Options2? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
@@ -54,7 +54,7 @@ public struct CreateAudienceAlphaInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encode(definition, forKey: .definition)
-        try container.encodeIfPresent(audienceType, forKey: .audienceType)
+        try container.encode(audienceType, forKey: .audienceType)
         try container.encodeIfPresent(options, forKey: .options)
     }
 }

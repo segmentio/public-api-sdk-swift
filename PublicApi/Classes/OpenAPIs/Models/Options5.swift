@@ -17,22 +17,18 @@ public struct Options5: Codable, JSONEncodable, Hashable {
     public var filterByExternalIds: [String]
     /** Determines whether data prior to the audience being created is included when determining audience membership. Note that including historical data may be needed in order to properly handle the definition specified. In these cases, Segment will automatically handle including historical data and the response will return the includeHistoricalData parameter as true. */
     public var includeHistoricalData: Bool?
-    /** Determines whether anonymous users should be included when determining audience membership. */
-    public var includeAnonymousUsers: Bool?
     /** If specified, the value of this field indicates the number of days, specified from the date the audience was created, that event data will be included from when determining audience membership. If unspecified, defer to the value of `includeHistoricalData` to determine whether historical data is either entirely included or entirely excluded when determining audience membership. */
     public var backfillEventDataDays: Double?
 
-    public init(filterByExternalIds: [String], includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil, backfillEventDataDays: Double? = nil) {
+    public init(filterByExternalIds: [String], includeHistoricalData: Bool? = nil, backfillEventDataDays: Double? = nil) {
         self.filterByExternalIds = filterByExternalIds
         self.includeHistoricalData = includeHistoricalData
-        self.includeAnonymousUsers = includeAnonymousUsers
         self.backfillEventDataDays = backfillEventDataDays
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case filterByExternalIds
         case includeHistoricalData
-        case includeAnonymousUsers
         case backfillEventDataDays
     }
 
@@ -42,7 +38,6 @@ public struct Options5: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(filterByExternalIds, forKey: .filterByExternalIds)
         try container.encodeIfPresent(includeHistoricalData, forKey: .includeHistoricalData)
-        try container.encodeIfPresent(includeAnonymousUsers, forKey: .includeAnonymousUsers)
         try container.encodeIfPresent(backfillEventDataDays, forKey: .backfillEventDataDays)
     }
 }
