@@ -10,30 +10,34 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Definition that was used to calculate the audience preview. */
+/** Query language definition and type. Note: The definition for a Computed Trait updated using the API is not editable through the Segment App. */
 public struct Definition7: Codable, JSONEncodable, Hashable {
 
-    /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
+    public enum ModelType: String, Codable, CaseIterable {
+        case accounts = "ACCOUNTS"
+        case users = "USERS"
+    }
+    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
+    public var type: ModelType
+    /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
-    /** The target entity slug. */
-    public var targetEntity: String?
 
-    public init(query: String, targetEntity: String? = nil) {
+    public init(type: ModelType, query: String) {
+        self.type = type
         self.query = query
-        self.targetEntity = targetEntity
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case type
         case query
-        case targetEntity
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
         try container.encode(query, forKey: .query)
-        try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
     }
 }
 
