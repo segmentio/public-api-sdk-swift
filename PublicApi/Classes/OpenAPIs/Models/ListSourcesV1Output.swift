@@ -15,9 +15,9 @@ public struct ListSourcesV1Output: Codable, JSONEncodable, Hashable {
 
     /** A list of Sources that belong to the Workspace. */
     public var sources: [SourceV1]
-    public var pagination: Pagination2
+    public var pagination: Pagination1
 
-    public init(sources: [SourceV1], pagination: Pagination2) {
+    public init(sources: [SourceV1], pagination: Pagination1) {
         self.sources = sources
         self.pagination = pagination
     }

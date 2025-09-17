@@ -13,23 +13,19 @@ import AnyCodable
 /** Query language definition and type. */
 public struct Definition6: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case accounts = "ACCOUNTS"
-        case users = "USERS"
-    }
-    /** The query language string defining the computed trait aggregation criteria. For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
+    /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
-    /** The underlying data type being aggregated for this computed trait.  Possible values: users, accounts. */
-    public var type: ModelType
+    /** The target entity slug. */
+    public var targetEntity: String?
 
-    public init(query: String, type: ModelType) {
+    public init(query: String, targetEntity: String? = nil) {
         self.query = query
-        self.type = type
+        self.targetEntity = targetEntity
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case query
-        case type
+        case targetEntity
     }
 
     // Encodable protocol methods
@@ -37,7 +33,7 @@ public struct Definition6: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(query, forKey: .query)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
     }
 }
 
