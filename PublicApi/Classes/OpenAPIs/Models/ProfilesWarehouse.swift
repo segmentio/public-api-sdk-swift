@@ -17,7 +17,7 @@ public struct ProfilesWarehouse: Codable, JSONEncodable, Hashable {
     public var id: String
     /** The Space id. */
     public var spaceId: String
-    public var metadata: Metadata1
+    public var metadata: Metadata2
     /** The id of the Workspace that owns this Warehouse. */
     public var workspaceId: String
     /** When set to true, this Warehouse receives data. */
@@ -27,7 +27,7 @@ public struct ProfilesWarehouse: Codable, JSONEncodable, Hashable {
     /** The custom schema name that Segment uses on the Warehouse side. */
     public var schemaName: String?
 
-    public init(id: String, spaceId: String, metadata: Metadata1, workspaceId: String, enabled: Bool, settings: JSON?, schemaName: String? = nil) {
+    public init(id: String, spaceId: String, metadata: Metadata2, workspaceId: String, enabled: Bool, settings: JSON?, schemaName: String? = nil) {
         self.id = id
         self.spaceId = spaceId
         self.metadata = metadata

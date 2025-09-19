@@ -19,13 +19,13 @@ public struct Destination3: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** Whether this instance of a Destination receives data. */
     public var enabled: Bool
-    public var metadata: Metadata
+    public var metadata: Metadata1
     /** The id of a Source connected to this instance of a Destination.  Config API note: analogous to `parent`. */
     public var sourceId: String
     /** The collection of settings associated with a Destination.  Config API note: equal to `config`. */
     public var settings: [String: AnyCodable]
 
-    public init(id: String, name: String? = nil, enabled: Bool, metadata: Metadata, sourceId: String, settings: [String: AnyCodable]) {
+    public init(id: String, name: String? = nil, enabled: Bool, metadata: Metadata1, sourceId: String, settings: [String: AnyCodable]) {
         self.id = id
         self.name = name
         self.enabled = enabled
