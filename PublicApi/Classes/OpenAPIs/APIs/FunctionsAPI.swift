@@ -473,7 +473,6 @@ open class FunctionsAPI {
         case destination = "DESTINATION"
         case insertDestination = "INSERT_DESTINATION"
         case insertSource = "INSERT_SOURCE"
-        case insertTransformation = "INSERT_TRANSFORMATION"
         case source = "SOURCE"
     }
 

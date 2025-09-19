@@ -252,6 +252,66 @@ open class ActivationsAPI {
     }
 
     /**
+     List Destinations from Audience
+     
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - parameter pagination: (query) Optional pagination.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listDestinationsFromAudience(spaceId: String, audienceId: String, pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListDestinationsFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listDestinationsFromAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, pagination: pagination).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Destinations from Audience
+     - GET /spaces/{spaceId}/audiences/{audienceId}/destination-connections
+     - Lists all Destinations from an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destinations Listed from Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - parameter pagination: (query) Optional pagination.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListDestinationsFromAudience200Response> 
+     */
+    open class func listDestinationsFromAudienceWithRequestBuilder(spaceId: String, audienceId: String, pagination: PaginationInput? = nil) -> RequestBuilder<ListDestinationsFromAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/destination-connections"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let audienceIdPreEscape = "\(APIHelper.mapValueToPathItem(audienceId))"
+        let audienceIdPostEscape = audienceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{audienceId}", with: audienceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListDestinationsFromAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Remove Activation from Audience
      
      - parameter spaceId: (path)  

@@ -19,7 +19,7 @@ public struct Source2: Codable, JSONEncodable, Hashable {
     public var slug: String
     /** The name of the Source.  Config API note: equal to `displayName`. */
     public var name: String?
-    public var metadata: Metadata2
+    public var metadata: Metadata3
     /** The id of the Workspace that owns the Source.  Config API note: equal to `parent`. */
     public var workspaceId: String
     /** Enable to receive data from the Source. */
@@ -31,7 +31,7 @@ public struct Source2: Codable, JSONEncodable, Hashable {
     /** A list of labels applied to the Source. */
     public var labels: [LabelV1]
 
-    public init(id: String, slug: String, name: String? = nil, metadata: Metadata2, workspaceId: String, enabled: Bool, writeKeys: [String], settings: JSON? = nil, labels: [LabelV1]) {
+    public init(id: String, slug: String, name: String? = nil, metadata: Metadata3, workspaceId: String, enabled: Bool, writeKeys: [String], settings: JSON? = nil, labels: [LabelV1]) {
         self.id = id
         self.slug = slug
         self.name = name

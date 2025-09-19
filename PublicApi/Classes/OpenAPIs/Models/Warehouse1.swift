@@ -15,7 +15,7 @@ public struct Warehouse1: Codable, JSONEncodable, Hashable {
 
     /** The id of the Warehouse. */
     public var id: String
-    public var metadata: Metadata1
+    public var metadata: Metadata2
     /** The id of the Workspace that owns this Warehouse. */
     public var workspaceId: String
     /** When set to true, this Warehouse receives data. */
@@ -23,7 +23,7 @@ public struct Warehouse1: Codable, JSONEncodable, Hashable {
     /** The settings associated with this Warehouse.  Common settings are connection-related configuration used to connect to it, for example host, username, and port. */
     public var settings: JSON?
 
-    public init(id: String, metadata: Metadata1, workspaceId: String, enabled: Bool, settings: JSON?) {
+    public init(id: String, metadata: Metadata2, workspaceId: String, enabled: Bool, settings: JSON?) {
         self.id = id
         self.metadata = metadata
         self.workspaceId = workspaceId

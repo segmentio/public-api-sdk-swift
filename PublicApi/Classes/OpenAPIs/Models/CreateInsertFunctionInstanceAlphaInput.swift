@@ -13,12 +13,7 @@ import AnyCodable
 /** Creates an insert Function instance. */
 public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    public enum IntegrationType: String, Codable, CaseIterable {
-        case destination = "DESTINATION"
-        case journey = "JOURNEY"
-        case source = "SOURCE"
-    }
-    /** Insert Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_/ifn_ prefix from the id. */
+    /** Insert Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_ prefix from the id. */
     public var functionId: String
     /** The Source or Destination id to be connected. */
     public var integrationId: String
@@ -28,16 +23,13 @@ public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Ha
     public var name: String
     /** An object that contains settings for this insert Function instance based on the settings present in the insert Function class. */
     public var settings: [String: AnyCodable]
-    /** The Integration type for the insert Function instance. */
-    public var integrationType: IntegrationType
 
-    public init(functionId: String, integrationId: String, enabled: Bool? = nil, name: String, settings: [String: AnyCodable], integrationType: IntegrationType) {
+    public init(functionId: String, integrationId: String, enabled: Bool? = nil, name: String, settings: [String: AnyCodable]) {
         self.functionId = functionId
         self.integrationId = integrationId
         self.enabled = enabled
         self.name = name
         self.settings = settings
-        self.integrationType = integrationType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -46,7 +38,6 @@ public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Ha
         case enabled
         case name
         case settings
-        case integrationType
     }
 
     // Encodable protocol methods
@@ -58,7 +49,6 @@ public struct CreateInsertFunctionInstanceAlphaInput: Codable, JSONEncodable, Ha
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encode(name, forKey: .name)
         try container.encode(settings, forKey: .settings)
-        try container.encode(integrationType, forKey: .integrationType)
     }
 }
 
