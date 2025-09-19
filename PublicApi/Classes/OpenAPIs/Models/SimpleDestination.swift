@@ -12,13 +12,13 @@ import AnyCodable
 
 public struct SimpleDestination: Codable, JSONEncodable, Hashable {
 
-    /** The id of the Destination. */
+    /** The id of the Integration. */
     public var id: String
     /** The name of the Destination. */
     public var name: String?
     /** The Source of the Destination. */
     public var sourceId: String
-    /** Enabled or not. */
+    /** Whether the Integration is enabled or not. */
     public var enabled: Bool
     /** When the Integration connection was created. */
     public var createdAt: String
@@ -26,10 +26,12 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
     public var updatedAt: String
     /** The Destination settings. */
     public var settings: [String: AnyCodable]
+    /** The Destination id. */
+    public var destinationId: String
     public var metadata: Metadata?
     public var idSync: IdSync?
 
-    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], metadata: Metadata? = nil, idSync: IdSync? = nil) {
+    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSync: IdSync? = nil) {
         self.id = id
         self.name = name
         self.sourceId = sourceId
@@ -37,6 +39,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.settings = settings
+        self.destinationId = destinationId
         self.metadata = metadata
         self.idSync = idSync
     }
@@ -49,6 +52,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         case createdAt
         case updatedAt
         case settings
+        case destinationId
         case metadata
         case idSync
     }
@@ -64,6 +68,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(settings, forKey: .settings)
+        try container.encode(destinationId, forKey: .destinationId)
         try container.encodeIfPresent(metadata, forKey: .metadata)
         try container.encodeIfPresent(idSync, forKey: .idSync)
     }
