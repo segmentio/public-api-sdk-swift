@@ -15,9 +15,9 @@ public struct ListSubscriptionsFromDestinationAlphaOutput: Codable, JSONEncodabl
 
     /** A list of Destination subscriptions. */
     public var subscriptions: [DestinationSubscription]
-    public var pagination: Pagination?
+    public var pagination: Pagination1?
 
-    public init(subscriptions: [DestinationSubscription], pagination: Pagination? = nil) {
+    public init(subscriptions: [DestinationSubscription], pagination: Pagination1? = nil) {
         self.subscriptions = subscriptions
         self.pagination = pagination
     }
