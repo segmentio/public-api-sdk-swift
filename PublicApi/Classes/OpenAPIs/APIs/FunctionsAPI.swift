@@ -471,9 +471,9 @@ open class FunctionsAPI {
      */
     public enum ResourceType_listFunctions: String, CaseIterable {
         case destination = "DESTINATION"
-        case insert = "INSERT"
         case insertDestination = "INSERT_DESTINATION"
         case insertSource = "INSERT_SOURCE"
+        case insertTransformation = "INSERT_TRANSFORMATION"
         case source = "SOURCE"
     }
 
