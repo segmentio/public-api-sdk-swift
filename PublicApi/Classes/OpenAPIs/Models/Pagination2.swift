@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** An optional pagination object that is present when pagination input is present. */
+/** Information about the pagination of this response.  [See pagination](https://docs.segmentapis.com/tag/Pagination/#section/Pagination-parameters) for more info. */
 public struct Pagination2: Codable, JSONEncodable, Hashable {
 
     /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
