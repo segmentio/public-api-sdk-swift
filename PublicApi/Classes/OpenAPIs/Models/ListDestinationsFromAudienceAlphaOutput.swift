@@ -15,9 +15,9 @@ public struct ListDestinationsFromAudienceAlphaOutput: Codable, JSONEncodable, H
 
     /** A list of connection results. */
     public var connections: [SimpleDestination]
-    public var pagination: Pagination3?
+    public var pagination: Pagination?
 
-    public init(connections: [SimpleDestination], pagination: Pagination3? = nil) {
+    public init(connections: [SimpleDestination], pagination: Pagination? = nil) {
         self.connections = connections
         self.pagination = pagination
     }
