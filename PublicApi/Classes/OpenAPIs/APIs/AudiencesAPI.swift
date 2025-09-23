@@ -13,6 +13,63 @@ import AnyCodable
 open class AudiencesAPI {
 
     /**
+     Add Audience Schedule to Audience
+     
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - parameter addAudienceScheduleToAudienceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func addAudienceScheduleToAudience(spaceId: String, id: String, addAudienceScheduleToAudienceAlphaInput: AddAudienceScheduleToAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddAudienceScheduleToAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return addAudienceScheduleToAudienceWithRequestBuilder(spaceId: spaceId, id: id, addAudienceScheduleToAudienceAlphaInput: addAudienceScheduleToAudienceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Add Audience Schedule to Audience
+     - POST /spaces/{spaceId}/audiences/{id}/schedules
+     - Creates a schedule for the given audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - parameter addAudienceScheduleToAudienceAlphaInput: (body)  
+     - returns: RequestBuilder<AddAudienceScheduleToAudience200Response> 
+     */
+    open class func addAudienceScheduleToAudienceWithRequestBuilder(spaceId: String, id: String, addAudienceScheduleToAudienceAlphaInput: AddAudienceScheduleToAudienceAlphaInput) -> RequestBuilder<AddAudienceScheduleToAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addAudienceScheduleToAudienceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AddAudienceScheduleToAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Create Audience
      
      - parameter spaceId: (path)  
@@ -595,6 +652,68 @@ open class AudiencesAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<UpdateAudienceForSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Update Audience Schedule for Audience
+     
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - parameter scheduleId: (path)  
+     - parameter updateAudienceScheduleForAudienceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func updateAudienceScheduleForAudience(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceAlphaInput: UpdateAudienceScheduleForAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceScheduleForAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: spaceId, id: id, scheduleId: scheduleId, updateAudienceScheduleForAudienceAlphaInput: updateAudienceScheduleForAudienceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Update Audience Schedule for Audience
+     - PATCH /spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}
+     - Updates an audience schedule for the given audience id.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter id: (path)  
+     - parameter scheduleId: (path)  
+     - parameter updateAudienceScheduleForAudienceAlphaInput: (body)  
+     - returns: RequestBuilder<UpdateAudienceScheduleForAudience200Response> 
+     */
+    open class func updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceAlphaInput: UpdateAudienceScheduleForAudienceAlphaInput) -> RequestBuilder<UpdateAudienceScheduleForAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let scheduleIdPreEscape = "\(APIHelper.mapValueToPathItem(scheduleId))"
+        let scheduleIdPostEscape = scheduleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{scheduleId}", with: scheduleIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceScheduleForAudienceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UpdateAudienceScheduleForAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
