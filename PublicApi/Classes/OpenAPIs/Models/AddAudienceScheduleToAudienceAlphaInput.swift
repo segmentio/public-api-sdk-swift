@@ -18,20 +18,16 @@ public struct AddAudienceScheduleToAudienceAlphaInput: Codable, JSONEncodable, H
         case periodic = "PERIODIC"
         case specificDays = "SPECIFIC_DAYS"
     }
-    /** The enabled status of the schedule to be created. */
-    public var enabled: Bool
     /** Strategy of the audience schedule (manual, periodic, or specific days). */
     public var strategy: Strategy
     public var config: Config?
 
-    public init(enabled: Bool, strategy: Strategy, config: Config? = nil) {
-        self.enabled = enabled
+    public init(strategy: Strategy, config: Config? = nil) {
         self.strategy = strategy
         self.config = config
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case enabled
         case strategy
         case config
     }
@@ -40,7 +36,6 @@ public struct AddAudienceScheduleToAudienceAlphaInput: Codable, JSONEncodable, H
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(enabled, forKey: .enabled)
         try container.encode(strategy, forKey: .strategy)
         try container.encodeIfPresent(config, forKey: .config)
     }
