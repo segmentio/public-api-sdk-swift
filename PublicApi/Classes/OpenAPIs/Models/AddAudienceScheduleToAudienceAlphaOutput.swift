@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Defines a Create Audience Schedule Output. */
+/** Defines the output of creating an audience schedule. */
 public struct AddAudienceScheduleToAudienceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public var audienceSchedule: AudienceSchedule

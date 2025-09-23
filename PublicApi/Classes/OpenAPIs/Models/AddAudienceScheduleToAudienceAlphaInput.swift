@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Defines a Create Audience Schedule Input. */
+/** Defines an input for creating an audience schedule. */
 public struct AddAudienceScheduleToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
     public enum Strategy: String, Codable, CaseIterable {
