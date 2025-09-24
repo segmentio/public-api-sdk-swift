@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated using the API is not editable through the Segment App. */
+/** Definition that was used to calculate the audience preview. */
 public struct Definition4: Codable, JSONEncodable, Hashable {
 
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
