@@ -316,7 +316,7 @@ open class DeletionAndSuppressionAPI {
     /**
      List Regulations from Source
      - GET /regulations/sources/{sourceId}
-     - Lists all Source-scoped regulations.
+     - Lists all Source-scoped regulations.    Please note: List regulations for Source only returns deletion requests from the past 90 days. Deletion requests older than 90 days are not retained and will result in 404 resource not found.
      - BASIC:
        - type: http
        - name: token
@@ -451,7 +451,7 @@ open class DeletionAndSuppressionAPI {
     /**
      List Workspace Regulations
      - GET /regulations
-     - Lists all Workspace-scoped regulations.
+     - Lists all Workspace-scoped regulations.    Please note: List Workspace regulations only returns deletion requests from the past 90 days. Deletion requests older than 90 days are not retained and will result in 404 resource not found.
      - BASIC:
        - type: http
        - name: token
