@@ -12,27 +12,27 @@ import AnyCodable
 
 public struct AudienceDefinition: Codable, JSONEncodable, Hashable {
 
+    /** The target entity slug, required in creating a linked audience. */
+    public var targetEntity: String?
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
-    /** The target entity slug. */
-    public var targetEntity: String?
 
-    public init(query: String, targetEntity: String? = nil) {
-        self.query = query
+    public init(targetEntity: String? = nil, query: String) {
         self.targetEntity = targetEntity
+        self.query = query
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case query
         case targetEntity
+        case query
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(query, forKey: .query)
         try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
+        try container.encode(query, forKey: .query)
     }
 }
 
