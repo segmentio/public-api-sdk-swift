@@ -15,9 +15,9 @@ public struct GetDailyPerSourceMTUUsageV1Output: Codable, JSONEncodable, Hashabl
 
     /** The list of daily per Source MTU count aggregates. */
     public var dailyPerSourceMTUUsage: [UsersPerSourceSnapshotV1]
-    public var pagination: Pagination1
+    public var pagination: Pagination
 
-    public init(dailyPerSourceMTUUsage: [UsersPerSourceSnapshotV1], pagination: Pagination1) {
+    public init(dailyPerSourceMTUUsage: [UsersPerSourceSnapshotV1], pagination: Pagination) {
         self.dailyPerSourceMTUUsage = dailyPerSourceMTUUsage
         self.pagination = pagination
     }
