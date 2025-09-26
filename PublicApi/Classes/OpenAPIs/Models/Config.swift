@@ -13,7 +13,7 @@ import AnyCodable
 /** Configuration for PERIODIC or SPECIFIC_DAYS strategies. */
 public struct Config: Codable, JSONEncodable, Hashable {
 
-    /** Go duration format string, only supporting units \"d\" (days), \"h\" (hours) and \"m\" (minutes).  Acceptable values are: - 15m - 30m - 1h - 2h - 4h - 6h - 8h - 12h - 1d */
+    /** Go duration format string, only supporting units \"day\" (days), \"h\" (hours) and \"m\" (minutes). */
     public var interval: String
     /** Days of week for schedule (0=Sunday, 6=Saturday). */
     public var days: [Double]
