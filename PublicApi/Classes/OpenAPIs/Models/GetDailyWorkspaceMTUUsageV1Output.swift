@@ -15,9 +15,9 @@ public struct GetDailyWorkspaceMTUUsageV1Output: Codable, JSONEncodable, Hashabl
 
     /** The list of daily Workspace MTU count aggregates. */
     public var dailyWorkspaceMTUUsage: [MtuSnapshotV1]
-    public var pagination: Pagination1
+    public var pagination: Pagination
 
-    public init(dailyWorkspaceMTUUsage: [MtuSnapshotV1], pagination: Pagination1) {
+    public init(dailyWorkspaceMTUUsage: [MtuSnapshotV1], pagination: Pagination) {
         self.dailyWorkspaceMTUUsage = dailyWorkspaceMTUUsage
         self.pagination = pagination
     }
