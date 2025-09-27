@@ -10,35 +10,35 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Options which should be applied when aggregating computed traits. */
+/** Options which should be applied when segmenting audiences. */
 public struct Options5: Codable, JSONEncodable, Hashable {
 
-    /** Determines whether data prior to the computed trait being created is included when determining the computed trait value. Note that including historical data may be needed in order to properly handle the definition specified. In these cases, Segment will automatically handle including historical data and the response will return the includeHistoricalData parameter as true. */
+    /** The set of profile external identifiers being used to determine audience membership. Profiles will only be considered for audience membership if the profile has at least one external id whose key matches a value in this set. */
+    public var filterByExternalIds: [String]
+    /** Determines whether data prior to the audience being created is included when determining audience membership. Note that including historical data may be needed in order to properly handle the definition specified. In these cases, Segment will automatically handle including historical data and the response will return the includeHistoricalData parameter as true. */
     public var includeHistoricalData: Bool?
-    /** Determines whether anonymous users should be included when determining the computed trait value. */
-    public var includeAnonymousUsers: Bool?
-    /** If specified, the value of this field indicates the number of days, specified from the date the audience was created, that event data will be included from when determining audience membership. If unspecified, defer to the value of `includeHistoricalData` to determine whether historical data is either entirely included or entirely excluded when determining audience membership. */
-    public var backfillDurationDays: Double?
+    /** If specified and positive, the value of this field indicates the number of days, specified from the date the audience was created, that event data will be included from when determining audience membership. If unspecified, defer to the value of `includeHistoricalData` to determine whether historical data is either entirely included or entirely excluded when determining audience membership. */
+    public var backfillEventDataDays: Double?
 
-    public init(includeHistoricalData: Bool? = nil, includeAnonymousUsers: Bool? = nil, backfillDurationDays: Double? = nil) {
+    public init(filterByExternalIds: [String], includeHistoricalData: Bool? = nil, backfillEventDataDays: Double? = nil) {
+        self.filterByExternalIds = filterByExternalIds
         self.includeHistoricalData = includeHistoricalData
-        self.includeAnonymousUsers = includeAnonymousUsers
-        self.backfillDurationDays = backfillDurationDays
+        self.backfillEventDataDays = backfillEventDataDays
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case filterByExternalIds
         case includeHistoricalData
-        case includeAnonymousUsers
-        case backfillDurationDays
+        case backfillEventDataDays
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(filterByExternalIds, forKey: .filterByExternalIds)
         try container.encodeIfPresent(includeHistoricalData, forKey: .includeHistoricalData)
-        try container.encodeIfPresent(includeAnonymousUsers, forKey: .includeAnonymousUsers)
-        try container.encodeIfPresent(backfillDurationDays, forKey: .backfillDurationDays)
+        try container.encodeIfPresent(backfillEventDataDays, forKey: .backfillEventDataDays)
     }
 }
 
