@@ -19,9 +19,9 @@ public struct BatchQueryMessagingSubscriptionsForSpaceAlphaOutput: Codable, JSON
     public var failures: [GetMessagingSubscriptionFailureResponse]
     /** General errors when making the request such as invalid payload or wrong http method errors. */
     public var errors: [MessageSubscriptionResponseError]
-    public var pagination: Pagination3?
+    public var pagination: Pagination1?
 
-    public init(successes: [GetMessagingSubscriptionSuccessResponse], failures: [GetMessagingSubscriptionFailureResponse], errors: [MessageSubscriptionResponseError], pagination: Pagination3? = nil) {
+    public init(successes: [GetMessagingSubscriptionSuccessResponse], failures: [GetMessagingSubscriptionFailureResponse], errors: [MessageSubscriptionResponseError], pagination: Pagination1? = nil) {
         self.successes = successes
         self.failures = failures
         self.errors = errors
