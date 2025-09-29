@@ -13,7 +13,7 @@ import AnyCodable
 /** Configures a periodic schedule interval. */
 public struct PeriodicConfig: Codable, JSONEncodable, Hashable {
 
-    /** Go duration format string, only supporting units \"day\" (days), \"h\" (hours) and \"m\" (minutes). */
+    /** Go duration format string, only supporting units \"d\" (days), \"h\" (hours) and \"m\" (minutes).  Acceptable values are: - 15m - 30m - 1h - 2h - 4h - 6h - 8h - 12h - 1d */
     public var interval: String
 
     public init(interval: String) {
