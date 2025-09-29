@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Definition that was used to calculate the audience preview. */
+/** Query language definition. */
 public struct Definition5: Codable, JSONEncodable, Hashable {
 
     /** The target entity relationship slug, required in a linked audience, default to profile if not specified. */
