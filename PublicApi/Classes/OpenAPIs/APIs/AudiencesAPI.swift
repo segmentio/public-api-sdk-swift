@@ -174,6 +174,61 @@ open class AudiencesAPI {
     }
 
     /**
+     Force Execute Audience Run
+     
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func forceExecuteAudienceRun(spaceId: String, audienceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ForceExecuteAudienceRun200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return forceExecuteAudienceRunWithRequestBuilder(spaceId: spaceId, audienceId: audienceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Force Execute Audience Run
+     - POST /spaces/{spaceId}/audiences/{audienceId}/runs
+     - Forces execution of an audience run.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Run Forced` event in the [audit trail](/tag/Audit-Trail).
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - returns: RequestBuilder<ForceExecuteAudienceRun200Response> 
+     */
+    open class func forceExecuteAudienceRunWithRequestBuilder(spaceId: String, audienceId: String) -> RequestBuilder<ForceExecuteAudienceRun200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/runs"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let audienceIdPreEscape = "\(APIHelper.mapValueToPathItem(audienceId))"
+        let audienceIdPostEscape = audienceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{audienceId}", with: audienceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ForceExecuteAudienceRun200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_getAudience: String, CaseIterable {
