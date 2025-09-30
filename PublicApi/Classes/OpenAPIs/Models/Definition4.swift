@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated using the API is not editable through the Segment App. */
 public struct Definition4: Codable, JSONEncodable, Hashable {
 
     /** The target entity relationship slug, required in a linked audience, default to profile if not specified. */
