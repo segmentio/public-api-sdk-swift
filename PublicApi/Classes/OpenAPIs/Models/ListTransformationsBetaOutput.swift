@@ -15,9 +15,9 @@ public struct ListTransformationsBetaOutput: Codable, JSONEncodable, Hashable {
 
     /** A paginated list of Transformations. */
     public var transformations: [TransformationBeta]
-    public var pagination: Pagination1
+    public var pagination: Pagination3
 
-    public init(transformations: [TransformationBeta], pagination: Pagination1) {
+    public init(transformations: [TransformationBeta], pagination: Pagination3) {
         self.transformations = transformations
         self.pagination = pagination
     }
