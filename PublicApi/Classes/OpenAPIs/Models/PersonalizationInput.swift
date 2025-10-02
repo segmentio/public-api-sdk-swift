@@ -16,15 +16,19 @@ public struct PersonalizationInput: Codable, JSONEncodable, Hashable {
     public var profile: Profile
     /** Entities V2 Object. */
     public var entities: [PersonalizationInputEntity]?
+    /** Sync entity property changes back to Segment. Only applicable if activationType is \"Audience Membership Changed\" and segmentEvent is \"identify\". */
+    public var syncEntityPropertyChanges: Bool?
 
-    public init(profile: Profile, entities: [PersonalizationInputEntity]? = nil) {
+    public init(profile: Profile, entities: [PersonalizationInputEntity]? = nil, syncEntityPropertyChanges: Bool? = nil) {
         self.profile = profile
         self.entities = entities
+        self.syncEntityPropertyChanges = syncEntityPropertyChanges
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case profile
         case entities
+        case syncEntityPropertyChanges
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct PersonalizationInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(profile, forKey: .profile)
         try container.encodeIfPresent(entities, forKey: .entities)
+        try container.encodeIfPresent(syncEntityPropertyChanges, forKey: .syncEntityPropertyChanges)
     }
 }
 
