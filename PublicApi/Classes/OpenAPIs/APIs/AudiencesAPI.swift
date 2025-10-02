@@ -659,12 +659,12 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter scheduleId: (path)  
+     - parameter scheduleId: (query) The ID of the schedule to delete  This parameter exists in alpha. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func removeAudienceScheduleFromAudience(spaceId: String, id: String, scheduleId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RemoveAudienceScheduleFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func removeAudienceScheduleFromAudience(spaceId: String, id: String, scheduleId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: RemoveAudienceScheduleFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return removeAudienceScheduleFromAudienceWithRequestBuilder(spaceId: spaceId, id: id, scheduleId: scheduleId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -677,31 +677,31 @@ open class AudiencesAPI {
 
     /**
      Remove Audience Schedule from Audience
-     - DELETE /spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}
+     - DELETE /spaces/{spaceId}/audiences/{id}/schedules
      - Deletes an audience schedule for a Linked Audience (audienceType = LINKED).  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter scheduleId: (path)  
+     - parameter scheduleId: (query) The ID of the schedule to delete  This parameter exists in alpha. (optional)
      - returns: RequestBuilder<RemoveAudienceScheduleFromAudience200Response> 
      */
-    open class func removeAudienceScheduleFromAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String) -> RequestBuilder<RemoveAudienceScheduleFromAudience200Response> {
-        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}"
+    open class func removeAudienceScheduleFromAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String? = nil) -> RequestBuilder<RemoveAudienceScheduleFromAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let scheduleIdPreEscape = "\(APIHelper.mapValueToPathItem(scheduleId))"
-        let scheduleIdPostEscape = scheduleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{scheduleId}", with: scheduleIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "scheduleId": scheduleId?.encodeToJSON(),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
