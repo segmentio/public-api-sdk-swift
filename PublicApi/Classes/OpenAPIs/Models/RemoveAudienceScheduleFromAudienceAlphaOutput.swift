@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Output to remove a RETL audience schedule. */
+/** Delete audience schedule endpoint output. */
 public struct RemoveAudienceScheduleFromAudienceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable {
