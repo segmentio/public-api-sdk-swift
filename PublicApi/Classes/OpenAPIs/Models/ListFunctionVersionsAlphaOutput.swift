@@ -15,9 +15,9 @@ public struct ListFunctionVersionsAlphaOutput: Codable, JSONEncodable, Hashable 
 
     /** An array of Functions. */
     public var versions: [Version]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(versions: [Version], pagination: Pagination) {
+    public init(versions: [Version], pagination: Pagination1) {
         self.versions = versions
         self.pagination = pagination
     }
