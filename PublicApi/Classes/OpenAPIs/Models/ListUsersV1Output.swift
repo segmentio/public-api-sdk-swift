@@ -15,9 +15,9 @@ public struct ListUsersV1Output: Codable, JSONEncodable, Hashable {
 
     /** The list of users. */
     public var users: [UserV1]
-    public var pagination: Pagination3
+    public var pagination: Pagination1
 
-    public init(users: [UserV1], pagination: Pagination3) {
+    public init(users: [UserV1], pagination: Pagination1) {
         self.users = users
         self.pagination = pagination
     }
