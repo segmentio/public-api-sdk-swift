@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The created Edge Function. */
+/** The latest version of Edge Function bundle. */
 public struct EdgeFunctions: Codable, JSONEncodable, Hashable {
 
     /** The Edge Function id. */
@@ -25,14 +25,17 @@ public struct EdgeFunctions: Codable, JSONEncodable, Hashable {
     public var downloadURL: String
     /** Revision number associated with the latest Edge Function. */
     public var version: Double
+    /** The code of the Edge Function. */
+    public var code: String?
 
-    public init(id: String, sourceId: String, createdAt: String, createdBy: String, downloadURL: String, version: Double) {
+    public init(id: String, sourceId: String, createdAt: String, createdBy: String, downloadURL: String, version: Double, code: String? = nil) {
         self.id = id
         self.sourceId = sourceId
         self.createdAt = createdAt
         self.createdBy = createdBy
         self.downloadURL = downloadURL
         self.version = version
+        self.code = code
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -42,6 +45,7 @@ public struct EdgeFunctions: Codable, JSONEncodable, Hashable {
         case createdBy
         case downloadURL
         case version
+        case code
     }
 
     // Encodable protocol methods
@@ -54,6 +58,7 @@ public struct EdgeFunctions: Codable, JSONEncodable, Hashable {
         try container.encode(createdBy, forKey: .createdBy)
         try container.encode(downloadURL, forKey: .downloadURL)
         try container.encode(version, forKey: .version)
+        try container.encodeIfPresent(code, forKey: .code)
     }
 }
 

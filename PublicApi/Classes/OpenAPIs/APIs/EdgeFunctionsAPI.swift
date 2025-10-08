@@ -13,16 +13,16 @@ import AnyCodable
 open class EdgeFunctionsAPI {
 
     /**
-     Create Edge Functions
+     Create Edge Function
      
      - parameter sourceId: (path)  
-     - parameter createEdgeFunctionsAlphaInput: (body)  
+     - parameter createEdgeFunctionAlphaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createEdgeFunctions(sourceId: String, createEdgeFunctionsAlphaInput: CreateEdgeFunctionsAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateEdgeFunctions200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createEdgeFunctionsWithRequestBuilder(sourceId: sourceId, createEdgeFunctionsAlphaInput: createEdgeFunctionsAlphaInput).execute(apiResponseQueue) { result in
+    open class func createEdgeFunction(sourceId: String, createEdgeFunctionAlphaInput: CreateEdgeFunctionAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateEdgeFunction200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createEdgeFunctionWithRequestBuilder(sourceId: sourceId, createEdgeFunctionAlphaInput: createEdgeFunctionAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -33,23 +33,23 @@ open class EdgeFunctionsAPI {
     }
 
     /**
-     Create Edge Functions
-     - POST /sources/{sourceId}/edge-functions
-     - Create EdgeFunctions for your Source given a valid upload URL for an Edge Functions bundle.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     Create Edge Function
+     - POST /sources/{sourceId}/edge-functions/create
+     - Creates or updates an Edge Function for your Source with given code.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter sourceId: (path)  
-     - parameter createEdgeFunctionsAlphaInput: (body)  
-     - returns: RequestBuilder<CreateEdgeFunctions200Response> 
+     - parameter createEdgeFunctionAlphaInput: (body)  
+     - returns: RequestBuilder<CreateEdgeFunction200Response> 
      */
-    open class func createEdgeFunctionsWithRequestBuilder(sourceId: String, createEdgeFunctionsAlphaInput: CreateEdgeFunctionsAlphaInput) -> RequestBuilder<CreateEdgeFunctions200Response> {
-        var localVariablePath = "/sources/{sourceId}/edge-functions"
+    open class func createEdgeFunctionWithRequestBuilder(sourceId: String, createEdgeFunctionAlphaInput: CreateEdgeFunctionAlphaInput) -> RequestBuilder<CreateEdgeFunction200Response> {
+        var localVariablePath = "/sources/{sourceId}/edge-functions/create"
         let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
         let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createEdgeFunctionsAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createEdgeFunctionAlphaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -59,9 +59,59 @@ open class EdgeFunctionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CreateEdgeFunctions200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CreateEdgeFunction200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Delete Edge Function Code
+     
+     - parameter sourceId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func deleteEdgeFunctionCode(sourceId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteEdgeFunctionCode200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteEdgeFunctionCodeWithRequestBuilder(sourceId: sourceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Delete Edge Function Code
+     - DELETE /sources/{sourceId}/edge-functions/delete-code
+     - Delete the Edge Function code for a Source. This will not disable Edge Functions for the Source, but will remove any existing code.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Edge Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter sourceId: (path)  
+     - returns: RequestBuilder<DeleteEdgeFunctionCode200Response> 
+     */
+    open class func deleteEdgeFunctionCodeWithRequestBuilder(sourceId: String) -> RequestBuilder<DeleteEdgeFunctionCode200Response> {
+        var localVariablePath = "/sources/{sourceId}/edge-functions/delete-code"
+        let sourceIdPreEscape = "\(APIHelper.mapValueToPathItem(sourceId))"
+        let sourceIdPostEscape = sourceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sourceId}", with: sourceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DeleteEdgeFunctionCode200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**

@@ -13,9 +13,9 @@ import AnyCodable
 /** Output for DisableEdgeFunctions. */
 public struct DisableEdgeFunctionsAlphaOutput: Codable, JSONEncodable, Hashable {
 
-    public var edgeFunctions: EdgeFunctions1
+    public var edgeFunctions: EdgeFunctions
 
-    public init(edgeFunctions: EdgeFunctions1) {
+    public init(edgeFunctions: EdgeFunctions) {
         self.edgeFunctions = edgeFunctions
     }
 
