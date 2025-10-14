@@ -14,13 +14,12 @@ import AnyCodable
 public struct AudienceSchedule1: Codable, JSONEncodable, Hashable {
 
     public enum Strategy: String, Codable, CaseIterable {
-        case manual = "MANUAL"
         case periodic = "PERIODIC"
         case specificDays = "SPECIFIC_DAYS"
     }
     /** Distinct identifier for the schedule. */
     public var id: String
-    /** Strategy of the audience schedule (manual, periodic, or specific days). */
+    /** Strategy of the audience schedule (periodic or specific days). */
     public var strategy: Strategy
     public var config: Config?
     /** The next scheduled execution time (RFC3339). */

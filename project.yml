@@ -7,7 +7,7 @@ targets:
     sources: [PublicApi]
     info:
       path: ./Info.plist
-      version: 61.0.0
+      version: 60.1.2
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
