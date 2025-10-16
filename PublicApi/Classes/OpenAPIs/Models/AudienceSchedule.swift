@@ -20,7 +20,7 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
     }
     /** Distinct identifier for the schedule. */
     public var id: String
-    /** Strategy of the audience schedule (manual, periodic, or specific days). */
+    /** Strategy of the audience schedule (manual, periodic or specific days). */
     public var strategy: Strategy
     public var config: Config?
     /** The next scheduled execution time (RFC3339). */
