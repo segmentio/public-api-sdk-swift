@@ -35,7 +35,7 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Cloud Source Regulation
      - POST /regulations/cloudsources/{sourceId}
-     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers: - X-Regulation-RateLimit-Remaining: Remaining requests in the current period (stringified integer) - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers (tracked separately for internal vs external regulation types): - X-Regulation-RateLimit-Remaining: Remaining requests for the regulation type category (stringified integer)   - Internal types: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - External types: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
      - BASIC:
        - type: http
        - name: token
@@ -88,7 +88,7 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Source Regulation
      - POST /regulations/sources/{sourceId}
-     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers: - X-Regulation-RateLimit-Remaining: Remaining requests in the current period (stringified integer) - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers (tracked separately for internal vs external regulation types): - X-Regulation-RateLimit-Remaining: Remaining requests for the regulation type category (stringified integer)   - Internal types: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - External types: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
      - BASIC:
        - type: http
        - name: token
@@ -140,7 +140,7 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Workspace Regulation
      - POST /regulations
-     - Creates a Workspace-scoped regulation.    • When called, this endpoint may generate the `Workspace Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers: - X-Regulation-RateLimit-Remaining: Remaining requests in the current period (stringified integer) - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
+     - Creates a Workspace-scoped regulation.    • When called, this endpoint may generate the `Workspace Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers (tracked separately for internal vs external regulation types): - X-Regulation-RateLimit-Remaining: Remaining requests for the regulation type category (stringified integer)   - Internal types: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - External types: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-Regulation-RateLimit-Quota-Reset: ISO 8601 timestamp for when the quota resets (e.g., 2024-12-31T23:59:59.000Z)   
      - BASIC:
        - type: http
        - name: token
