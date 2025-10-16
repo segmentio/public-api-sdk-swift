@@ -15,9 +15,9 @@ public struct GetSourcesCatalogV1Output: Codable, JSONEncodable, Hashable {
 
     /** All Source catalog items contained within the requested page. */
     public var sourcesCatalog: [SourceMetadataV1]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(sourcesCatalog: [SourceMetadataV1], pagination: Pagination) {
+    public init(sourcesCatalog: [SourceMetadataV1], pagination: Pagination1) {
         self.sourcesCatalog = sourcesCatalog
         self.pagination = pagination
     }
