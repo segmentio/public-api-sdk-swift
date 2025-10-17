@@ -25,7 +25,7 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
     /** The next scheduled execution time (RFC3339). */
     public var nextExecution: String?
 
-    public init(id: String, strategy: Strategy, config: Config? = nil, nextExecution: String? = nil) {
+    public init(id: String, strategy: Strategy, config: Config?, nextExecution: String? = nil) {
         self.id = id
         self.strategy = strategy
         self.config = config
@@ -45,7 +45,7 @@ public struct AudienceSchedule: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(strategy, forKey: .strategy)
-        try container.encodeIfPresent(config, forKey: .config)
+        try container.encode(config, forKey: .config)
         try container.encodeIfPresent(nextExecution, forKey: .nextExecution)
     }
 }

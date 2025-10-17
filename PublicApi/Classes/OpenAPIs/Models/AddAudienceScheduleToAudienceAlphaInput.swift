@@ -21,7 +21,7 @@ public struct AddAudienceScheduleToAudienceAlphaInput: Codable, JSONEncodable, H
     public var strategy: Strategy
     public var config: Config?
 
-    public init(strategy: Strategy, config: Config? = nil) {
+    public init(strategy: Strategy, config: Config?) {
         self.strategy = strategy
         self.config = config
     }
@@ -36,7 +36,7 @@ public struct AddAudienceScheduleToAudienceAlphaInput: Codable, JSONEncodable, H
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(strategy, forKey: .strategy)
-        try container.encodeIfPresent(config, forKey: .config)
+        try container.encode(config, forKey: .config)
     }
 }
 
