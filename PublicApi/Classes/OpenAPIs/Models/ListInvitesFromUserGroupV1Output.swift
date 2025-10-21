@@ -15,9 +15,9 @@ public struct ListInvitesFromUserGroupV1Output: Codable, JSONEncodable, Hashable
 
     /** The emails of the invitees to the user group. */
     public var emails: [String]
-    public var pagination: Pagination
+    public var pagination: Pagination1
 
-    public init(emails: [String], pagination: Pagination) {
+    public init(emails: [String], pagination: Pagination1) {
         self.emails = emails
         self.pagination = pagination
     }
