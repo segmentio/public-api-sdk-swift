@@ -14,19 +14,18 @@ import AnyCodable
 public struct AudienceSchedule1: Codable, JSONEncodable, Hashable {
 
     public enum Strategy: String, Codable, CaseIterable {
-        case manual = "MANUAL"
         case periodic = "PERIODIC"
         case specificDays = "SPECIFIC_DAYS"
     }
     /** Distinct identifier for the schedule. */
     public var id: String
-    /** Strategy of the audience schedule (manual, periodic, or specific days). */
+    /** Strategy of the audience schedule (periodic or specific days). */
     public var strategy: Strategy
     public var config: Config?
     /** The next scheduled execution time (RFC3339). */
     public var nextExecution: String?
 
-    public init(id: String, strategy: Strategy, config: Config? = nil, nextExecution: String? = nil) {
+    public init(id: String, strategy: Strategy, config: Config?, nextExecution: String? = nil) {
         self.id = id
         self.strategy = strategy
         self.config = config
@@ -46,7 +45,7 @@ public struct AudienceSchedule1: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(strategy, forKey: .strategy)
-        try container.encodeIfPresent(config, forKey: .config)
+        try container.encode(config, forKey: .config)
         try container.encodeIfPresent(nextExecution, forKey: .nextExecution)
     }
 }
