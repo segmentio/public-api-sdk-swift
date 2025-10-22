@@ -13,7 +13,7 @@ import AnyCodable
 /** Query language definition. */
 public struct Definition5: Codable, JSONEncodable, Hashable {
 
-    /** The target entity relationship slug, required in a linked audience, default to profile if not specified. */
+    /** The target entity relationship slug, only applicable for linked audiences. Use ```profile``` when the targeting the profile.  Note that the value defaults to profile if not specified. Also note, that the value will be returned as null if the target entity is removed from the data graph. */
     public var targetEntity: String?
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
