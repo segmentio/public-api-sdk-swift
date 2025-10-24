@@ -22,9 +22,9 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     /** Name of the activation. */
     public var activationName: String
     public var personalization: Personalization
-    public var destinationMapping: DestinationMapping
+    public var destinationMapping: DestinationMapping?
 
-    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping) {
+    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping? = nil) {
         self.enabled = enabled
         self.performResync = performResync
         self.activationType = activationType
@@ -51,7 +51,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encode(personalization, forKey: .personalization)
-        try container.encode(destinationMapping, forKey: .destinationMapping)
+        try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
     }
 }
 

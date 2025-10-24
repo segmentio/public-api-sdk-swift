@@ -29,11 +29,11 @@ public struct Activation: Codable, JSONEncodable, Hashable {
     /** Name of the activation. */
     public var activationName: String
     public var personalization: Personalization1
-    public var destinationMapping: DestinationMapping1
+    public var destinationMapping: DestinationMapping1?
     /** Whether to perform a resync after creation of the activation. */
     public var performResync: Bool?
 
-    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, destinationConnectionId: String, activationType: String, activationName: String, personalization: Personalization1, destinationMapping: DestinationMapping1, performResync: Bool? = nil) {
+    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, destinationConnectionId: String, activationType: String, activationName: String, personalization: Personalization1, destinationMapping: DestinationMapping1? = nil, performResync: Bool? = nil) {
         self.id = id
         self.enabled = enabled
         self.workspaceId = workspaceId
@@ -74,7 +74,7 @@ public struct Activation: Codable, JSONEncodable, Hashable {
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encode(personalization, forKey: .personalization)
-        try container.encode(destinationMapping, forKey: .destinationMapping)
+        try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
         try container.encodeIfPresent(performResync, forKey: .performResync)
     }
 }
