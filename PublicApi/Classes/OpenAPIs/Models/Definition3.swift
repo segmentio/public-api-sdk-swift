@@ -10,21 +10,17 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Query language definition and type. */
+/** Represents the Compute Query Language definition of the computation and type of computation. Note: The definition for an Audience updated using the API is not editable through the Segment App. */
 public struct Definition3: Codable, JSONEncodable, Hashable {
 
-    /** The target entity relationship slug, only applicable for linked audiences. Use ```profile``` when the targeting the profile.  Note that the value defaults to profile if not specified. Also note, that the value will be returned as null if the target entity is removed from the data graph. */
-    public var targetEntity: String?
     /** The query language string defining the audience segmentation criteria.  For guidance on using the query language, see the [Segment documentation site](https://segment.com/docs/api/public-api/query-language). */
     public var query: String
 
-    public init(targetEntity: String? = nil, query: String) {
-        self.targetEntity = targetEntity
+    public init(query: String) {
         self.query = query
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case targetEntity
         case query
     }
 
@@ -32,7 +28,6 @@ public struct Definition3: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(targetEntity, forKey: .targetEntity)
         try container.encode(query, forKey: .query)
     }
 }
