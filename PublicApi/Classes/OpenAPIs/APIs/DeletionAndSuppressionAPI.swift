@@ -39,7 +39,7 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(Date)]
+     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter sourceId: (path)  
      - parameter createCloudSourceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateCloudSourceRegulation200Response> 
@@ -92,7 +92,7 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(Date)]
+     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter sourceId: (path)  
      - parameter createSourceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateSourceRegulation200Response> 
@@ -144,7 +144,7 @@ open class DeletionAndSuppressionAPI {
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(Date)]
+     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter createWorkspaceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateWorkspaceRegulation200Response> 
      */
