@@ -29,9 +29,9 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
     /** The Destination id. */
     public var destinationId: String
     public var metadata: Metadata?
-    public var idSync: IdSync?
+    public var idSyncConfiguration: IdSyncConfiguration?
 
-    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSync: IdSync? = nil) {
+    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: IdSyncConfiguration? = nil) {
         self.id = id
         self.name = name
         self.sourceId = sourceId
@@ -41,7 +41,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         self.settings = settings
         self.destinationId = destinationId
         self.metadata = metadata
-        self.idSync = idSync
+        self.idSyncConfiguration = idSyncConfiguration
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -54,7 +54,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         case settings
         case destinationId
         case metadata
-        case idSync
+        case idSyncConfiguration
     }
 
     // Encodable protocol methods
@@ -70,7 +70,7 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         try container.encode(settings, forKey: .settings)
         try container.encode(destinationId, forKey: .destinationId)
         try container.encodeIfPresent(metadata, forKey: .metadata)
-        try container.encodeIfPresent(idSync, forKey: .idSync)
+        try container.encodeIfPresent(idSyncConfiguration, forKey: .idSyncConfiguration)
     }
 }
 

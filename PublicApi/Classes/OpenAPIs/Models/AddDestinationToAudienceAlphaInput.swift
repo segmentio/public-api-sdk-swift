@@ -14,12 +14,12 @@ import AnyCodable
 public struct AddDestinationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
     public var destination: Destination
-    /** Identifier sync configuration object. */
-    public var idSyncConfiguration: AnyCodable?
+    /** Identifier sync configuration - array of external IDs to sync with their strategies. Maximum 5 items allowed. */
+    public var idSyncConfiguration: [IDSyncConfigurationInput]?
     /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific and thus are best defined as unknown. */
     public var connectionSettings: AnyCodable?
 
-    public init(destination: Destination, idSyncConfiguration: AnyCodable? = nil, connectionSettings: AnyCodable? = nil) {
+    public init(destination: Destination, idSyncConfiguration: [IDSyncConfigurationInput]? = nil, connectionSettings: AnyCodable? = nil) {
         self.destination = destination
         self.idSyncConfiguration = idSyncConfiguration
         self.connectionSettings = connectionSettings
