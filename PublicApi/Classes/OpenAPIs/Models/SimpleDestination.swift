@@ -29,9 +29,10 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
     /** The Destination id. */
     public var destinationId: String
     public var metadata: Metadata?
-    public var idSyncConfiguration: IdSyncConfiguration?
+    /** ID Sync configuration - array of external IDs with their strategies. */
+    public var idSyncConfiguration: [IDSyncConfigurationInput]?
 
-    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: IdSyncConfiguration? = nil) {
+    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: [IDSyncConfigurationInput]? = nil) {
         self.id = id
         self.name = name
         self.sourceId = sourceId
