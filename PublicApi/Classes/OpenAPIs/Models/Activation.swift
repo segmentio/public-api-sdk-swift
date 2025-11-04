@@ -22,8 +22,8 @@ public struct Activation: Codable, JSONEncodable, Hashable {
     public var spaceId: String
     /** The audience id. */
     public var audienceId: String
-    /** The DESTINATION connection id (formerly integrationInstanceId). */
-    public var destinationConnectionId: String
+    /** The connection id. */
+    public var connectionId: String
     /** Type of activation trigger. */
     public var activationType: String
     /** Name of the activation. */
@@ -33,13 +33,13 @@ public struct Activation: Codable, JSONEncodable, Hashable {
     /** Whether to perform a resync after creation of the activation. */
     public var performResync: Bool?
 
-    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, destinationConnectionId: String, activationType: String, activationName: String, personalization: Personalization1, destinationMapping: DestinationMapping1? = nil, performResync: Bool? = nil) {
+    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, connectionId: String, activationType: String, activationName: String, personalization: Personalization1, destinationMapping: DestinationMapping1? = nil, performResync: Bool? = nil) {
         self.id = id
         self.enabled = enabled
         self.workspaceId = workspaceId
         self.spaceId = spaceId
         self.audienceId = audienceId
-        self.destinationConnectionId = destinationConnectionId
+        self.connectionId = connectionId
         self.activationType = activationType
         self.activationName = activationName
         self.personalization = personalization
@@ -53,7 +53,7 @@ public struct Activation: Codable, JSONEncodable, Hashable {
         case workspaceId
         case spaceId
         case audienceId
-        case destinationConnectionId
+        case connectionId
         case activationType
         case activationName
         case personalization
@@ -70,7 +70,7 @@ public struct Activation: Codable, JSONEncodable, Hashable {
         try container.encode(workspaceId, forKey: .workspaceId)
         try container.encode(spaceId, forKey: .spaceId)
         try container.encode(audienceId, forKey: .audienceId)
-        try container.encode(destinationConnectionId, forKey: .destinationConnectionId)
+        try container.encode(connectionId, forKey: .connectionId)
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encode(personalization, forKey: .personalization)

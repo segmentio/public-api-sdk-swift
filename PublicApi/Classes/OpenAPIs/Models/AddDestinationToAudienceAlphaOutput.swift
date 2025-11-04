@@ -13,13 +13,17 @@ import AnyCodable
 public struct AddDestinationToAudienceAlphaOutput: Codable, JSONEncodable, Hashable {
 
     public var connection: Connection
+    /** The id sync configuration for the Destination - array of external ids with their strategies. */
+    public var idSyncConfiguration: [IDSyncConfigurationInput]
 
-    public init(connection: Connection) {
+    public init(connection: Connection, idSyncConfiguration: [IDSyncConfigurationInput]) {
         self.connection = connection
+        self.idSyncConfiguration = idSyncConfiguration
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case connection
+        case idSyncConfiguration
     }
 
     // Encodable protocol methods
@@ -27,6 +31,7 @@ public struct AddDestinationToAudienceAlphaOutput: Codable, JSONEncodable, Hasha
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(connection, forKey: .connection)
+        try container.encode(idSyncConfiguration, forKey: .idSyncConfiguration)
     }
 }
 
