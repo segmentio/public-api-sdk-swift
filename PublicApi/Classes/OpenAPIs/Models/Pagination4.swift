@@ -10,25 +10,29 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Pagination parameters. */
+/** The result object used to specify the page cursor and count. */
 public struct Pagination4: Codable, JSONEncodable, Hashable {
 
-    /** Current. */
-    public var current: Double?
-    /** Next. */
-    public var next: Double?
-    /** Total entries. */
+    /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
+    public var current: String
+    /** A pointer to the next page.  This does not return when you retrieve the last page.  Consumers of the API must treat this value as opaque. */
+    public var next: String?
+    /** A pointer to the previous page.  This does not return when you retrieve the first page.  Consumers of the API must treat this value as opaque. */
+    public var previous: String?
+    /** The total number of entries available in the collection.  If calculating it impacts performance, the response may omit this field. */
     public var totalEntries: Double?
 
-    public init(current: Double? = nil, next: Double? = nil, totalEntries: Double? = nil) {
+    public init(current: String, next: String? = nil, previous: String? = nil, totalEntries: Double? = nil) {
         self.current = current
         self.next = next
+        self.previous = previous
         self.totalEntries = totalEntries
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case current
         case next
+        case previous
         case totalEntries
     }
 
@@ -36,8 +40,9 @@ public struct Pagination4: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(current, forKey: .current)
+        try container.encode(current, forKey: .current)
         try container.encodeIfPresent(next, forKey: .next)
+        try container.encodeIfPresent(previous, forKey: .previous)
         try container.encodeIfPresent(totalEntries, forKey: .totalEntries)
     }
 }
