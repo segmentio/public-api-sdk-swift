@@ -312,6 +312,69 @@ open class ActivationsAPI {
     }
 
     /**
+     List Supported Destinations from Audience
+     
+     - parameter spaceId: (path)  
+     - parameter audienceType: (path)  
+     - parameter slug: (query) Optional destination slug to filter results.  This parameter exists in alpha. (optional)
+     - parameter actionId: (query) Optional destination action id to filter results.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listSupportedDestinationsFromAudience(spaceId: String, audienceType: String, slug: String? = nil, actionId: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSupportedDestinationsFromAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listSupportedDestinationsFromAudienceWithRequestBuilder(spaceId: spaceId, audienceType: audienceType, slug: slug, actionId: actionId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Supported Destinations from Audience
+     - GET /spaces/{spaceId}/audienceType/{audienceType}/supported-destinations
+     - Lists all Supported Destinations for this audience type that can be activated.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Supported Destinations Listed For Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter audienceType: (path)  
+     - parameter slug: (query) Optional destination slug to filter results.  This parameter exists in alpha. (optional)
+     - parameter actionId: (query) Optional destination action id to filter results.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListSupportedDestinationsFromAudience200Response> 
+     */
+    open class func listSupportedDestinationsFromAudienceWithRequestBuilder(spaceId: String, audienceType: String, slug: String? = nil, actionId: String? = nil) -> RequestBuilder<ListSupportedDestinationsFromAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audienceType/{audienceType}/supported-destinations"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let audienceTypePreEscape = "\(APIHelper.mapValueToPathItem(audienceType))"
+        let audienceTypePostEscape = audienceTypePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{audienceType}", with: audienceTypePostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "slug": slug?.encodeToJSON(),
+            "actionId": actionId?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListSupportedDestinationsFromAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Remove Activation from Audience
      
      - parameter spaceId: (path)  
