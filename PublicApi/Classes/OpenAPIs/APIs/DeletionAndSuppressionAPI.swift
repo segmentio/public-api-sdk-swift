@@ -35,11 +35,10 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Cloud Source Regulation
      - POST /regulations/cloudsources/{sourceId}
-     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers will be updated to reflect regulation-specific limits (tracked separately for Segment-only vs Segment & Destination regulation types): - X-RateLimit-Remaining: Remaining requests for the regulation type category   - Segment-only Regulations: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - Segment & Destination Regulations: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-RateLimit-Reset: RFC 5322 timestamp for when the quota resets (for example, Tue, 31 Dec 2024 23:59:59 GMT)   
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment        Config API omitted fields: - `attributes`, - `userAgent`       
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter sourceId: (path)  
      - parameter createCloudSourceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateCloudSourceRegulation200Response> 
@@ -88,11 +87,10 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Source Regulation
      - POST /regulations/sources/{sourceId}
-     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers will be updated to reflect regulation-specific limits (tracked separately for Segment-only vs Segment & Destination regulation types): - X-RateLimit-Remaining: Remaining requests for the regulation type category   - Segment-only Regulations: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - Segment & Destination Regulations: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-RateLimit-Reset: RFC 5322 timestamp for when the quota resets (for example, Tue, 31 Dec 2024 23:59:59 GMT)   
+     - Creates a Source-scoped regulation.    Please Note: Suppression rules at the Workspace level take precedence over those at the Source level. If a user has been suppressed at the Workspace level, any attempt to un-suppress at the Source level is not supported and the processing of the request will fail in Segment    • When called, this endpoint may generate the `Source Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`       
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter sourceId: (path)  
      - parameter createSourceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateSourceRegulation200Response> 
@@ -140,11 +138,10 @@ open class DeletionAndSuppressionAPI {
     /**
      Create Workspace Regulation
      - POST /regulations
-     - Creates a Workspace-scoped regulation.    • When called, this endpoint may generate the `Workspace Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`  Rate limit headers will be updated to reflect regulation-specific limits (tracked separately for Segment-only vs Segment & Destination regulation types): - X-RateLimit-Remaining: Remaining requests for the regulation type category   - Segment-only Regulations: DELETE_INTERNAL, SUPPRESS_WITH_DELETE_INTERNAL, SUPPRESS_ONLY, UNSUPPRESS, DELETE_ARCHIVE_ONLY   - Segment & Destination Regulations: DELETE_ONLY, SUPPRESS_WITH_DELETE - X-RateLimit-Reset: RFC 5322 timestamp for when the quota resets (for example, Tue, 31 Dec 2024 23:59:59 GMT)   
+     - Creates a Workspace-scoped regulation.    • When called, this endpoint may generate the `Workspace Regulation Created` event in the [audit trail](/tag/Audit-Trail).  Config API omitted fields: - `attributes`, - `userAgent`       
      - BASIC:
        - type: http
        - name: token
-     - responseHeaders: [X-RateLimit-Remaining(String), X-RateLimit-Reset(String)]
      - parameter createWorkspaceRegulationV1Input: (body)  
      - returns: RequestBuilder<CreateWorkspaceRegulation200Response> 
      */
