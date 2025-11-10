@@ -157,6 +157,53 @@ open class FunctionsAPI {
     }
 
     /**
+     Create Transformation Function Instance
+     
+     - parameter createTransformationFunctionInstanceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func createTransformationFunctionInstance(createTransformationFunctionInstanceAlphaInput: CreateTransformationFunctionInstanceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateTransformationFunctionInstance200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createTransformationFunctionInstanceWithRequestBuilder(createTransformationFunctionInstanceAlphaInput: createTransformationFunctionInstanceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Create Transformation Function Instance
+     - POST /transformation-function-instances
+     - Creates a Transformation Function instance connected to the given Integration.  This endpoint is specifically designed for Transformations and includes integration_type as a mandatory field.    • In order to successfully call this endpoint, the specified Workspace needs to have the Functions feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter createTransformationFunctionInstanceAlphaInput: (body)  
+     - returns: RequestBuilder<CreateTransformationFunctionInstance200Response> 
+     */
+    open class func createTransformationFunctionInstanceWithRequestBuilder(createTransformationFunctionInstanceAlphaInput: CreateTransformationFunctionInstanceAlphaInput) -> RequestBuilder<CreateTransformationFunctionInstance200Response> {
+        let localVariablePath = "/transformation-function-instances"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTransformationFunctionInstanceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CreateTransformationFunctionInstance200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Delete Function
      
      - parameter functionId: (path)  
@@ -473,6 +520,7 @@ open class FunctionsAPI {
         case destination = "DESTINATION"
         case insertDestination = "INSERT_DESTINATION"
         case insertSource = "INSERT_SOURCE"
+        case insertTransformation = "INSERT_TRANSFORMATION"
         case source = "SOURCE"
     }
 
