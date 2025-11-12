@@ -15,15 +15,19 @@ public struct AddDestinationToAudienceAlphaOutput: Codable, JSONEncodable, Hasha
     public var connection: Connection
     /** The id sync configuration for the Destination - array of external ids with their strategies. */
     public var idSyncConfiguration: [IDSyncConfigurationInput]
+    /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific and thus are best defined as unknown. */
+    public var connectionSettings: AnyCodable?
 
-    public init(connection: Connection, idSyncConfiguration: [IDSyncConfigurationInput]) {
+    public init(connection: Connection, idSyncConfiguration: [IDSyncConfigurationInput], connectionSettings: AnyCodable? = nil) {
         self.connection = connection
         self.idSyncConfiguration = idSyncConfiguration
+        self.connectionSettings = connectionSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case connection
         case idSyncConfiguration
+        case connectionSettings
     }
 
     // Encodable protocol methods
@@ -32,6 +36,7 @@ public struct AddDestinationToAudienceAlphaOutput: Codable, JSONEncodable, Hasha
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(connection, forKey: .connection)
         try container.encode(idSyncConfiguration, forKey: .idSyncConfiguration)
+        try container.encodeIfPresent(connectionSettings, forKey: .connectionSettings)
     }
 }
 
