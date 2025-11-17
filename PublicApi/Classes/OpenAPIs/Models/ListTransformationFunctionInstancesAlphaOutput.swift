@@ -15,9 +15,9 @@ public struct ListTransformationFunctionInstancesAlphaOutput: Codable, JSONEncod
 
     /** All Transformation Function instances found. */
     public var instances: [TransformationFunctionInstanceAlpha]
-    public var pagination: Pagination2
+    public var pagination: Pagination3
 
-    public init(instances: [TransformationFunctionInstanceAlpha], pagination: Pagination2) {
+    public init(instances: [TransformationFunctionInstanceAlpha], pagination: Pagination3) {
         self.instances = instances
         self.pagination = pagination
     }
