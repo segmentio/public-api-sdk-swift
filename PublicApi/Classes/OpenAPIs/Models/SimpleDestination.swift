@@ -31,10 +31,8 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
     public var metadata: Metadata?
     /** ID Sync configuration - array of external IDs with their strategies. */
     public var idSyncConfiguration: [IDSyncConfigurationInput]?
-    /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific and thus are best defined as unknown. */
-    public var connectionSettings: AnyCodable?
 
-    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: [IDSyncConfigurationInput]? = nil, connectionSettings: AnyCodable? = nil) {
+    public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: [IDSyncConfigurationInput]? = nil) {
         self.id = id
         self.name = name
         self.sourceId = sourceId
@@ -45,7 +43,6 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         self.destinationId = destinationId
         self.metadata = metadata
         self.idSyncConfiguration = idSyncConfiguration
-        self.connectionSettings = connectionSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -59,7 +56,6 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         case destinationId
         case metadata
         case idSyncConfiguration
-        case connectionSettings
     }
 
     // Encodable protocol methods
@@ -76,7 +72,6 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
         try container.encode(destinationId, forKey: .destinationId)
         try container.encodeIfPresent(metadata, forKey: .metadata)
         try container.encodeIfPresent(idSyncConfiguration, forKey: .idSyncConfiguration)
-        try container.encodeIfPresent(connectionSettings, forKey: .connectionSettings)
     }
 }
 
