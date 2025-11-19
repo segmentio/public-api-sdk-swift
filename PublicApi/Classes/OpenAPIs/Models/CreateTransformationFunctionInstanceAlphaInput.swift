@@ -13,7 +13,7 @@ import AnyCodable
 /** Creates a Transformation Function instance. */
 public struct CreateTransformationFunctionInstanceAlphaInput: Codable, JSONEncodable, Hashable {
 
-    /** Transformation Function id to which this instance is associated.  Note: Remove the ifnd_/ifns_ prefix from the id. */
+    /** Transformation Function id to which this instance is associated.  Note: Remove the ifnt_ prefix from the id. */
     public var functionId: String
     /** The Source or Destination id to be connected. */
     public var integrationId: String
