@@ -17,7 +17,6 @@ public struct CreateFunctionV1Input: Codable, JSONEncodable, Hashable {
         case destination = "DESTINATION"
         case insertDestination = "INSERT_DESTINATION"
         case insertSource = "INSERT_SOURCE"
-        case insertTransformation = "INSERT_TRANSFORMATION"
         case source = "SOURCE"
     }
     /** The Function code. */
