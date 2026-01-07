@@ -15,9 +15,9 @@ public struct ListAudiencesAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of audience summary results. */
     public var audiences: [AudienceSummaryWithAudienceTypeAndLookback]
-    public var pagination: Pagination3
+    public var pagination: Pagination2
 
-    public init(audiences: [AudienceSummaryWithAudienceTypeAndLookback], pagination: Pagination3) {
+    public init(audiences: [AudienceSummaryWithAudienceTypeAndLookback], pagination: Pagination2) {
         self.audiences = audiences
         self.pagination = pagination
     }
