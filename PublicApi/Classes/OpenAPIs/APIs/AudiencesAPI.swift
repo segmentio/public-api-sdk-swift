@@ -73,13 +73,13 @@ open class AudiencesAPI {
      Create Audience
      
      - parameter spaceId: (path)  
-     - parameter createAudienceBetaInput: (body)  
+     - parameter createAudienceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createAudience(spaceId: String, createAudienceBetaInput: CreateAudienceBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAudienceWithRequestBuilder(spaceId: spaceId, createAudienceBetaInput: createAudienceBetaInput).execute(apiResponseQueue) { result in
+    open class func createAudience(spaceId: String, createAudienceInput: CreateAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createAudienceWithRequestBuilder(spaceId: spaceId, createAudienceInput: createAudienceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -92,21 +92,21 @@ open class AudiencesAPI {
     /**
      Create Audience
      - POST /spaces/{spaceId}/audiences
-     - Creates Audience.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Created` event in the [audit trail](/tag/Audit-Trail).  Note: The definition for an Audience created using the API is not editable through the Segment App.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Creates Audience.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Created` event in the [audit trail](/tag/Audit-Trail).  Note: The definition for an Audience created using the API is not editable through the Segment App.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter createAudienceBetaInput: (body)  
+     - parameter createAudienceInput: (body)  
      - returns: RequestBuilder<CreateAudience200Response> 
      */
-    open class func createAudienceWithRequestBuilder(spaceId: String, createAudienceBetaInput: CreateAudienceBetaInput) -> RequestBuilder<CreateAudience200Response> {
+    open class func createAudienceWithRequestBuilder(spaceId: String, createAudienceInput: CreateAudienceInput) -> RequestBuilder<CreateAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudienceBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudienceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
