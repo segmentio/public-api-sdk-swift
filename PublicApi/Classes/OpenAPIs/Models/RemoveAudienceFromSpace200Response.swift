@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct RemoveAudienceFromSpace200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: RemoveAudienceFromSpaceBetaOutput?
+    public var data: RemoveAudienceFromSpaceOutput?
 
-    public init(data: RemoveAudienceFromSpaceBetaOutput? = nil) {
+    public init(data: RemoveAudienceFromSpaceOutput? = nil) {
         self.data = data
     }
 
