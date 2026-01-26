@@ -125,13 +125,13 @@ open class AudiencesAPI {
      Create Audience Preview
      
      - parameter spaceId: (path)  
-     - parameter createAudiencePreviewBetaInput: (body)  
+     - parameter createAudiencePreviewInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createAudiencePreview(spaceId: String, createAudiencePreviewBetaInput: CreateAudiencePreviewBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewBetaInput: createAudiencePreviewBetaInput).execute(apiResponseQueue) { result in
+    open class func createAudiencePreview(spaceId: String, createAudiencePreviewInput: CreateAudiencePreviewInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: CreateAudiencePreview200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return createAudiencePreviewWithRequestBuilder(spaceId: spaceId, createAudiencePreviewInput: createAudiencePreviewInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -149,16 +149,16 @@ open class AudiencesAPI {
        - type: http
        - name: token
      - parameter spaceId: (path)  
-     - parameter createAudiencePreviewBetaInput: (body)  
+     - parameter createAudiencePreviewInput: (body)  
      - returns: RequestBuilder<CreateAudiencePreview200Response> 
      */
-    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewBetaInput: CreateAudiencePreviewBetaInput) -> RequestBuilder<CreateAudiencePreview200Response> {
+    open class func createAudiencePreviewWithRequestBuilder(spaceId: String, createAudiencePreviewInput: CreateAudiencePreviewInput) -> RequestBuilder<CreateAudiencePreview200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/previews"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAudiencePreviewInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -719,13 +719,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceBetaInput: (body)  
+     - parameter updateAudienceForSpaceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceBetaInput: UpdateAudienceForSpaceBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceBetaInput: updateAudienceForSpaceBetaInput).execute(apiResponseQueue) { result in
+    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceInput: updateAudienceForSpaceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -744,10 +744,10 @@ open class AudiencesAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceBetaInput: (body)  
+     - parameter updateAudienceForSpaceInput: (body)  
      - returns: RequestBuilder<UpdateAudienceForSpace200Response> 
      */
-    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceBetaInput: UpdateAudienceForSpaceBetaInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
+    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -756,7 +756,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
