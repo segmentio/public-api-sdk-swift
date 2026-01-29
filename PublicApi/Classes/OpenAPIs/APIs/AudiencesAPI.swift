@@ -622,7 +622,7 @@ open class AudiencesAPI {
     /**
      Remove Audience from Space
      - DELETE /spaces/{spaceId}/audiences/{id}
-     - Deletes an Audience by id and spaceId.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Deleted` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Deletes an Audience by id and spaceId.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Deleted` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -719,13 +719,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceBetaInput: (body)  
+     - parameter updateAudienceForSpaceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceBetaInput: UpdateAudienceForSpaceBetaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceBetaInput: updateAudienceForSpaceBetaInput).execute(apiResponseQueue) { result in
+    open class func updateAudienceForSpace(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceForSpaceWithRequestBuilder(spaceId: spaceId, id: id, updateAudienceForSpaceInput: updateAudienceForSpaceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -738,16 +738,16 @@ open class AudiencesAPI {
     /**
      Update Audience for Space
      - PATCH /spaces/{spaceId}/audiences/{id}
-     - Updates the Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Modified` event in the [audit trail](/tag/Audit-Trail).  • Note that when an Audience is updated, the Audience will be locked from future edits until the changes have been incorporated. You can find more information [in the Segment docs](https://segment-docs.netlify.app/docs/engage/audiences/#editing-realtime-audiences-and-traits).  Note: The definition for an Audience updated using the API is not editable through the Segment App.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Updates the Audience.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Audience Modified` event in the [audit trail](/tag/Audit-Trail).  • Note that when an Audience is updated, the Audience will be locked from future edits until the changes have been incorporated. You can find more information [in the Segment docs](https://segment-docs.netlify.app/docs/engage/audiences/#editing-realtime-audiences-and-traits).  Note: The definition for an Audience updated using the API is not editable through the Segment App.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter updateAudienceForSpaceBetaInput: (body)  
+     - parameter updateAudienceForSpaceInput: (body)  
      - returns: RequestBuilder<UpdateAudienceForSpace200Response> 
      */
-    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceBetaInput: UpdateAudienceForSpaceBetaInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
+    open class func updateAudienceForSpaceWithRequestBuilder(spaceId: String, id: String, updateAudienceForSpaceInput: UpdateAudienceForSpaceInput) -> RequestBuilder<UpdateAudienceForSpace200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -756,7 +756,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceBetaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceForSpaceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
