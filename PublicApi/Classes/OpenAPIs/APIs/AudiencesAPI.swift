@@ -17,13 +17,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter addAudienceScheduleToAudienceAlphaInput: (body)  
+     - parameter addAudienceScheduleToAudienceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addAudienceScheduleToAudience(spaceId: String, id: String, addAudienceScheduleToAudienceAlphaInput: AddAudienceScheduleToAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddAudienceScheduleToAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return addAudienceScheduleToAudienceWithRequestBuilder(spaceId: spaceId, id: id, addAudienceScheduleToAudienceAlphaInput: addAudienceScheduleToAudienceAlphaInput).execute(apiResponseQueue) { result in
+    open class func addAudienceScheduleToAudience(spaceId: String, id: String, addAudienceScheduleToAudienceInput: AddAudienceScheduleToAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddAudienceScheduleToAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return addAudienceScheduleToAudienceWithRequestBuilder(spaceId: spaceId, id: id, addAudienceScheduleToAudienceInput: addAudienceScheduleToAudienceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -42,10 +42,10 @@ open class AudiencesAPI {
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
-     - parameter addAudienceScheduleToAudienceAlphaInput: (body)  
+     - parameter addAudienceScheduleToAudienceInput: (body)  
      - returns: RequestBuilder<AddAudienceScheduleToAudience200Response> 
      */
-    open class func addAudienceScheduleToAudienceWithRequestBuilder(spaceId: String, id: String, addAudienceScheduleToAudienceAlphaInput: AddAudienceScheduleToAudienceAlphaInput) -> RequestBuilder<AddAudienceScheduleToAudience200Response> {
+    open class func addAudienceScheduleToAudienceWithRequestBuilder(spaceId: String, id: String, addAudienceScheduleToAudienceInput: AddAudienceScheduleToAudienceInput) -> RequestBuilder<AddAudienceScheduleToAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -54,7 +54,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addAudienceScheduleToAudienceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addAudienceScheduleToAudienceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -563,7 +563,7 @@ open class AudiencesAPI {
     /**
      List Audiences
      - GET /spaces/{spaceId}/audiences
-     - Returns Audiences by spaceId. Supports including audience schedules using `?include=schedules`.  • This endpoint is in **Beta** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Returns Audiences by spaceId. Supports including audience schedules using `?include=schedules`.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -777,13 +777,13 @@ open class AudiencesAPI {
      - parameter spaceId: (path)  
      - parameter id: (path)  
      - parameter scheduleId: (path)  
-     - parameter updateAudienceScheduleForAudienceAlphaInput: (body)  
+     - parameter updateAudienceScheduleForAudienceInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateAudienceScheduleForAudience(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceAlphaInput: UpdateAudienceScheduleForAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceScheduleForAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: spaceId, id: id, scheduleId: scheduleId, updateAudienceScheduleForAudienceAlphaInput: updateAudienceScheduleForAudienceAlphaInput).execute(apiResponseQueue) { result in
+    open class func updateAudienceScheduleForAudience(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceInput: UpdateAudienceScheduleForAudienceInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateAudienceScheduleForAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: spaceId, id: id, scheduleId: scheduleId, updateAudienceScheduleForAudienceInput: updateAudienceScheduleForAudienceInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -803,10 +803,10 @@ open class AudiencesAPI {
      - parameter spaceId: (path)  
      - parameter id: (path)  
      - parameter scheduleId: (path)  
-     - parameter updateAudienceScheduleForAudienceAlphaInput: (body)  
+     - parameter updateAudienceScheduleForAudienceInput: (body)  
      - returns: RequestBuilder<UpdateAudienceScheduleForAudience200Response> 
      */
-    open class func updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceAlphaInput: UpdateAudienceScheduleForAudienceAlphaInput) -> RequestBuilder<UpdateAudienceScheduleForAudience200Response> {
+    open class func updateAudienceScheduleForAudienceWithRequestBuilder(spaceId: String, id: String, scheduleId: String, updateAudienceScheduleForAudienceInput: UpdateAudienceScheduleForAudienceInput) -> RequestBuilder<UpdateAudienceScheduleForAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}/schedules/{scheduleId}"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -818,7 +818,7 @@ open class AudiencesAPI {
         let scheduleIdPostEscape = scheduleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{scheduleId}", with: scheduleIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceScheduleForAudienceAlphaInput)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAudienceScheduleForAudienceInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
