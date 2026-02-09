@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GetAudienceScheduleFromSpaceAndAudience200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: GetAudienceScheduleFromSpaceAndAudienceOutput?
+    public var data: GetAudienceScheduleFromSpaceAndAudienceAlphaOutput?
 
-    public init(data: GetAudienceScheduleFromSpaceAndAudienceOutput? = nil) {
+    public init(data: GetAudienceScheduleFromSpaceAndAudienceAlphaOutput? = nil) {
         self.data = data
     }
 
