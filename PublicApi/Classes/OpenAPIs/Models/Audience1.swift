@@ -36,7 +36,7 @@ public struct Audience1: Codable, JSONEncodable, Hashable {
     /** Enabled/disabled status for the audience. */
     public var enabled: Bool
     public var definition: Definition4?
-    /** Status for the audience.  Possible values: Backfilling, Computing, Failed, Live, Awaiting Destinations, Disabled. */
+    /** Status for the audience.  Possible values: Backfilling, Computing, Disabled, Error, Failed, Live, Locked, Not Computing, Preparing, Awaiting Destinations. */
     public var status: String?
     /** User id who created the audience. */
     public var createdBy: String
