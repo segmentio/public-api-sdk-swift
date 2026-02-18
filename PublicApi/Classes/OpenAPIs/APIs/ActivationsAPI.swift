@@ -555,4 +555,66 @@ open class ActivationsAPI {
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Update Destination for Audience
+     
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - parameter destinationId: (path)  
+     - parameter updateDestinationForAudienceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func updateDestinationForAudience(spaceId: String, audienceId: String, destinationId: String, updateDestinationForAudienceAlphaInput: UpdateDestinationForAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: UpdateDestinationForAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateDestinationForAudienceWithRequestBuilder(spaceId: spaceId, audienceId: audienceId, destinationId: destinationId, updateDestinationForAudienceAlphaInput: updateDestinationForAudienceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Update Destination for Audience
+     - PATCH /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{destinationId}
+     - Updates a Destination for an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Updated for Audience` event in the [audit trail](/tag/Audit-Trail).
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter audienceId: (path)  
+     - parameter destinationId: (path)  
+     - parameter updateDestinationForAudienceAlphaInput: (body)  
+     - returns: RequestBuilder<UpdateDestinationForAudience200Response> 
+     */
+    open class func updateDestinationForAudienceWithRequestBuilder(spaceId: String, audienceId: String, destinationId: String, updateDestinationForAudienceAlphaInput: UpdateDestinationForAudienceAlphaInput) -> RequestBuilder<UpdateDestinationForAudience200Response> {
+        var localVariablePath = "/spaces/{spaceId}/audiences/{audienceId}/destination-connections/{destinationId}"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let audienceIdPreEscape = "\(APIHelper.mapValueToPathItem(audienceId))"
+        let audienceIdPostEscape = audienceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{audienceId}", with: audienceIdPostEscape, options: .literal, range: nil)
+        let destinationIdPreEscape = "\(APIHelper.mapValueToPathItem(destinationId))"
+        let destinationIdPostEscape = destinationIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{destinationId}", with: destinationIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateDestinationForAudienceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UpdateDestinationForAudience200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }
