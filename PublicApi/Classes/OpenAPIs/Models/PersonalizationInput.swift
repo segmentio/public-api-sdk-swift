@@ -16,7 +16,7 @@ public struct PersonalizationInput: Codable, JSONEncodable, Hashable {
     public var profile: Profile
     /** Entities V2 Object. */
     public var entities: [PersonalizationInputEntity]?
-    /** Sync entity property changes back to Segment. Only applicable if activationType is \"Audience Membership Changed\". */
+    /** Sync entity property changes to the Destination. Only applicable if activationType is \"Audience Membership Changed\". */
     public var syncEntityPropertyChanges: Bool?
 
     public init(profile: Profile, entities: [PersonalizationInputEntity]? = nil, syncEntityPropertyChanges: Bool? = nil) {

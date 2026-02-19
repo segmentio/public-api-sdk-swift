@@ -13,7 +13,7 @@ import AnyCodable
 /** Configuration settings for the mappings. */
 public struct DestinationMapping1: Codable, JSONEncodable, Hashable {
 
-    /** The action id to instantiate. */
+    /** The id for the action that Segment should perform on the Destination. */
     public var actionId: String
     /** The action/mapping settings. */
     public var settings: JSON?

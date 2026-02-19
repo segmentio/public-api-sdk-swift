@@ -29,9 +29,9 @@ public struct SimpleDestination: Codable, JSONEncodable, Hashable {
     /** The Destination id. */
     public var destinationId: String
     public var metadata: Metadata?
-    /** ID Sync configuration - array of external IDs with their strategies. */
+    /** Identifier sync configuration. Defines which external ids to sync and their selection strategies. Maximum 5 items allowed. If omitted, the default will be last email and last user_id, or all email and all user_id depending on the Destination. */
     public var idSyncConfiguration: [IDSyncConfigurationInput]?
-    /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific and thus are best defined as unknown. */
+    /** The settings that a Destination requires to create audiences on a third-party platform. These settings are Destination-specific. Use the List Supported Destinations from Audience endpoint to find the required connection settings. */
     public var connectionSettings: AnyCodable?
 
     public init(id: String, name: String? = nil, sourceId: String, enabled: Bool, createdAt: String, updatedAt: String, settings: [String: AnyCodable], destinationId: String, metadata: Metadata? = nil, idSyncConfiguration: [IDSyncConfigurationInput]? = nil, connectionSettings: AnyCodable? = nil) {

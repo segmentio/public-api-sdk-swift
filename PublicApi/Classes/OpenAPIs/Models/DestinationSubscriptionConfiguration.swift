@@ -13,7 +13,7 @@ import AnyCodable
 /** Destination Subscription Configuration. */
 public struct DestinationSubscriptionConfiguration: Codable, JSONEncodable, Hashable {
 
-    /** The action id to instantiate. */
+    /** The id for the action that Segment should perform on the Destination. */
     public var actionId: String
     /** The action/mapping settings. */
     public var settings: JSON?
