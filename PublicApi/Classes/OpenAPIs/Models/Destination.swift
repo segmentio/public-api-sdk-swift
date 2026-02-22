@@ -10,12 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The Destination id. */
+/** The Destination. */
 public struct Destination: Codable, JSONEncodable, Hashable {
 
-    /** The Destination instance id. */
+    /** The Destination id. Use the List Destinations endpoint to look up available ids. */
     public var id: String
-    /** Type of Destination to add to the audience. */
+    /** The category of the Destination.  Possible values: destination, warehouse. */
     public var type: String
 
     public init(id: String, type: String) {

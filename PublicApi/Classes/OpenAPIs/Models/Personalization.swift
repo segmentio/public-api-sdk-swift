@@ -10,13 +10,13 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Configuration settings for the event emitter to be created. */
+/** The data points used to enrich the event. Defines which profile traits and/or entity properties are included in the event sent to the Destination.  For Action Destinations, any traits or properties specified here must also be included in the destinationMapping to define which Destination fields should be populated. */
 public struct Personalization: Codable, JSONEncodable, Hashable {
 
     public var profile: Profile
     /** Entities V2 Object. */
     public var entities: [PersonalizationInputEntity]?
-    /** Sync entity property changes back to Segment. Only applicable if activationType is \"Audience Membership Changed\". */
+    /** Sync entity property changes to the Destination. Only applicable if activationType is \"Audience Membership Changed\". */
     public var syncEntityPropertyChanges: Bool?
 
     public init(profile: Profile, entities: [PersonalizationInputEntity]? = nil, syncEntityPropertyChanges: Bool? = nil) {

@@ -19,7 +19,7 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
     public var activationName: String?
     public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
-    /** Whether to perform a resync after creation of the activation. */
+    /** Determines whether to perform a full resync after the update. If true, the entire audience is resent to the Destination using the updated configuration. If false, the update applies only to future syncs. */
     public var performResync: Bool?
 
     public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performResync: Bool? = nil) {
