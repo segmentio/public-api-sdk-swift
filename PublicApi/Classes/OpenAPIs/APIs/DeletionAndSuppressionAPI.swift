@@ -167,58 +167,6 @@ open class DeletionAndSuppressionAPI {
     }
 
     /**
-     Delete Regulation
-     
-     - parameter regulateId: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @discardableResult
-    open class func deleteRegulation(regulateId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteRegulation200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return deleteRegulationWithRequestBuilder(regulateId: regulateId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Delete Regulation
-     - DELETE /regulations/{regulateId}
-     - Deletes a regulation from the Workspace. The regulation must be in the initialized state to be deleted.    • When called, this endpoint may generate the `Regulation Deleted` event in the [audit trail](/tag/Audit-Trail).         **DEPRECATED**: this endpoint has been deprecated according to the guidelines, and may experience reduced SLA guarantees.
-     - BASIC:
-       - type: http
-       - name: token
-     - parameter regulateId: (path)  
-     - returns: RequestBuilder<DeleteRegulation200Response> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func deleteRegulationWithRequestBuilder(regulateId: String) -> RequestBuilder<DeleteRegulation200Response> {
-        var localVariablePath = "/regulations/{regulateId}"
-        let regulateIdPreEscape = "\(APIHelper.mapValueToPathItem(regulateId))"
-        let regulateIdPostEscape = regulateIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{regulateId}", with: regulateIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<DeleteRegulation200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
      Get Regulation
      
      - parameter regulateId: (path)  
