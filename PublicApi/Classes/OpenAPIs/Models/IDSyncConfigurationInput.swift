@@ -17,15 +17,19 @@ public struct IDSyncConfigurationInput: Codable, JSONEncodable, Hashable {
     public var externalId: String
     /** The rule for selecting which identifiers to sync from a profile.  Possible values: first: Syncs only the oldest recorded value. last: Syncs only the most recently updated value. all: Syncs every value found on the profile (sends multiple events). */
     public var strategy: String
+    /** Optional destination-specific identifier to map to (for example, \"Email_Address_c\"). */
+    public var mapTo: String?
 
-    public init(externalId: String, strategy: String) {
+    public init(externalId: String, strategy: String, mapTo: String? = nil) {
         self.externalId = externalId
         self.strategy = strategy
+        self.mapTo = mapTo
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case externalId
         case strategy
+        case mapTo
     }
 
     // Encodable protocol methods
@@ -34,6 +38,7 @@ public struct IDSyncConfigurationInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(externalId, forKey: .externalId)
         try container.encode(strategy, forKey: .strategy)
+        try container.encodeIfPresent(mapTo, forKey: .mapTo)
     }
 }
 
