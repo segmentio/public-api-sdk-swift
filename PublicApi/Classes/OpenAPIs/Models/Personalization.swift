@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The data points used to enrich the event. Defines which profile traits and/or entity properties are included in the event sent to the Destination.  For Action Destinations, any traits or properties specified here must also be included in the destinationMapping to define which Destination fields should be populated. */
+/** The data points used to enrich the event. Defines which profile traits and/or entity properties are included in the event sent to the Destination. For Action Destinations, any traits or properties specified here must also be included in the destinationMapping to define which Destination fields should be populated. */
 public struct Personalization: Codable, JSONEncodable, Hashable {
 
     public var profile: Profile

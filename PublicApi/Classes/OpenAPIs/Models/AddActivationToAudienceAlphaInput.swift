@@ -17,18 +17,21 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var enabled: Bool?
     /** Determines whether to perform a full resync upon creation. If true, the entire audience is resent to the Destination from scratch. If false, only future changes will be synced. */
     public var performResync: Bool
-    /** Determines when an event is sent to the Destination.   Possible values: Audience Entered: Sends an event when a profile or entity enters the audience. Audience Exited: Sends an event when a profile or entity exits the audience. Audience Membership Changed: Sends an event for both entries and exits. This does not apply to entities.  Note that events are sent for the profile, unless the audience is a Linked Audience. In that case, events are sent for the target entity defined for that audience. */
+    /** Determines when an event is sent to the Destination.  Possible values: Audience Entered: Sends an event when a profile or entity enters the audience. Audience Exited: Sends an event when a profile or entity exits the audience. Audience Membership Changed: Sends an event for both entries and exits. This does not apply to entities.  Note that events are sent for the profile, unless the audience is a Linked Audience. In that case, events are sent for the target entity defined for that audience. */
     public var activationType: String
-    /** Name of the activation. */
+    /** Activation name. For Warehouse Destinations, this is used as the table name. */
     public var activationName: String
+    /** Optional human-readable label for the activation. Only supported for Warehouse Destinations. When omitted, the activationName is used as the label. */
+    public var displayName: String?
     public var personalization: Personalization
     public var destinationMapping: DestinationMapping?
 
-    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, personalization: Personalization, destinationMapping: DestinationMapping? = nil) {
+    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization, destinationMapping: DestinationMapping? = nil) {
         self.enabled = enabled
         self.performResync = performResync
         self.activationType = activationType
         self.activationName = activationName
+        self.displayName = displayName
         self.personalization = personalization
         self.destinationMapping = destinationMapping
     }
@@ -38,6 +41,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         case performResync
         case activationType
         case activationName
+        case displayName
         case personalization
         case destinationMapping
     }
@@ -50,6 +54,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         try container.encode(performResync, forKey: .performResync)
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
+        try container.encodeIfPresent(displayName, forKey: .displayName)
         try container.encode(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
     }
