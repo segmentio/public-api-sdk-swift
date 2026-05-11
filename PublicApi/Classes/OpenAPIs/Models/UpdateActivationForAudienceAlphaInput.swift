@@ -15,19 +15,16 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
 
     /** Determines whether an activation is enabled. */
     public var enabled: Bool?
-    /** Activation name. For Warehouse Destinations, this is used as the table name. */
+    /** Activation name. */
     public var activationName: String?
-    /** Optional human-readable label for the activation. Only supported for Warehouse Destinations. When omitted, the activationName is used as the label. */
-    public var displayName: String?
     public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
     /** Determines whether to perform a full resync after the update. If true, the entire audience is resent to the Destination using the updated configuration. If false, the update applies only to future syncs. */
     public var performResync: Bool?
 
-    public init(enabled: Bool? = nil, activationName: String? = nil, displayName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performResync: Bool? = nil) {
+    public init(enabled: Bool? = nil, activationName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performResync: Bool? = nil) {
         self.enabled = enabled
         self.activationName = activationName
-        self.displayName = displayName
         self.personalization = personalization
         self.destinationMapping = destinationMapping
         self.performResync = performResync
@@ -36,7 +33,6 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case enabled
         case activationName
-        case displayName
         case personalization
         case destinationMapping
         case performResync
@@ -48,7 +44,6 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encodeIfPresent(activationName, forKey: .activationName)
-        try container.encodeIfPresent(displayName, forKey: .displayName)
         try container.encodeIfPresent(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
         try container.encodeIfPresent(performResync, forKey: .performResync)
