@@ -15,9 +15,9 @@ public struct ListAuditEventsV1Output: Codable, JSONEncodable, Hashable {
 
     /** Audit trail events for the current Workspace. */
     public var events: [AuditEventV1]
-    public var pagination: Pagination3?
+    public var pagination: Pagination?
 
-    public init(events: [AuditEventV1], pagination: Pagination3? = nil) {
+    public init(events: [AuditEventV1], pagination: Pagination? = nil) {
         self.events = events
         self.pagination = pagination
     }
