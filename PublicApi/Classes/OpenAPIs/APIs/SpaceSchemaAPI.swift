@@ -368,14 +368,6 @@ open class SpaceSchemaAPI {
     }
 
     /**
-     * enum for parameter propertyType
-     */
-    public enum PropertyType_listSampleValuesFromEventProperty: String, CaseIterable {
-        case context = "context"
-        case property = "property"
-    }
-
-    /**
      List Sample Values from Event Property
      
      - parameter spaceId: (path)  
@@ -386,7 +378,7 @@ open class SpaceSchemaAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listSampleValuesFromEventProperty(spaceId: String, eventName: String, propertyName: String, propertyType: PropertyType_listSampleValuesFromEventProperty, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSampleValuesFromEventProperty200Response?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listSampleValuesFromEventProperty(spaceId: String, eventName: String, propertyName: String, propertyType: EventPropertyType, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSampleValuesFromEventProperty200Response?, _ error: Error?) -> Void)) -> RequestTask {
         return listSampleValuesFromEventPropertyWithRequestBuilder(spaceId: spaceId, eventName: eventName, propertyName: propertyName, propertyType: propertyType).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -410,7 +402,7 @@ open class SpaceSchemaAPI {
      - parameter propertyType: (query) The property type.  This parameter exists in alpha. 
      - returns: RequestBuilder<ListSampleValuesFromEventProperty200Response> 
      */
-    open class func listSampleValuesFromEventPropertyWithRequestBuilder(spaceId: String, eventName: String, propertyName: String, propertyType: PropertyType_listSampleValuesFromEventProperty) -> RequestBuilder<ListSampleValuesFromEventProperty200Response> {
+    open class func listSampleValuesFromEventPropertyWithRequestBuilder(spaceId: String, eventName: String, propertyName: String, propertyType: EventPropertyType) -> RequestBuilder<ListSampleValuesFromEventProperty200Response> {
         var localVariablePath = "/spaces/{spaceId}/events/{eventName}/properties/{propertyName}/sample-values"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
