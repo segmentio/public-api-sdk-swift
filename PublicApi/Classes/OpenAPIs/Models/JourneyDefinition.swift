@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The XState-format definition of a journey. Passed through to personas-service as-is. */
+/** The XState-format definition of an event-triggered journey. Passed through to personas-service as-is. */
 public struct JourneyDefinition: Codable, JSONEncodable, Hashable {
 
     /** The key of the initial state. */

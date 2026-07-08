@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Input to create a journey. */
+/** Input to create an event-triggered journey. */
 public struct CreateJourneyAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** Display name for the journey. */
