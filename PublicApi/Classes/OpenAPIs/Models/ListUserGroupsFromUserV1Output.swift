@@ -15,9 +15,9 @@ public struct ListUserGroupsFromUserV1Output: Codable, JSONEncodable, Hashable {
 
     /** The user groups that the user belongs to. */
     public var groups: [MinimalUserGroupV1]
-    public var pagination: Pagination2
+    public var pagination: Pagination
 
-    public init(groups: [MinimalUserGroupV1], pagination: Pagination2) {
+    public init(groups: [MinimalUserGroupV1], pagination: Pagination) {
         self.groups = groups
         self.pagination = pagination
     }
