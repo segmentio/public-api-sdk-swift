@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Defines a reusable Credential that can be used to connect one or more Warehouses to a data warehouse. */
+/** Defines a reusable Credential that can be used to connect one or more Warehouses to a data Warehouse. */
 public struct CredentialV1: Codable, JSONEncodable, Hashable {
 
     /** The id of the Credential. */
