@@ -13,6 +13,64 @@ import AnyCodable
 open class SpaceSchemaAPI {
 
     /**
+     List Entity Paths
+     
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Filter paths by entity name or path name.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listEntityPaths(spaceId: String, pagination: PaginationInput? = nil, search: String? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListEntityPaths200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listEntityPathsWithRequestBuilder(spaceId: spaceId, pagination: pagination, search: search).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Entity Paths
+     - GET /spaces/{spaceId}/entity-paths
+     - Returns a list of Entity Paths for a Space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Filter paths by entity name or path name.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListEntityPaths200Response> 
+     */
+    open class func listEntityPathsWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil, search: String? = nil) -> RequestBuilder<ListEntityPaths200Response> {
+        var localVariablePath = "/spaces/{spaceId}/entity-paths"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+            "search": search?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListEntityPaths200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      * enum for parameter sortBy
      */
     public enum SortBy_listEvents: String, CaseIterable {
@@ -88,6 +146,72 @@ open class SpaceSchemaAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ListEvents200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     List Properties from Entity
+     
+     - parameter spaceId: (path)  
+     - parameter entitySlug: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter includeSampleValues: (query) When true, include sample values for each property. Defaults to false.  This parameter exists in alpha. (optional)
+     - parameter samplesCount: (query) Max number of sample values to return per property. Defaults to 20, min 1, max 100.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listPropertiesFromEntity(spaceId: String, entitySlug: String, pagination: PaginationInput? = nil, includeSampleValues: Bool? = nil, samplesCount: Double? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListPropertiesFromEntity200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listPropertiesFromEntityWithRequestBuilder(spaceId: spaceId, entitySlug: entitySlug, pagination: pagination, includeSampleValues: includeSampleValues, samplesCount: samplesCount).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Properties from Entity
+     - GET /spaces/{spaceId}/entities/{entitySlug}/properties
+     - Returns a list of Properties for an Entity in a Space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.  <div style=\"background-color: #e8f4fd; border: 1px solid #90caf9; border-radius: 6px; padding: 16px; margin: 16px 0; color: #0d47a1; line-height: 1.5;\">   <ul style=\"margin: 0; padding-left: 20px; font-size: 13px;\">     <li style=\"margin-bottom: 6px;\"><strong>Forward-only pagination</strong>: this endpoint does not support backward traversal. The <code>pagination.previous</code> field is always absent; use <code>pagination.next</code> to advance through pages.</li>   </ul> </div>    The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter entitySlug: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter includeSampleValues: (query) When true, include sample values for each property. Defaults to false.  This parameter exists in alpha. (optional)
+     - parameter samplesCount: (query) Max number of sample values to return per property. Defaults to 20, min 1, max 100.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListPropertiesFromEntity200Response> 
+     */
+    open class func listPropertiesFromEntityWithRequestBuilder(spaceId: String, entitySlug: String, pagination: PaginationInput? = nil, includeSampleValues: Bool? = nil, samplesCount: Double? = nil) -> RequestBuilder<ListPropertiesFromEntity200Response> {
+        var localVariablePath = "/spaces/{spaceId}/entities/{entitySlug}/properties"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let entitySlugPreEscape = "\(APIHelper.mapValueToPathItem(entitySlug))"
+        let entitySlugPostEscape = entitySlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{entitySlug}", with: entitySlugPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+            "includeSampleValues": includeSampleValues?.encodeToJSON(),
+            "samplesCount": samplesCount?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListPropertiesFromEntity200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -184,6 +308,66 @@ open class SpaceSchemaAPI {
     }
 
     /**
+     List Sample Values from Entity Property
+     
+     - parameter spaceId: (path)  
+     - parameter entitySlug: (path)  
+     - parameter propertyName: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listSampleValuesFromEntityProperty(spaceId: String, entitySlug: String, propertyName: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSampleValuesFromEntityProperty200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listSampleValuesFromEntityPropertyWithRequestBuilder(spaceId: spaceId, entitySlug: entitySlug, propertyName: propertyName).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Sample Values from Entity Property
+     - GET /spaces/{spaceId}/entities/{entitySlug}/properties/{propertyName}/sample-values
+     - Returns sample values for an Entity Property in a Space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter entitySlug: (path)  
+     - parameter propertyName: (path)  
+     - returns: RequestBuilder<ListSampleValuesFromEntityProperty200Response> 
+     */
+    open class func listSampleValuesFromEntityPropertyWithRequestBuilder(spaceId: String, entitySlug: String, propertyName: String) -> RequestBuilder<ListSampleValuesFromEntityProperty200Response> {
+        var localVariablePath = "/spaces/{spaceId}/entities/{entitySlug}/properties/{propertyName}/sample-values"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let entitySlugPreEscape = "\(APIHelper.mapValueToPathItem(entitySlug))"
+        let entitySlugPostEscape = entitySlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{entitySlug}", with: entitySlugPostEscape, options: .literal, range: nil)
+        let propertyNamePreEscape = "\(APIHelper.mapValueToPathItem(propertyName))"
+        let propertyNamePostEscape = propertyNamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{propertyName}", with: propertyNamePostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListSampleValuesFromEntityProperty200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      List Sample Values from Event Property
      
      - parameter spaceId: (path)  
@@ -244,6 +428,171 @@ open class SpaceSchemaAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ListSampleValuesFromEventProperty200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     * enum for parameter collection
+     */
+    public enum Collection_listSampleValuesFromTrait: String, CaseIterable {
+        case accounts = "accounts"
+        case users = "users"
+    }
+
+    /**
+     List Sample Values from Trait
+     
+     - parameter spaceId: (path)  
+     - parameter traitKey: (path)  
+     - parameter collection: (query) Collection to get trait values for. Defaults to &#39;users&#39;.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listSampleValuesFromTrait(spaceId: String, traitKey: String, collection: Collection_listSampleValuesFromTrait? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListSampleValuesFromTrait200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listSampleValuesFromTraitWithRequestBuilder(spaceId: spaceId, traitKey: traitKey, collection: collection).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Sample Values from Trait
+     - GET /spaces/{spaceId}/traits/{traitKey}/sample-values
+     - Returns sample values for a Trait in a Space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.    The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter traitKey: (path)  
+     - parameter collection: (query) Collection to get trait values for. Defaults to &#39;users&#39;.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListSampleValuesFromTrait200Response> 
+     */
+    open class func listSampleValuesFromTraitWithRequestBuilder(spaceId: String, traitKey: String, collection: Collection_listSampleValuesFromTrait? = nil) -> RequestBuilder<ListSampleValuesFromTrait200Response> {
+        var localVariablePath = "/spaces/{spaceId}/traits/{traitKey}/sample-values"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let traitKeyPreEscape = "\(APIHelper.mapValueToPathItem(traitKey))"
+        let traitKeyPostEscape = traitKeyPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{traitKey}", with: traitKeyPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "collection": collection?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListSampleValuesFromTrait200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     * enum for parameter sortBy
+     */
+    public enum SortBy_listTraits: String, CaseIterable {
+        case lastseenat = "lastSeenAt"
+        case trait = "trait"
+    }
+
+    /**
+     * enum for parameter sortDir
+     */
+    public enum SortDir_listTraits: String, CaseIterable {
+        case asc = "asc"
+        case desc = "desc"
+    }
+
+    /**
+     * enum for parameter collection
+     */
+    public enum Collection_listTraits: String, CaseIterable {
+        case accounts = "accounts"
+        case users = "users"
+    }
+
+    /**
+     List Traits
+     
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter sortBy: (query) Field to sort by. Defaults to &#39;trait&#39;.  This parameter exists in alpha. (optional)
+     - parameter sortDir: (query) Sort direction. Defaults to &#39;asc&#39;.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Filter traits by key substring.  This parameter exists in alpha. (optional)
+     - parameter collection: (query) Collection to list traits for. Defaults to &#39;users&#39;.  This parameter exists in alpha. (optional)
+     - parameter includeSampleValues: (query) When true, include sample values for each trait. Defaults to false.  This parameter exists in alpha. (optional)
+     - parameter samplesCount: (query) Max number of sample values to return per trait. Defaults to 20, min 1, max 100.  This parameter exists in alpha. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listTraits(spaceId: String, pagination: PaginationInput? = nil, sortBy: SortBy_listTraits? = nil, sortDir: SortDir_listTraits? = nil, search: String? = nil, collection: Collection_listTraits? = nil, includeSampleValues: Bool? = nil, samplesCount: Double? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListTraits200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listTraitsWithRequestBuilder(spaceId: spaceId, pagination: pagination, sortBy: sortBy, sortDir: sortDir, search: search, collection: collection, includeSampleValues: includeSampleValues, samplesCount: samplesCount).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Traits
+     - GET /spaces/{spaceId}/traits
+     - Returns a list of Traits for a Space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.  <div style=\"background-color: #e8f4fd; border: 1px solid #90caf9; border-radius: 6px; padding: 16px; margin: 16px 0; color: #0d47a1; line-height: 1.5;\">   <ul style=\"margin: 0; padding-left: 20px; font-size: 13px;\">     <li style=\"margin-bottom: 6px;\"><strong>Forward-only pagination</strong>: this endpoint does not support backward traversal. The <code>pagination.previous</code> field is always absent; use <code>pagination.next</code> to advance through pages.</li>     <li style=\"margin-bottom: 6px;\"><strong>Approximate total count</strong>: <code>pagination.totalEntries</code> is an upper bound that decreases as you paginate — the final page reflects the exact deduplicated count.</li>     <li style=\"margin-bottom: 6px;\"><strong>Duplicate entries</strong>: when sorting by <code>lastSeenAt</code>, duplicate trait entries may appear across pages for Spaces with more than 2,500 traits. Sorting by <code>trait</code> is not affected.</li>   </ul> </div>    The rate limit for this endpoint is 25 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter pagination: (query) Pagination params. Defaults to count 200.  This parameter exists in alpha. (optional)
+     - parameter sortBy: (query) Field to sort by. Defaults to &#39;trait&#39;.  This parameter exists in alpha. (optional)
+     - parameter sortDir: (query) Sort direction. Defaults to &#39;asc&#39;.  This parameter exists in alpha. (optional)
+     - parameter search: (query) Filter traits by key substring.  This parameter exists in alpha. (optional)
+     - parameter collection: (query) Collection to list traits for. Defaults to &#39;users&#39;.  This parameter exists in alpha. (optional)
+     - parameter includeSampleValues: (query) When true, include sample values for each trait. Defaults to false.  This parameter exists in alpha. (optional)
+     - parameter samplesCount: (query) Max number of sample values to return per trait. Defaults to 20, min 1, max 100.  This parameter exists in alpha. (optional)
+     - returns: RequestBuilder<ListTraits200Response> 
+     */
+    open class func listTraitsWithRequestBuilder(spaceId: String, pagination: PaginationInput? = nil, sortBy: SortBy_listTraits? = nil, sortDir: SortDir_listTraits? = nil, search: String? = nil, collection: Collection_listTraits? = nil, includeSampleValues: Bool? = nil, samplesCount: Double? = nil) -> RequestBuilder<ListTraits200Response> {
+        var localVariablePath = "/spaces/{spaceId}/traits"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+            "sortBy": sortBy?.encodeToJSON(),
+            "sortDir": sortDir?.encodeToJSON(),
+            "search": search?.encodeToJSON(),
+            "collection": collection?.encodeToJSON(),
+            "includeSampleValues": includeSampleValues?.encodeToJSON(),
+            "samplesCount": samplesCount?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListTraits200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
