@@ -24,12 +24,12 @@ public struct CreateAudienceInput: Codable, JSONEncodable, Hashable {
     public var enabled: Bool?
     /** Description of the audience. */
     public var description: String?
-    public var definition: Definition2
+    public var definition: Definition5
     /** Denotes the type of audience product.  Possible values: USERS, ACCOUNTS, LINKED. */
     public var audienceType: AudienceType
-    public var options: Options?
+    public var options: Options2?
 
-    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition2, audienceType: AudienceType, options: Options? = nil) {
+    public init(name: String, enabled: Bool? = nil, description: String? = nil, definition: Definition5, audienceType: AudienceType, options: Options2? = nil) {
         self.name = name
         self.enabled = enabled
         self.description = description
