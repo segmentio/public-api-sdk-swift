@@ -17,7 +17,7 @@ public struct Credential1: Codable, JSONEncodable, Hashable {
     public var id: String
     /** The id of the Workspace that owns this Credential. */
     public var workspaceId: String
-    /** An optional human-readable name for this Credential. */
+    /** A human-readable name for this Credential. */
     public var name: String
     /** The settings associated with this Credential.  `settings.type` determines the Credential type (for example `Snowflake` or `Redshift`) and which other settings fields are expected. Sensitive fields are redacted in responses. */
     public var settings: JSON?
