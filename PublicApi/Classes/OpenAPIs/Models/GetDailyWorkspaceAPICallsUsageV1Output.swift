@@ -15,9 +15,9 @@ public struct GetDailyWorkspaceAPICallsUsageV1Output: Codable, JSONEncodable, Ha
 
     /** The list of daily Workspace API calls count aggregates. */
     public var dailyWorkspaceAPICallsUsage: [APICallSnapshotV1]
-    public var pagination: Pagination
+    public var pagination: Pagination3
 
-    public init(dailyWorkspaceAPICallsUsage: [APICallSnapshotV1], pagination: Pagination) {
+    public init(dailyWorkspaceAPICallsUsage: [APICallSnapshotV1], pagination: Pagination3) {
         self.dailyWorkspaceAPICallsUsage = dailyWorkspaceAPICallsUsage
         self.pagination = pagination
     }
