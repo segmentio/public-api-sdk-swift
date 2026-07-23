@@ -15,9 +15,9 @@ public struct ListFiltersFromDestinationV1Output: Codable, JSONEncodable, Hashab
 
     /** A list of the filters that belong to the specified Destination instance. */
     public var filters: [DestinationFilterV1]
-    public var pagination: Pagination
+    public var pagination: Pagination2
 
-    public init(filters: [DestinationFilterV1], pagination: Pagination) {
+    public init(filters: [DestinationFilterV1], pagination: Pagination2) {
         self.filters = filters
         self.pagination = pagination
     }
