@@ -60,6 +60,214 @@ open class CredentialsAPI {
     }
 
     /**
+     Delete Credential
+     
+     - parameter credentialId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func deleteCredential(credentialId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteCredential200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteCredentialWithRequestBuilder(credentialId: credentialId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Delete Credential
+     - DELETE /credentials/{credentialId}
+     - Deletes an existing Credential. Fails if the Credential is still in use by a Warehouse or Source.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter credentialId: (path)  
+     - returns: RequestBuilder<DeleteCredential200Response> 
+     */
+    open class func deleteCredentialWithRequestBuilder(credentialId: String) -> RequestBuilder<DeleteCredential200Response> {
+        var localVariablePath = "/credentials/{credentialId}"
+        let credentialIdPreEscape = "\(APIHelper.mapValueToPathItem(credentialId))"
+        let credentialIdPostEscape = credentialIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{credentialId}", with: credentialIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DeleteCredential200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Get Credential
+     
+     - parameter credentialId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func getCredential(credentialId: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: GetCredential200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return getCredentialWithRequestBuilder(credentialId: credentialId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Get Credential
+     - GET /credentials/{credentialId}
+     - Returns a Credential by its id.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter credentialId: (path)  
+     - returns: RequestBuilder<GetCredential200Response> 
+     */
+    open class func getCredentialWithRequestBuilder(credentialId: String) -> RequestBuilder<GetCredential200Response> {
+        var localVariablePath = "/credentials/{credentialId}"
+        let credentialIdPreEscape = "\(APIHelper.mapValueToPathItem(credentialId))"
+        let credentialIdPostEscape = credentialIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{credentialId}", with: credentialIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<GetCredential200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     List Credential Consumers
+     
+     - parameter credentialId: (path)  
+     - parameter warehousesPagination: (query) Defines the pagination parameters for the list of Warehouses.  This parameter exists in v1. (optional)
+     - parameter sourcesPagination: (query) Defines the pagination parameters for the list of Sources.  This parameter exists in v1. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listCredentialConsumers(credentialId: String, warehousesPagination: PaginationInput? = nil, sourcesPagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListCredentialConsumers200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listCredentialConsumersWithRequestBuilder(credentialId: credentialId, warehousesPagination: warehousesPagination, sourcesPagination: sourcesPagination).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Credential Consumers
+     - GET /credentials/{credentialId}/consumers
+     - Returns the Warehouses and Sources that use a Credential.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter credentialId: (path)  
+     - parameter warehousesPagination: (query) Defines the pagination parameters for the list of Warehouses.  This parameter exists in v1. (optional)
+     - parameter sourcesPagination: (query) Defines the pagination parameters for the list of Sources.  This parameter exists in v1. (optional)
+     - returns: RequestBuilder<ListCredentialConsumers200Response> 
+     */
+    open class func listCredentialConsumersWithRequestBuilder(credentialId: String, warehousesPagination: PaginationInput? = nil, sourcesPagination: PaginationInput? = nil) -> RequestBuilder<ListCredentialConsumers200Response> {
+        var localVariablePath = "/credentials/{credentialId}/consumers"
+        let credentialIdPreEscape = "\(APIHelper.mapValueToPathItem(credentialId))"
+        let credentialIdPostEscape = credentialIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{credentialId}", with: credentialIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "warehousesPagination": warehousesPagination?.encodeToJSON(),
+            "sourcesPagination": sourcesPagination?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListCredentialConsumers200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     List Credentials
+     
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listCredentials(pagination: PaginationInput? = nil, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ListCredentials200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return listCredentialsWithRequestBuilder(pagination: pagination).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Credentials
+     - GET /credentials
+     - Returns a list of Credentials.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
+     - returns: RequestBuilder<ListCredentials200Response> 
+     */
+    open class func listCredentialsWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListCredentials200Response> {
+        let localVariablePath = "/credentials"
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "pagination": pagination?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ListCredentials200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Update Credential
      
      - parameter credentialId: (path)  
