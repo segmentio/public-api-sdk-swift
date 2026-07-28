@@ -34,7 +34,7 @@ open class CredentialsAPI {
     /**
      Create Credential
      - POST /credentials
-     - Creates a new Credential.
+     - Creates a new Credential.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner  * Warehouse Admin  * Source Admin  * Entities Admin  * Unify and Engage Admin
      - BASIC:
        - type: http
        - name: token
@@ -81,7 +81,7 @@ open class CredentialsAPI {
     /**
      Delete Credential
      - DELETE /credentials/{credentialId}
-     - Deletes an existing Credential. Fails if the Credential is still in use by a Warehouse or Source.
+     - Deletes an existing Credential. Fails if the Credential is still in use by a Warehouse or Source.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner
      - BASIC:
        - type: http
        - name: token
@@ -131,7 +131,7 @@ open class CredentialsAPI {
     /**
      Get Credential
      - GET /credentials/{credentialId}
-     - Returns a Credential by its id.
+     - Returns a Credential by its id.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner  * Warehouse Admin  * Source Admin  * Entities Admin  * Unify and Engage Admin
      - BASIC:
        - type: http
        - name: token
@@ -183,7 +183,7 @@ open class CredentialsAPI {
     /**
      List Credential Consumers
      - GET /credentials/{credentialId}/consumers
-     - Returns the Warehouses and Sources that use a Credential.
+     - Returns the Warehouses and Sources that use a Credential.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner  * Warehouse Admin  * Source Admin  * Entities Admin  * Unify and Engage Admin
      - BASIC:
        - type: http
        - name: token
@@ -239,7 +239,7 @@ open class CredentialsAPI {
     /**
      List Credentials
      - GET /credentials
-     - Returns a list of Credentials.
+     - Returns a list of Credentials.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner  * Warehouse Admin  * Source Admin  * Entities Admin  * Unify and Engage Admin
      - BASIC:
        - type: http
        - name: token
@@ -290,7 +290,7 @@ open class CredentialsAPI {
     /**
      Update Credential
      - PATCH /credentials/{credentialId}
-     - Updates an existing Credential. All Warehouses using this Credential are affected immediately.
+     - Updates an existing Credential. All Warehouses using this Credential are affected immediately.    This endpoint requires the user to have at least the following permission(s):   * Workspace Owner
      - BASIC:
        - type: http
        - name: token
