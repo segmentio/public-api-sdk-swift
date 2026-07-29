@@ -14,17 +14,13 @@ import AnyCodable
 public struct GetCredentialV1Output: Codable, JSONEncodable, Hashable {
 
     public var credential: Credential2
-    /** The list of setting names (in this Credential's public `settings` shape) that cannot be changed after creation, if any. */
-    public var disabledFields: [String]?
 
-    public init(credential: Credential2, disabledFields: [String]? = nil) {
+    public init(credential: Credential2) {
         self.credential = credential
-        self.disabledFields = disabledFields
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case credential
-        case disabledFields
     }
 
     // Encodable protocol methods
@@ -32,7 +28,6 @@ public struct GetCredentialV1Output: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(credential, forKey: .credential)
-        try container.encodeIfPresent(disabledFields, forKey: .disabledFields)
     }
 }
 
