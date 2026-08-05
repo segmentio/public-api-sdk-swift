@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Returns the Warehouses and Sources that consume a Credential, each paginated independently. */
+/** Returns the Warehouses and Sources that consume a Credential. The two lists are paginated independently, so a caller can page through one without affecting the other. */
 public struct ListCredentialConsumersV1Output: Codable, JSONEncodable, Hashable {
 
     /** The Warehouses that use this Credential. */
