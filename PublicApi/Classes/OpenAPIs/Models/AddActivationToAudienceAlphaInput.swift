@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Input to create an activation. */
 public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** Determines whether an activation is enabled. */

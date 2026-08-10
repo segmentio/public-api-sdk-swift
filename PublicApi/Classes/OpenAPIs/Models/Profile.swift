@@ -10,10 +10,12 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Profile Object. */
+/** The profile traits included in the event sent to the Destination. Applies to both Classic and Linked Audiences. For a Classic audience this is the only form of personalization available, whereas a Linked Audience can also personalize on entities. */
 public struct Profile: Codable, JSONEncodable, Hashable {
 
+    /** The profile traits to include in the event sent to the Destination. */
     public var properties: [String]
+    /** Maps a profile trait to the name it should be sent under. Each key is a trait, and each value is the name used in the event. */
     public var mapping: [String: String]?
 
     public init(properties: [String], mapping: [String: String]? = nil) {
