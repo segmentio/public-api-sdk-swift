@@ -31,12 +31,12 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
     public var activationName: String
     /** Human-readable label for the activation. Only present for Warehouse Destinations that have a display name configured. When null, the activationName serves as the label. */
     public var displayName: String?
-    public var personalization: Personalization
+    public var personalization: Personalization2
     public var destinationMapping: DestinationMapping2?
     /** Indicates if a full resync is currently pending or in progress. */
     public var performResync: Bool?
 
-    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, connectionId: String, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization, destinationMapping: DestinationMapping2? = nil, performResync: Bool? = nil) {
+    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, connectionId: String, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization2, destinationMapping: DestinationMapping2? = nil, performResync: Bool? = nil) {
         self.id = id
         self.enabled = enabled
         self.workspaceId = workspaceId

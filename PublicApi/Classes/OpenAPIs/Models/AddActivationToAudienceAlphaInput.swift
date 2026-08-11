@@ -23,10 +23,10 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
     public var activationName: String
     /** Optional human-readable label for the activation. Only supported for Warehouse Destinations. When omitted, the activationName is used as the label. */
     public var displayName: String?
-    public var personalization: Personalization
+    public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
 
-    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization, destinationMapping: DestinationMapping? = nil) {
+    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil) {
         self.enabled = enabled
         self.performResync = performResync
         self.activationType = activationType
@@ -55,7 +55,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encodeIfPresent(displayName, forKey: .displayName)
-        try container.encode(personalization, forKey: .personalization)
+        try container.encodeIfPresent(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
     }
 }

@@ -13,13 +13,13 @@ import AnyCodable
 /** The data points used to enrich the event. Defines which profile traits and/or entity properties are included in the event sent to the Destination. For Action Destinations, any traits or properties specified here must also be included in the destinationMapping to define which Destination fields should be populated.  On update, profile and entities are evaluated separately. Omit either one to leave it unchanged. A value that is supplied replaces the stored value outright instead of being combined with it, so include every trait or property that should remain. Supplying an empty entities array removes all entities. */
 public struct Personalization1: Codable, JSONEncodable, Hashable {
 
-    public var profile: Profile
+    public var profile: Profile?
     /** The entities, and the properties of each entity, to include in the event sent to the Destination. Only applicable to Linked Audiences. Providing entities for a Classic audience returns a 400 error, as Classic audiences support profile properties only. */
     public var entities: [PersonalizationInputEntity]?
     /** Sync entity property changes to the Destination. Only applicable if activationType is \"Audience Membership Changed\". */
     public var syncEntityPropertyChanges: Bool?
 
-    public init(profile: Profile, entities: [PersonalizationInputEntity]? = nil, syncEntityPropertyChanges: Bool? = nil) {
+    public init(profile: Profile? = nil, entities: [PersonalizationInputEntity]? = nil, syncEntityPropertyChanges: Bool? = nil) {
         self.profile = profile
         self.entities = entities
         self.syncEntityPropertyChanges = syncEntityPropertyChanges
@@ -35,7 +35,7 @@ public struct Personalization1: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(profile, forKey: .profile)
+        try container.encodeIfPresent(profile, forKey: .profile)
         try container.encodeIfPresent(entities, forKey: .entities)
         try container.encodeIfPresent(syncEntityPropertyChanges, forKey: .syncEntityPropertyChanges)
     }
