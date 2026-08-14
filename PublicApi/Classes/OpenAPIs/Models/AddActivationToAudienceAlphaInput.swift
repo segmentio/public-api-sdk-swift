@@ -10,22 +10,23 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Input to create an activation. */
 public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashable {
 
     /** Determines whether an activation is enabled. */
     public var enabled: Bool?
     /** Determines whether to perform a full resync upon creation. If true, the entire audience is resent to the Destination from scratch. If false, only future changes will be synced. */
     public var performResync: Bool
-    /** Determines when an event is sent to the Destination.  Possible values: Audience Entered: Sends an event when a profile or entity enters the audience. Audience Exited: Sends an event when a profile or entity exits the audience. Audience Membership Changed: Sends an event for both entries and exits. This does not apply to entities. Entity Added: Sends an event when an entity is added to the audience. Entity Removed: Sends an event when an entity is removed from the audience.  Note that events are sent for the profile, unless the audience is a Linked Audience. In that case, events are sent for the target entity defined for that audience. */
+    /** Determines when an event is sent to the Destination.  Possible values: Audience Entered: Sends an event when a profile enters the audience. Audience Exited: Sends an event when a profile exits the audience. Audience Membership Changed: Sends an event for both profile entries and profile exits. Entity Added: Sends an event when an entity enters the audience. Entity Removed: Sends an event when an entity exits the audience. */
     public var activationType: String
     /** Activation name. For Warehouse Destinations, this is used as the table name. */
     public var activationName: String
     /** Optional human-readable label for the activation. Only supported for Warehouse Destinations. When omitted, the activationName is used as the label. */
     public var displayName: String?
-    public var personalization: Personalization
+    public var personalization: Personalization?
     public var destinationMapping: DestinationMapping?
 
-    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization, destinationMapping: DestinationMapping? = nil) {
+    public init(enabled: Bool? = nil, performResync: Bool, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil) {
         self.enabled = enabled
         self.performResync = performResync
         self.activationType = activationType
@@ -54,7 +55,7 @@ public struct AddActivationToAudienceAlphaInput: Codable, JSONEncodable, Hashabl
         try container.encode(activationType, forKey: .activationType)
         try container.encode(activationName, forKey: .activationName)
         try container.encodeIfPresent(displayName, forKey: .displayName)
-        try container.encode(personalization, forKey: .personalization)
+        try container.encodeIfPresent(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
     }
 }

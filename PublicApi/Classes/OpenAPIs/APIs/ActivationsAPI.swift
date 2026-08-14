@@ -37,7 +37,7 @@ open class ActivationsAPI {
     /**
      Add Activation to Audience
      - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{connectionId}/activations
-     - Defines how audience data is sent to a Destination. This step enables the data sync. You must establish a connection (Add Destination to Audience) for this audience before an Activation can be created.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Activation Created` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Defines how audience data is sent to a Destination. This step enables the data sync. You must establish a connection (Add Destination to Audience) for this audience before an Activation can be created.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -98,7 +98,7 @@ open class ActivationsAPI {
     /**
      Add Destination to Audience
      - POST /spaces/{spaceId}/audiences/{audienceId}/destination-connections
-     - Establishes a connection between an audience and a Destination. To start syncing data, you must create an Activation for the connection created here.  Note that the Destination must be added to Engage through the Engage Settings page within the App before creating the connection through the API.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Added into Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Establishes a connection between an audience and a Destination. To start syncing data, you must create an Activation for the connection created here.  Note that the Destination must be added to Engage through the Engage Settings page within the App before creating the connection through the API.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -275,7 +275,7 @@ open class ActivationsAPI {
     /**
      List Destinations from Audience
      - GET /spaces/{spaceId}/audiences/{audienceId}/destination-connections
-     - Lists all Destinations from an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destinations Listed from Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Lists all Destinations from an Audience.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 50 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -336,7 +336,7 @@ open class ActivationsAPI {
     /**
      List Supported Destinations from Audience
      - GET /spaces/{spaceId}/audienceType/{audienceType}/supported-destinations
-     - Lists all Supported Destinations for this audience type that can be activated.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Supported Destinations Listed For Audience` event in the [audit trail](/tag/Audit-Trail).   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - Lists the Destinations that have been reviewed and validated for activation with this audience type.  Use this endpoint to discover the available action ids and the Destination fields that can be mapped before creating an Activation.  Destinations returned with an empty actions array are audience Destinations that are configured through connection settings rather than action mappings, and do not use destinationMapping.  Destinations that are not returned here have not been reviewed for activation and are unsupported. To request a review for an additional Destination, contact your customer success manager.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
      - BASIC:
        - type: http
        - name: token
@@ -458,7 +458,7 @@ open class ActivationsAPI {
     /**
      Remove Destination from Audience
      - DELETE /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{destinationId}
-     - Removes a Destination from an Audience. If there are activations associated with the Destination, the request will return a 409 Conflict error.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Removed from Audience` event in the [audit trail](/tag/Audit-Trail).
+     - Removes a Destination from an Audience. If there are activations associated with the Destination, the request will return a 409 Conflict error.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
@@ -581,7 +581,7 @@ open class ActivationsAPI {
     /**
      Update Destination for Audience
      - PATCH /spaces/{spaceId}/audiences/{audienceId}/destination-connections/{destinationId}
-     - Updates a Destination for an Audience.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.  • When called, this endpoint may generate the `Destination Updated for Audience` event in the [audit trail](/tag/Audit-Trail).
+     - Updates a Destination for an Audience.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token

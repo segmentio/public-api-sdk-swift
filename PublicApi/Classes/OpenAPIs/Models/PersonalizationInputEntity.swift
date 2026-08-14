@@ -13,6 +13,7 @@ import AnyCodable
 /** The Personalization Input Entity. */
 public struct PersonalizationInputEntity: Codable, JSONEncodable, Hashable {
 
+    /** The entity properties to include in the event sent to the Destination. */
     public var properties: [String]
     /** The relationship slug for the entity. */
     public var relationshipSlug: String

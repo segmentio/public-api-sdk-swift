@@ -10,10 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Configuration settings for the mappings. */
+/** Defines the specific action and data mapping for the Destination. Only applicable for Action Destinations. Action id: Specifies which action to perform on the Destination (for example: add contact, update list). Settings/Mapping: Defines how event data (including personalization traits) populates specific fields in the Destination.  Use the List Supported Destinations from Audience endpoint to find available action ids and the specific Destination fields you can map.  On update, settings are applied one field at a time. A field that is not supplied keeps its stored value, and a field that is supplied has its value replaced outright. */
 public struct DestinationMapping1: Codable, JSONEncodable, Hashable {
 
-    /** The id for the action that Segment should perform on the Destination. */
+    /** The id for the action that Segment should perform on the Destination. The action cannot be changed once the Activation exists. When updating, this field is still required, but supplying a different value has no effect. */
     public var actionId: String
     /** The action/mapping settings. */
     public var settings: JSON?
