@@ -15,16 +15,16 @@ public struct UpdateActivationForAudienceAlphaInput: Codable, JSONEncodable, Has
 
     /** Determines whether an activation is enabled. */
     public var enabled: Bool?
-    /** Activation name. For Warehouse Destinations, this is used as the table name. */
+    /** Activation name. For Warehouse Destinations, this is used as the table name. Omit this field to leave the name unchanged. An empty string is ignored rather than applied. */
     public var activationName: String?
     /** Optional human-readable label for the activation. Only supported for Warehouse Destinations. Send null to clear. When omitted, the activationName is used as the label. */
     public var displayName: String?
-    public var personalization: Personalization?
-    public var destinationMapping: DestinationMapping?
+    public var personalization: Personalization1?
+    public var destinationMapping: DestinationMapping1?
     /** Determines whether to perform a full resync after the update. If true, the entire audience is resent to the Destination using the updated configuration. If false, the update applies only to future syncs. */
     public var performResync: Bool?
 
-    public init(enabled: Bool? = nil, activationName: String? = nil, displayName: String? = nil, personalization: Personalization? = nil, destinationMapping: DestinationMapping? = nil, performResync: Bool? = nil) {
+    public init(enabled: Bool? = nil, activationName: String? = nil, displayName: String? = nil, personalization: Personalization1? = nil, destinationMapping: DestinationMapping1? = nil, performResync: Bool? = nil) {
         self.enabled = enabled
         self.activationName = activationName
         self.displayName = displayName

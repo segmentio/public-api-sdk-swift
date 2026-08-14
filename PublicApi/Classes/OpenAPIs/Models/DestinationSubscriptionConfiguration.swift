@@ -13,7 +13,7 @@ import AnyCodable
 /** Destination Subscription Configuration. */
 public struct DestinationSubscriptionConfiguration: Codable, JSONEncodable, Hashable {
 
-    /** The id for the action that Segment should perform on the Destination. */
+    /** The id for the action that Segment should perform on the Destination. The action cannot be changed once the Activation exists. When updating, this field is still required, but supplying a different value has no effect. */
     public var actionId: String
     /** The action/mapping settings. */
     public var settings: JSON?
