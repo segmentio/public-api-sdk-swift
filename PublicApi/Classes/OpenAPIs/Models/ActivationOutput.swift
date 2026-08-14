@@ -25,7 +25,7 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
     public var audienceId: String
     /** The connection id. */
     public var connectionId: String
-    /** Determines when an event is sent to the Destination.  Possible values: Audience Entered: Sends an event when a profile or entity enters the audience. Audience Exited: Sends an event when a profile or entity exits the audience. Audience Membership Changed: Sends an event for both entries and exits. This does not apply to entities.  Note that events are sent for the profile, unless the audience is a Linked Audience. In that case, events are sent for the target entity defined for that audience. */
+    /** Determines when an event is sent to the Destination.  Possible values: Audience Entered: Sends an event when a profile enters the audience. Audience Exited: Sends an event when a profile exits the audience. Audience Membership Changed: Sends an event for both profile entries and profile exits. Entity Added: Sends an event when an entity enters the audience. Entity Removed: Sends an event when an entity exits the audience. */
     public var activationType: String
     /** Activation name. For Warehouse Destinations, this is the table name. */
     public var activationName: String
