@@ -15,9 +15,9 @@ public struct ListWarehousesV2Output: Codable, JSONEncodable, Hashable {
 
     /** A list of Warehouses that belong to the Workspace. */
     public var warehouses: [WarehouseV2]
-    public var pagination: Pagination3
+    public var pagination: Pagination2
 
-    public init(warehouses: [WarehouseV2], pagination: Pagination3) {
+    public init(warehouses: [WarehouseV2], pagination: Pagination2) {
         self.warehouses = warehouses
         self.pagination = pagination
     }
