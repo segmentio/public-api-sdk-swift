@@ -15,9 +15,9 @@ public struct ListSuppressionsV1Output: Codable, JSONEncodable, Hashable {
 
     /** An array that lists the suppressions from the Workspace.  Config API note: equal to `attributes`. */
     public var suppressed: [SuppressedInner]
-    public var pagination: Pagination3
+    public var pagination: Pagination2
 
-    public init(suppressed: [SuppressedInner], pagination: Pagination3) {
+    public init(suppressed: [SuppressedInner], pagination: Pagination2) {
         self.suppressed = suppressed
         self.pagination = pagination
     }
