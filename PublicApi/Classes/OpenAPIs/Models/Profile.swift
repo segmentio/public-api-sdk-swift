@@ -15,7 +15,7 @@ public struct Profile: Codable, JSONEncodable, Hashable {
 
     /** The profile traits to include in the event sent to the Destination. */
     public var properties: [String]?
-    /** Maps a profile trait to the name it should be sent under. Each key is a trait, and each value is the name used in the event. */
+    /** Maps destination fields to profile traits. Each key is the destination field, and each value is the source trait: `{ destinationField: sourceTrait }`. */
     public var mapping: [String: String]?
 
     public init(properties: [String]? = nil, mapping: [String: String]? = nil) {

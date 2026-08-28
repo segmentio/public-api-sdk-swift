@@ -17,12 +17,13 @@ open class AudiencesAPI {
      
      - parameter spaceId: (path)  
      - parameter id: (path)  
+     - parameter addAudienceCsvExportToAudienceAlphaInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addAudienceCsvExportToAudience(spaceId: String, id: String, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddAudienceCsvExportToAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
-        return addAudienceCsvExportToAudienceWithRequestBuilder(spaceId: spaceId, id: id).execute(apiResponseQueue) { result in
+    open class func addAudienceCsvExportToAudience(spaceId: String, id: String, addAudienceCsvExportToAudienceAlphaInput: AddAudienceCsvExportToAudienceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: AddAudienceCsvExportToAudience200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return addAudienceCsvExportToAudienceWithRequestBuilder(spaceId: spaceId, id: id, addAudienceCsvExportToAudienceAlphaInput: addAudienceCsvExportToAudienceAlphaInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -35,15 +36,16 @@ open class AudiencesAPI {
     /**
      Add Audience Csv Export to Audience
      - POST /spaces/{spaceId}/audiences/{id}/csv-exports
-     - Starts a CSV export of an Audience's membership. The export runs asynchronously: this returns immediately with an export id, and does not return the CSV itself. Poll `getAudienceCsvExportFromSpaceAndAudience` with that id for status and download URLs.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
+     - Starts a CSV export of an Audience's membership. Optional personalization selections add profile traits and Linked Audience entity properties to the export; this endpoint accepts property selections, not raw Liquid or another template language. Entity selections are initially supported only for Linked Audiences. Omitting personalization preserves the default export behavior. The export runs asynchronously: this returns immediately with an export id, and does not return the CSV itself. Poll `getAudienceCsvExportFromSpaceAndAudience` with that id for status and download URLs.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.
      - BASIC:
        - type: http
        - name: token
      - parameter spaceId: (path)  
      - parameter id: (path)  
+     - parameter addAudienceCsvExportToAudienceAlphaInput: (body)  
      - returns: RequestBuilder<AddAudienceCsvExportToAudience200Response> 
      */
-    open class func addAudienceCsvExportToAudienceWithRequestBuilder(spaceId: String, id: String) -> RequestBuilder<AddAudienceCsvExportToAudience200Response> {
+    open class func addAudienceCsvExportToAudienceWithRequestBuilder(spaceId: String, id: String, addAudienceCsvExportToAudienceAlphaInput: AddAudienceCsvExportToAudienceAlphaInput) -> RequestBuilder<AddAudienceCsvExportToAudience200Response> {
         var localVariablePath = "/spaces/{spaceId}/audiences/{id}/csv-exports"
         let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
         let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -52,7 +54,7 @@ open class AudiencesAPI {
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = PublicApiAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addAudienceCsvExportToAudienceAlphaInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
