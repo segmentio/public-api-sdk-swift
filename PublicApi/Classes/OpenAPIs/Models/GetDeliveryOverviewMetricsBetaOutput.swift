@@ -17,9 +17,9 @@ public struct GetDeliveryOverviewMetricsBetaOutput: Codable, JSONEncodable, Hash
     public var total: Double
     /** Represents the list of series broken down by the dimensions and time frame requested. */
     public var dataset: [DeliveryOverviewMetricsDataset]
-    public var pagination: Pagination4
+    public var pagination: Pagination6
 
-    public init(total: Double, dataset: [DeliveryOverviewMetricsDataset], pagination: Pagination4) {
+    public init(total: Double, dataset: [DeliveryOverviewMetricsDataset], pagination: Pagination6) {
         self.total = total
         self.dataset = dataset
         self.pagination = pagination

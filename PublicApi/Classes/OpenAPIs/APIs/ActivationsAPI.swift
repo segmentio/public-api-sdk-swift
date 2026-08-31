@@ -132,6 +132,58 @@ open class ActivationsAPI {
     }
 
     /**
+     Batch Query Activations for Space
+     
+     - parameter spaceId: (path)  
+     - parameter batchQueryActivationsForSpaceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func batchQueryActivationsForSpace(spaceId: String, batchQueryActivationsForSpaceAlphaInput: BatchQueryActivationsForSpaceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: BatchQueryActivationsForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return batchQueryActivationsForSpaceWithRequestBuilder(spaceId: spaceId, batchQueryActivationsForSpaceAlphaInput: batchQueryActivationsForSpaceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Batch Query Activations for Space
+     - POST /spaces/{spaceId}/activations/batch
+     - Lists Activations in bulk across many Audiences in one call. Intended for bulk reads, for example pulling activation metadata for hundreds of audiences on a schedule, so callers don't need one `listActivationsFromAudience` call per audience.  • In order to successfully call this endpoint, the specified Workspace needs to have the Audience feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter batchQueryActivationsForSpaceAlphaInput: (body)  
+     - returns: RequestBuilder<BatchQueryActivationsForSpace200Response> 
+     */
+    open class func batchQueryActivationsForSpaceWithRequestBuilder(spaceId: String, batchQueryActivationsForSpaceAlphaInput: BatchQueryActivationsForSpaceAlphaInput) -> RequestBuilder<BatchQueryActivationsForSpace200Response> {
+        var localVariablePath = "/spaces/{spaceId}/activations/batch"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: batchQueryActivationsForSpaceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BatchQueryActivationsForSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Activation from Audience
      
      - parameter spaceId: (path)  
