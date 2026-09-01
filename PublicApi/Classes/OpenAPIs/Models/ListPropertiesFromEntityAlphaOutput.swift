@@ -15,9 +15,9 @@ public struct ListPropertiesFromEntityAlphaOutput: Codable, JSONEncodable, Hasha
 
     /** List of properties for the entity. */
     public var entityProperties: [EntityPropertyAlpha]
-    public var pagination: Pagination10
+    public var pagination: Pagination8
 
-    public init(entityProperties: [EntityPropertyAlpha], pagination: Pagination10) {
+    public init(entityProperties: [EntityPropertyAlpha], pagination: Pagination8) {
         self.entityProperties = entityProperties
         self.pagination = pagination
     }
