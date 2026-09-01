@@ -15,9 +15,9 @@ public struct ListTrackingPlansV1Output: Codable, JSONEncodable, Hashable {
 
     /** A paginated list of Tracking Plans. */
     public var trackingPlans: [TrackingPlanV1]
-    public var pagination: Pagination3
+    public var pagination: Pagination
 
-    public init(trackingPlans: [TrackingPlanV1], pagination: Pagination3) {
+    public init(trackingPlans: [TrackingPlanV1], pagination: Pagination) {
         self.trackingPlans = trackingPlans
         self.pagination = pagination
     }

@@ -15,9 +15,9 @@ public struct ListEntityPathsAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** List of entity paths in the space. */
     public var entityPaths: [EntityPathAlpha]
-    public var pagination: Pagination7
+    public var pagination: Pagination9
 
-    public init(entityPaths: [EntityPathAlpha], pagination: Pagination7) {
+    public init(entityPaths: [EntityPathAlpha], pagination: Pagination9) {
         self.entityPaths = entityPaths
         self.pagination = pagination
     }

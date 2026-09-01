@@ -17,9 +17,9 @@ public struct ListSelectiveSyncsFromWarehouseAndSpaceAlphaOutput: Codable, JSONE
     public var items: [SpaceWarehouseSelectiveSyncItemAlpha]
     /** Optional. Represents the enabled state of all event tables. */
     public var enableEventTables: Bool?
-    public var pagination: Pagination3
+    public var pagination: Pagination
 
-    public init(items: [SpaceWarehouseSelectiveSyncItemAlpha], enableEventTables: Bool? = nil, pagination: Pagination3) {
+    public init(items: [SpaceWarehouseSelectiveSyncItemAlpha], enableEventTables: Bool? = nil, pagination: Pagination) {
         self.items = items
         self.enableEventTables = enableEventTables
         self.pagination = pagination

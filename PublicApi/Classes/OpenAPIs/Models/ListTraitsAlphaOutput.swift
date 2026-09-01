@@ -15,9 +15,9 @@ public struct ListTraitsAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** List of traits in the space. */
     public var traits: [TraitAlpha]
-    public var pagination: Pagination8
+    public var pagination: Pagination10
 
-    public init(traits: [TraitAlpha], pagination: Pagination8) {
+    public init(traits: [TraitAlpha], pagination: Pagination10) {
         self.traits = traits
         self.pagination = pagination
     }
