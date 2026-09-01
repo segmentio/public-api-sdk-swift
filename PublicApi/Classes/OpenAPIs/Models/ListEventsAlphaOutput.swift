@@ -15,9 +15,9 @@ public struct ListEventsAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** List of events in the space. */
     public var events: [EventAlpha]
-    public var pagination: Pagination9
+    public var pagination: Pagination7
 
-    public init(events: [EventAlpha], pagination: Pagination9) {
+    public init(events: [EventAlpha], pagination: Pagination7) {
         self.events = events
         self.pagination = pagination
     }

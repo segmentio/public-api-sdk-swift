@@ -15,9 +15,9 @@ public struct ListConnectedDestinationsFromSourceV1Output: Codable, JSONEncodabl
 
     /** A list that contains the Destinations connected to the Source. */
     public var destinations: [DestinationV1]
-    public var pagination: Pagination
+    public var pagination: Pagination3
 
-    public init(destinations: [DestinationV1], pagination: Pagination) {
+    public init(destinations: [DestinationV1], pagination: Pagination3) {
         self.destinations = destinations
         self.pagination = pagination
     }
