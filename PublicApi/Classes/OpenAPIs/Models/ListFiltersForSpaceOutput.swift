@@ -15,9 +15,9 @@ public struct ListFiltersForSpaceOutput: Codable, JSONEncodable, Hashable {
 
     /** Filter output. */
     public var filters: [Filter]?
-    public var pagination: Pagination5?
+    public var pagination: Pagination7?
 
-    public init(filters: [Filter]? = nil, pagination: Pagination5? = nil) {
+    public init(filters: [Filter]? = nil, pagination: Pagination7? = nil) {
         self.filters = filters
         self.pagination = pagination
     }
