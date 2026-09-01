@@ -14,9 +14,9 @@ public struct ListSupportedDestinationsFromAudienceAlphaOutput: Codable, JSONEnc
 
     /** The Destinations available for activation. */
     public var destinations: [String: AnyCodable]
-    public var pagination: Pagination?
+    public var pagination: Pagination2?
 
-    public init(destinations: [String: AnyCodable], pagination: Pagination? = nil) {
+    public init(destinations: [String: AnyCodable], pagination: Pagination2? = nil) {
         self.destinations = destinations
         self.pagination = pagination
     }

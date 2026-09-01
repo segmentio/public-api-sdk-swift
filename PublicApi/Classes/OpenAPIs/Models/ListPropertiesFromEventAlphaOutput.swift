@@ -15,9 +15,9 @@ public struct ListPropertiesFromEventAlphaOutput: Codable, JSONEncodable, Hashab
 
     /** List of properties for the event. */
     public var eventProperties: [EventPropertyAlpha]
-    public var pagination: Pagination7
+    public var pagination: Pagination9
 
-    public init(eventProperties: [EventPropertyAlpha], pagination: Pagination7) {
+    public init(eventProperties: [EventPropertyAlpha], pagination: Pagination9) {
         self.eventProperties = eventProperties
         self.pagination = pagination
     }
