@@ -17,7 +17,7 @@ public struct UpdateWarehouseV2Input: Codable, JSONEncodable, Hashable {
     public var name: String?
     /** Enable to allow this Warehouse to receive data. */
     public var enabled: Bool?
-    /** The id of a Credential to connect this Warehouse to. Swapping the Credential re-derives this Warehouse's connection settings and re-validates the connection. */
+    /** The id of a Credential to connect this Warehouse to. Swapping the Credential re-derives this Warehouse's connection settings and re-validates the connection. The Credential must be the same type as the Warehouse's existing type — a Warehouse's type cannot be changed after creation, so a mismatched Credential is rejected rather than silently ignored. */
     public var credentialId: String?
 
     public init(name: String? = nil, enabled: Bool? = nil, credentialId: String? = nil) {
