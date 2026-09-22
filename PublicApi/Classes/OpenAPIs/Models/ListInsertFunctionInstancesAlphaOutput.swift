@@ -15,9 +15,9 @@ public struct ListInsertFunctionInstancesAlphaOutput: Codable, JSONEncodable, Ha
 
     /** All insert Function instances found. */
     public var instances: [InsertFunctionInstanceAlpha]
-    public var pagination: Pagination4
+    public var pagination: Pagination5
 
-    public init(instances: [InsertFunctionInstanceAlpha], pagination: Pagination4) {
+    public init(instances: [InsertFunctionInstanceAlpha], pagination: Pagination5) {
         self.instances = instances
         self.pagination = pagination
     }
