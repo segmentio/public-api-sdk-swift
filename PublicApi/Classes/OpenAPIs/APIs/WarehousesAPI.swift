@@ -369,7 +369,7 @@ open class WarehousesAPI {
     /**
      List Warehouses
      
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v2. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -392,7 +392,7 @@ open class WarehousesAPI {
      - BASIC:
        - type: http
        - name: token
-     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v1. (optional)
+     - parameter pagination: (query) Defines the pagination parameters.  This parameter exists in v2. (optional)
      - returns: RequestBuilder<ListWarehouses200Response> 
      */
     open class func listWarehousesWithRequestBuilder(pagination: PaginationInput? = nil) -> RequestBuilder<ListWarehouses200Response> {
