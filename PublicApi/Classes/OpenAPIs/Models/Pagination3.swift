@@ -10,30 +10,40 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Optional pagination.  When &#x60;audienceIds&#x60; is provided, this paginates the combined activation result set across those audiences (&#x60;count&#x60; &#x3D; activations per page).  When &#x60;audienceIds&#x60; is omitted, this paginates the space&#39;s *audiences* instead, fully expanding each page&#39;s activations (&#x60;count&#x60; &#x3D; audiences per page, not activations per page) - so response size per page is not directly bounded by &#x60;count&#x60; in that mode. */
+/** Present when pagination input is present in the &#x60;audienceIds&#x60;-provided path. Always present in the space-scan path (&#x60;audienceIds&#x60; omitted). */
 public struct Pagination3: Codable, JSONEncodable, Hashable {
 
-    /** The page to request.  Acceptable values to use here are in PaginationOutput objects, in the `current`, `next`, and `previous` keys.  Consumers of the API must treat this value as opaque. */
-    public var cursor: String?
-    /** The number of items to retrieve in a page, between 1 and 1000. */
-    public var count: Int
+    /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
+    public var current: String
+    /** A pointer to the next page.  This does not return when you retrieve the last page.  Consumers of the API must treat this value as opaque. */
+    public var next: String?
+    /** A pointer to the previous page.  This does not return when you retrieve the first page.  Consumers of the API must treat this value as opaque. */
+    public var previous: String?
+    /** The total number of entries available in the collection.  If calculating it impacts performance, the response may omit this field. */
+    public var totalEntries: Double?
 
-    public init(cursor: String? = nil, count: Int) {
-        self.cursor = cursor
-        self.count = count
+    public init(current: String, next: String? = nil, previous: String? = nil, totalEntries: Double? = nil) {
+        self.current = current
+        self.next = next
+        self.previous = previous
+        self.totalEntries = totalEntries
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case cursor
-        case count
+        case current
+        case next
+        case previous
+        case totalEntries
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(cursor, forKey: .cursor)
-        try container.encode(count, forKey: .count)
+        try container.encode(current, forKey: .current)
+        try container.encodeIfPresent(next, forKey: .next)
+        try container.encodeIfPresent(previous, forKey: .previous)
+        try container.encodeIfPresent(totalEntries, forKey: .totalEntries)
     }
 }
 

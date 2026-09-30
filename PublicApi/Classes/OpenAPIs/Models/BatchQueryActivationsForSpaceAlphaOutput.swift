@@ -17,9 +17,9 @@ public struct BatchQueryActivationsForSpaceAlphaOutput: Codable, JSONEncodable, 
     public var activations: [ActivationOutput]
     /** Audience IDs from the request that could not be resolved, with why - for example not found, or wrong space. When `audienceIds` was omitted from the request (space-scan mode), this never contains a caller-supplied bad id - there isn't one to be wrong - but it can still contain per-activation hydration failures, same as the `audienceIds`-provided path. */
     public var errors: [ErrorsInner]
-    public var pagination: Pagination4?
+    public var pagination: Pagination3?
 
-    public init(activations: [ActivationOutput], errors: [ErrorsInner], pagination: Pagination4? = nil) {
+    public init(activations: [ActivationOutput], errors: [ErrorsInner], pagination: Pagination3? = nil) {
         self.activations = activations
         self.errors = errors
         self.pagination = pagination
