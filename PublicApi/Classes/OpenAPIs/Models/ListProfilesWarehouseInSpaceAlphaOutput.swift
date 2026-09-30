@@ -15,9 +15,9 @@ public struct ListProfilesWarehouseInSpaceAlphaOutput: Codable, JSONEncodable, H
 
     /** A list of Warehouses that belong to the Workspace. */
     public var profilesWarehouses: [ProfilesWarehouseAlpha]
-    public var pagination: Pagination5?
+    public var pagination: Pagination4?
 
-    public init(profilesWarehouses: [ProfilesWarehouseAlpha], pagination: Pagination5? = nil) {
+    public init(profilesWarehouses: [ProfilesWarehouseAlpha], pagination: Pagination4? = nil) {
         self.profilesWarehouses = profilesWarehouses
         self.pagination = pagination
     }
