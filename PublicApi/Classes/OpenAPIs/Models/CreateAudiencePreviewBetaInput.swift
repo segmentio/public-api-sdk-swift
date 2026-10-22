@@ -18,12 +18,12 @@ public struct CreateAudiencePreviewBetaInput: Codable, JSONEncodable, Hashable {
         case linked = "LINKED"
         case users = "USERS"
     }
-    public var definition: Definition2
+    public var definition: Definition5
     /** Denotes the type of audience product.  Possible values: USERS, ACCOUNTS, LINKED. */
     public var audienceType: AudienceType
-    public var options: Options1?
+    public var options: Options3?
 
-    public init(definition: Definition2, audienceType: AudienceType, options: Options1? = nil) {
+    public init(definition: Definition5, audienceType: AudienceType, options: Options3? = nil) {
         self.definition = definition
         self.audienceType = audienceType
         self.options = options
