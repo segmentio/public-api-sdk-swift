@@ -15,9 +15,9 @@ public struct ListSpacesAlphaOutput: Codable, JSONEncodable, Hashable {
 
     /** A list of spaces. */
     public var spaces: [Space]
-    public var pagination: Pagination
+    public var pagination: Pagination4
 
-    public init(spaces: [Space], pagination: Pagination) {
+    public init(spaces: [Space], pagination: Pagination4) {
         self.spaces = spaces
         self.pagination = pagination
     }

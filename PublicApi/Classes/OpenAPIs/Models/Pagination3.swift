@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** An optional pagination object that is present when pagination input is present. */
+/** Present when pagination input is present in the &#x60;audienceIds&#x60;-provided path. Always present in the space-scan path (&#x60;audienceIds&#x60; omitted). */
 public struct Pagination3: Codable, JSONEncodable, Hashable {
 
     /** The current cursor within a collection.  Consumers of the API must treat this value as opaque. */
