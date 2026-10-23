@@ -13,6 +13,58 @@ import AnyCodable
 open class SpacesAPI {
 
     /**
+     Batch Query Messaging Subscriptions for Space
+     
+     - parameter spaceId: (path)  
+     - parameter batchQueryMessagingSubscriptionsForSpaceAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func batchQueryMessagingSubscriptionsForSpace(spaceId: String, batchQueryMessagingSubscriptionsForSpaceAlphaInput: BatchQueryMessagingSubscriptionsForSpaceAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: BatchQueryMessagingSubscriptionsForSpace200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return batchQueryMessagingSubscriptionsForSpaceWithRequestBuilder(spaceId: spaceId, batchQueryMessagingSubscriptionsForSpaceAlphaInput: batchQueryMessagingSubscriptionsForSpaceAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Batch Query Messaging Subscriptions for Space
+     - POST /spaces/{spaceId}/messaging-subscriptions/batch
+     -  <div style=\"background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 16px; margin: 16px 0; color: #856404; display: flex; align-items: center; gap: 12px; line-height: 1.5;\">   <span style=\"color: #ff9800; font-size: 16px; flex-shrink: 0;\">⚠️</span>   <div style=\"line-height: 1.5;\">     <div style=\"font-weight: 600; font-size: 14px; margin-bottom: 6px;\">       Engage Premier features will no longer be available after December 15, 2025.     </div>     <div style=\"font-size: 13px;\">       This API will be deactivated after this date.     </div>   </div> </div> Get Messaging Subscriptions for space.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Spaces feature enabled. Please reach out to your customer success manager for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter batchQueryMessagingSubscriptionsForSpaceAlphaInput: (body)  
+     - returns: RequestBuilder<BatchQueryMessagingSubscriptionsForSpace200Response> 
+     */
+    open class func batchQueryMessagingSubscriptionsForSpaceWithRequestBuilder(spaceId: String, batchQueryMessagingSubscriptionsForSpaceAlphaInput: BatchQueryMessagingSubscriptionsForSpaceAlphaInput) -> RequestBuilder<BatchQueryMessagingSubscriptionsForSpace200Response> {
+        var localVariablePath = "/spaces/{spaceId}/messaging-subscriptions/batch"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: batchQueryMessagingSubscriptionsForSpaceAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BatchQueryMessagingSubscriptionsForSpace200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
      Get Space
      
      - parameter spaceId: (path)  
@@ -110,5 +162,57 @@ open class SpacesAPI {
         let localVariableRequestBuilder: RequestBuilder<ListSpaces200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     Replace Messaging Subscriptions in Spaces
+     
+     - parameter spaceId: (path)  
+     - parameter replaceMessagingSubscriptionsInSpacesAlphaInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func replaceMessagingSubscriptionsInSpaces(spaceId: String, replaceMessagingSubscriptionsInSpacesAlphaInput: ReplaceMessagingSubscriptionsInSpacesAlphaInput, apiResponseQueue: DispatchQueue = PublicApiAPI.apiResponseQueue, completion: @escaping ((_ data: ReplaceMessagingSubscriptionsInSpaces200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return replaceMessagingSubscriptionsInSpacesWithRequestBuilder(spaceId: spaceId, replaceMessagingSubscriptionsInSpacesAlphaInput: replaceMessagingSubscriptionsInSpacesAlphaInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Replace Messaging Subscriptions in Spaces
+     - PUT /spaces/{spaceId}/messaging-subscriptions
+     -  <div style=\"background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 16px; margin: 16px 0; color: #856404; display: flex; align-items: center; gap: 12px; line-height: 1.5;\">   <span style=\"color: #ff9800; font-size: 16px; flex-shrink: 0;\">⚠️</span>   <div style=\"line-height: 1.5;\">     <div style=\"font-weight: 600; font-size: 14px; margin-bottom: 6px;\">       Engage Premier features will no longer be available after December 15, 2025.     </div>     <div style=\"font-size: 13px;\">       This API will be deactivated after this date.     </div>   </div> </div> Replace Messaging Subscriptions in Spaces.  • This endpoint is in **Alpha** testing.  Please submit any feedback by sending an email to friends@segment.com.   • In order to successfully call this endpoint, the specified Workspace needs to have the Spaces feature enabled. Please reach out to your customer success manager for more information.   The rate limit for this endpoint is 60 requests per minute, which is lower than the default due to access pattern restrictions. Once reached, this endpoint will respond with the 429 HTTP status code with headers indicating the limit parameters. See [Rate Limiting](/#tag/Rate-Limits) for more information.
+     - BASIC:
+       - type: http
+       - name: token
+     - parameter spaceId: (path)  
+     - parameter replaceMessagingSubscriptionsInSpacesAlphaInput: (body)  
+     - returns: RequestBuilder<ReplaceMessagingSubscriptionsInSpaces200Response> 
+     */
+    open class func replaceMessagingSubscriptionsInSpacesWithRequestBuilder(spaceId: String, replaceMessagingSubscriptionsInSpacesAlphaInput: ReplaceMessagingSubscriptionsInSpacesAlphaInput) -> RequestBuilder<ReplaceMessagingSubscriptionsInSpaces200Response> {
+        var localVariablePath = "/spaces/{spaceId}/messaging-subscriptions"
+        let spaceIdPreEscape = "\(APIHelper.mapValueToPathItem(spaceId))"
+        let spaceIdPostEscape = spaceIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{spaceId}", with: spaceIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PublicApiAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: replaceMessagingSubscriptionsInSpacesAlphaInput)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ReplaceMessagingSubscriptionsInSpaces200Response>.Type = PublicApiAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 }
