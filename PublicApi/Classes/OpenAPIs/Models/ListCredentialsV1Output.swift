@@ -15,9 +15,9 @@ public struct ListCredentialsV1Output: Codable, JSONEncodable, Hashable {
 
     /** A list of Credentials that belong to the Workspace. */
     public var credentials: [CredentialV1]
-    public var pagination: Pagination4
+    public var pagination: Pagination5
 
-    public init(credentials: [CredentialV1], pagination: Pagination4) {
+    public init(credentials: [CredentialV1], pagination: Pagination5) {
         self.credentials = credentials
         self.pagination = pagination
     }
