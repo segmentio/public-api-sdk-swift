@@ -15,9 +15,9 @@ public struct BatchQueryActivationsForSpaceAlphaInput: Codable, JSONEncodable, H
 
     /** Audience IDs to list activations for. Max 100 IDs per call. Duplicates are de-duplicated server-side but still count toward the cap.  Omit (or pass an empty array) to scan every audience in the space instead - see the `pagination` doc below for how that changes what a \"page\" means. Omitting this list is materially higher latency per call than a scoped batch, since each page has to enumerate audiences before it can look up their activations. */
     public var audienceIds: [String]?
-    public var pagination: Pagination3?
+    public var pagination: Pagination2?
 
-    public init(audienceIds: [String]? = nil, pagination: Pagination3? = nil) {
+    public init(audienceIds: [String]? = nil, pagination: Pagination2? = nil) {
         self.audienceIds = audienceIds
         self.pagination = pagination
     }
