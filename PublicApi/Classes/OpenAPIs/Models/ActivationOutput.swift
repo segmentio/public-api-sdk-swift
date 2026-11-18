@@ -35,8 +35,12 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
     public var destinationMapping: DestinationMapping2?
     /** Indicates if a full resync is currently pending or in progress. */
     public var performResync: Bool?
+    /** When the activation was created, as an ISO-8601 string. */
+    public var createdAt: String
+    /** When the activation was last updated, as an ISO-8601 string. Advances on every update, including changes to only the personalization or destinationMapping. */
+    public var updatedAt: String
 
-    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, connectionId: String, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization2, destinationMapping: DestinationMapping2? = nil, performResync: Bool? = nil) {
+    public init(id: String, enabled: Bool, workspaceId: String, spaceId: String, audienceId: String, connectionId: String, activationType: String, activationName: String, displayName: String? = nil, personalization: Personalization2, destinationMapping: DestinationMapping2? = nil, performResync: Bool? = nil, createdAt: String, updatedAt: String) {
         self.id = id
         self.enabled = enabled
         self.workspaceId = workspaceId
@@ -49,6 +53,8 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
         self.personalization = personalization
         self.destinationMapping = destinationMapping
         self.performResync = performResync
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -64,6 +70,8 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
         case personalization
         case destinationMapping
         case performResync
+        case createdAt
+        case updatedAt
     }
 
     // Encodable protocol methods
@@ -82,6 +90,8 @@ public struct ActivationOutput: Codable, JSONEncodable, Hashable {
         try container.encode(personalization, forKey: .personalization)
         try container.encodeIfPresent(destinationMapping, forKey: .destinationMapping)
         try container.encodeIfPresent(performResync, forKey: .performResync)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(updatedAt, forKey: .updatedAt)
     }
 }
 
